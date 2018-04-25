@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        phone list｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://haojen.github.io/2017/09/24/phone-list/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('//o7bkkhiex.bkt.clouddn.com/lion-blur-bg.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/proverbs/">Proverbs</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="post-default.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('post-default.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>phone list</h1>
+                    
+                    <span class="meta">
+                         作者 John Doe
+                        <span>
+                          日期 2017-09-24
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#acm"
+                           title="acm">acm</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            phone list
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p><strong>链表：</strong><br><strong>链表是由一个又一个的节点组成的，链表的节点包括数据域和指针域，指针变量存储指向下一节点的地址。如下代码段所示。</strong><br>typedef struct node<br>{<br>    int num;    //标记该字符是否是某一字符串的结尾<br>    node *next[10];<br>}node;</p>
+<p><strong>phone list</strong></p>
+<p>Problem Description<br>Given a list of phone numbers, determine if it is consistent in the sense that no number is the prefix of another. Let’s say the phone catalogue listed these numbers:</p>
+<p>Emergency 911<br>Alice 97 625 999<br>Bob 91 12 54 26<br>In this case, it’s not possible to call Bob, because the central would direct your call to the emergency line as soon as you had dialled the first three digits of Bob’s phone number. So this list would not be consistent.</p>
+<p>Input</p>
+<p>The first line of input gives a single integer, 1 ≤ <i>t</i> ≤ 40, the number of test cases. Each test case starts with <i>n</i>, the number of phone numbers, on a separate line, 1 ≤ <i>n</i> ≤ 10000. Then follows <i>n</i> lines with one unique phone number on each line. A phone number is a sequence of at most ten digits. </p>
+
+
+<p>Output</p>
+<p>For each test case, output “YES” if the list is consistent, or “NO” otherwise.</p>
+
+
+<p>Sample Input<br>2<br>3<br>911<br>97625999<br>91125426<br>5<br>113<br>12340<br>123440<br>12345<br>98346 </p>
+<p>Sample Output<br>NO<br>YES<br><strong>根据此题的需求，此题每个节点定义了10个next节点，但并不是每个节点都会用到。</strong></p>
+<pre><code>/* 判断一组字符串中是否有一个字符串是另一个字符串的前缀
+      注意有两种情况 */
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+
+typedef struct node
+{
+    int num;    //标记该字符是否是某一字符串的结尾
+    node *next[10];
+}node;
+
+node memory[1000000];
+int k;
+
+int insert(char *s, node *T)
+{
+    int i, len, id, j;
+    node *p, *q;//pq两个中间节点变量
+    p = T;
+    len = strlen(s);
+    for (i = 0; i&lt;len; ++i)
+    {
+        id = s[i] - &apos;0&apos;;//字符对应的数字。
+        if (p-&gt;num == 1)   //说明存在先前字符可以作为s的前缀----（先短后长）
+            return 1;
+        if (p-&gt;next[id] == NULL)//T的下一节点的地址不为空的话
+        {   
+            q = &amp;memory[k++];
+            q-&gt;num = 0;
+            for (j = 0; j&lt;10; ++j)
+            q-&gt;next[j] = NULL;
+            p-&gt;next[id] = q;
+        }
+        p = p-&gt;next[id];
+    }
+    for (i = 0; i&lt;10; ++i)      //如果p的后继结点不为空的话说明s是先前字符的前缀----（先长后短）
+    if (p-&gt;next[i] != NULL)
+        return 1;
+    p-&gt;num = 1;
+    return 0;
+}
+
+int main()
+{
+    int m, n, flag, i;
+    node *T;
+    char s[15];
+    scanf(&quot;%d&quot;, &amp;m);
+    while (m--)
+    {
+        k = 0;              //每次都从数组下标为0的地方开始分配内存，可以使内存循环利用，从而不会造成内存超限
+        T = &amp;memory[k++];//链表 中的 某个节点。
+        T-&gt;num = 0;
+        for (i = 0; i&lt;10; ++i)
+            T-&gt;next[i] = NULL;//后十个节点先赋NULL。
+        flag = 0;
+        scanf(&quot;%d&quot;, &amp;n);
+        while (n--)
+        {
+            scanf(&quot;%s&quot;, s);
+            if (flag)
+                continue;
+            if (insert(s, T))
+                flag = 1;
+        }
+        if (flag)
+            printf(&quot;NO\n&quot;);
+        else
+            printf(&quot;YES\n&quot;);
+    }
+    return 0;
+}
+</code></pre><p><em>主代码分析：</em></p>
+<p><strong>1 每次进入insert,同时传入字符串s和T节点。</strong><br><strong>2 从字符串中提取整型数字，同时判断是否有完整的字符串已被标记（num是否为1）若是，return 1</strong><br><strong>3 以T节点为顶节点进行判断下一个节点是否为空，若空，创建q节点（&amp;memory[k++]）并把q节点的十个next节点赋空，p-&gt;next[id]=q;。若不为空,执行第4部</strong><br><strong>4 p=p-&gt;next[id],对下一节点进行处理。</strong><br><strong>5 处理字符串完毕，for循环进行遍历，看s是否先前字符的前缀。</strong><br><strong>6 执行p-&gt;num=1;（一个完整字符串“存入”链表中的标记）</strong></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/09/24/floyd算法/" data-toggle="tooltip" data-placement="top"
+                           title="floyd算法">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/01/01/GitHub写博客的基本操作/" data-toggle="tooltip" data-placement="top"
+                           title="GitHub写博客的基本操作">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#acm"
+                           title="acm">acm</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/茶水客人98">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://haojen.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>

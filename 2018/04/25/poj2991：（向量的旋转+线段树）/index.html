@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        poj2991：（向量的旋转+线段树）｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://haojen.github.io/2018/04/25/poj2991：（向量的旋转+线段树）/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('//o7bkkhiex.bkt.clouddn.com/lion-blur-bg.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/proverbs/">Proverbs</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="post-default.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('post-default.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>poj2991：（向量的旋转+线段树）</h1>
+                    
+                    <span class="meta">
+                         作者 John Doe
+                        <span>
+                          日期 2018-04-25
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#acm"
+                           title="acm">acm</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            poj2991：（向量的旋转+线段树）
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>用到了复数和向量的知识：<br>复数的四则运算：</p>
+<ul>
+<li>加法：(a+bi)+(c+di)=(a+c)+(b+d)i</li>
+<li>减法：(a+bi)-(c+di)=(a-c)+(b-d)i</li>
+<li>乘法：(a+bi)(c+di)=(ac-bd)+(bc+ad)i</li>
+<li>除法：(a+bi)/(c+di)=(ac+bd)/(c^2+ d^2 )+(bc-ad)/(c^2+ d^2)</li>
+</ul>
+<h5 id="复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。"><a href="#复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。" class="headerlink" title="复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。"></a>复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。</h5><p>具体来说，如果有一个向量(x,y)旋转φ，可以视为两个复数x+yi乘以cos(φ)+sin(φ)i,等于xcos(φ)-ysin(φ)+(xsin(φ)+ycos(φ))i 即旋转后的坐标为(xcos(φ)-ysin(φ)),(xsin(φ)+ycos(φ))</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>这是学习线段树ac的第一题，没想到wa了这么久竟然是π的值错了，精确的应该是 double型的acos(-1.0)才是π的值。但是在poj上的话c++能AC这个代码，但 g ++AC不了，有人说把cos，sin的值都打表之后会莫名其妙的节省很多时间，暂时还没试过，等把这种结构学的差不多的时候再作优化吧。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;math.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int N,C;</span><br><span class="line"></span><br><span class="line">int L[50010],S[50010],A[50010];</span><br><span class="line"></span><br><span class="line">double vx[50200],vy[50200];</span><br><span class="line">double ang[50200];</span><br><span class="line">double prv[50010];</span><br><span class="line">//#define M_PI 3.1415926</span><br><span class="line">double M_PI = acos(-1.0);</span><br><span class="line">void init(int k,int l,int r)</span><br><span class="line">&#123;</span><br><span class="line">    vx[k]=ang[k]=0.0;</span><br><span class="line">    if(r-l==1)</span><br><span class="line">        vy[k]=L[l];</span><br><span class="line">    else&#123;</span><br><span class="line">        int ch1=k*2+1;</span><br><span class="line">        int ch2=k*2+2;</span><br><span class="line">        init(ch1,l,(l+r)/2);</span><br><span class="line">        init(ch2,(l+r)/2,r);</span><br><span class="line">        vy[k]=vy[ch1]+vy[ch2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void change(int s,double a,int v,int l,int r)</span><br><span class="line">&#123;</span><br><span class="line">    //线段s不在区间[l,r)内,这些情况不考虑。</span><br><span class="line">    //重要的是树的根节点，数组的第一个数都是从0下标开始的。</span><br><span class="line">    </span><br><span class="line">    if(r-l==1)</span><br><span class="line">        return;//只有一个线段的区间（如[5,6)区间，只有5），没有左右孩子不作处理。已画过树状图理解。</span><br><span class="line">    if(s&lt;r&amp;&amp;s&gt;=l)</span><br><span class="line">    &#123;</span><br><span class="line">        int ch1=v*2+1;</span><br><span class="line">        int ch2=v*2+2;</span><br><span class="line">        int m=(l+r)/2;</span><br><span class="line">        change(s,a,ch1,l,m);</span><br><span class="line">        change(s,a,ch2,m,r);</span><br><span class="line"></span><br><span class="line">        //核心</span><br><span class="line">        if(s&lt;m)//s&lt;m代表线段s在v节点的左孩子的区间内。</span><br><span class="line">            ang[v]+=a;//ang[v] 代表的也就是线段s[i+1]要旋转的角度。ang是节点累加的结果。</span><br><span class="line">        double s=cos(ang[v]),c=sin(ang[v]);</span><br><span class="line">        vx[v]=vx[ch1]+(vx[ch2]*s-vy[ch2]*c);//左边的坐标加上右边旋转后的坐标就是当前节点所表示的向量的坐标。</span><br><span class="line">        vy[v]=vy[ch1]+(vx[ch2]*c+vy[ch2]*s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void solve()</span><br><span class="line">&#123;</span><br><span class="line">    init(0,0,N);</span><br><span class="line">    for(int i=0;i&lt;N;i++)</span><br><span class="line">        prv[i]=M_PI;</span><br><span class="line">    for(int i=0;i&lt;C;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int s=S[i]-1;//为了保证第i个线段的i是从下标0开始的。</span><br><span class="line">        double a=A[i]/360.0*2*M_PI;//角度转化为弧度。</span><br><span class="line">        change(s,a-prv[s],0,0,N);</span><br><span class="line">        prv[s]=a;</span><br><span class="line">        printf(&quot;%.2f %.2f\n&quot;,vx[0],vy[0]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    bool flag=false;</span><br><span class="line">    while(scanf(&quot;%d%d&quot;,&amp;N,&amp;C)==2)</span><br><span class="line">    &#123;</span><br><span class="line">        for(int i=0;i&lt;N;i++)</span><br><span class="line">            cin&gt;&gt;L[i];</span><br><span class="line">        for(int i=0;i&lt;C;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cin&gt;&gt;S[i];</span><br><span class="line">            cin&gt;&gt;A[i];</span><br><span class="line">        &#125;</span><br><span class="line">        if(flag)</span><br><span class="line">            cout&lt;&lt;endl;</span><br><span class="line">        flag=true;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为一个节点要么是父节点，要么是孩子节点，所以在change函数中，如果是孩子节点就return，不在区间[l,r)内的，不考虑，在内的，如果在左孩子，则当前节点的角度加上要旋转的角度，然后求当前节点对应的向量的坐标—-结果为左孩子的坐标x，y分别加上右孩子向量旋转之后的坐标。</p>
+<hr>
+<p>一定要经常看代码和题。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/04/25/zzulioj minval--求第k最优解/" data-toggle="tooltip" data-placement="top"
+                           title="zzulioj minval--求第k最优解">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/04/25/poj 1742多重背包+二进制优化/" data-toggle="tooltip" data-placement="top"
+                           title="poj 1742多重背包+二进制优化">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。"><span class="toc-text">复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#acm"
+                           title="acm">acm</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/茶水客人98">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://haojen.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>

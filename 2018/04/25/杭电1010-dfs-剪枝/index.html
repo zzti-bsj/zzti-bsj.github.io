@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        杭电1010-搜索题简述-（DFS+剪枝技巧）｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://haojen.github.io/2018/04/25/杭电1010-dfs-剪枝/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('//o7bkkhiex.bkt.clouddn.com/lion-blur-bg.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/proverbs/">Proverbs</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="post-default.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('post-default.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>杭电1010-搜索题简述-（DFS+剪枝技巧）</h1>
+                    
+                    <span class="meta">
+                         作者 John Doe
+                        <span>
+                          日期 2018-04-25
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#acm"
+                           title="acm">acm</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            杭电1010-搜索题简述-（DFS+剪枝技巧）
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h4 id="杭电1010："><a href="#杭电1010：" class="headerlink" title="杭电1010："></a>杭电1010：</h4><ul>
+<li>DFS的基础知识题目</li>
+<li>可以用来理解并分析DFS类型的题目。</li>
+<li>做此类题首先把思路搞清楚，最好把路线图画出来写函数。</li>
+</ul>
+<hr>
+<h4 id="思路简述：（重点会有标记）"><a href="#思路简述：（重点会有标记）" class="headerlink" title="思路简述：（重点会有标记）"></a>思路简述：（重点会有标记）</h4><ul>
+<li>简述dfs函数的写法。</li>
+<li>从S出发，输入是标记S的初始坐标，以作为函数dfs的形参。</li>
+<li>dfs(int x,int y,int t)//t代表时间，每当走一步— t+1。</li>
+<li>dfs(x,y,t)代表在坐标x,y位置时，已走的时间为t，这就是dfs函数参数的意义。</li>
+<li>则当x,y若为D时，此时写dfs函数的内容该这样写</li>
+</ul>
+<pre><code>if(map[x][y]==&apos;D&apos;&amp;&amp;t&lt;T){
+    b=true;//已找到解。
+    return;
+}
+</code></pre><ul>
+<li>那么dfs(x,y,t)该如何递归呢？<ul>
+<li>下一步依据题目的要求，只能up down left right四个方向走，所以可以定义一个方向数组。</li>
+<li>四个方向是同样的操作所以考虑一个方向的操作，for循环解决。</li>
+<li>一个方向走的话有下一步的位置有三种情况：<ul>
+<li>墙</li>
+<li>未标记的路</li>
+<li>已标记的路</li>
+</ul>
+</li>
+<li>所以遇见墙和已标记的路就不执行下去了。只有未标记的路继续执行。</li>
+<li>每遍历一个位置要标记一个位置.</li>
+</ul>
+</li>
+</ul>
+<pre><code>visited[xx][yy]=1;
+dfs(xx,yy,t+1);
+visited[xx][yy]=0;
+</code></pre><ul>
+<li><ul>
+<li>这样写是因为在当前dfs函数中xx,yy已经被访问过，所以visited[xx][yy]在dfs(xx,yy,t+1)之前执行了。</li>
+<li>剩下的为剪枝的操作技巧，在下面有笔记，所谓熟能生巧，往大神的路子上踏吧，dfs的基本思路是清晰了，但acm对自己的刁难还远远不仅如此，继续努力吧。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>剪枝:</p>
+<ul>
+<li>依据题目要求，当t=T时说明已经不用再往下进行了，所以return，<br>这点很容易看出来。</li>
+<li>因为定义了一个全局变量flag，当flag为真时，结果已经出来了，不用继续往下遍历，所以当flag为false时，for循环继续执行。</li>
+</ul>
+<ul>
+<li>很容易想到，在主函数中，当且仅当T时刻门打开，所以判断T与识末位<br>置的奇偶性是否相同，不相同也没有必要往下执行了。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>细节：</p>
+<ul>
+<li>因为是多组输入数据，所以注意变量，每次执行某一组数据时，是否临时的变量更新了而不是上一组数据残留的赋值。</li>
+</ul>
+</li>
+<li><p>新学到的东西:</p>
+<ul>
+<li>C的输入格式，scanf(“%c”,&amp;ch);这个输入格式会把空行（\n）保留在ch中，当需要用输入一组字符的话—-伪码：<br>`</li>
+</ul>
+</li>
+</ul>
+<pre><code>char ch[5];
+for(int i=0;i&lt;3;i++)
+{
+    ch[i]=getchar();
+}
+getchar();//这个是缓存空行（\n）的。
+</code></pre><p>`</p>
+<ul>
+<li>附上杭电1010源码：</li>
+</ul>
+<pre><code>#include &lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;algorithm&gt;
+#include&lt;string.h&gt;
+using namespace std;
+char map[8][8];
+int visited[8][8];
+int dir[4][2]={1,0,-1,0,0,1,0,-1};
+int sx,sy;
+int N,M,T;
+bool flag;
+int ds;
+void dfs(int x,int y,int t)
+{
+    if(map[x][y]==&apos;D&apos;&amp;&amp;t==T)
+        {
+        flag=true;
+        return ;
+        }
+    if(t==T)
+        return;
+    if(flag==false)
+    for(int i=0;i&lt;4;i++)
+    {
+        int xx=x+dir[i][0];
+        int yy=y+dir[i][1];
+        if(map[xx][yy]==&apos;X&apos;||visited[xx][yy]||xx&gt;=N    ||yy&gt;=M||xx&lt;0||yy&lt;0)
+        continue;
+        visited[xx][yy]=1;
+        dfs(xx,yy,t+1);
+        visited[xx][yy]=0;
+    }
+    return;
+}
+int main()
+{
+    while(cin&gt;&gt;N&gt;&gt;M&gt;&gt;T&amp;&amp;N&amp;&amp;M&amp;&amp;T)
+    {
+        memset(visited,0,sizeof(visited));
+        getchar();
+        flag=false;
+        for(int i=0;i&lt;N;i++)
+        {
+            for(int j=0;j&lt;M;j++)
+            {
+                map[i][j]=getchar();
+                //cin&gt;&gt;map[i][j];
+                if(map[i][j]==&apos;S&apos;)
+                {
+                    sx=i;
+                    sy=j;
+                }
+            if(map[i][j]==&apos;D&apos;)
+                ds=i+j;
+            }
+        getchar();
+        }
+        visited[sx][sy]=1;
+        if (((ds - sx - sy) &amp; 1) == (T &amp; 1))
+            dfs(sx, sy, 0);
+        if(flag)
+            printf(&quot;YES\n&quot;);
+        else
+            printf(&quot;NO\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/04/25/筛选质数-n的排列组合数的罗列/" data-toggle="tooltip" data-placement="top"
+                           title="筛选质数，n的排列组合数的罗列(伪码)">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/04/25/多重背包+二进制优化/" data-toggle="tooltip" data-placement="top"
+                           title="多重背包+二进制优化">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#杭电1010："><span class="toc-text">杭电1010：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路简述：（重点会有标记）"><span class="toc-text">思路简述：（重点会有标记）</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#acm"
+                           title="acm">acm</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/茶水客人98">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://haojen.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 动态背景 -->
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
