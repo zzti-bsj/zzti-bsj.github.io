@@ -143,122 +143,405 @@
 </script>
 
 <!-- Main Content -->
-
+<style>
+    .intro-header .site-heading {
+        margin: 50px;
+    }
+    
+    header.intro-header {
+        background-image: url('post-default.jpg')
+    }
+    
+</style>
 
 <!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="/head.jpg"/>
-                        <h5><a href="/about/">BAIsj</a></h5>
-                        <p>爱编程，爱生活</p>
-                    </div>
+                    <h1>tags</h1>
+                    <span class="subheading"></span>
                 </div>
             </div>
-        </header>
-    </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <hr>
-<h2 id="acm"><a href="#acm" class="headerlink" title="acm"></a><a href="/tags/acm">acm</a></h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a><a href="/tags/数据结构">数据结构</a></h3><h2 id="C"><a href="#C" class="headerlink" title="C#"></a><em><a href="/tags/C#">C#</a></em></h2><h3 id="碎碎点"><a href="#碎碎点" class="headerlink" title="碎碎点"></a><a href="/tags/碎碎点">碎碎点</a></h3><h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a><a href="/tags/GitHub">GitHub</a></h3><h2 id="JavaEE"><a href="#JavaEE" class="headerlink" title="JavaEE"></a><a href="/tags/JavaEE">JavaEE</a></h2><hr>
-
-
         </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+    </div>
+</header>
 
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="/head.jpg"/>
-                    
-                    <h5><a href="/about/">BAIsj</a></h5>
-                    
-                    <p>爱编程，爱生活</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- 标签云 -->
+            <div id='tag_cloud' class="tags">
 
-                        
-                        <li>
-                            <a target="_blank" href="http://weibo.com/http://weibo.com/u/5973705133">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
+             
+             <a href="#essays" title="essays" rel="1" style="background-color: rgb(187,187,238);">essays</a>
+             
+             <a href="#C#" title="C#" rel="4" style="background-color: rgb(187,187,238);">C#</a>
+             
+             <a href="#acm" title="acm" rel="19" style="background-color: rgb(187,187,238);">acm</a>
+             
+             <a href="#GitHub" title="GitHub" rel="1" style="background-color: rgb(187,187,238);">GitHub</a>
+             
+             <a href="#JavaEE" title="JavaEE" rel="1" style="background-color: rgb(187,187,238);">JavaEE</a>
+             
+             <a href="#Word" title="Word" rel="1" style="background-color: rgb(187,187,238);">Word</a>
+             
+             <a href="#碎碎点" title="碎碎点" rel="1" style="background-color: rgb(187,187,238);">碎碎点</a>
+             
+             <a href="#数据结构" title="数据结构" rel="1" style="background-color: rgb(187,187,238);">数据结构</a>
+             
 
-                        
+            </div>
 
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/zzti-bsj">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
+            <!-- 标签列表 -->
             
-            <section>
-                <div class="tags">
-                    
-                    
-                    
-                    
-                    <a href="/tags/#C#" title="C#"
-                       rel="4">C#</a>
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#acm" title="acm"
-                       rel="19">acm</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="essays">
+                    <span class="tag-text">essays</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2016/01/27/1月5号/">
+                        <h2 class="post-title">
+                            1月5号
+                        </h2>
+                        
+                    </a>
                 </div>
-            </section>
+                <hr>
+                
+            </div>
             
-
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="C#">
+                    <span class="tag-text">C#</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2018/01/27/C-String类和StringBuilder类/">
+                        <h2 class="post-title">
+                            C#:String类和StringBuilder类
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/01/30/C-判断字符串中的汉字个数-厉害的正则表达式/">
+                        <h2 class="post-title">
+                            C#:判断字符串中的汉字个数--厉害的正则表达式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/01/26/C-做一个简单的时钟/">
+                        <h2 class="post-title">
+                            C#:做一个简单的时钟
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/01/31/C-制作一个打开文件并提取文件名的工具-OpengFileDialog类/">
+                        <h2 class="post-title">
+                            C#:制作一个打开文件并提取文件名的工具--OpengFileDialog类
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="acm">
+                    <span class="tag-text">acm</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2017/10/12/Dijkstra-算法-点与边/">
+                        <h2 class="post-title">
+                            Dijkstra 算法 点与边
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2017/09/24/floyd算法/">
+                        <h2 class="post-title">
+                            floyd算法
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/hdu 1114完全背包求最小价值/">
+                        <h2 class="post-title">
+                            hdu 1114完全背包求最小价值
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/int型的最大值为9位数，最高位为2/">
+                        <h2 class="post-title">
+                            int型的最大值为10位数，最高位为2
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/03/10/kruskal算法/">
+                        <h2 class="post-title">
+                            kruskal算法
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2017/09/24/phone-list/">
+                        <h2 class="post-title">
+                            phone list
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/poj 1742多重背包+二进制优化/">
+                        <h2 class="post-title">
+                            poj 1742多重背包+二进制优化
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/poj2991：（向量的旋转+线段树）/">
+                        <h2 class="post-title">
+                            poj2991：（向量的旋转+线段树）
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/分数规划问题之-----0-1分数规划/">
+                        <h2 class="post-title">
+                            分数规划问题之-----0-1分数规划
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/zzulioj minval--求第k最优解/">
+                        <h2 class="post-title">
+                            zzulioj minval--求第k最优解
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/动态规划——完全背包/">
+                        <h2 class="post-title">
+                            动态规划——完全背包
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/动态规划——0-1背包问题/">
+                        <h2 class="post-title">
+                            动态规划——0-1背包问题
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/多重背包+二进制优化/">
+                        <h2 class="post-title">
+                            多重背包+二进制优化
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2017/09/28/整数拆分（母函数问题）/">
+                        <h2 class="post-title">
+                            整数拆分（母函数问题）
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/杭电1010-dfs-剪枝/">
+                        <h2 class="post-title">
+                            杭电1010-搜索题简述-（DFS+剪枝技巧）
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/筛选质数-n的排列组合数的罗列/">
+                        <h2 class="post-title">
+                            筛选质数，n的排列组合数的罗列(伪码)
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/线段树基础-（数据结构）/">
+                        <h2 class="post-title">
+                            线段树基础-（数据结构）
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/蓝桥杯第五届-星系炸弹/">
+                        <h2 class="post-title">
+                            蓝桥杯第五届-星系炸弹
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2017/09/26/贪心练习/">
+                        <h2 class="post-title">
+                            贪心练习（一）
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="GitHub">
+                    <span class="tag-text">GitHub</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2017/01/01/GitHub写博客的基本操作/">
+                        <h2 class="post-title">
+                            GitHub写博客的基本操作
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="JavaEE">
+                    <span class="tag-text">JavaEE</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2018/04/25/java用命令行对数据库的操作/">
+                        <h2 class="post-title">
+                            java用命令行对数据库的操作
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Word">
+                    <span class="tag-text">Word</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2018/01/01/word文档的操作技巧/">
+                        <h2 class="post-title">
+                            word文档的操作技巧
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="碎碎点">
+                    <span class="tag-text">碎碎点</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2017/10/10/碎碎点1/">
+                        <h2 class="post-title">
+                            碎碎点1
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="数据结构">
+                    <span class="tag-text">数据结构</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2017/10/12/邻接表/">
+                        <h2 class="post-title">
+                            邻接表--如何用邻接表储存一个图
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
             
 
         </div>
