@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -230,16 +233,6 @@
                 <hr>
                 
                 <div class="post-preview">
-                    <a href="/2018/01/26/C-做一个简单的时钟/">
-                        <h2 class="post-title">
-                            C#:做一个简单的时钟
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
                     <a href="/2018/01/30/C-判断字符串中的汉字个数-厉害的正则表达式/">
                         <h2 class="post-title">
                             C#:判断字符串中的汉字个数--厉害的正则表达式
@@ -253,6 +246,16 @@
                     <a href="/2018/01/31/C-制作一个打开文件并提取文件名的工具-OpengFileDialog类/">
                         <h2 class="post-title">
                             C#:制作一个打开文件并提取文件名的工具--OpengFileDialog类
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/01/26/C-做一个简单的时钟/">
+                        <h2 class="post-title">
+                            C#:做一个简单的时钟
                         </h2>
                         
                     </a>
@@ -317,9 +320,9 @@
                 <hr>
                 
                 <div class="post-preview">
-                    <a href="/2018/04/25/poj 1742多重背包+二进制优化/">
+                    <a href="/2017/09/24/phone-list/">
                         <h2 class="post-title">
-                            poj 1742多重背包+二进制优化
+                            phone list
                         </h2>
                         
                     </a>
@@ -327,9 +330,9 @@
                 <hr>
                 
                 <div class="post-preview">
-                    <a href="/2017/09/24/phone-list/">
+                    <a href="/2018/04/25/poj 1742多重背包+二进制优化/">
                         <h2 class="post-title">
-                            phone list
+                            poj 1742多重背包+二进制优化
                         </h2>
                         
                     </a>
@@ -357,9 +360,9 @@
                 <hr>
                 
                 <div class="post-preview">
-                    <a href="/2018/04/25/分数规划问题之-----0-1分数规划/">
+                    <a href="/2018/04/25/动态规划——0-1背包问题/">
                         <h2 class="post-title">
-                            分数规划问题之-----0-1分数规划
+                            动态规划——0-1背包问题
                         </h2>
                         
                     </a>
@@ -367,9 +370,9 @@
                 <hr>
                 
                 <div class="post-preview">
-                    <a href="/2018/04/25/动态规划——0-1背包问题/">
+                    <a href="/2018/04/25/分数规划问题之-----0-1分数规划/">
                         <h2 class="post-title">
-                            动态规划——0-1背包问题
+                            分数规划问题之-----0-1分数规划
                         </h2>
                         
                     </a>
@@ -387,9 +390,9 @@
                 <hr>
                 
                 <div class="post-preview">
-                    <a href="/2017/09/28/整数拆分（母函数问题）/">
+                    <a href="/2018/04/25/多重背包+二进制优化/">
                         <h2 class="post-title">
-                            整数拆分（母函数问题）
+                            多重背包+二进制优化
                         </h2>
                         
                     </a>
@@ -397,9 +400,9 @@
                 <hr>
                 
                 <div class="post-preview">
-                    <a href="/2018/04/25/多重背包+二进制优化/">
+                    <a href="/2017/09/28/整数拆分（母函数问题）/">
                         <h2 class="post-title">
-                            多重背包+二进制优化
+                            整数拆分（母函数问题）
                         </h2>
                         
                     </a>
@@ -665,6 +668,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

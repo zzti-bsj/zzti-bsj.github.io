@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -220,8 +223,26 @@
 <p>经过我参考网上大佬的博客之后再画图，在演草纸上代入状态方程验算，发现正序在装第i件物品时，只要背包剩余容量够，就继续装，当前物品无限件，符合完全背包。而倒序在装第i件物品时，每件物品只能装一件，物品只有一件，符合0-1背包。</p>
 <p><strong>下图是：使用滚动数组时+对0-1背包倒序和完全背包正序的理解</strong></p>
 <p> <img src="/imag/zn.jpg" alt="alt zn" title="zn"></p>
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,W;</span><br><span class="line">int w[1000],v[1000];</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;W;</span><br><span class="line">    for(int i=0;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;w[i]&gt;&gt;v[i];</span><br><span class="line">    &#125;</span><br><span class="line">    //输入的处理，两个二维数组。</span><br><span class="line">    </span><br><span class="line">    for(int i=0;i&lt;n;i++)</span><br><span class="line">    for(int j=w[i];j&lt;=W;j++)</span><br><span class="line">    dp[j]=max(dp[j],dp[j-w[i]]+v[i]);</span><br><span class="line">    cout&lt;&lt;dp[W]&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来多刷同类型的题目，上网找大佬们刷过的题。</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><pre><code>#include&lt;iostream&gt;
+using namespace std;
+int n,W;
+int w[1000],v[1000];
+int main()
+{
+    cin&gt;&gt;n&gt;&gt;W;
+    for(int i=0;i&lt;n;i++)
+    {
+        cin&gt;&gt;w[i]&gt;&gt;v[i];
+    }
+    //输入的处理，两个二维数组。
+
+    for(int i=0;i&lt;n;i++)
+    for(int j=w[i];j&lt;=W;j++)
+    dp[j]=max(dp[j],dp[j-w[i]]+v[i]);
+    cout&lt;&lt;dp[W]&lt;&lt;endl;
+    return 0;
+}
+</code></pre><p>接下来多刷同类型的题目，上网找大佬们刷过的题。</p>
 
                 <hr>
                 
@@ -431,6 +452,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

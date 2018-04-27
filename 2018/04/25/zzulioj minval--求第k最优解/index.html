@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -203,8 +206,105 @@
 create()函数
 siftdown()函数，进行向下调整。
 change()函数，取元素，维护堆。
-</code></pre><h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//zzulioj minval</span><br><span class="line">//求第k最优解。</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int N;</span><br><span class="line">int a[100100],b[100100];</span><br><span class="line">struct node&#123;</span><br><span class="line">    int r;</span><br><span class="line">    int c;</span><br><span class="line">    long long num;</span><br><span class="line">&#125;;</span><br><span class="line">node h[100100];</span><br><span class="line">void swap(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">	node t;</span><br><span class="line">	t = h[x];</span><br><span class="line">	h[x] = h[y];</span><br><span class="line">	h[y] = t;</span><br><span class="line">&#125;//堆结构位置的节点交换了。</span><br><span class="line"></span><br><span class="line">void siftdown(int k) //传入一个需要向下调整的结点编号k</span><br><span class="line">&#123;</span><br><span class="line">    int t;</span><br><span class="line">    bool flag=true;</span><br><span class="line">	while (k*2&lt;=N&amp;&amp;flag)</span><br><span class="line">	&#123;</span><br><span class="line">	    //记录节点编号。</span><br><span class="line">		if (h[k].num &gt; h[k * 2].num)</span><br><span class="line">			t = k * 2;</span><br><span class="line">		else</span><br><span class="line">			t = k;</span><br><span class="line"></span><br><span class="line">		if (k * 2 + 1 &lt;= N)&#123;</span><br><span class="line">			if (h[t].num &gt; h[k * 2 + 1].num)</span><br><span class="line">				t = k * 2 + 1;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (t != k)&#123;</span><br><span class="line">			swap(t, k);</span><br><span class="line">			k = t;//更新k为刚才与它交换的儿子结点的编号，//便于接下来继续向下调整</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">			flag=false;//则否说明当前的父结点已经比两个子</span><br><span class="line">			//结点都要小了，不需要在进行调整了</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//建立堆  的函数</span><br><span class="line">void creat()</span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	//从最后一个非叶结点到第1个结点依次进行向上调整</span><br><span class="line">	for (i = N / 2; i &gt;= 1; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		siftdown(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//change是...取出元素并且加入下一个元素，进行下沉。</span><br><span class="line">int change()</span><br><span class="line">&#123;</span><br><span class="line">	node temp;</span><br><span class="line">	node t;</span><br><span class="line">	t=h[1];</span><br><span class="line">	temp.r=h[1].r;</span><br><span class="line">	temp.c=h[1].c+1;</span><br><span class="line">	temp.num=a[temp.r]+b[temp.c];</span><br><span class="line">	h[1] = temp;//将堆得最后一个点赋值到堆顶</span><br><span class="line">	siftdown(1);//向下调整</span><br><span class="line">	return t.num;//返回之前记录的堆得顶点的最小值</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int i, num;</span><br><span class="line">	//读入数的个数</span><br><span class="line">	cin&gt;&gt;N;</span><br><span class="line">	for(int i=1;i&lt;=N;i++)</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    for(int j=1;j&lt;=N;j++)</span><br><span class="line">        cin&gt;&gt;b[j];</span><br><span class="line">    sort(a,a+N);</span><br><span class="line">    sort(b,b+N);</span><br><span class="line">	for (i = 1; i &lt;= N; i++)</span><br><span class="line">    &#123;</span><br><span class="line">		h[i].num=a[i]+b[1];</span><br><span class="line">		h[i].r=i;</span><br><span class="line">		h[i].c=1;</span><br><span class="line">    &#125;</span><br><span class="line">	//建堆</span><br><span class="line">	creat();</span><br><span class="line">	cout&lt;&lt;change();</span><br><span class="line">	for (i = 2; i &lt;= N; i++)</span><br><span class="line">		cout&lt;&lt;&apos; &apos;&lt;&lt;change();</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><pre><code>//zzulioj minval
+//求第k最优解。
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int N;
+int a[100100],b[100100];
+struct node{
+    int r;
+    int c;
+    long long num;
+};
+node h[100100];
+void swap(int x, int y)
+{
+    node t;
+    t = h[x];
+    h[x] = h[y];
+    h[y] = t;
+}//堆结构位置的节点交换了。
 
+void siftdown(int k) //传入一个需要向下调整的结点编号k
+{
+    int t;
+    bool flag=true;
+    while (k*2&lt;=N&amp;&amp;flag)
+    {
+        //记录节点编号。
+        if (h[k].num &gt; h[k * 2].num)
+            t = k * 2;
+        else
+            t = k;
+
+        if (k * 2 + 1 &lt;= N){
+            if (h[t].num &gt; h[k * 2 + 1].num)
+                t = k * 2 + 1;
+        }
+
+        if (t != k){
+            swap(t, k);
+            k = t;//更新k为刚才与它交换的儿子结点的编号，//便于接下来继续向下调整
+        }
+        else
+            flag=false;//则否说明当前的父结点已经比两个子
+            //结点都要小了，不需要在进行调整了
+    }
+}
+//建立堆  的函数
+void creat()
+{
+    int i;
+    //从最后一个非叶结点到第1个结点依次进行向上调整
+    for (i = N / 2; i &gt;= 1; i--)
+    {
+        siftdown(i);
+    }
+}
+//change是...取出元素并且加入下一个元素，进行下沉。
+int change()
+{
+    node temp;
+    node t;
+    t=h[1];
+    temp.r=h[1].r;
+    temp.c=h[1].c+1;
+    temp.num=a[temp.r]+b[temp.c];
+    h[1] = temp;//将堆得最后一个点赋值到堆顶
+    siftdown(1);//向下调整
+    return t.num;//返回之前记录的堆得顶点的最小值
+}
+
+int main()
+{
+    int i, num;
+    //读入数的个数
+    cin&gt;&gt;N;
+    for(int i=1;i&lt;=N;i++)
+        cin&gt;&gt;a[i];
+    for(int j=1;j&lt;=N;j++)
+        cin&gt;&gt;b[j];
+    sort(a,a+N);
+    sort(b,b+N);
+    for (i = 1; i &lt;= N; i++)
+    {
+        h[i].num=a[i]+b[1];
+        h[i].r=i;
+        h[i].c=1;
+    }
+    //建堆
+    creat();
+    cout&lt;&lt;change();
+    for (i = 2; i &lt;= N; i++)
+        cout&lt;&lt;&#39; &#39;&lt;&lt;change();
+    cout&lt;&lt;endl;
+    return 0;
+}
+
+
+</code></pre>
                 <hr>
                 
 
@@ -413,6 +513,14 @@ change()函数，取元素，维护堆。
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

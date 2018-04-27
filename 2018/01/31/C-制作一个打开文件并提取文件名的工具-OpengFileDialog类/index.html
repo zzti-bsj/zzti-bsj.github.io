@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -197,21 +200,21 @@
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <p>OpengFileDialog是类，并有openFileDialog控件，openFileDialog控件是OpengFileDialog的对象。<br>获取文件的文件名、文件扩展名、文件路径的信息实例中，用到了OpenFileDialog类及openFileDialog控件，此控件就是OpengFileDialog类的对象，主要还用到了string类型的Substring函数（用来分割子串），主要是用来分离文件的文件名、文件扩展名信息。<br>1 添加opengFileDialog控件（打开文件对话框控件）<br>2 添加button控件。<br>3 添加label控件。<br>主要的核心代码如下：</p>
-<pre><code>private void button1_Click(object sender, EventArgs e)
-{
-    if(openFileDialog1.ShowDialog()==DialogResult.OK)//判断是否选择了文件。
+<pre><code>    private void button1_Click(object sender, EventArgs e)
     {
-        string all = openFileDialog1.FileName;//记录选择的文件的全路径。
-        //获取文件路径。
-        string path = all.Substring(0, all.LastIndexOf(&quot;\\&quot;) + 1);
-        //获取文件名。
-        string filename = all.Substring(all.LastIndexOf(&quot;\\&quot;) + 1, all.LastIndexOf(&quot;.&quot;) - (all.LastIndexOf(&quot;\\&quot;))-1);
-        //获取文件扩展名。
-        string fileexc = all.Substring(all.LastIndexOf(&quot;.&quot;) + 1, all.Length - all.LastIndexOf(&quot;.&quot;) - 1);
-        label1.Text = &quot;文件路径：&quot; + path;
-        label2.Text = &quot;文件名称：&quot; + filename;
-        label3.Text = &quot;文件扩展名：&quot; + fileexc;
-    }
+        if(openFileDialog1.ShowDialog()==DialogResult.OK)//判断是否选择了文件。
+        {
+            string all = openFileDialog1.FileName;//记录选择的文件的全路径。
+            //获取文件路径。
+            string path = all.Substring(0, all.LastIndexOf(&quot;\\&quot;) + 1);
+            //获取文件名。
+            string filename = all.Substring(all.LastIndexOf(&quot;\\&quot;) + 1, all.LastIndexOf(&quot;.&quot;) - (all.LastIndexOf(&quot;\\&quot;))-1);
+            //获取文件扩展名。
+            string fileexc = all.Substring(all.LastIndexOf(&quot;.&quot;) + 1, all.Length - all.LastIndexOf(&quot;.&quot;) - 1);
+            label1.Text = &quot;文件路径：&quot; + path;
+            label2.Text = &quot;文件名称：&quot; + filename;
+            label3.Text = &quot;文件扩展名：&quot; + fileexc;
+        }
 </code></pre><p>stirng 类型的Substring函数的第一个参数 是子串起始的索引，第二个参数是子串的长度。<br>Char类型的LastIndexOf(“\“)函数是用来获取某个字符串最后一个匹配位置的索引值。（返回值是索引值）</p>
 
                 <hr>
@@ -422,6 +425,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

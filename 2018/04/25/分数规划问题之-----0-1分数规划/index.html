@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -220,7 +223,77 @@ k个物品的d[i]之和sum接近于0时时最优解，所以很容易想到二�
 
 0-1的简单解析参考：
 [参考大佬博客](https://blog.csdn.net/u014696011/article/details/46807405)
-</code></pre><h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define MAX 50500</span><br><span class="line">typedef long long ll;</span><br><span class="line">int N,K;</span><br><span class="line">ll t_v,t_m,m,v;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int v;</span><br><span class="line">    int m;</span><br><span class="line">    double r;</span><br><span class="line">&#125;;</span><br><span class="line">node no[MAX];</span><br><span class="line"></span><br><span class="line">int gcd(int x,int y)&#123;</span><br><span class="line">    if(y==0)</span><br><span class="line">        return x;</span><br><span class="line">    return gcd(y,x%y);</span><br><span class="line">&#125;//</span><br><span class="line">bool cmp(node x,node y)</span><br><span class="line">&#123;</span><br><span class="line">    return x.r&gt;y.r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int check(double x)&#123;</span><br><span class="line">    double sum=0;</span><br><span class="line">    t_m=0;</span><br><span class="line">    t_v=0;</span><br><span class="line">    for(int i=0;i&lt;N;i++)</span><br><span class="line">        no[i].r=no[i].v*1.0-x*no[i].m*1.0;</span><br><span class="line">    sort(no,no+N,cmp);</span><br><span class="line">    for(int i=0;i&lt;K;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum+=no[i].r;</span><br><span class="line">        t_m+=no[i].m;</span><br><span class="line">        t_v+=no[i].v;</span><br><span class="line">    &#125;</span><br><span class="line">    if(sum&gt;=0)</span><br><span class="line">    &#123;</span><br><span class="line">        m=t_m;</span><br><span class="line">        v=t_v;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void binary(double l,double r)&#123;</span><br><span class="line">    for(int i=0;i&lt;=50;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        double mid=l+(r-l)/2;</span><br><span class="line">        if(check(mid))</span><br><span class="line">            l=mid;</span><br><span class="line">        else</span><br><span class="line">            r=mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin&gt;&gt;N&gt;&gt;K;</span><br><span class="line">    for(int i=0;i&lt;N;i++)</span><br><span class="line">        cin&gt;&gt;no[i].m&gt;&gt;no[i].v;</span><br><span class="line">    binary(0.0,50000.0);</span><br><span class="line">    ll gg=gcd(m,v);</span><br><span class="line">    cout&lt;&lt;v/gg&lt;&lt;&apos;/&apos;&lt;&lt;m/gg&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+#define MAX 50500
+typedef long long ll;
+int N,K;
+ll t_v,t_m,m,v;
+struct node{
+    int v;
+    int m;
+    double r;
+};
+node no[MAX];
+
+int gcd(int x,int y){
+    if(y==0)
+        return x;
+    return gcd(y,x%y);
+}//
+bool cmp(node x,node y)
+{
+    return x.r&gt;y.r;
+}
+
+int check(double x){
+    double sum=0;
+    t_m=0;
+    t_v=0;
+    for(int i=0;i&lt;N;i++)
+        no[i].r=no[i].v*1.0-x*no[i].m*1.0;
+    sort(no,no+N,cmp);
+    for(int i=0;i&lt;K;i++)
+    {
+        sum+=no[i].r;
+        t_m+=no[i].m;
+        t_v+=no[i].v;
+    }
+    if(sum&gt;=0)
+    {
+        m=t_m;
+        v=t_v;
+        return true;
+    }
+    return false;
+}
+
+void binary(double l,double r){
+    for(int i=0;i&lt;=50;i++)
+    {
+        double mid=l+(r-l)/2;
+        if(check(mid))
+            l=mid;
+        else
+            r=mid;
+    }
+}
+
+
+int main()
+{
+    cin&gt;&gt;N&gt;&gt;K;
+    for(int i=0;i&lt;N;i++)
+        cin&gt;&gt;no[i].m&gt;&gt;no[i].v;
+    binary(0.0,50000.0);
+    ll gg=gcd(m,v);
+    cout&lt;&lt;v/gg&lt;&lt;&#39;/&#39;&lt;&lt;m/gg&lt;&lt;endl;
+    return 0;
+}
+
+
+</code></pre>
                 <hr>
                 
 
@@ -429,6 +502,14 @@ k个物品的d[i]之和sum接近于0时时最优解，所以很容易想到二�
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -209,7 +212,7 @@
 <li>dfs(x,y,t)代表在坐标x,y位置时，已走的时间为t，这就是dfs函数参数的意义。</li>
 <li>则当x,y若为D时，此时写dfs函数的内容该这样写</li>
 </ul>
-<pre><code>if(map[x][y]==&apos;D&apos;&amp;&amp;t&lt;T){
+<pre><code>if(map[x][y]==&#39;D&#39;&amp;&amp;t&lt;T){
     b=true;//已找到解。
     return;
 }
@@ -286,7 +289,7 @@ bool flag;
 int ds;
 void dfs(int x,int y,int t)
 {
-    if(map[x][y]==&apos;D&apos;&amp;&amp;t==T)
+    if(map[x][y]==&#39;D&#39;&amp;&amp;t==T)
         {
         flag=true;
         return ;
@@ -298,7 +301,7 @@ void dfs(int x,int y,int t)
     {
         int xx=x+dir[i][0];
         int yy=y+dir[i][1];
-        if(map[xx][yy]==&apos;X&apos;||visited[xx][yy]||xx&gt;=N    ||yy&gt;=M||xx&lt;0||yy&lt;0)
+        if(map[xx][yy]==&#39;X&#39;||visited[xx][yy]||xx&gt;=N    ||yy&gt;=M||xx&lt;0||yy&lt;0)
         continue;
         visited[xx][yy]=1;
         dfs(xx,yy,t+1);
@@ -319,12 +322,12 @@ int main()
             {
                 map[i][j]=getchar();
                 //cin&gt;&gt;map[i][j];
-                if(map[i][j]==&apos;S&apos;)
+                if(map[i][j]==&#39;S&#39;)
                 {
                     sx=i;
                     sy=j;
                 }
-            if(map[i][j]==&apos;D&apos;)
+            if(map[i][j]==&#39;D&#39;)
                 ds=i+j;
             }
         getchar();
@@ -548,6 +551,14 @@ int main()
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

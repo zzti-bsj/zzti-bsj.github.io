@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -205,8 +208,98 @@
 </ul>
 <h5 id="复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。"><a href="#复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。" class="headerlink" title="复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。"></a>复数的乘法可以理解为两个向量的角度相加，模长相乘，因此用复数的乘法处理向量的旋转非常方便。</h5><p>具体来说，如果有一个向量(x,y)旋转φ，可以视为两个复数x+yi乘以cos(φ)+sin(φ)i,等于xcos(φ)-ysin(φ)+(xsin(φ)+ycos(φ))i 即旋转后的坐标为(xcos(φ)-ysin(φ)),(xsin(φ)+ycos(φ))</p>
 <h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>这是学习线段树ac的第一题，没想到wa了这么久竟然是π的值错了，精确的应该是 double型的acos(-1.0)才是π的值。但是在poj上的话c++能AC这个代码，但 g ++AC不了，有人说把cos，sin的值都打表之后会莫名其妙的节省很多时间，暂时还没试过，等把这种结构学的差不多的时候再作优化吧。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;math.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int N,C;</span><br><span class="line"></span><br><span class="line">int L[50010],S[50010],A[50010];</span><br><span class="line"></span><br><span class="line">double vx[50200],vy[50200];</span><br><span class="line">double ang[50200];</span><br><span class="line">double prv[50010];</span><br><span class="line">//#define M_PI 3.1415926</span><br><span class="line">double M_PI = acos(-1.0);</span><br><span class="line">void init(int k,int l,int r)</span><br><span class="line">&#123;</span><br><span class="line">    vx[k]=ang[k]=0.0;</span><br><span class="line">    if(r-l==1)</span><br><span class="line">        vy[k]=L[l];</span><br><span class="line">    else&#123;</span><br><span class="line">        int ch1=k*2+1;</span><br><span class="line">        int ch2=k*2+2;</span><br><span class="line">        init(ch1,l,(l+r)/2);</span><br><span class="line">        init(ch2,(l+r)/2,r);</span><br><span class="line">        vy[k]=vy[ch1]+vy[ch2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void change(int s,double a,int v,int l,int r)</span><br><span class="line">&#123;</span><br><span class="line">    //线段s不在区间[l,r)内,这些情况不考虑。</span><br><span class="line">    //重要的是树的根节点，数组的第一个数都是从0下标开始的。</span><br><span class="line">    </span><br><span class="line">    if(r-l==1)</span><br><span class="line">        return;//只有一个线段的区间（如[5,6)区间，只有5），没有左右孩子不作处理。已画过树状图理解。</span><br><span class="line">    if(s&lt;r&amp;&amp;s&gt;=l)</span><br><span class="line">    &#123;</span><br><span class="line">        int ch1=v*2+1;</span><br><span class="line">        int ch2=v*2+2;</span><br><span class="line">        int m=(l+r)/2;</span><br><span class="line">        change(s,a,ch1,l,m);</span><br><span class="line">        change(s,a,ch2,m,r);</span><br><span class="line"></span><br><span class="line">        //核心</span><br><span class="line">        if(s&lt;m)//s&lt;m代表线段s在v节点的左孩子的区间内。</span><br><span class="line">            ang[v]+=a;//ang[v] 代表的也就是线段s[i+1]要旋转的角度。ang是节点累加的结果。</span><br><span class="line">        double s=cos(ang[v]),c=sin(ang[v]);</span><br><span class="line">        vx[v]=vx[ch1]+(vx[ch2]*s-vy[ch2]*c);//左边的坐标加上右边旋转后的坐标就是当前节点所表示的向量的坐标。</span><br><span class="line">        vy[v]=vy[ch1]+(vx[ch2]*c+vy[ch2]*s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void solve()</span><br><span class="line">&#123;</span><br><span class="line">    init(0,0,N);</span><br><span class="line">    for(int i=0;i&lt;N;i++)</span><br><span class="line">        prv[i]=M_PI;</span><br><span class="line">    for(int i=0;i&lt;C;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int s=S[i]-1;//为了保证第i个线段的i是从下标0开始的。</span><br><span class="line">        double a=A[i]/360.0*2*M_PI;//角度转化为弧度。</span><br><span class="line">        change(s,a-prv[s],0,0,N);</span><br><span class="line">        prv[s]=a;</span><br><span class="line">        printf(&quot;%.2f %.2f\n&quot;,vx[0],vy[0]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    bool flag=false;</span><br><span class="line">    while(scanf(&quot;%d%d&quot;,&amp;N,&amp;C)==2)</span><br><span class="line">    &#123;</span><br><span class="line">        for(int i=0;i&lt;N;i++)</span><br><span class="line">            cin&gt;&gt;L[i];</span><br><span class="line">        for(int i=0;i&lt;C;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cin&gt;&gt;S[i];</span><br><span class="line">            cin&gt;&gt;A[i];</span><br><span class="line">        &#125;</span><br><span class="line">        if(flag)</span><br><span class="line">            cout&lt;&lt;endl;</span><br><span class="line">        flag=true;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因为一个节点要么是父节点，要么是孩子节点，所以在change函数中，如果是孩子节点就return，不在区间[l,r)内的，不考虑，在内的，如果在左孩子，则当前节点的角度加上要旋转的角度，然后求当前节点对应的向量的坐标—-结果为左孩子的坐标x，y分别加上右孩子向量旋转之后的坐标。</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;math.h&gt;
+using namespace std;
+int N,C;
+
+int L[50010],S[50010],A[50010];
+
+double vx[50200],vy[50200];
+double ang[50200];
+double prv[50010];
+//#define M_PI 3.1415926
+double M_PI = acos(-1.0);
+void init(int k,int l,int r)
+{
+    vx[k]=ang[k]=0.0;
+    if(r-l==1)
+        vy[k]=L[l];
+    else{
+        int ch1=k*2+1;
+        int ch2=k*2+2;
+        init(ch1,l,(l+r)/2);
+        init(ch2,(l+r)/2,r);
+        vy[k]=vy[ch1]+vy[ch2];
+    }
+}
+
+void change(int s,double a,int v,int l,int r)
+{
+    //线段s不在区间[l,r)内,这些情况不考虑。
+    //重要的是树的根节点，数组的第一个数都是从0下标开始的。
+
+    if(r-l==1)
+        return;//只有一个线段的区间（如[5,6)区间，只有5），没有左右孩子不作处理。已画过树状图理解。
+    if(s&lt;r&amp;&amp;s&gt;=l)
+    {
+        int ch1=v*2+1;
+        int ch2=v*2+2;
+        int m=(l+r)/2;
+        change(s,a,ch1,l,m);
+        change(s,a,ch2,m,r);
+
+        //核心
+        if(s&lt;m)//s&lt;m代表线段s在v节点的左孩子的区间内。
+            ang[v]+=a;//ang[v] 代表的也就是线段s[i+1]要旋转的角度。ang是节点累加的结果。
+        double s=cos(ang[v]),c=sin(ang[v]);
+        vx[v]=vx[ch1]+(vx[ch2]*s-vy[ch2]*c);//左边的坐标加上右边旋转后的坐标就是当前节点所表示的向量的坐标。
+        vy[v]=vy[ch1]+(vx[ch2]*c+vy[ch2]*s);
+    }
+}
+
+void solve()
+{
+    init(0,0,N);
+    for(int i=0;i&lt;N;i++)
+        prv[i]=M_PI;
+    for(int i=0;i&lt;C;i++)
+    {
+        int s=S[i]-1;//为了保证第i个线段的i是从下标0开始的。
+        double a=A[i]/360.0*2*M_PI;//角度转化为弧度。
+        change(s,a-prv[s],0,0,N);
+        prv[s]=a;
+        printf(&quot;%.2f %.2f\n&quot;,vx[0],vy[0]);
+    }
+}
+
+
+
+int main()
+{
+    bool flag=false;
+    while(scanf(&quot;%d%d&quot;,&amp;N,&amp;C)==2)
+    {
+        for(int i=0;i&lt;N;i++)
+            cin&gt;&gt;L[i];
+        for(int i=0;i&lt;C;i++)
+        {
+            cin&gt;&gt;S[i];
+            cin&gt;&gt;A[i];
+        }
+        if(flag)
+            cout&lt;&lt;endl;
+        flag=true;
+        solve();
+    }
+    return 0;
+}
+
+
+
+
+</code></pre><p>因为一个节点要么是父节点，要么是孩子节点，所以在change函数中，如果是孩子节点就return，不在区间[l,r)内的，不考虑，在内的，如果在左孩子，则当前节点的角度加上要旋转的角度，然后求当前节点对应的向量的坐标—-结果为左孩子的坐标x，y分别加上右孩子向量旋转之后的坐标。</p>
 <hr>
 <p>一定要经常看代码和题。</p>
 
@@ -418,6 +511,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

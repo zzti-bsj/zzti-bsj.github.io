@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -249,10 +252,25 @@
 <h4 id="先贴一个一维滚动数组的代码，在poj和hdu上贴的二维数组的全worry-answer，不知道为什么。"><a href="#先贴一个一维滚动数组的代码，在poj和hdu上贴的二维数组的全worry-answer，不知道为什么。" class="headerlink" title="先贴一个一维滚动数组的代码，在poj和hdu上贴的二维数组的全worry answer，不知道为什么。"></a>先贴一个一维滚动数组的代码，在poj和hdu上贴的二维数组的全worry answer，不知道为什么。</h4><ul>
 <li>poj3624——0-1背包问题——代码。</li>
 <li>（推断）时间复杂度O(n*V) —–V是背包的容量。</li>
-<li>空间复杂度O(V)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,W;</span><br><span class="line">int w[3500],v[3500];</span><br><span class="line">long long dp[13000];</span><br><span class="line">int t;</span><br><span class="line">int max1(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    return x&gt;y?x:y;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">        memset(dp,0,sizeof(dp));</span><br><span class="line">        cin&gt;&gt;n&gt;&gt;W;</span><br><span class="line">        for(int i=0;i&lt;n;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                cin&gt;&gt;w[i];</span><br><span class="line">                cin&gt;&gt;v[i];</span><br><span class="line">            &#125;</span><br><span class="line">        for(int i=0;i&lt;n;i++)</span><br><span class="line">            for(int j=W;j&gt;=w[i];j--)</span><br><span class="line">            dp[j]=max1(dp[j],dp[j-w[i]]+v[i]);</span><br><span class="line">        cout&lt;&lt;dp[W]&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>空间复杂度O(V)<br><code>`</code><br>#include <iostream><br>#include&lt;string.h&gt;<br>using namespace std;<br>int n,W;<br>int w[3500],v[3500];<br>long long dp[13000];<br>int t;<br>int max1(int x,int y)<br>{<br>  return x&gt;y?x:y;<br>}<br>int main()<br>{<pre><code>  memset(dp,0,sizeof(dp));
+  cin&gt;&gt;n&gt;&gt;W;
+  for(int i=0;i&lt;n;i++)
+      {
+          cin&gt;&gt;w[i];
+          cin&gt;&gt;v[i];
+      }
+  for(int i=0;i&lt;n;i++)
+      for(int j=W;j&gt;=w[i];j--)
+      dp[j]=max1(dp[j],dp[j-w[i]]+v[i]);
+  cout&lt;&lt;dp[W]&lt;&lt;endl;
+</code></pre>  return 0;<br>}</iostream></li>
 </ul>
-<h5 id="再贴一个二维数组的代码：之前所二维的老是WA，是因为处理的不到位，下面这段代码空间复杂度为O-V-V-，所以空间复杂度上是过不了poj的，但是不考虑空间复杂度的话，这个二维数组的背包模板是不错的。因为物品的编号是从0开始的，最后一个物品的编号是n-1-处理的时候用了dp-i-1-j-dp-i-j-这样的方式，避免了处理不当的问题，只是i的位置全部向后挪了一位，最后的结果应该是dp-n-W-，这才是正确的结果。"><a href="#再贴一个二维数组的代码：之前所二维的老是WA，是因为处理的不到位，下面这段代码空间复杂度为O-V-V-，所以空间复杂度上是过不了poj的，但是不考虑空间复杂度的话，这个二维数组的背包模板是不错的。因为物品的编号是从0开始的，最后一个物品的编号是n-1-处理的时候用了dp-i-1-j-dp-i-j-这样的方式，避免了处理不当的问题，只是i的位置全部向后挪了一位，最后的结果应该是dp-n-W-，这才是正确的结果。" class="headerlink" title="再贴一个二维数组的代码：之前所二维的老是WA，是因为处理的不到位，下面这段代码空间复杂度为O(V*V)，所以空间复杂度上是过不了poj的，但是不考虑空间复杂度的话，这个二维数组的背包模板是不错的。因为物品的编号是从0开始的，最后一个物品的编号是n-1,处理的时候用了dp[i+1][j]=dp[i][j]这样的方式，避免了处理不当的问题，只是i的位置全部向后挪了一位，最后的结果应该是dp[n][W]，这才是正确的结果。"></a>再贴一个二维数组的代码：之前所二维的老是WA，是因为处理的不到位，下面这段代码空间复杂度为O(V*V)，所以空间复杂度上是过不了poj的，但是不考虑空间复杂度的话，这个二维数组的背包模板是不错的。因为物品的编号是从0开始的，最后一个物品的编号是n-1,处理的时候用了dp[i+1][j]=dp[i][j]这样的方式，避免了处理不当的问题，只是i的位置全部向后挪了一位，最后的结果应该是dp[n][W]，这才是正确的结果。</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,W;</span><br><span class="line">int w[3500],v[3500];</span><br><span class="line">long long dp[13000][13000];</span><br><span class="line">int t;</span><br><span class="line">int max1(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    return x&gt;y?x:y;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">        memset(dp,0,sizeof(dp));</span><br><span class="line">        cin&gt;&gt;n&gt;&gt;W;</span><br><span class="line">        for(int i=0;i&lt;n;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                cin&gt;&gt;w[i];</span><br><span class="line">                cin&gt;&gt;v[i];</span><br><span class="line">            &#125;</span><br><span class="line">        for(int i=0;i&lt;n;i++)//物品编号。</span><br><span class="line">            for(int j=0;j&lt;=W;j++)//从0开始，装。</span><br><span class="line">            if(j&lt;w[i])</span><br><span class="line">                dp[i+1][j]=dp[i][j];</span><br><span class="line">            else</span><br><span class="line">                dp[i+1][j]=max1(dp[i][j],dp[i][j-w[i]]+v[i]);</span><br><span class="line">                //二维这样写，最后输出dp[n][W]，减少了很多麻烦。。</span><br><span class="line">        cout&lt;&lt;dp[n][W]&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>
+##### 再贴一个二维数组的代码：之前所二维的老是WA，是因为处理的不到位，下面这段代码空间复杂度为O(V*V)，所以空间复杂度上是过不了poj的，但是不考虑空间复杂度的话，这个二维数组的背包模板是不错的。因为物品的编号是从0开始的，最后一个物品的编号是n-1,处理的时候用了dp[i+1][j]=dp[i][j]这样的方式，避免了处理不当的问题，只是i的位置全部向后挪了一位，最后的结果应该是dp[n][W]，这才是正确的结果。
+
+</code></pre><p>#include <iostream></iostream></p>
+<p>#include&lt;string.h&gt;<br>using namespace std;<br>int n,W;<br>int w[3500],v[3500];<br>long long dp[13000][13000];<br>int t;<br>int max1(int x,int y)<br>{<br>    return x&gt;y?x:y;<br>}<br>int main()<br>{<br>        memset(dp,0,sizeof(dp));<br>        cin&gt;&gt;n&gt;&gt;W;<br>        for(int i=0;i&lt;n;i++)<br>            {<br>                cin&gt;&gt;w[i];<br>                cin&gt;&gt;v[i];<br>            }<br>        for(int i=0;i&lt;n;i++)//物品编号。<br>            for(int j=0;j&lt;=W;j++)//从0开始，装。<br>            if(j&lt;w[i])<br>                dp[i+1][j]=dp[i][j];<br>            else<br>                dp[i+1][j]=max1(dp[i][j],dp[i][j-w[i]]+v[i]);<br>                //二维这样写，最后输出dp[n][W]，减少了很多麻烦。。<br>        cout&lt;&lt;dp[n][W]&lt;&lt;endl;<br>    return 0;<br>}</p>
+<p><code>`</code></p>
 <ul>
 <li><h5 id="想必背包问题的基本思路捋清楚了，但背包只是一个数学模型。学习的第一步首先要求把背包问题这个数学模型模板烂熟于心，然后再解决诸多此类问题的变型。"><a href="#想必背包问题的基本思路捋清楚了，但背包只是一个数学模型。学习的第一步首先要求把背包问题这个数学模型模板烂熟于心，然后再解决诸多此类问题的变型。" class="headerlink" title="想必背包问题的基本思路捋清楚了，但背包只是一个数学模型。学习的第一步首先要求把背包问题这个数学模型模板烂熟于心，然后再解决诸多此类问题的变型。"></a>想必背包问题的基本思路捋清楚了，但背包只是一个数学模型。学习的第一步首先要求把背包问题这个数学模型模板烂熟于心，然后再解决诸多此类问题的变型。</h5></li>
 </ul>
@@ -306,7 +324,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#先贴一个一维滚动数组的代码，在poj和hdu上贴的二维数组的全worry-answer，不知道为什么。"><span class="toc-text">先贴一个一维滚动数组的代码，在poj和hdu上贴的二维数组的全worry answer，不知道为什么。</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#再贴一个二维数组的代码：之前所二维的老是WA，是因为处理的不到位，下面这段代码空间复杂度为O-V-V-，所以空间复杂度上是过不了poj的，但是不考虑空间复杂度的话，这个二维数组的背包模板是不错的。因为物品的编号是从0开始的，最后一个物品的编号是n-1-处理的时候用了dp-i-1-j-dp-i-j-这样的方式，避免了处理不当的问题，只是i的位置全部向后挪了一位，最后的结果应该是dp-n-W-，这才是正确的结果。"><span class="toc-text">再贴一个二维数组的代码：之前所二维的老是WA，是因为处理的不到位，下面这段代码空间复杂度为O(V*V)，所以空间复杂度上是过不了poj的，但是不考虑空间复杂度的话，这个二维数组的背包模板是不错的。因为物品的编号是从0开始的，最后一个物品的编号是n-1,处理的时候用了dp[i+1][j]=dp[i][j]这样的方式，避免了处理不当的问题，只是i的位置全部向后挪了一位，最后的结果应该是dp[n][W]，这才是正确的结果。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#想必背包问题的基本思路捋清楚了，但背包只是一个数学模型。学习的第一步首先要求把背包问题这个数学模型模板烂熟于心，然后再解决诸多此类问题的变型。"><span class="toc-text">想必背包问题的基本思路捋清楚了，但背包只是一个数学模型。学习的第一步首先要求把背包问题这个数学模型模板烂熟于心，然后再解决诸多此类问题的变型。</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#先贴一个一维滚动数组的代码，在poj和hdu上贴的二维数组的全worry-answer，不知道为什么。"><span class="toc-text">先贴一个一维滚动数组的代码，在poj和hdu上贴的二维数组的全worry answer，不知道为什么。</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#想必背包问题的基本思路捋清楚了，但背包只是一个数学模型。学习的第一步首先要求把背包问题这个数学模型模板烂熟于心，然后再解决诸多此类问题的变型。"><span class="toc-text">想必背包问题的基本思路捋清楚了，但背包只是一个数学模型。学习的第一步首先要求把背包问题这个数学模型模板烂熟于心，然后再解决诸多此类问题的变型。</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
@@ -466,6 +484,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -205,8 +208,68 @@
 <p>做题的时候经过分析，就是多重背包类型的题！</p>
 <h4 id="学到的做题技巧："><a href="#学到的做题技巧：" class="headerlink" title="学到的做题技巧："></a>学到的做题技巧：</h4><p><strong>很重要的一点，这题卡常数时间，我用dp[j]=max(dp[j],dp[j-v[i]]+v[i])公式调用max函数，评测机不给过，然而改成if(dp[j-v[i]]+v[i]&gt;dp[j]) dp[j]=dp[j-v[i]]+v[i];才给过，看来调用函数浪费很多时间啊。</strong></p>
 <p>其他的，贴上代码注释中再说：</p>
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int c[101],v[101];//这是初始的时候的物品的个数。</span><br><span class="line">int va[1010];//根据n*∑log(ci)的大小定义的。因为这是物品的个数。</span><br><span class="line">int n,m;</span><br><span class="line">int dp[100010];//根据m的大小，即背包的大小定义的。</span><br><span class="line"></span><br><span class="line">//自己写的还是系统的max在这里都被卡了。</span><br><span class="line">int max1(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    return x&gt;y?x:y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    while(cin&gt;&gt;n&gt;&gt;m)</span><br><span class="line">    &#123;</span><br><span class="line">        memset(dp,0,sizeof(dp));</span><br><span class="line">        int ans=0;</span><br><span class="line">        if(n==0&amp;&amp;m==0)</span><br><span class="line">            break;</span><br><span class="line">        for(int i=0;i&lt;n;i++)</span><br><span class="line">            cin&gt;&gt;v[i];</span><br><span class="line">        for(int i=0;i&lt;n;i++)</span><br><span class="line">            cin&gt;&gt;c[i];</span><br><span class="line">            </span><br><span class="line">//二进制处理操作。    </span><br><span class="line">        for(int i=0;i&lt;n;i++)//n种物品。</span><br><span class="line">        for(int j=1;;j*=2)</span><br><span class="line">        &#123;</span><br><span class="line">            if(j&lt;c[i])</span><br><span class="line">            &#123;</span><br><span class="line">                va[ans]=j*v[i];c[i]-=j;ans++;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                va[ans]=c[i]*v[i];ans++;break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">//0-1背包的过程。</span><br><span class="line">        for(int i=0;i&lt;ans;i++)</span><br><span class="line">            for(int j=m;j&gt;=va[i];j--)</span><br><span class="line">        &#123;</span><br><span class="line">            //dp[j]=max1(dp[j],dp[j-va[i]]+va[i]);</span><br><span class="line">            if(dp[j-va[i]]+va[i]&gt;dp[j])</span><br><span class="line">                dp[j]=dp[j-va[i]]+va[i];</span><br><span class="line">        &#125;</span><br><span class="line">//结果处理。</span><br><span class="line">        int sum=0;</span><br><span class="line">        for(int i=1;i&lt;=m;i++)</span><br><span class="line">            if(dp[i]==i)</span><br><span class="line">            &#123;</span><br><span class="line">                sum++;</span><br><span class="line">            &#125;</span><br><span class="line">        cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>继续刷背包的题，直到有感觉。</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><pre><code>#include&lt;iostream&gt;
+#include&lt;string.h&gt;
+using namespace std;
+int c[101],v[101];//这是初始的时候的物品的个数。
+int va[1010];//根据n*∑log(ci)的大小定义的。因为这是物品的个数。
+int n,m;
+int dp[100010];//根据m的大小，即背包的大小定义的。
+
+//自己写的还是系统的max在这里都被卡了。
+int max1(int x,int y)
+{
+    return x&gt;y?x:y;
+}
+
+int main()
+{
+    while(cin&gt;&gt;n&gt;&gt;m)
+    {
+        memset(dp,0,sizeof(dp));
+        int ans=0;
+        if(n==0&amp;&amp;m==0)
+            break;
+        for(int i=0;i&lt;n;i++)
+            cin&gt;&gt;v[i];
+        for(int i=0;i&lt;n;i++)
+            cin&gt;&gt;c[i];
+
+//二进制处理操作。    
+        for(int i=0;i&lt;n;i++)//n种物品。
+        for(int j=1;;j*=2)
+        {
+            if(j&lt;c[i])
+            {
+                va[ans]=j*v[i];c[i]-=j;ans++;
+            }
+            else
+            {
+                va[ans]=c[i]*v[i];ans++;break;
+            }
+        }
+
+//0-1背包的过程。
+        for(int i=0;i&lt;ans;i++)
+            for(int j=m;j&gt;=va[i];j--)
+        {
+            //dp[j]=max1(dp[j],dp[j-va[i]]+va[i]);
+            if(dp[j-va[i]]+va[i]&gt;dp[j])
+                dp[j]=dp[j-va[i]]+va[i];
+        }
+//结果处理。
+        int sum=0;
+        for(int i=1;i&lt;=m;i++)
+            if(dp[i]==i)
+            {
+                sum++;
+            }
+        cout&lt;&lt;sum&lt;&lt;endl;
+    }
+    return 0;
+}
+
+</code></pre><p>继续刷背包的题，直到有感觉。</p>
 
                 <hr>
                 
@@ -416,6 +479,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

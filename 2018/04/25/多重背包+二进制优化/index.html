@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -212,7 +215,36 @@
 <p>   1-14之间的任意一个组合都可以由上面得到的4种物品进行组合，然后利用0-1背包的方法进行解题即可。</p>
 <p>   考虑装1-m件物品进入背包，都有可能，总会有一种最优策略。<br>   因为 任意个正整数都可以用2的幂表示。<br>   所以 采用二进制优化的办法对每一种物品进行优化组合，转化成0-1背包的问题进行求解，以达到降低复杂度的目的。</p>
 <h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>假设0&lt;n&lt;1000, 0&lt;W&lt;1000, 0&lt;w,c,v&lt;1000<br>那空间复杂度应该是O(log(c)*W)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using namespace std;</span><br><span class="line">int n,W;</span><br><span class="line">int w,v,c;</span><br><span class="line">int dp[50010];</span><br><span class="line">int w[800],v[800];//依据空间复杂度开辟的dp数组。</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int ans=0;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;W;</span><br><span class="line">    for(int i=0;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;w&gt;&gt;v&gt;&gt;c;</span><br><span class="line">        for(int j=1;;j*=2)</span><br><span class="line">            if(c&gt;j)&#123;</span><br><span class="line">                w[ans]=j*w;v[ans]=j*v;c-=j;ans++;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;w[ans]=c*w;v[ans]=c*v;ans++;//别忘了，不只一件物品啊。</span><br><span class="line">            break;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    for(int i=0;i&lt;ans;i++)</span><br><span class="line">    for(int j=W;j&gt;=w[i];j--)</span><br><span class="line">    dp[j]=max(dp[j],dp[j-w[i]]+v[i]);</span><br><span class="line">    cout&lt;&lt;dp[W]&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="#include&lt;iostream&gt;">using namespace std;
+int n,W;
+int w,v,c;
+int dp[50010];
+int w[800],v[800];//依据空间复杂度开辟的dp数组。
+
+int main()
+{
+    int ans=0;
+    cin&gt;&gt;n&gt;&gt;W;
+    for(int i=0;i&lt;n;i++)
+    {
+        cin&gt;&gt;w&gt;&gt;v&gt;&gt;c;
+        for(int j=1;;j*=2)
+            if(c&gt;j){
+                w[ans]=j*w;v[ans]=j*v;c-=j;ans++;
+            }
+            else
+            {w[ans]=c*w;v[ans]=c*v;ans++;//别忘了，不只一件物品啊。
+            break;}
+    }
+
+    for(int i=0;i&lt;ans;i++)
+    for(int j=W;j&gt;=w[i];j--)
+    dp[j]=max(dp[j],dp[j-w[i]]+v[i]);
+    cout&lt;&lt;dp[W]&lt;&lt;endl;
+    return 0;
+
+}
+</code></pre>
 <p>根据我复杂度的计算，w和v的空间开辟为800就行了，果然一下子ac了51nod上的多重背包问题。<br>本来想着再看看O(n^3)的多重背包，乍一想，多此一举干嘛！算法不就是讲究效率的么。</p>
 
                 <hr>
@@ -423,6 +455,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -200,8 +203,86 @@
 <li>求加权连通图的最小生成树问题（一般算法）</li>
 <li>另外还有prim算法</li>
 </ul>
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5>   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">struct edge&#123;</span><br><span class="line">int u;</span><br><span class="line">int v;</span><br><span class="line">int w;</span><br><span class="line">&#125;;//定义一个边，u-v的距离是w</span><br><span class="line">struct edge e[10];</span><br><span class="line">int n,m;//n个点，m条边。</span><br><span class="line">int f[7]=&#123;0&#125;,coun=0,sum=0;//sum用来记录边的最小权值，coun用来记录添加边的数量。</span><br><span class="line">//快排对边进行排序。</span><br><span class="line">void quicksort(int left,int right)</span><br><span class="line">&#123;</span><br><span class="line"> if(left&gt;right)</span><br><span class="line">     return;</span><br><span class="line"> int i=left,j=right;</span><br><span class="line">struct edge t;//中间变量。</span><br><span class="line">while(i!=j)</span><br><span class="line">&#123;</span><br><span class="line">    while(e[j].w&gt;=e[left].w&amp;&amp;i&lt;j)</span><br><span class="line">        j--;</span><br><span class="line">    while(e[i].w&lt;=e[left].w&amp;&amp;i&lt;j)</span><br><span class="line">        i++;</span><br><span class="line">    if(i&lt;j)</span><br><span class="line">    &#123;</span><br><span class="line">        t=e[i];</span><br><span class="line">        e[i]=e[j];</span><br><span class="line">        e[j]=t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">t=e[left];</span><br><span class="line">e[left]=e[i];</span><br><span class="line">e[i]=t;</span><br><span class="line">quicksort(left,i-1);</span><br><span class="line">quicksort(i+1,right);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">//并查集寻找祖先的函数。</span><br><span class="line">int getf(int v)</span><br><span class="line">&#123;</span><br><span class="line"> if(f[v]==v)</span><br><span class="line">        return v;</span><br><span class="line">    else</span><br><span class="line">        return getf(f[v]);</span><br><span class="line">&#125;</span><br><span class="line">int mege(int v,int u)</span><br><span class="line">&#123;</span><br><span class="line">   int t1,t2;</span><br><span class="line">   t1=getf(v);</span><br><span class="line">   t2=getf(u);</span><br><span class="line">  if(t1!=t2)</span><br><span class="line"> &#123;</span><br><span class="line">      f[t2]=t1;</span><br><span class="line">     return 1;</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">   int i;</span><br><span class="line">   scanf(&quot;%d%d&quot;,&amp;n,&amp;m);</span><br><span class="line">   for(i=1;i&lt;=m;i++)</span><br><span class="line">      scanf(&quot;%d%d%d&quot;,&amp;e[i].u,&amp;e[i].v,&amp;e[i].w);</span><br><span class="line">    quicksort(1,m);//从小到大进行排序。</span><br><span class="line">    for(int i=1;i&lt;=n;i++)</span><br><span class="line">       f[i]=i;</span><br><span class="line">    //初始化每个数的祖先为自己。</span><br><span class="line">for(int i=1;i&lt;=m;i++)</span><br><span class="line">&#123;</span><br><span class="line">    if(mege(e[i].u,e[i].v))</span><br><span class="line">    &#123;</span><br><span class="line">        coun++;</span><br><span class="line">        sum+=e[i].w;</span><br><span class="line">    &#125;</span><br><span class="line">    if(coun==n-1)//因为n个点能互相连通的最小边数是n-1.</span><br><span class="line">        break;</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;%d&quot;,sum);//最小生成树的权值。</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><pre><code>    #include&lt;stdio.h&gt;
+    struct edge{
+    int u;
+    int v;
+    int w;
+    };//定义一个边，u-v的距离是w
+    struct edge e[10];
+    int n,m;//n个点，m条边。
+    int f[7]={0},coun=0,sum=0;//sum用来记录边的最小权值，coun用来记录添加边的数量。
+    //快排对边进行排序。
+    void quicksort(int left,int right)
+    {
+     if(left&gt;right)
+         return;
+     int i=left,j=right;
+    struct edge t;//中间变量。
+    while(i!=j)
+    {
+        while(e[j].w&gt;=e[left].w&amp;&amp;i&lt;j)
+            j--;
+        while(e[i].w&lt;=e[left].w&amp;&amp;i&lt;j)
+            i++;
+        if(i&lt;j)
+        {
+            t=e[i];
+            e[i]=e[j];
+            e[j]=t;
+        }
+    }
+    t=e[left];
+    e[left]=e[i];
+    e[i]=t;
+    quicksort(left,i-1);
+    quicksort(i+1,right);
+    return;
+    }
+    //并查集寻找祖先的函数。
+    int getf(int v)
+    {
+     if(f[v]==v)
+            return v;
+        else
+            return getf(f[v]);
+    }
+    int mege(int v,int u)
+    {
+       int t1,t2;
+       t1=getf(v);
+       t2=getf(u);
+      if(t1!=t2)
+     {
+          f[t2]=t1;
+         return 1;
+      }
+      return 0;
+    }
+    int main()
+    {
+       int i;
+       scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+       for(i=1;i&lt;=m;i++)
+          scanf(&quot;%d%d%d&quot;,&amp;e[i].u,&amp;e[i].v,&amp;e[i].w);
+        quicksort(1,m);//从小到大进行排序。
+        for(int i=1;i&lt;=n;i++)
+           f[i]=i;
+        //初始化每个数的祖先为自己。
+    for(int i=1;i&lt;=m;i++)
+    {
+        if(mege(e[i].u,e[i].v))
+        {
+            coun++;
+            sum+=e[i].w;
+        }
+        if(coun==n-1)//因为n个点能互相连通的最小边数是n-1.
+            break;
+    }
+    printf(&quot;%d&quot;,sum);//最小生成树的权值。
+    return 0;
+    }
+</code></pre>
                 <hr>
                 
 
@@ -410,6 +491,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

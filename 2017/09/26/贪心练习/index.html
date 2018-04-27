@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -223,13 +226,13 @@ int main()
     cout &lt;&lt; a[N] &lt;&lt; endl;
 }
 </code></pre><h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p><strong>更新背包不同容量（从1-N）所能存入的价值量。更新每一次循环的a[N]</strong></p>
-<pre><code>cin &gt;&gt; w &gt;&gt; v;           
-for (j = N; j &gt;= w; j--)
-{
-    temp = a[j - w] + v;
-    if (temp&gt;a[j])
-        a[j] = temp;
-}
+<pre><code>        cin &gt;&gt; w &gt;&gt; v;           
+        for (j = N; j &gt;= w; j--)
+        {
+            temp = a[j - w] + v;
+            if (temp&gt;a[j])
+                a[j] = temp;
+        }
 </code></pre>
                 <hr>
                 
@@ -439,6 +442,14 @@ for (j = N; j &gt;= w; j--)
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

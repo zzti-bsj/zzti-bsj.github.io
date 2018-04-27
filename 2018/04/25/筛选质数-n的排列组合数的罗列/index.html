@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -200,28 +203,28 @@
 <ul>
 <li>递归的代码</li>
 <li><p>返回的接口</p>
-<pre><code>const int N=100;
-int visit[N];
-memset(visit,0,sizeof(visit));
-void dfs(int index)  
-{  
-    if(index == 9)  
-    {  
-    .....//这里面是一组全排列求好之后要进行的操作。根据需要来写。
-    }  
-    for(int i = 1 ; i &lt; 10 ; i ++)  //一层for循环，。
-    {  
-        if(!visit[i])  
-        {  
-            visit[i] = true;  //如果i没有被选中排列，则i为第index个个数，然后标记i。
-            num[index] = i;  
-            dfs(index+1);  //如此递归下一个i，当继续往下执行的时候该执行dfs（index+1）后面的那语句了。
-            //此时当前dfs(index)该跳出了，所以当前使用的i只需要被解除标记，
-            //省得跳出返回后对后来的标记有影响。
-            visit[i] = false;  
-        }  
-    }  
-}  
+<pre><code>  const int N=100;
+  int visit[N];
+  memset(visit,0,sizeof(visit));
+  void dfs(int index)  
+  {  
+      if(index == 9)  
+      {  
+      .....//这里面是一组全排列求好之后要进行的操作。根据需要来写。
+      }  
+      for(int i = 1 ; i &lt; 10 ; i ++)  //一层for循环，。
+      {  
+          if(!visit[i])  
+          {  
+              visit[i] = true;  //如果i没有被选中排列，则i为第index个个数，然后标记i。
+              num[index] = i;  
+              dfs(index+1);  //如此递归下一个i，当继续往下执行的时候该执行dfs（index+1）后面的那语句了。
+              //此时当前dfs(index)该跳出了，所以当前使用的i只需要被解除标记，
+              //省得跳出返回后对后来的标记有影响。
+              visit[i] = false;  
+          }  
+      }  
+  }  
 </code></pre></li>
 </ul>
 <p>每次去想这个递归过程去写这个dfs函数的时候都会非常的纠结，好像就是还不太清楚其中的原理，目前的个人感觉就是理解之后记住会用就行了，如果以后有必要去推论的时候再去推论。</p>
@@ -233,19 +236,19 @@ void dfs(int index)
 </ul>
 </li>
 </ul>
-<pre><code>int dp[N]={1,1,0};//非质数标记为1，质数标记为0.
-int tot=0;
-void init()
-{
-    for(long long i = 2 ; i &lt; N ; i ++)
+<pre><code>    int dp[N]={1,1,0};//非质数标记为1，质数标记为0.
+    int tot=0;
+    void init()
     {
-        if(dp[i])continue;
-        prim[tot++]=i;
-        for(long long  j = i ; j * i &lt; N ; j ++){
-            dp[i*j] = 1;//这些都不是质数。
+        for(long long i = 2 ; i &lt; N ; i ++)
+        {
+            if(dp[i])continue;
+            prim[tot++]=i;
+            for(long long  j = i ; j * i &lt; N ; j ++){
+                dp[i*j] = 1;//这些都不是质数。
+            }
         }
     }
-}
 </code></pre>
                 <hr>
                 
@@ -455,6 +458,14 @@ void init()
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

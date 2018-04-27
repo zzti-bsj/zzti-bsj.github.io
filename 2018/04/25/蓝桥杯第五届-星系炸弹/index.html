@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -203,51 +206,51 @@
 <li>while循环中也是重点</li>
 <li>求未来某一个日期的方法<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5></li>
 </ul>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-using namespace std;
-//判断闰年的函数
-int r(int y)
-{
-    if(y%100!=0&amp;&amp;y%4==0||y%400==0)
-        return 1;
-    else
-        return 0;
-}
-int mon[12]={31,28,31,30,31,30,31,31,30,31,30,31};//月份的定义。
-//初始化年月日
-int year=2014;
-int month=11;
-int day=9;
-int num=1000;
-int main()
-{
-    while(num&gt;0)
+<pre><code>    #include&lt;iostream&gt;
+    #include&lt;cstdio&gt;
+    using namespace std;
+    //判断闰年的函数
+    int r(int y)
     {
-        if(mon[month-1]-day&lt;num)
+        if(y%100!=0&amp;&amp;y%4==0||y%400==0)
+            return 1;
+        else
+            return 0;
+    }
+    int mon[12]={31,28,31,30,31,30,31,31,30,31,30,31};//月份的定义。
+    //初始化年月日
+    int year=2014;
+    int month=11;
+    int day=9;
+    int num=1000;
+    int main()
+    {
+        while(num&gt;0)
         {
-            num-=(mon[month-1]-day+1);//直接进入到下一个月的第一天。
-            day=1;
-            month++;
-            if(month&gt;12)
+            if(mon[month-1]-day&lt;num)
             {
-                year++;
-                month=1;
-                if(r(year))
-                    mon[1]=29;
-                else
-                    mon[1]=28;
+                num-=(mon[month-1]-day+1);//直接进入到下一个月的第一天。
+                day=1;
+                month++;
+                if(month&gt;12)
+                {
+                    year++;
+                    month=1;
+                    if(r(year))
+                        mon[1]=29;
+                    else
+                        mon[1]=28;
+                }
+            }
+            else
+            {
+                day+=num;
+                num=0;
             }
         }
-        else
-        {
-            day+=num;
-            num=0;
-        }
+        cout&lt;&lt;year&lt;&lt;&#39; &#39;&lt;&lt;month&lt;&lt;&#39; &#39;&lt;&lt;day&lt;&lt;endl;
+        return 0;
     }
-    cout&lt;&lt;year&lt;&lt;&apos; &apos;&lt;&lt;month&lt;&lt;&apos; &apos;&lt;&lt;day&lt;&lt;endl;
-    return 0;
-}
 </code></pre>
                 <hr>
                 
@@ -457,6 +460,14 @@ int main()
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>

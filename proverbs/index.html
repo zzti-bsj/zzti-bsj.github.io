@@ -32,6 +32,9 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <!--prettify代码高亮主题css引入-->
+    <link href="/plugins/prettify/prettify.css" rel="stylesheet">
 </head>
 
 <style>
@@ -167,11 +170,11 @@
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <pre><code>2018年
-365天
-8760小时
-52560分钟
-31536000秒
+            <pre><code>                2018年
+                365天
+                8760小时
+                52560分钟
+                31536000秒
 </code></pre><p>看似遥远的路，你慢慢的走，总会走的到的，而且，你会与你的兴趣相伴。着急和一蹴而就会让你跌的很惨，反而精心、努力、谦虚会让你在每一条路上走的越来越好，越来越远。一时的虚荣心才是会打败你的敌人。</p>
 
 
@@ -386,6 +389,14 @@
 <!-- 动态背景 -->
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+<!--prettify代码高亮脚本引入-->
+<script src="/plugins/prettify/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script>
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head1.jpg">
 </body>
