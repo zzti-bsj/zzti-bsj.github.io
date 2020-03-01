@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python_爬取豆瓣高分电影信息并存入excel | Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python爬取豆瓣高分电影信息并存入excel目标网址：（爬取豆瓣的高分电影信息）https:&#x2F;&#x2F;movie.douban.com&#x2F;top250?start&#x3D;0&amp;filter&#x3D;发现只有start在变动，这就好办了 首页的简略信息  只爬取每一个的top 和 详情页的链接详情页的信息，爬取1 影片名称2 导演3 编剧4 主演5 类型6 官方网站7 制片国家&#x2F;地区8 语言9 上映时间10 片">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python_爬取豆瓣高分电影信息并存入excel">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/Python_%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="Python爬取豆瓣高分电影信息并存入excel目标网址：（爬取豆瓣的高分电影信息）https:&#x2F;&#x2F;movie.douban.com&#x2F;top250?start&#x3D;0&amp;filter&#x3D;发现只有start在变动，这就好办了 首页的简略信息  只爬取每一个的top 和 详情页的链接详情页的信息，爬取1 影片名称2 导演3 编剧4 主演5 类型6 官方网站7 制片国家&#x2F;地区8 语言9 上映时间10 片">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-01-17T07:01:32.000Z">
+<meta property="article:modified_time" content="2019-04-10T09:59:30.639Z">
+<meta property="article:author" content="Bsj">
+<meta property="article:tag" content="Python爬虫">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python_爬取豆瓣高分电影信息" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/17/Python_%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time datetime="2019-01-17T07:01:32.000Z" itemprop="datePublished">2019-01-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python_爬取豆瓣高分电影信息并存入excel
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Python爬取豆瓣高分电影信息并存入excel"><a href="#Python爬取豆瓣高分电影信息并存入excel" class="headerlink" title="Python爬取豆瓣高分电影信息并存入excel"></a>Python爬取豆瓣高分电影信息并存入excel</h3><p>目标网址：（爬取豆瓣的高分电影信息）<a href="https://movie.douban.com/top250?start=0&amp;filter=" target="_blank" rel="noopener">https://movie.douban.com/top250?start=0&amp;filter=</a><br>发现只有start在变动，这就好办了</p>
+<p>首页的简略信息  只爬取每一个的top 和 详情页的链接<br>详情页的信息，爬取<br>1 影片名称<br>2 导演<br>3 编剧<br>4 主演<br>5 类型<br>6 官方网站<br>7 制片国家/地区<br>8 语言<br>9 上映时间<br>10 片长<br>并且保存到更适用于爬虫的mongodb数据库中</p>
+<p>爬着爬着发现有个json文件存储着电影的简介信息<br>爬着爬着发现有更好的优化方法，先写完这一个吧，后续再优化</p>
+<p><strong>巩固以下知识：</strong></p>
+<ol>
+<li>re.sub()函数<ol>
+<li>params:<ol>
+<li>正则表达式定义的匹配模式</li>
+<li>替换后字符</li>
+<li>目标字符串</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>user_agent模块的用法（它竟然不报错了，我也是很惊讶）<ol>
+<li>之前使用有时候会报错？（问题待解决）如果不能用这个，就使用浏览器自带的User-Agent</li>
+<li>这里我使用的浏览器User-Agent</li>
+</ol>
+</li>
+<li>字典的插入：直接给键赋值，就插如了一条字典元素</li>
+<li>对 元组内的元素不能被重复赋值 <strong>（tuple属于不可变数据）</strong></li>
+</ol>
+<p><code>&#39;tuple&#39; object does not support item assignment</code> </p>
+<p><strong>遇到的问题:</strong>    </p>
+<ul>
+<li><strong>这个程序，我碰到了403问题，怎么处理403问题？</strong><br>我加上所有的请求头，然后还使用了一个代理ip，然后一个一个的去验证到底是因为没有什么而出现的问题，我先去掉代理ip，也能够访问，说明还不至于使用代理ip，然后去掉请求头中的referer、host，程序也能够访问，我又再次去掉Cookie，发现不能进行访问，说明需要加上Cookie，403的问题解决了，但是还有验证码的问题怎么办？</li>
+<li><strong>怎么处理验证码问题？</strong><code>待续</code></li>
+<li>我的程序总是卡在165这个电影上面，不是请求的问题，是程序的问题，但是我对程序也进行了测试和处理，还是要卡在165，是不是解决了验证码的问题就不会卡在这里了？？？还是因为程序的问题？<code>待续</code></li>
+<li><strong>怎么把数据存入到excel中？？</strong><br>用到了两个库 xlwt （写） xlrd （读）<br>这里用一下写，把数据写入excel中，然后创建一个函数，从excel中读取数据</li>
+<li><strong>有没有将dict转化为list的方法？</strong><br>循环dict.values()，并且把每一个值append()到list中，这样就实现了循环</li>
+</ul>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><p><strong>注意：Cookie需要改成自己的，并且登录豆瓣然后爬取</strong></p>
+<pre><code>import re,requests,pymongo
+import xlwt,xlrd
+from fake_useragent import UserAgent
+
+
+ua = UserAgent()
+
+class DataTool(object):
+    def __init__(self):
+        # 创建一个客户端对象
+        self.client = pymongo.MongoClient(&apos;Localhost&apos;)
+        # 根据这个客户端对象，连接数据库
+        self.db = self.client[&apos;douban&apos;]
+
+    def new_tuple_data(self,origin_tuple_data):
+        new_dict = {}
+        if(len(origin_tuple_data) == 12):
+            new_dict[&apos;电影排名&apos;] = origin_tuple_data[0]
+            new_dict[&apos;电影名称&apos;] = origin_tuple_data[1]
+            new_dict[&apos;导演&apos;] = origin_tuple_data[2]
+
+            # pass_&lt;a href=.*?&gt;
+            p1 = re.compile(r&apos;&lt;a href=.*?&gt;&apos;,re.S)
+            # pass_&lt;/a&gt;
+            p2 = re.compile(r&apos;&lt;/a&gt;&apos;,re.S)
+            # pass_&lt;/span&gt;
+            p3 = re.compile(r&apos;&lt;/span&gt;&apos;,re.S)
+            # pass_&lt;span property=.*?&gt;
+            p4 = re.compile(r&apos;&lt;span property=.*?&gt;&apos;,re.S)
+            # pass_\n
+            p5 = re.compile(r&apos;\n&apos;,re.S)
+            # pass_space
+            p6 = re.compile(r&apos; &apos;,re.S)
+            # pass_\u3000
+            p7 = re.compile(r&apos;\u3000&apos;,re.S)
+            # pass_&lt;br /&gt;.*?
+            p8 = re.compile(r&apos;&lt;br/&gt;&apos;,re.S)
+
+            writer = re.sub(p1,&apos;&apos;,origin_tuple_data[3])
+            writer = re.sub(p2,&apos;&apos;,writer)
+            new_dict[&apos;编剧&apos;] = writer
+
+            actor = re.sub(p1,&apos;&apos;,origin_tuple_data[4])
+            actor = re.sub(p2,&apos;&apos;,actor)
+            new_dict[&apos;主演&apos;] = actor
+
+            gut = re.sub(p3,&apos;&apos;,origin_tuple_data[5])
+            gut = re.sub(p4,&apos;&apos;,gut)
+            new_dict[&apos;类型&apos;] = gut
+
+            new_dict[&apos;制片国家/地区&apos;] = origin_tuple_data[6]
+            new_dict[&apos;语言&apos;] = origin_tuple_data[7]
+
+            date = re.sub(p3,&apos;&apos;,origin_tuple_data[8])
+            date = re.sub(p4,&apos;&apos;,date)
+            new_dict[&apos;上映日期&apos;] = date
+
+            time = re.sub(p3,&apos;&apos;,origin_tuple_data[9])
+            time = re.sub(p4,&apos;&apos;,time)
+            new_dict[&apos;片长&apos;] = time
+
+            new_dict[&apos;豆瓣评分&apos;] = origin_tuple_data[10]
+
+            synopsis = re.sub(p5,&apos;&apos;,origin_tuple_data[11])
+            synopsis = re.sub(p6,&apos;&apos;,synopsis)
+            synopsis = re.sub(p7,&apos;&apos;,synopsis)
+            synopsis = re.sub(p8,&apos;&apos;,synopsis)
+            new_dict[&apos;剧情简介&apos;] = synopsis
+            self.db[&apos;d_b&apos;].insert_one(new_dict)
+            return new_dict
+        else:
+            new_dict[&apos;电影排名：&apos;] = origin_tuple_data[0]
+            new_dict[&apos;电影名称&apos;] = origin_tuple_data[1]
+            new_dict[&apos;导演&apos;] = origin_tuple_data[2]
+            return new_dict
+
+class Excel(object):
+
+    # 读取数据
+    def __init__(self):
+        # 创建工作簿
+        self.work_book = xlwt.Workbook(&apos;utf-8&apos;)
+
+        # 创建一个excel表
+        self.excel_Worksheet = self.work_book.add_sheet(&apos;豆瓣top250电影简讯&apos;, cell_overwrite_ok=True)
+
+        # 创建第一行 标题
+        self.rowTitle = [&apos;电影排名&apos;,&apos;电影名称&apos;,&apos;导演&apos;,&apos;编剧&apos;,&apos;主演&apos;,&apos;类型&apos;,&apos;制片国家/地区&apos;,&apos;语言&apos;,&apos;上映日期&apos;,&apos;片长&apos;,&apos;豆瓣评分&apos;,&apos;剧情简介&apos;]
+
+        # 把第一行写入表格
+        for i in range(0,len(self.rowTitle)):
+            self.excel_Worksheet.write(0,i,self.rowTitle[i])
+        self.save_excel_Data()
+
+    # 写入数据
+    def write_data(self,row,movie_data_dict):
+
+        # ----------处理电影信息------------
+        # 由字典转化成列表
+        movie_data_list = []
+        for value in movie_data_dict.values():
+            movie_data_list.append(value)
+
+        # ----------------------------------
+
+        # 把电影数据写入表格
+        for i in range(0,len(self.rowTitle)):
+            self.excel_Worksheet.write(row,i,movie_data_list[i])
+
+    def save_excel_Data(self):
+        # 这个保存是在建立一个工作簿那个对象进行保存的
+        self.work_book.save(&apos;douban.xls&apos;)
+
+
+class DouBan(object):
+    def __init__(self):
+        self.headers = {
+            &apos;User-Agent&apos; : &apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0&apos;,
+
+            &apos;Cookie&apos;:&apos;ll=&quot;118237&quot;; bid=miJfnEe9C8E; __yadk_uid=C8tCYDQmeHxAfZlS5hvnGCCLtrU72prh; douban-fav-remind=1; ps=y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1547354707%2C%22https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Fqrconnect%3Fappid%3Dwxd9c1c6bbd5d59980%26redirect_uri%3Dhttps%253A%252F%252Fwww.douban.com%252Faccounts%252Fconnect%252Fwechat%252Fcallback%26response_type%3Dcode%26scope%3Dsnsapi_login%26state%3DmiJfnEe9C8E%252523douban-web%252523https%25253A%252F%252Fmovie.douban.com%252Ftop250%25253Fstart%25253D125%252526filter%25253D%22%5D; _pk_id.100001.4cf6=4179da9d4af6318e.1543568427.5.1547358498.1547349967.; _vwo_uuid_v2=D4FCFEDCB33DF07B2DE0DC525D42F7488|9024e242bbd9c0f98192b002e4091fc3; as=&quot;https://sec.douban.com/b?r=https%3A%2F%2Fmovie.douban.com%2Fsubject%2F26430107%2F&quot;; dbcl2=&quot;189997368:Qj2bbphj+X0&quot;; ck=iccT; push_noty_num=0; push_doumail_num=0&apos;
+
+        }
+
+        # 设置代理ip
+        # self.proxy_list = {
+        #     &quot;http&quot;: &quot;http://202.121.96.33:8086&quot;,
+        # }
+
+        self.base_page_url = &apos;https://movie.douban.com/top250?start={}&amp;filter=&apos;
+
+    # 获取电影排名首页网页html源码
+    def get_page_html(self,num):
+
+        # 使用代理ip
+        # proxy = self.proxy_list
+        page_url = self.base_page_url.format(num)
+        try:
+            response = requests.get(page_url,headers=self.headers)
+            if response.status_code == 200:
+                page_html = response.text
+                return page_html
+            else:
+                print(&apos;请求错误：url = {}, status_code = {}&apos;.format(page_url,response.status_code))
+                return None
+        except Exception as e:
+            print(&apos;请求异常：url = {}, error = {}&apos;.format(page_url,e))
+            return None
+
+    # 获取详首页电影的 top_no movie_url,返回一个列表
+    def get_page_data(self,page_html):
+        # 书写正则表达式
+        pattern = re.compile(r&apos;&lt;li&gt;.*?&lt;em class=&quot;&quot;&gt;(.*?)&lt;/em&gt;.*?&lt;a href=&quot;(.*?)&quot;&gt;&apos;,re.S)
+
+        movie_info_list = re.findall(pattern,page_html)
+
+        # test
+        # print(movie_info_list)
+        return movie_info_list
+
+    # 获取电影信息源码
+    def get_movie_html(self,movie_url):
+        try:
+            response = requests.get(movie_url,headers=self.headers)
+            if response.status_code == 200:
+                movie_page_html = response.text
+                return  movie_page_html
+            else:
+                print(&apos;请求错误：url = {}, status_code = {}&apos;.format(movie_url,response.status_code))
+                return None
+        except Exception as e:
+            print(&apos;请求异常：url = {}, error = {}&apos;.format(movie_url,e))
+
+    # 获取电影的详细信息
+    def get_movie_details(self,movie_html):
+        #
+        pattern = re.compile(r&apos;&lt;div id=&quot;content&quot;&gt;.*?&lt;div class=&quot;top250&quot;&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;h1&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;div id=&quot;info&quot;&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;.*?&gt;(.*?)&lt;/a&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;(.*?)&lt;/span&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;(.*?)&lt;/span&gt;&lt;/span&gt;&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;制片国家.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;语言:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;上映日期:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;片长:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;strong class=&quot;ll rating_num.*?&gt;(.*?)&lt;/strong&gt;.*?&lt;span property=&quot;v:summary&quot;.*?&gt;(.*?)&lt;/span&gt;&apos;,re.S)
+
+        movie_data = re.findall(pattern,movie_html)
+
+        # 测试输出
+        # print(movie_data)
+        if movie_data is None:
+            return None
+        return movie_data
+        # 保存到数据库中
+
+db_obj = DouBan()
+Tool = DataTool()
+
+# 嗯哼？user_agent竟然不报错了！！
+
+# 测试上次的bug 我不知道上次为什么源码会出错，可能是正则表达式没有正确导致出错，这次测试一下，事实证明这样传回源码没有错
+# 第一页的start是0，第二页的start是25，最后一页的start是225，所以从0-226，对25取余等于0的我都要
+# 获取第一页相关电影的链接 return 一个list list[1]是链接地址
+
+
+xcl =Excel()
+# row = 1 是为了保存到Excel中 做的处理
+row = 1
+for i in range(0,100):
+    if i%25 == 0 :
+        page_html = db_obj.get_page_html(i)
+        # print(page_html)
+        movie_urls_list = db_obj.get_page_data(page_html)
+        for movie_url_tuple in movie_urls_list:
+            movie_html = db_obj.get_movie_html(movie_url_tuple[1])
+            movie_data_list = db_obj.get_movie_details(movie_html)
+            # print(movie_data_list)
+            for move_tuple in movie_data_list:
+                new_data = Tool.new_tuple_data(move_tuple)
+                xcl.write_data(row,new_data)
+                # 每得到一条，保存一次。
+                # xcl.save_excel_Data()
+                row += 1
+                print(new_data)
+
+# 运行完程序再保存
+xcl.save_excel_Data()</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/17/Python_%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF/" data-id="ck78s1tna001z1g9yarhb53zr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/10/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%BF%83%E5%BE%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          博客心得
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E5%A4%B4%E6%9D%A1%E8%A1%97%E6%8B%8D%E5%9B%BE%E7%89%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python_爬取头条街拍图片</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

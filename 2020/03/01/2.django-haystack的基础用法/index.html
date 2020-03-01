@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>2.django-haystack的基础用法 | Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="启动搜索引擎&amp;emsp;&amp;emsp;在查询之前，要启动搜索引擎的服务，在Elasticsearch文件夹下启动Elasticsearch.bat文件。   创建数据模型类&amp;emsp;&amp;emsp;这一步是创建Django数据模型，创建了note应用之后，如下创建了一个Note数据模型类：   123456789101112from django.db import modelsfrom django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.django-haystack的基础用法">
+<meta property="og:url" content="http://yoursite.com/2020/03/01/2.django-haystack%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="启动搜索引擎&amp;emsp;&amp;emsp;在查询之前，要启动搜索引擎的服务，在Elasticsearch文件夹下启动Elasticsearch.bat文件。   创建数据模型类&amp;emsp;&amp;emsp;这一步是创建Django数据模型，创建了note应用之后，如下创建了一个Note数据模型类：   123456789101112from django.db import modelsfrom django">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/imag/django-haystack/1.png">
+<meta property="article:published_time" content="2020-03-01T08:32:41.618Z">
+<meta property="article:modified_time" content="2020-02-23T16:37:48.135Z">
+<meta property="article:author" content="Bsj">
+<meta property="article:tag" content="django-haystack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/imag/django-haystack/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2.django-haystack的基础用法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/2.django-haystack%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.618Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2.django-haystack的基础用法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="启动搜索引擎"><a href="#启动搜索引擎" class="headerlink" title="启动搜索引擎"></a>启动搜索引擎</h2><p>&emsp;&emsp;在查询之前，要启动搜索引擎的服务，在Elasticsearch文件夹下启动Elasticsearch.bat文件。  </p>
+<h2 id="创建数据模型类"><a href="#创建数据模型类" class="headerlink" title="创建数据模型类"></a>创建数据模型类</h2><p>&emsp;&emsp;这一步是创建<strong>Django数据模型</strong>，创建了note应用之后，如下创建了一个Note数据模型类：  </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db import models</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.models import User</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Note(models.Model):</span><br><span class="line">   <span class="built_in"> user </span>= models.ForeignKey(User)</span><br><span class="line">    pub_date = models.DateTimeField()</span><br><span class="line">    title = models.CharField(<span class="attribute">max_length</span>=200)</span><br><span class="line">    body = models.TextField()</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.title</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建索引类"><a href="#创建索引类" class="headerlink" title="创建索引类"></a>创建索引类</h2><h3 id="SearchIndex"><a href="#SearchIndex" class="headerlink" title="SearchIndex"></a>SearchIndex</h3><p>&emsp;&emsp;<code>SearchIndex</code>决定将什么数据放入搜索索引，类似于Django的<code>Models</code>和<code>Forms</code>一样基于字段处理数据。<br>&emsp;&emsp;通常为每一个<strong>数据模型</strong>创建一个唯一的<code>SearchIndex</code>。在你的数据模型字段设置的非常标准的情况下，你可以在不同的数据模型之间使用相同的<code>SearchIndex</code>。  </p>
+<h3 id="创建索引类-1"><a href="#创建索引类-1" class="headerlink" title="创建索引类"></a>创建索引类</h3><p>&emsp;&emsp;在所属app中创建<code>search_indexes.py</code>文件，Haystack会根据此文件名自动寻路，创建与<code>Note</code>对应的<code>NoteIndex</code>索引类，继承<code>indexs.SearchIndex</code>和<code>indexs.Indexable</code>类。定义所需<code>fileds</code>和<code>get_model</code>方法  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> haystack <span class="keyword">import</span> indexes</span><br><span class="line"><span class="keyword">from</span> myapp.models <span class="keyword">import</span> Note</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NoteIndex</span><span class="params">(indexes.SearchIndex, indexes.Indexable)</span>:</span></span><br><span class="line">    <span class="comment"># text设置了document=True，text是Haystack和搜索引擎的主要字段</span></span><br><span class="line">    text = indexes.CharField(document=<span class="literal">True</span>, use_template=<span class="literal">True</span>)</span><br><span class="line">    author = indexes.CharField(model_attr=<span class="string">'user'</span>)</span><br><span class="line">    pub_date = indexes.DateTimeField(model_attr=<span class="string">'pub_date'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_model</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Note</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">index_queryset</span><span class="params">(self, using=None)</span>:</span></span><br><span class="line">        <span class="string">"""Used when the entire index for model is updated."""</span></span><br><span class="line">        <span class="keyword">return</span> self.get_model().objects.filter(pub_date__lte=datetime.datetime.now())</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;<code>document=True</code>指出哪个字段被用作Haystack和搜索引擎的<strong>主要搜索字段</strong>，通常这个字段被命名为<code>text</code>（只是一个惯例而已）<br>&emsp;&emsp;<code>use_template=True</code>指出允许我们使用数据模板来定义搜索引擎要搜索的文档。需要在<code>templates</code>目录下创建一个<code>search/indexes/myapp/myapp_text.txt</code>文件，并写入以下内容:  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//指定可以检索title、full_name、body字段的值</span><br><span class="line">&#123;&#123; object.title &#125;&#125;</span><br><span class="line">&#123;&#123; object.user.get_full_name &#125;&#125;</span><br><span class="line">&#123;&#123; object.body &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="url映射"><a href="#url映射" class="headerlink" title="url映射"></a>url映射</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(<span class="string">r'^search/'</span>, include(<span class="string">'haystack.urls'</span>)),</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;Haystack的URLconf只有一个<code>SearchView</code>实例，您可以通过传递几个关键字参数中的任意一个来更改该类的行为，或者使用自己的视图完全重写它。  </p>
+<h3 id="搜索模板"><a href="#搜索模板" class="headerlink" title="搜索模板"></a>搜索模板</h3><p>&emsp;&emsp;您的搜索模板（默认情况下为search/search.html）可能非常简单。以下内容足以开始（您的模板/块名可能不同）：  </p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">extends</span></span> 'base.html' %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> content %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Search<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"get"</span> <span class="attr">action</span>=<span class="string">"."</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">table</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="template-variable">&#123;&#123; form.as_table &#125;&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="symbol">&amp;nbsp;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Search"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> query %&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Results<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> result <span class="keyword">in</span> page.object_list %&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; result.object.get_absolute_url &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-variable">&#123;&#123; result.object.title &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">empty</span></span> %&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>No results found.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_previous or page.has_next %&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_previous %&#125;</span><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?q=</span></span></span><span class="template-variable">&#123;&#123; query &#125;&#125;</span><span class="xml"><span class="tag"><span class="string"><span class="symbol">&amp;amp;</span>page=</span></span></span><span class="template-variable">&#123;&#123; page.previous_page_number &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"><span class="symbol">&amp;laquo;</span> Previous</span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_previous %&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">                    |</span></span><br><span class="line"><span class="xml">                    </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_next %&#125;</span><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?q=</span></span></span><span class="template-variable">&#123;&#123; query &#125;&#125;</span><span class="xml"><span class="tag"><span class="string"><span class="symbol">&amp;amp;</span>page=</span></span></span><span class="template-variable">&#123;&#123; page.next_page_number &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml">Next <span class="symbol">&amp;raquo;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_next %&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">else</span></span> %&#125;</span></span><br><span class="line"><span class="xml">            </span><span class="comment">&#123;# Show some example queries to run, maybe query syntax, something else? #&#125;</span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;<code>page.object_list</code>是查询结果对象，这些对象包含搜索索引中从该记录返回的所有数据以及分数，还可以通过<code>result.object</code>直接访问结果的模型，因此<code>result.object.title</code>使用数据库中的实际Note对象并访问其title字段。  </p>
+<h2 id="重建-更新索引"><a href="#重建-更新索引" class="headerlink" title="重建/更新索引"></a>重建/更新索引</h2><p>&emsp;&emsp;最后一步，将数据从数据库中放入搜索索引中。Haystack的管理命令使这一步变得简单。  </p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//重新建立索引</span></span><br><span class="line"><span class="keyword">python</span> manage.py rebuild_index</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//更新索引，当添加了新的数据之后，执行更新索引命令</span></span><br><span class="line"><span class="keyword">python</span> manage.py update_index</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong><br>如果使用<code>Solr</code>搜索引擎后端，需要有额外的配置。<code>Solr</code>的配置是基于<code>XML</code>的，需要手动重新生成架构，则需要运行以下命令：  </p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//将<span class="type">XMl</span>输出到Solr的<span class="keyword">schema</span>.xml文件中，然后重启Solr服务器。</span><br><span class="line">python manage.py build_solr_schema</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>Note:</strong><br>只有在运行<code>manage.py update_index</code>或使用<code>manage.py rebuild_index</code>重新启动时，才会更新搜索索引内容。  </p>
+<p>您应该以最适合您的站点的时间间隔（使用–age=<num_hours>减少要更新的内容）创建一个<code>manage.py update_index</code>任务。  </p>
+<p>或者，如果您的流量很低并且/或者您的搜索引擎可以处理它，那么<code>RealtimeSignalProcessor</code>会自动为您处理更新/删除。  </p>
+<h2 id="示例查询结果"><a href="#示例查询结果" class="headerlink" title="示例查询结果"></a>示例查询结果</h2><p>&emsp;&emsp;如下图所示，输入关键字，查询相关的数据并展示：  </p>
+<p><img src="/imag/django-haystack/1.png" alt="alt"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/2.django-haystack%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" data-id="ck78s1tlw000e1g9yckwf9gs0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/01/1.django-haystack%EF%BC%88%E6%A8%A1%E5%9D%97%E5%8C%96%E6%90%9C%E7%B4%A2%EF%BC%89%20-%20%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          1.django-haystack（模块化搜索） - 安装及配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/01/Template%20render%20error%20expected%20variable%20end/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Template render error expected variable end</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Http协议 | Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是HTTP？&amp;emsp;&amp;emsp;官方对http的解释：HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。 &amp;emsp;&amp;emsp;HTTP：超文本传输协议(HyperText Transfer Protocol)   什么是超文本？&amp;emsp;&amp;em">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http协议">
+<meta property="og:url" content="http://yoursite.com/2020/03/01/Http%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="什么是HTTP？&amp;emsp;&amp;emsp;官方对http的解释：HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。 &amp;emsp;&amp;emsp;HTTP：超文本传输协议(HyperText Transfer Protocol)   什么是超文本？&amp;emsp;&amp;em">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/1.gif">
+<meta property="og:image" content="http://yoursite.com/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/2.png">
+<meta property="og:image" content="http://yoursite.com/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/3.png">
+<meta property="og:image" content="http://yoursite.com/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/4.png">
+<meta property="article:published_time" content="2020-03-01T08:32:43.086Z">
+<meta property="article:modified_time" content="2019-09-22T01:51:13.788Z">
+<meta property="article:author" content="Bsj">
+<meta property="article:tag" content="网络编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/1.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Http协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/Http%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.086Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Http协议
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是HTTP？"><a href="#什么是HTTP？" class="headerlink" title="什么是HTTP？"></a>什么是HTTP？</h2><p>&emsp;&emsp;<strong>官方对http的解释</strong>：HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网（WWW:World Wide Web ）<strong>服务器</strong>传输超文本到<strong>本地浏览器</strong>的传送协议。</p>
+<p>&emsp;&emsp;<strong>HTTP：超文本传输协议(HyperText Transfer Protocol)</strong>  </p>
+<h4 id="什么是超文本？"><a href="#什么是超文本？" class="headerlink" title="什么是超文本？"></a>什么是超文本？</h4><p>&emsp;&emsp;从字面意思来讲，文本就是普通的文本、文字，<strong>而超文本是除了文字以外的图片、html、查询结果等比文本更复杂的数据。</strong> 为了在网络中传递这些复杂的数据，官方规定了一个协议，那就是<strong>http协议</strong>  </p>
+<p>&emsp;&emsp;在大概了知道了http协议是什么之后，我们深入了解一下关于http相关的知识。  </p>
+<h3 id="http近一步解读"><a href="#http近一步解读" class="headerlink" title="http近一步解读"></a>http近一步解读</h3><p>&emsp;&emsp;1、http协议基于TCP/IP<strong>通信协议</strong>来传输数据<br>&emsp;&emsp;2、Http的三个注意事项：<br>&emsp;&emsp;（1）HTTP是<strong>无连接</strong>：==无连接的含义是限制每次连接只处理一个请求==。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。<br>&emsp;&emsp;（2）HTTP是<strong>媒体独立</strong>的：这意味着，==只要客户端和服务器知道如何处理的数据内容，任何类型的数据都可以通过HTTP发送==。客户端以及服务器指定使用适合的MIME-type内容类型。<br>&emsp;&emsp;（3）HTTP是<strong>无状态</strong>：HTTP协议是无状态协议。==无状态是指协议对于事务处理没有记忆能力==。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。  </p>
+<p><strong>（无连接、媒体独立、无状态）</strong>  </p>
+<p>&emsp;&emsp;3、http协议通信流程<br><img src="/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/1.gif" alt="alt"></p>
+<p>下面，先来了解一下请求url的过程：<br>&emsp;&emsp;<strong>请求url过程</strong>：我们通过浏览器访问一个url，此时浏览器发送了一个http请求给服务器，服务器接收到这个请求之后，返回响应（html页面）给浏览器，<strong>与此同时</strong>，浏览器发现该响应中（html页面）还有其他的url（网页资源文件地址，如：图片），然后又自动根据这些url去请求相应的资源文件，等到把资源全部获取，浏览器根据特定的形式，完整的把页面显示在浏览器上。<br>&emsp;&emsp;<strong>url请求的过程总结</strong>：<br>（1）浏览器发送http请求<br>（2）服务器根据请求做出响应<br>（3）浏览器继续根据url<strong>自动</strong>发出http请求获取资源<br>（4）浏览器响应返回数据（直到没有相应的http请求发生）  </p>
+<p>&emsp;&emsp;图中这个过程提到了CGI，简单了解一下：<br>&emsp;&emsp;<strong>CGI</strong>：(Common Gateway Interface) 是 HTTP 服务器与你的或其它机器上的程序进行“交谈”的一种工具<br>（1）CGI是一种程序，运行在网络服务器上。<br>（2）CGI用来解释处理表单输入的数据，将相应信息反馈给浏览器。<br>（3）CGI程序使网页具有交互功能。  </p>
+<h3 id="请求报文和响应报文"><a href="#请求报文和响应报文" class="headerlink" title="请求报文和响应报文"></a>请求报文和响应报文</h3><p>1、请求报文：<br>（1）组成：请求行、请求头部、空行、请求数据  </p>
+<p>2、响应：<br>（1）组成：状态行（返回状态码，请求是否成功）、消息报头、空行、响应正文（html）</p>
+<p>具体如图所示：<br><img src="/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/2.png" alt="alt"></p>
+<hr>
+<h3 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h3><p>（1）HTTP 1.0定义了三种请求方法：GET/POST/HEAD<br>（2）HTTP 1.1新增了6种请求方法：PUT/DELETE/OPTIONS/CONNECT/TRACE/PATCH</p>
+<p>&emsp;&emsp;主要的是GET和POST<br>&emsp;&emsp;（1）GET:请求数据<br>&emsp;&emsp;（2）POST:提交数据<br>&emsp;&emsp;（3）HEAD:类似GET，主要用于获取报头<br>&emsp;&emsp;（4）PUT:从客户端向服务器传送数据替换指定的文档的内容。<br>&emsp;&emsp;（5）DELETE:请求服务器删除指定的页面。  </p>
+<p><a href="https://www.runoob.com/http/http-methods.html" target="_blank" rel="noopener">更多功能</a></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="请求头和响应头（response-headers-request-headers）"><a href="#请求头和响应头（response-headers-request-headers）" class="headerlink" title="请求头和响应头（response headers/request headers）"></a>请求头和响应头（response headers/request headers）</h3><p><strong>响应头：</strong><br>&emsp;&emsp;当我对一个网页检查的时候，我选择一个文件，并点击查看。<br><img src="/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/3.png" alt="alt"></p>
+<p>&emsp;&emsp;如上图，我点击了一个js文件，从这个图中，我得知它的请求头和响应头的相关信息，其中响应头中的<strong>content-type</strong>是text/javascript。<br>&emsp;&emsp;<a href="https://www.runoob.com/http/http-content-type.html" target="_blank" rel="noopener">更多content-type对应文件类型</a><br>&emsp;&emsp;除此之外还有其他的<strong>响应头信息</strong>：date/last-modified/server/content-encoding 等等  </p>
+<p><strong>请求头：</strong><br>如下图所示，我们可以看到一些请求头里的信息：<br><img src="/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/Http%E5%8D%8F%E8%AE%AE/4.png" alt="alt"><br>其中比较常用的有：<br>（1）User-Agent：用户代理<br>（2）Cookie：浏览器记录的用户信息<br>（3）Host：服务器主机地址（如百度的是<a href="http://www.baidu.com）" target="_blank" rel="noopener">www.baidu.com）</a><br>（4）Accept：可接受的网页格式<br>（5）Accept-Encoding：可接受的编码<br>（6）Accept-Language：可接受的语言  </p>
+<p>拓展：Cookie（<strong>浏览器中寄存的小型数据体，它可以记载和服务器相关的用户信息</strong>）常含有四个字段：<br>（1）name：字段名<br>（2）value：值<br>（3）domain：作用的域名<br>（4）expires：失效时间  </p>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><p>&emsp;&emsp;服务器返回的响应头中有个状态码，该状态码对应着服务器的响应状态。 </p>
+<p>&emsp;&emsp;HTTP状态码由三个十进制数字组成，<strong>第一个十进制数字定义了状态码的类型</strong>，后两个数字没有分类的作用。HTTP状态码共分为5种类型：  </p>
+<p>&emsp;&emsp;<strong>HTTP状态码分类</strong><br>分类    分类描述<br>1**    信息，服务器收到请求，需要请求者继续执行操作<br>2**    <strong>成功</strong>，操作被成功接收并处理<br>3**    <strong>重定向</strong>，需要进一步的操作以完成请求<br>4**    <strong>客户端错误</strong>，请求包含语法错误或无法完成请求<br>5**    <strong>服务器错误</strong>，服务器在处理请求的过程中发生了错误  </p>
+<p>&emsp;&emsp;<strong>常见的状态码</strong><br>200 - 请求成功<br>301 - 资源（网页等）被永久转移到其它URL<br>404 - 请求的资源（网页等）不存在<br>405    Method Not Allowed    客户端请求中的方法被禁止<br>500 - 内部服务器错误<br>504    Gateway Time-out    充当网关或代理的服务器，未及时从远端服务器获取请求  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/Http%E5%8D%8F%E8%AE%AE/" data-id="ck78s1tm5000n1g9y4o9e5ey3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/01/jQuery%E8%B7%B3%E8%BD%AC%E7%BD%91%E9%A1%B5%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          jQuery跳转网页的几种方式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/01/django%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E3%80%81%E5%B1%80%E5%9F%9F%E7%BD%91%E8%AE%BF%E9%97%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">django本地部署、局域网访问</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

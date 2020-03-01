@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="open the new world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bsj&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/7/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="open the new world">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Bsj">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-跨域请求（一）：什么是跨域请求" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.698Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/">跨域请求（一）：什么是跨域请求</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="跨域请求"><a href="#跨域请求" class="headerlink" title="跨域请求"></a>跨域请求</h2><ul>
+<li>简而言之，不同域之间进行数据传输，比如百度想要向阿里发送一个请求，这就是跨域请求。  </li>
+<li>ajax、多数带有src的标签，都可以实现跨域请求。</li>
+</ul>
+<p>&emsp;&emsp;常用场景：前后端分离时，前端跨域访问后端代码。此时需要支持前端的跨域请求。  </p>
+<h2 id="跨域请求失败示例"><a href="#跨域请求失败示例" class="headerlink" title="跨域请求失败示例"></a>跨域请求失败示例</h2><p>&emsp;&emsp;测试：本地环境下使用js脚本，向其他网站（比如百度）发送ajax请求。<br>&emsp;&emsp;由于浏览器的同源策略，会导致<strong>js跨域请求</strong>失败！</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//导入jQuery</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    $.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">        url : <span class="string">'http://www.baidu.com'</span>,</span></span><br><span class="line"><span class="actionscript">        type: <span class="string">'GET'</span>,</span></span><br><span class="line"><span class="actionscript">        dateType: <span class="string">"JSON"</span>,</span></span><br><span class="line"><span class="actionscript">        success:<span class="function"><span class="keyword">function</span> <span class="params">(data, status)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(data)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/imag/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/1.png" alt="alt"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" data-id="ck78s1tqk007o1g9y4s095gjw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-django配置数据库（一）配置mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/django%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89%E9%85%8D%E7%BD%AEmysql/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.640Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/django%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89%E9%85%8D%E7%BD%AEmysql/">django配置数据库（一）配置mysql</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="django配置mysql数据库"><a href="#django配置mysql数据库" class="headerlink" title="django配置mysql数据库"></a>django配置mysql数据库</h2><ul>
+<li>安装<code>mysqlclient</code></li>
+<li>安装<code>pymysql</code> python3连接mysql数据库的库</li>
+</ul>
+<p>django项目中settings配置：  </p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        <span class="meta"># 选用mysql引擎</span></span><br><span class="line">        'ENGINE': 'django.db.backends.mysql',</span><br><span class="line">        <span class="meta"># 数据库名，数据库需要事先手动创建</span></span><br><span class="line">        'NAME': 'dbname',</span><br><span class="line">        <span class="meta"># mysql用户名</span></span><br><span class="line">        'USER': 'user',</span><br><span class="line">        <span class="meta"># 数据库密码</span></span><br><span class="line">        'PASSWORD': 'password',</span><br><span class="line">        <span class="meta"># 主机名</span></span><br><span class="line">        'HOST': 'hostname',</span><br><span class="line">        'PORT': '<span class="number">3306</span>',</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/django%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89%E9%85%8D%E7%BD%AEmysql/" data-id="ck78s1tom003g1g9yfatvhgm6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/" rel="tag">Django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-django 在admin.py中注册模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/django%20%E5%9C%A8admin.py%E4%B8%AD%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9E%8B/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.569Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/django%20%E5%9C%A8admin.py%E4%B8%AD%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9E%8B/">django 在admin.py中注册模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="django-在admin-py中注册模型"><a href="#django-在admin-py中注册模型" class="headerlink" title="django 在admin.py中注册模型"></a>django 在admin.py中注册模型</h2><p>&emsp;&emsp;django 后台admin模块是提供用户来管理django数据的模块。在项目中使用admin.py注册要管理的模型。通过后台/admin管理模型数据。  </p>
+<h2 id="django注册模型的两种方式"><a href="#django注册模型的两种方式" class="headerlink" title="django注册模型的两种方式"></a>django注册模型的两种方式</h2><ul>
+<li>通过装饰器注册</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> <span class="keyword">admin</span></span><br><span class="line"><span class="keyword">from</span> <span class="keyword">user</span>.models <span class="keyword">import</span> <span class="keyword">User</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Register your models here.</span><br><span class="line">@<span class="keyword">admin</span>.register(<span class="keyword">User</span>)</span><br><span class="line"><span class="keyword">class</span> UserAdmin(<span class="keyword">admin</span>.ModelAdmin):</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>先写Admin类，再注册</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib import admin</span><br><span class="line"><span class="keyword">from</span> user.models import User</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line">class UserAdmin(admin.ModelAdmin):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">admin.site.register(User, UserAdmin)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/django%20%E5%9C%A8admin.py%E4%B8%AD%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9E%8B/" data-id="ck78s1tnk002a1g9y08v359ye" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/" rel="tag">Django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-django获取不同请求的参数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/django%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%90%8C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8F%82%E6%95%B0/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.512Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/django%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%90%8C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8F%82%E6%95%B0/">django获取不同请求的参数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="django获取不同请求的参数"><a href="#django获取不同请求的参数" class="headerlink" title="django获取不同请求的参数"></a>django获取不同请求的参数</h2><p>&emsp;&emsp;我们都知道，<code>django</code>通过<code>request.GET.get()/request.POST.get()</code>可以获取客户端传来<code>GET/POST</code>的参数。那么如何获取其他请求传来的参数，如<code>PUt/DELETE</code>  </p>
+<ul>
+<li><code>QueryDict(request.body)</code><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//以获取PUT请求中的参数为例</span><br><span class="line"><span class="built_in">from</span> django.<span class="keyword">http</span> import QueryDict</span><br><span class="line"></span><br><span class="line">def <span class="built_in">put</span>(self, request, *args, **kwargs):</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 参数 email, nickname,</span></span><br><span class="line">    <span class="built_in">put</span> = QueryDict(request.body)</span><br><span class="line">    <span class="comment"># 获取参数</span></span><br><span class="line">    email = <span class="built_in">put</span>.<span class="built_in">get</span>(<span class="string">'email'</span>)</span><br><span class="line">    nickname = <span class="built_in">put</span>.<span class="built_in">get</span>(<span class="string">'nickname'</span>)</span><br><span class="line">    phone = <span class="built_in">put</span>.<span class="built_in">get</span>(<span class="string">'phone'</span>)</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="literal">return</span> JsonResponse(<span class="built_in">result</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//request.body中包含请求主题内容</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/django%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%90%8C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8F%82%E6%95%B0/" data-id="ck78s1tnw002r1g9ycjg4hpwo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/" rel="tag">Django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Django的_meta API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/Django%E7%9A%84_meta%20API/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.485Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/Django%E7%9A%84_meta%20API/">Model _meta API</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Django的-meta-API"><a href="#Django的-meta-API" class="headerlink" title="Django的_meta API"></a>Django的_meta API</h2><p>通过django的_meta API获取Model的属性，_meta API 提供了两种方法获取Django的Model字段</p>
+<ul>
+<li>检索模型的某个字段 <code>Model._meta.get_field(field_name)</code> </li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="keyword">from</span> django.contrib.auth.models import User</span><br><span class="line"></span><br><span class="line"><span class="comment"># A field on the model</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'username'</span>)</span><br><span class="line">&lt;django.db.models.fields.CharField: username&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># A field from another model that has a relation with the current model</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'logentry'</span>)</span><br><span class="line">&lt;ManyToOneRel: admin.logentry&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># A non existent field</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'does_not_exist'</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    <span class="built_in">..</span>.</span><br><span class="line">FieldDoesNotExist:<span class="built_in"> User </span>has <span class="literal">no</span> field named <span class="string">'does_not_exist'</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>检索模型的所有字段 <code>Model._meta.get_fields(include_parents = True，include_hidden = False)</code> </li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="selector-tag">from</span> <span class="selector-tag">django</span><span class="selector-class">.contrib</span><span class="selector-class">.auth</span><span class="selector-class">.models</span> <span class="selector-tag">import</span> <span class="selector-tag">User</span></span><br><span class="line">&gt;&gt;&gt; <span class="selector-tag">User</span><span class="selector-class">._meta</span><span class="selector-class">.get_fields</span>()</span><br><span class="line">(&lt;<span class="attribute">ManyToOneRel</span>: admin.logentry&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">AutoField</span>: id&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: password&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: last_login&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_superuser&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: username&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: first_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: last_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">EmailField</span>: email&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_staff&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_active&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: date_joined&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: groups&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: user_permissions&gt;)</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">Also</span> <span class="selector-tag">include</span> <span class="selector-tag">hidden</span> <span class="selector-tag">fields</span>.</span><br><span class="line">&gt;&gt;&gt; <span class="selector-tag">User</span><span class="selector-class">._meta</span><span class="selector-class">.get_fields</span>(include_hidden=True)</span><br><span class="line">(&lt;<span class="attribute">ManyToOneRel</span>: auth.user_groups&gt;,</span><br><span class="line"> &lt;<span class="attribute">ManyToOneRel</span>: auth.user_user_permissions&gt;,</span><br><span class="line"> &lt;<span class="attribute">ManyToOneRel</span>: admin.logentry&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">AutoField</span>: id&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: password&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: last_login&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_superuser&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: username&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: first_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: last_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">EmailField</span>: email&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_staff&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_active&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: date_joined&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: groups&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: user_permissions&gt;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><ul>
+<li>这里有一个使用此功能封装的实例，用于将django的orm对象转成json字符串 <a href="https://gitee.com/zzti-bsj/tools/tree/master/6%E3%80%81orm2json" target="_blank" rel="noopener">orm2json</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/Django%E7%9A%84_meta%20API/" data-id="ck78s1tlz000g1g9ybejphz4h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/" rel="tag">Django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-相思" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E7%9B%B8%E6%80%9D/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.450Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E7%9B%B8%E6%80%9D/">相思</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;相&emsp;思<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;红豆生南国，春来发几枝。<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;愿君多采撷，此物最相思。  </p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;<img src="/imag/%E9%9A%8F%E7%AC%94/%E7%9B%B8%E6%80%9D/%E7%9B%B8%E6%80%9D1.jpg" alt="alt"><br>&emsp;&emsp;&emsp;&emsp;&emsp;<img src="/imag/%E9%9A%8F%E7%AC%94/%E7%9B%B8%E6%80%9D/%E7%9B%B8%E6%80%9D2.jpg" alt="alt"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E7%9B%B8%E6%80%9D/" data-id="ck78s1tq900701g9yclrh94i1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TCP IP 协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/TCP%20IP%20%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.439Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/TCP%20IP%20%E5%8D%8F%E8%AE%AE/">TCP/IP协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h2><p>TCP/IP协议是不同通信协议的大集合。</p>
+<h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><h3 id="TCP协议的作用"><a href="#TCP协议的作用" class="headerlink" title="TCP协议的作用"></a>TCP协议的作用</h3><p>&emsp;&emsp;TCP是<strong>应用程序</strong>之间的通信协议。<br>&emsp;&emsp;在数据发送之前将其分割成IP包，然后在到达之后再重组成完整数据。</p>
+<h3 id="TCP协议的作用原理"><a href="#TCP协议的作用原理" class="headerlink" title="TCP协议的作用原理"></a>TCP协议的作用原理</h3><p>&emsp;&emsp;当一个应用程序想要与另一个应用程序通信时，需要<strong>发送一个请求</strong>到一个确切的地址，然后通过<strong>三次握手</strong>，建立一个全双工的通信。这个全双工通信会占用两个计算机之间的通信线路，直到一方或者双方关闭。  </p>
+<p><strong>作用原理：</strong></p>
+<ul>
+<li>一个应用程序向另一个应用程序发起通信请求</li>
+<li>三次握手建立全双工通信</li>
+</ul>
+<h3 id="TCP协议的特点"><a href="#TCP协议的特点" class="headerlink" title="TCP协议的特点"></a>TCP协议的特点</h3><ul>
+<li>固定连接</li>
+<li>占用两个计算机之间的通信线路</li>
+</ul>
+<hr>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><h3 id="IP协议的作用"><a href="#IP协议的作用" class="headerlink" title="IP协议的作用"></a>IP协议的作用</h3><p>&emsp;&emsp;IP协议是<strong>计算机</strong>之间的通信协议。<br>&emsp;&emsp;IP 负责在因特网上发送和接收数据包。</p>
+<h3 id="IP协议的作用原理"><a href="#IP协议的作用原理" class="headerlink" title="IP协议的作用原理"></a>IP协议的作用原理</h3><p>&emsp;&emsp;Ip协议是无连接的，自然不需要经过三次握手建立连接，不占用通信线路，可以满足许多不同计算机之间的通信需要</p>
+<h3 id="IP协议的特点"><a href="#IP协议的特点" class="headerlink" title="IP协议的特点"></a>IP协议的特点</h3><ul>
+<li>无连接</li>
+<li>不占用通信线路</li>
+<li>满足不同计算机之间的通信需要</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/TCP%20IP%20%E5%8D%8F%E8%AE%AE/" data-id="ck78s1tn9001x1g9y64dsfzw9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-邮件相关的四个协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E9%82%AE%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.419Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E9%82%AE%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%8D%8F%E8%AE%AE/">邮件相关的四个协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="POP协议"><a href="#POP协议" class="headerlink" title="POP协议"></a>POP协议</h2><p>&emsp;&emsp;POP协议全称是post office protocol，中文为<strong>邮局协议</strong><br>&emsp;&emsp;POP协议是用来从邮件服务器上<strong>取邮件</strong>的协议。<br>&emsp;&emsp;当使用POP协议连接到邮件服务器时，所有的邮件将会被下载到本地计算机上。  </p>
+<h2 id="SMTP协议"><a href="#SMTP协议" class="headerlink" title="SMTP协议"></a>SMTP协议</h2><p>&emsp;&emsp;SMTP协议的全称是simple mail transfer protocol，中文为<strong>简单邮件传输协议</strong><br>&emsp;&emsp;SMTP协议是用来发送邮件的协议<br>&emsp;&emsp;SMTP协议通过MIME协议能够发送二进制数据</p>
+<h2 id="IMAP协议"><a href="#IMAP协议" class="headerlink" title="IMAP协议"></a>IMAP协议</h2><p>&emsp;&emsp;IMAP协议的全称是internet message access protocol，中文为<strong>因特网消息访问协议</strong><br>&emsp;&emsp;当需要访问邮件内容而不需要下载的时候，使用IMAP协议  </p>
+<h2 id="MIME协议"><a href="#MIME协议" class="headerlink" title="MIME协议"></a>MIME协议</h2><p>&emsp;&emsp;MIME协议的全称是multi-purpose internet mail protocol，中文为<strong>多用途因特网邮件协议</strong><br>&emsp;&emsp;这个协议将二进制的数据转化成文本，SMTP协议通过MIME协议能够传送二进制数据</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E9%82%AE%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%8D%8F%E8%AE%AE/" data-id="ck78s1tqm007s1g9y0wwdewdu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-UDP和TCP协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/UDP%E5%92%8CTCP%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.394Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/UDP%E5%92%8CTCP%E5%8D%8F%E8%AE%AE/">UDP和TCP协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>&emsp;&emsp;我博客里的博文 <strong>“TCP/IP协议”</strong> 已经讲过了TCP的<strong>作用</strong>、<strong>原理</strong>以及<strong>特点</strong>。<br>&emsp;&emsp;TCP是用于应用程序之间通信的协议，通过三次握手建立连接，建立全双工通信，占用计算机之间的通信线路。  </p>
+<p><strong>特点是：</strong></p>
+<ul>
+<li>固定连接</li>
+<li>建立全双工通信、占用计算机间的通信线路直至一方或双方断开。</li>
+<li>传输数据慢</li>
+<li>传输数据量大（基于字节流）</li>
+<li>可靠性高</li>
+</ul>
+<h2 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h2><p>&emsp;&emsp;UDP协议是User DataGram Protocol，中文为用户数据报协议。<br>&emsp;&emsp;</p>
+<h3 id="UDP协议的作用"><a href="#UDP协议的作用" class="headerlink" title="UDP协议的作用"></a>UDP协议的作用</h3><p>&emsp;&emsp;UDP协议是<strong>面向数据报的传输协议</strong>。通过把应用程序传给IP层的数据包发送出去，传输之前不需要客户端和服务端建立连接。</p>
+<h3 id="UDP协议的特点"><a href="#UDP协议的特点" class="headerlink" title="UDP协议的特点"></a>UDP协议的特点</h3><ul>
+<li>无连接</li>
+<li>面向数据报</li>
+<li>传输速度快</li>
+<li>传输数据量小（基于数据报）</li>
+<li>容易丢包、没有TCP协议可靠</li>
+</ul>
+<h2 id="UDP和TCP的比较"><a href="#UDP和TCP的比较" class="headerlink" title="UDP和TCP的比较"></a>UDP和TCP的比较</h2><table>
+<thead>
+<tr>
+<th>特征点</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否连接</td>
+<td>面向连接</td>
+<td>面向非连接</td>
+</tr>
+<tr>
+<td>传输可靠性</td>
+<td>可靠</td>
+<td>会丢包，不可靠</td>
+</tr>
+<tr>
+<td>应用场景</td>
+<td>传输数据量大</td>
+<td>传输量小</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>慢</td>
+<td>快</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/UDP%E5%92%8CTCP%E5%8D%8F%E8%AE%AE/" data-id="ck78s1tnb00221g9yf82k0q0q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-以多任务的角度理解进程和线程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E4%BB%A5%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.381Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E4%BB%A5%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">以多任务的角度理解进程和线程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;&emsp;网上翻了这么多，都是对官方进程和线程的理解，但是很多人大不是为了想要知道官方对线程和进程的理解，而是一个更能具体的通透的理解。<br>&emsp;&emsp;本篇文章以实例，以多任务为切入点，简单的理解下<strong>进程/多进程</strong>和<strong>线程/多线程</strong>，争取跳出进程和线程的坑。  </p>
+<h2 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h2><p>&emsp;&emsp;什么是多任务？<br>&emsp;&emsp;一台电脑同时听音乐、上网、编写word、打游戏，这就是多任务。  </p>
+<h2 id="进程-多进程"><a href="#进程-多进程" class="headerlink" title="进程/多进程"></a>进程/多进程</h2><p>&emsp;&emsp;<strong>进程</strong>：听音乐是进程、上网是进程、编写word也是进程、打游戏也是进程。无论是单核还是多核的CPU，都能够实现多进程（多任务）。<br>&emsp;&emsp;<strong>多进程</strong>：由于CPU的执行速度非常非常快！！！单核CPU通过轮流执行任务，实现多个进程同时执行。比如：听音乐0.01秒，然后word码字0.01秒，然后浏览器刷新内容0.01秒；  </p>
+<h2 id="线程-多线程"><a href="#线程-多线程" class="headerlink" title="线程/多线程"></a>线程/多线程</h2><p>&emsp;&emsp;<strong>线程</strong>：编写word时，可以编写、修改、保存；运行网易云可以听音乐、搜索音乐；在一个进程中可以做多个不同的任务，这些任务称为线程。<br>&emsp;&emsp;这是一个非常非常具有代表性的例子：<br>&emsp;&emsp;<strong>多线程（播放电影）</strong>：播放一个电影是一个进程，播放电影需要同时播放音频和视频，这是多线程任务；如果等视频播放完毕之后再播放音频，这将是单线程任务，单线程任务使线程按顺序执行；</p>
+<h2 id="多进程和多线程实现方式"><a href="#多进程和多线程实现方式" class="headerlink" title="多进程和多线程实现方式"></a>多进程和多线程实现方式</h2><p>&emsp;&emsp;多进程和多线程实现方式都是通过操作系统切换任务实现的，执行某个进程（线程）某一段时间（比如0.0.1秒），然后执行下一个任务同样的时间。</p>
+<h2 id="单线程的进程实现多任务的三种方法"><a href="#单线程的进程实现多任务的三种方法" class="headerlink" title="单线程的进程实现多任务的三种方法"></a>单线程的进程实现多任务的三种方法</h2><p>&emsp;&emsp;一个进程可以拥有多个线程，一个进程至少有一个线程。如果一个进程只有一个线程，如何实现多任务呢？</p>
+<ul>
+<li>多进程</li>
+<li>一个进程，多个线程</li>
+<li>多个进程+多个线程</li>
+</ul>
+<h2 id="廖雪峰讲解Python多线程多进程"><a href="#廖雪峰讲解Python多线程多进程" class="headerlink" title="廖雪峰讲解Python多线程多进程"></a>廖雪峰讲解Python多线程多进程</h2><p><a href="https://www.liaoxuefeng.com/wiki/897692888725344/923056118147584" target="_blank" rel="noopener">进程和线程</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E4%BB%A5%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ck78s1tpn005k1g9yhxoegdg2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

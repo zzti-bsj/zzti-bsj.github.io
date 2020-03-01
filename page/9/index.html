@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="open the new world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bsj&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/9/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="open the new world">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Bsj">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-浅析：并行 并发 同步 异步" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E6%B5%85%E6%9E%90%EF%BC%9A%E5%B9%B6%E8%A1%8C%20%E5%B9%B6%E5%8F%91%20%E5%90%8C%E6%AD%A5%20%E5%BC%82%E6%AD%A5/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.034Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E6%B5%85%E6%9E%90%EF%BC%9A%E5%B9%B6%E8%A1%8C%20%E5%B9%B6%E5%8F%91%20%E5%90%8C%E6%AD%A5%20%E5%BC%82%E6%AD%A5/">浅析：并行 并发 同步 异步</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="于CPU层面的并行和并发"><a href="#于CPU层面的并行和并发" class="headerlink" title="于CPU层面的并行和并发"></a>于CPU层面的并行和并发</h2><p>&emsp;&emsp;<strong>并发：</strong> 同时听音乐，打LOL。于单核CPU，来回切换执行任务，每一时刻只执行一个任务。<br>&emsp;&emsp;<strong>并行：</strong> 同时听音乐，打LOL。于多核CPU，每个时刻执行多个任务。  </p>
+<h2 id="线程层面的同步和异步"><a href="#线程层面的同步和异步" class="headerlink" title="线程层面的同步和异步"></a>线程层面的同步和异步</h2><p>&emsp;&emsp;<strong>同步：</strong> 阻塞当前线程，直到目标完成。<br>&emsp;&emsp;<strong>异步：</strong> 不阻塞当前线程，异步执行任务。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E6%B5%85%E6%9E%90%EF%BC%9A%E5%B9%B6%E8%A1%8C%20%E5%B9%B6%E5%8F%91%20%E5%90%8C%E6%AD%A5%20%E5%BC%82%E6%AD%A5/" data-id="ck78s1tq3006q1g9ybkf9ahj8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TCP实现socket编程+多线程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/TCP%E5%AE%9E%E7%8E%B0socket%E7%BC%96%E7%A8%8B+%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.027Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/TCP%E5%AE%9E%E7%8E%B0socket%E7%BC%96%E7%A8%8B+%E5%A4%9A%E7%BA%BF%E7%A8%8B/">TCP实现socket编程+多线程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="TCP连接特点简述"><a href="#TCP连接特点简述" class="headerlink" title="TCP连接特点简述"></a>TCP连接特点简述</h2><ul>
+<li>固定连接、面向字节流</li>
+<li>可靠（固定连接）</li>
+<li>传输数据量大（面向字节流）</li>
+<li>传输速度慢</li>
+<li>经过三次握手，建立连接</li>
+<li>通过四次挥手，断开连接</li>
+</ul>
+<h2 id="基于TCP的socket实现过程"><a href="#基于TCP的socket实现过程" class="headerlink" title="基于TCP的socket实现过程"></a>基于TCP的socket实现过程</h2><p><img src="/imag/Socket%E7%BC%96%E7%A8%8B/%E5%9F%BA%E4%BA%8Etcp%E7%9A%84socket%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B.jpg" alt="alt"></p>
+<h2 id="TCP实现服务端-多线程处理客户端socket对象"><a href="#TCP实现服务端-多线程处理客户端socket对象" class="headerlink" title="TCP实现服务端+多线程处理客户端socket对象"></a>TCP实现服务端+多线程处理客户端socket对象</h2><p>&emsp;&emsp;TCP的连接拥有固定连接的特点，占用通信线路。<br>&emsp;&emsp;如果同时想要与多台计算机通信，则需要使用多线程处理每个客户端的socket对象。<br>&emsp;&emsp;<strong>TCP连接+多线程</strong>  </p>
+<p>服务端</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tcp协议的特点是固定连接</span></span><br><span class="line"><span class="string">1. 创建socket实例</span></span><br><span class="line"><span class="string">2. 绑定主机ip</span></span><br><span class="line"><span class="string">3. 然后监听客户端的请求</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">4. 接收客户端socket对象、ip地址</span></span><br><span class="line"><span class="string">5. 多线程 通信（收发消息）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">应该可以自定义与客户端断开连接的条件</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">commu</span><span class="params">(sock, client_address)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> sock:</span><br><span class="line">            <span class="comment"># 接收客户端的消息</span></span><br><span class="line">            msg = sock.recv(<span class="number">1024</span>)</span><br><span class="line">            <span class="keyword">if</span> msg.decode() == <span class="string">'exit'</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            print(<span class="string">"这是客户端传来的消息"</span>, msg.decode())</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 发送消息客户端</span></span><br><span class="line">            sock.send(<span class="string">b'hello'</span> + msg)</span><br><span class="line">    <span class="keyword">except</span> ConnectionResetError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="comment"># 异常退出</span></span><br><span class="line">        print(<span class="string">"异常退出！"</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="comment"># 正常退出</span></span><br><span class="line">        print(client_address[<span class="number">0</span>] + <span class="string">"退出连接！"</span>)</span><br><span class="line">        sock.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 建立连接</span></span><br><span class="line">server = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 绑定主机地址</span></span><br><span class="line">server_address = (<span class="string">'0.0.0.0'</span>, <span class="number">8002</span>)</span><br><span class="line">server.bind(server_address)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 监听请求，设置监听数量为5</span></span><br><span class="line">server.listen(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="comment"># 4. 接收客户端请求</span></span><br><span class="line">    sock, client_address = server.accept()</span><br><span class="line">    <span class="comment"># 5. 为客户端的sock开启一个死循环线程，处理消息</span></span><br><span class="line">    thread1 = threading.Thread(target=commu, args=(sock, client_address))</span><br><span class="line">    thread1.start()</span><br></pre></td></tr></table></figure>
+
+<p>客户端</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">客户端：</span></span><br><span class="line"><span class="string">1. 创建socket实例</span></span><br><span class="line"><span class="string">2. 与服务器建立连接，连接服务器的ip</span></span><br><span class="line"><span class="string">3. 接收/发送消息</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">自定义退出条件</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">client = socket.socket(<span class="attribute">family</span>=socket.AF_INET, <span class="attribute">type</span>=socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line">server_address = (<span class="string">'47.97.211.4'</span>, 8002)</span><br><span class="line">client.connect(server_address)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一直发送消息</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    message = input(<span class="string">"输入消息："</span>)</span><br><span class="line">    client.send(message.encode())</span><br><span class="line">    <span class="keyword">if</span> message == <span class="string">'exit'</span>:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">client.close()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/TCP%E5%AE%9E%E7%8E%B0socket%E7%BC%96%E7%A8%8B+%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ck78s1tny002w1g9y19fz6fb3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-UDP实现socket编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/UDP%E5%AE%9E%E7%8E%B0socket%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.015Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/UDP%E5%AE%9E%E7%8E%B0socket%E7%BC%96%E7%A8%8B/">UDP实现socket编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="UDP协议的特点"><a href="#UDP协议的特点" class="headerlink" title="UDP协议的特点"></a>UDP协议的特点</h2><ul>
+<li>无连接的</li>
+<li>面向数据报</li>
+<li>传输数据少（面向数据报）</li>
+<li>传输速度快（无连接）</li>
+<li>不可靠（无连接，所以易丢包）</li>
+</ul>
+<h2 id="基于UDP的socket实现过程"><a href="#基于UDP的socket实现过程" class="headerlink" title="基于UDP的socket实现过程"></a>基于UDP的socket实现过程</h2><p><img src="/imag/Socket%E7%BC%96%E7%A8%8B/%E5%9F%BA%E4%BA%8Eudp%E7%9A%84socket%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B.png" alt="alt"></p>
+<h2 id="UDP无连接实现服务端客户端通信"><a href="#UDP无连接实现服务端客户端通信" class="headerlink" title="UDP无连接实现服务端客户端通信"></a>UDP无连接实现服务端客户端通信</h2><p>&emsp;&emsp;由于是无连接的，所以udp不占用通信线路，可以多个客户端给服务端发送消息。  </p>
+<p>服务端</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">1. 实例化socket</span></span><br><span class="line"><span class="string">2. 绑定服务器ip和端口</span></span><br><span class="line"><span class="string">3. 通信  recvfrom sendto</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">server = socket.socket(<span class="attribute">family</span>=socket.AF_INET, <span class="attribute">type</span>=socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定地址</span></span><br><span class="line">server_address = (<span class="string">'192.168.4.182'</span>, 8001)</span><br><span class="line">server.bind(server_address)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line">    # 不建立连接直接接收数据和客户端ip和端口</span><br><span class="line">    data, client_address = server.recvfrom(1024)</span><br><span class="line"></span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"这是客户端发来的数据："</span>, data.decode())</span><br><span class="line"></span><br><span class="line">    # 向客户端发送数据，使用sendto()</span><br><span class="line">    server.sendto(b<span class="string">'hello'</span>+data, client_address)</span><br></pre></td></tr></table></figure>
+
+<p>客户端</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">1. 实例化socket</span></span><br><span class="line"><span class="string">2. 与服务器 通信</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">client = socket.socket(<span class="attribute">family</span>=socket.AF_INET, <span class="attribute">type</span>=socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务端的ip及port</span></span><br><span class="line">server_address = (<span class="string">'192.168.4.182'</span>, 8001)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    msg = input(<span class="string">"&gt;&gt;&gt;"</span>)</span><br><span class="line"></span><br><span class="line">    # 直接发送消息给服务端</span><br><span class="line">    client.sendto(msg.encode(), server_address)</span><br><span class="line"></span><br><span class="line">    # 接收服务端发来的消息</span><br><span class="line">    msg = client.recv(1024).decode()</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"客户端："</span>, msg)</span><br></pre></td></tr></table></figure>
+
+<h2 id="recvfrom-buffer-缓冲区大小小于发送的数据报错"><a href="#recvfrom-buffer-缓冲区大小小于发送的数据报错" class="headerlink" title="recvfrom(buffer)缓冲区大小小于发送的数据报错"></a>recvfrom(buffer)缓冲区大小小于发送的数据报错</h2><p><code>recvfrom(x)</code>，由于客户端发送的数据大于x个字节，所以报错了！<br><img src="/imag/Socket%E7%BC%96%E7%A8%8B/buffre%E8%B6%85%E9%99%90%E6%8A%A5%E9%94%99.png" alt="alt"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/UDP%E5%AE%9E%E7%8E%B0socket%E7%BC%96%E7%A8%8B/" data-id="ck78s1tng00241g9y3u6pgq6p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-浅析：TCP粘包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E6%B5%85%E6%9E%90%EF%BC%9ATCP%E7%B2%98%E5%8C%85/" class="article-date">
+  <time datetime="2020-03-01T08:32:42.000Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E6%B5%85%E6%9E%90%EF%BC%9ATCP%E7%B2%98%E5%8C%85/">浅析：TCP粘包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="粘包"><a href="#粘包" class="headerlink" title="粘包"></a>粘包</h2><p>&emsp;&emsp;由于TCP协议是面向字节流的协议，所以接收方在接收的时候不知道该接收多长字节流的消息，当客户端在<strong>很短的一段时间间隔</strong>发送多个消息的时候，会被粘在一块接收；所谓的粘包问题，是接收端不知道一次接收多少字节的数据造成的。<br>&emsp;&emsp;<strong>negal优化算法：将数据量小的，时间间隔较短的数据一次性发送给接收方</strong><br>&emsp;&emsp;TCP为了提高传输效率，往往要收集到足够的数据后才发送一个TCP段，所以会造成粘包的现象。  </p>
+<h2 id="不同客户端不会粘包"><a href="#不同客户端不会粘包" class="headerlink" title="不同客户端不会粘包"></a>不同客户端不会粘包</h2><p>&emsp;&emsp;由于tcp协议的粘包现象是在客户端把多个数据打包同时发送，所以不同客户端之间的数据不会粘包。（测过）</p>
+<h2 id="粘包的两种情况"><a href="#粘包的两种情况" class="headerlink" title="粘包的两种情况"></a>粘包的两种情况</h2><h3 id="1-发送端一次发送多个数据"><a href="#1-发送端一次发送多个数据" class="headerlink" title="1. 发送端一次发送多个数据"></a>1. 发送端一次发送多个数据</h3><p>&emsp;&emsp;1、发送端连续发送两次数据，中间没有时间间隔；<br>&emsp;&emsp;2、发送端两次数据之间有一定时间间隔，则不会发生粘包；  </p>
+<p>发送端</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">import <span class="built_in">socket</span></span><br><span class="line"></span><br><span class="line">BUFSIZE = <span class="number">1024</span></span><br><span class="line">ip_port = (<span class="string">'127.0.0.1'</span>, <span class="number">8000</span>)</span><br><span class="line"></span><br><span class="line">s = <span class="built_in">socket</span>.<span class="built_in">socket</span>(<span class="built_in">socket</span>.AF_INET, <span class="built_in">socket</span>.SOCK_STREAM)</span><br><span class="line">res = s.connect(ip_port)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">send</span>(<span class="string">'1'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">s.<span class="built_in">send</span>(<span class="string">'girl'</span>.encode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>接收端</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">from</span> socket import *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ip_port = (<span class="string">'127.0.0.1'</span>, 8000)</span><br><span class="line"></span><br><span class="line">tcp_socket_server = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">tcp_socket_server.bind(ip_port)</span><br><span class="line">tcp_socket_server.listen(5)</span><br><span class="line"></span><br><span class="line">conn, addr = tcp_socket_server.accept()</span><br><span class="line">data1 = conn.recv(10)</span><br><span class="line">data2 = conn.recv(10)</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'-----&gt;'</span>, data1.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'-----&gt;'</span>, data2.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：<br><img src="/imag/Socket%E7%BC%96%E7%A8%8B/%E6%B5%85%E6%9E%90%EF%BC%9Atcp%E7%B2%98%E5%8C%85/result1.png" alt="alt"></p>
+<hr>
+<p>当在两次send之间有一定时间间隔，则会避免粘包现象</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s.<span class="built_in">send</span>(<span class="string">'1'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">time.<span class="built_in">sleep</span>(<span class="number">2</span>)</span><br><span class="line">s.<span class="built_in">send</span>(<span class="string">'girl'</span>.encode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：<br><img src="/imag/Socket%E7%BC%96%E7%A8%8B/%E6%B5%85%E6%9E%90%EF%BC%9Atcp%E7%B2%98%E5%8C%85/result2.png" alt="alt"></p>
+<h3 id="2-接收端接收的数据小于客户端一次发送的数据"><a href="#2-接收端接收的数据小于客户端一次发送的数据" class="headerlink" title="2. 接收端接收的数据小于客户端一次发送的数据"></a>2. 接收端接收的数据小于客户端一次发送的数据</h3><p>&emsp;&emsp;当接收端有多次接受，前一次接受的数据较少，则下一次接受的数据先从上次的缓冲区中取，而后再取新缓冲区中的数据。  </p>
+<p>发送端</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">socket</span></span><br><span class="line"></span><br><span class="line">BUFSIZE = <span class="number">1024</span></span><br><span class="line">ip_port = (<span class="string">'127.0.0.1'</span>, <span class="number">8080</span>)</span><br><span class="line"></span><br><span class="line">s = <span class="built_in">socket</span>.<span class="built_in">socket</span>(<span class="built_in">socket</span>.AF_INET, <span class="built_in">socket</span>.SOCK_STREAM)</span><br><span class="line">res = s.connect_ex(ip_port)</span><br><span class="line"></span><br><span class="line">s.<span class="built_in">send</span>(<span class="string">'nihao'</span>.encode())</span><br><span class="line">s.<span class="built_in">send</span>(<span class="string">'hello feng'</span>.encode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>接收端</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">ip_port = (<span class="string">'127.0.0.1'</span>, <span class="number">8080</span>)</span><br><span class="line"></span><br><span class="line">tcp_socket_server = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">tcp_socket_server.bind(ip_port)</span><br><span class="line">tcp_socket_server.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">conn, addr = tcp_socket_server.accept()</span><br><span class="line"></span><br><span class="line">data1 = conn.recv(<span class="number">2</span>)  <span class="comment"># 一次没有收完整</span></span><br><span class="line">data2 = conn.recv(<span class="number">10</span>)  <span class="comment"># 下次收的时候,会先取旧的数据,然后取新的</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'-----&gt;'</span>, data1.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'-----&gt;'</span>, data2.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="/imag/Socket%E7%BC%96%E7%A8%8B/%E6%B5%85%E6%9E%90%EF%BC%9Atcp%E7%B2%98%E5%8C%85/result3.png" alt="alt"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E6%B5%85%E6%9E%90%EF%BC%9ATCP%E7%B2%98%E5%8C%85/" data-id="ck78s1tr8008j1g9yfdmwd27o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-粘包问题的解决方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.984Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">粘包问题的解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="粘包问题的解决方案"><a href="#粘包问题的解决方案" class="headerlink" title="粘包问题的解决方案"></a>粘包问题的解决方案</h2><p>&emsp;&emsp;通俗的讲，粘包是因为接收端不知道接收的数据大小，所以会造成粘包。<br>&emsp;&emsp;解决粘包问题的方法就是如何知道发送端接收的数据长度。</p>
+<h2 id="struct模块打包数据长度"><a href="#struct模块打包数据长度" class="headerlink" title="struct模块打包数据长度"></a>struct模块打包数据长度</h2><p>&emsp;&emsp;1. 通过python内置的struct模块把一段<strong>要发送的二进制数据的长度</strong>打包成一个特定长度的字节，发送这个字节数据<br>&emsp;&emsp;2. 发送指定的数据<br>&emsp;&emsp;3. 接收端接收这个字节数据，根据这个字节数据解包，得到真实数据长度<br>&emsp;&emsp;4. 根据这个真实数据长度接收真实数据。</p>
+<p>&emsp;&emsp;发送端连续不断的发送数据，并且是小量的数据，<br>接收端知道发送端一次发送数据的长度之后，就会根据长度从缓冲区中准确读取每一次的数据，解决了粘包问题</p>
+<p>发送端</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line">client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">address = (<span class="string">'127.0.0.1'</span>, <span class="number">8001</span>)</span><br><span class="line">client.connect(address)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    msg = <span class="string">"你好"</span>.encode()</span><br><span class="line">    msg_length = len(msg)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打包真实消息长度</span></span><br><span class="line">    msg_length = struct.pack(<span class="string">'q'</span>, msg_length)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 发送消息长度、消息（在while循环下，连续发送字节）</span></span><br><span class="line">    client.send(msg_length)</span><br><span class="line">    client.send(msg)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 接收返回的数据</span></span><br><span class="line">    result = client.recv(<span class="number">1024</span>)</span><br><span class="line">    print(result.decode())</span><br></pre></td></tr></table></figure>
+
+<p>接收端</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import <span class="built_in">socket</span></span><br><span class="line">import struct</span><br><span class="line"></span><br><span class="line"><span class="comment"># params:</span></span><br><span class="line">tcp = <span class="built_in">socket</span>.<span class="built_in">socket</span>(<span class="built_in">socket</span>.AF_INET, <span class="built_in">socket</span>.SOCK_STREAM)</span><br><span class="line">server_address = (<span class="string">'127.0.0.1'</span>, <span class="number">8001</span>)</span><br><span class="line">tcp.bind(server_address)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 监听客户端的数量</span></span><br><span class="line">tcp.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> True:</span><br><span class="line">    <span class="comment"># 接收</span></span><br><span class="line">    sock, client_address = tcp.accept()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> True:</span><br><span class="line">            <span class="comment"># 取包含长度的特定字节，解包，得到一个values元组，第一个是打包的字节长度；</span></span><br><span class="line">            <span class="comment"># 这个字节根据fmt有关，q对应长度为8；</span></span><br><span class="line">            content_length = sock.recv(<span class="number">8</span>)</span><br><span class="line">            content_length = struct.unpack(<span class="string">'q'</span>, content_length)</span><br><span class="line">            <span class="comment"># print("解包后的元组", content_length)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 接收真正的消息长度</span></span><br><span class="line">            <span class="built_in">result</span> = sock.recv(content_length[<span class="number">0</span>])</span><br><span class="line">            print(<span class="built_in">result</span>.decode())</span><br><span class="line">            sock.<span class="built_in">send</span>(b<span class="string">"ok"</span>)</span><br><span class="line">    except ConnectionResetError <span class="keyword">as</span> e:</span><br><span class="line">        sock.<span class="built_in">close</span>()</span><br><span class="line">        print(<span class="string">"发送端已退出!"</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="ck78s1tqk007m1g9y6xdu02jg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git个人简单使用总结（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/git%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.966Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/git%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">git个人简单使用总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="git个人简单使用总结"><a href="#git个人简单使用总结" class="headerlink" title="git个人简单使用总结"></a>git个人简单使用总结</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">廖雪峰的Git教程</a>  </p>
+<p>&emsp;&emsp;本人的这篇总结是言简意赅的概括了git常用的命令和常见场景的解决方案，具体的学习还请求参照廖雪峰的Git教程。   </p>
+<p>&emsp;&emsp;本篇博客内容  </p>
+<ul>
+<li>初始化git仓库</li>
+<li>添加、提交文件</li>
+<li>三个区的作用</li>
+<li>修改文件</li>
+<li>删除文件</li>
+<li>回滚操作</li>
+</ul>
+<h2 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h2><p>&emsp;&emsp;git是一个<strong>分布式版本控制器</strong>。<br>&emsp;&emsp;git是面向<strong>修改</strong>的。所谓的面向修改，比如修改文件的一句代码、修改了文件名、新建一个文件，这些都是<strong>修改</strong>。</p>
+<h2 id="工作区和版本库、暂存区"><a href="#工作区和版本库、暂存区" class="headerlink" title="工作区和版本库、暂存区"></a>工作区和版本库、暂存区</h2><p>&emsp;&emsp;这里要简单说一下工作区、版本库和暂存区三个区分区别。  </p>
+<ul>
+<li>工作区：文件夹里能够看到的，文件夹仓库就是工作区</li>
+<li>暂存区(stage)：在版本库中的一个空间，称为暂存区，记录着<code>git add</code>的文件<strong>修改</strong></li>
+<li>版本库(Responsitory)：<code>.git</code>是git的版本库。</li>
+</ul>
+<p><img src="/imag/Git/1.png" alt="alt"></p>
+<h2 id="初始化本地git仓库"><a href="#初始化本地git仓库" class="headerlink" title="初始化本地git仓库"></a>初始化本地git仓库</h2><ul>
+<li><code>git init</code></li>
+</ul>
+<h2 id="添加、提交文件"><a href="#添加、提交文件" class="headerlink" title="添加、提交文件"></a>添加、提交文件</h2><p>&emsp;&emsp;添加和提交文件需要经过两个步骤。<br>&emsp;&emsp;1. <code>git add &lt;filename&gt;</code>添加<strong>文件修改</strong>到暂存区中。<br>&emsp;&emsp;2. <code>git commit -m &quot;提示信息&quot;</code>提交暂存区中的文件到版本库中。  </p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><ol>
+<li><p>撤销暂存区的修改<br><code>git reset HEAD filename</code> </p>
+</li>
+<li><p>撤销工作区的修改<br><code>git checkout -- &lt;filename&gt;</code>  </p>
+</li>
+</ol>
+<p>回滚：回滚的是版本库中的<code>commit</code>的各个版本。<br>撤销：把在工作区的修改全部撤销。<br>    1. 修改后还没有放入暂存区，撤销修改之后就和当前版本库中的一模一样。<br>    2. 修改后放入暂存区后，又作了修改，这时候撤销修改就回到添加到暂存区后的状态。  </p>
+<p>总之，就是让这个文件回到最近一次<code>git add</code>或<code>git commit</code>的状态。  </p>
+<h3 id="撤销修改的例子"><a href="#撤销修改的例子" class="headerlink" title="撤销修改的例子"></a>撤销修改的例子</h3><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897889638509536" target="_blank" rel="noopener">回滚和撤销的例子</a></p>
+<ul>
+<li>情况1：自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</li>
+<li>情况2：已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态</li>
+</ul>
+<p>情况1：</p>
+<ul>
+<li><code>git checkout -- &lt;filename&gt;</code>  </li>
+</ul>
+<p>情况2：</p>
+<ul>
+<li><code>git reset HEAD &lt;file&gt;</code>，把暂存区的修改撤销到与当前版本库相同（一键还原），重新放回工作区；</li>
+<li><code>git checkout -- file</code>，丢弃工作区的修改。</li>
+</ul>
+<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><p><strong>回滚到某个命令</strong><br><code>git reset --hard commmitid</code> 回滚到某一个版本  </p>
+<p><strong>回滚命令</strong>  </p>
+<ul>
+<li><code>git reset --hard^</code> 回滚到上一个版本</li>
+<li><code>git reset --hard^^</code> 回滚到上上一个版本</li>
+<li><code>git reset --hard~100</code>  回滚到上一百个版本</li>
+</ul>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><p>删除工作区的文件</p>
+<ul>
+<li><code>rm &lt;filename&gt;</code>   </li>
+</ul>
+<p>删除版本库中文件</p>
+<ul>
+<li><code>git rm &lt;filename&gt;</code></li>
+<li><code>git commmit -m &quot;提交信息&quot;</code></li>
+</ul>
+<p><strong>没有被添加到版本库中就被删除的工作区的文件，是无法恢复的</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/git%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ck78s1top003q1g9yaom99ef6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-学海无涯苦作舟，我的舟太平洋放不下" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E5%AD%A6%E6%B5%B7%E6%97%A0%E6%B6%AF%E8%8B%A6%E4%BD%9C%E8%88%9F%EF%BC%8C%E6%88%91%E7%9A%84%E8%88%9F%E5%A4%AA%E5%B9%B3%E6%B4%8B%E6%94%BE%E4%B8%8D%E4%B8%8B/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.942Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E5%AD%A6%E6%B5%B7%E6%97%A0%E6%B6%AF%E8%8B%A6%E4%BD%9C%E8%88%9F%EF%BC%8C%E6%88%91%E7%9A%84%E8%88%9F%E5%A4%AA%E5%B9%B3%E6%B4%8B%E6%94%BE%E4%B8%8D%E4%B8%8B/">学海无涯苦作舟，我的舟太平洋放不下</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;<strong>“学海无涯苦作舟”，学海无涯，舟也很大。</strong>  </p>
+<p>&emsp;&emsp;“学习是一个痛苦的过程，但是学习使我快乐。”  多美的博弈，既痛苦又快乐着，自己爱学习爱得像一个喜欢被折磨的变态。<br><img src="/imag/%E9%9A%8F%E7%AC%94/%E5%AD%A6%E6%B5%B7%E6%97%A0%E6%B6%AF%E8%8B%A6%E5%81%9A%E8%88%9F%EF%BC%8C%E6%88%91%E7%9A%84%E8%88%9F%E5%A4%AA%E5%B9%B3%E6%B4%8B%E6%94%BE%E4%B8%8D%E4%B8%8B/4.jpg" alt="alt"></p>
+<p>&emsp;&emsp;有一段时间，我付出好多的心血和时间，学了许多关于爬虫的知识，然后我以为自己能披荆斩棘、无所不能，觉得自己屌炸天！然后准备证明自己，但是看过大佬的代码之后，卧槽！完全看不懂，觉得自己是个彻彻底底的水货！怀疑自己的技术只能拉出去卖唱，此时，我很愤怒，也有点咸鱼的感觉。  </p>
+<p><img src="/imag/%E9%9A%8F%E7%AC%94/%E5%AD%A6%E6%B5%B7%E6%97%A0%E6%B6%AF%E8%8B%A6%E5%81%9A%E8%88%9F%EF%BC%8C%E6%88%91%E7%9A%84%E8%88%9F%E5%A4%AA%E5%B9%B3%E6%B4%8B%E6%94%BE%E4%B8%8D%E4%B8%8B/1.jpg" alt="alt"></p>
+<p>&emsp;&emsp;但是我清楚的知道，这些不会的技术，只是我没学过，只要耐心的学就对了！积跬步，才能至千里。</p>
+<p>&emsp;&emsp;吃过晚饭，我看到朋友在群里谈论工资年薪十万，想当初志向12k+的我现在抱着瑟瑟发抖的自己躲在角落里不敢吱声。不一会，另一个朋友说他们那里有些招聘公司底薪1800，这么低。我想着如果哪一天我只能拿着1800的工资，那我可能就真的死掉了。心里就莫名其妙的感到失落。  </p>
+<p>&emsp;&emsp;<strong>学习是一个“学会了”与“不会”不断交替的过程。</strong> 人一旦停止了学习，那只有退步了。本来想打会游戏的我，现在觉得特别有劲头，突然觉得学习真特么有意思。我需要有计划的学习，不断的尝试更好的学习方法，要“活到老，学到老”。<br><img src="/imag/%E9%9A%8F%E7%AC%94/%E5%AD%A6%E6%B5%B7%E6%97%A0%E6%B6%AF%E8%8B%A6%E5%81%9A%E8%88%9F%EF%BC%8C%E6%88%91%E7%9A%84%E8%88%9F%E5%A4%AA%E5%B9%B3%E6%B4%8B%E6%94%BE%E4%B8%8D%E4%B8%8B/3.jpg" alt="alt"></p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E5%AD%A6%E6%B5%B7%E6%97%A0%E6%B6%AF%E8%8B%A6%E4%BD%9C%E8%88%9F%EF%BC%8C%E6%88%91%E7%9A%84%E8%88%9F%E5%A4%AA%E5%B9%B3%E6%B4%8B%E6%94%BE%E4%B8%8D%E4%B8%8B/" data-id="ck78s1tpv00661g9y6fg252rq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-redis分布式爬取" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/redis%E5%88%86%E5%B8%83%E5%BC%8F%E7%88%AC%E5%8F%96/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.931Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/redis%E5%88%86%E5%B8%83%E5%BC%8F%E7%88%AC%E5%8F%96/">redis分布式爬取</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="redis分布式爬取"><a href="#redis分布式爬取" class="headerlink" title="redis分布式爬取"></a>redis分布式爬取</h2><p>&emsp;&emsp;redis分布式爬取，是基于redis数据库的多台主机分配任务爬取网页数据的方式。<br>&emsp;&emsp;假如有多台主机，其中一台作为master，其余的作为slave，master机分配任务，多台slave机使用<strong>同一套scarpy项目源码</strong>根据任务爬取网页数据。  </p>
+<ul>
+<li>settings中部署Redis服务</li>
+<li>定义Items</li>
+<li>继承RedisSpider编写Spider，定义redis_key</li>
+<li>在settings中加入scrapy_redis的要求配置项</li>
+<li>编写生成起始爬取URL的脚本文件<code>gen_urls.py</code></li>
+</ul>
+<h2 id="redis分布式爬取步骤"><a href="#redis分布式爬取步骤" class="headerlink" title="redis分布式爬取步骤"></a>redis分布式爬取步骤</h2><h3 id="1-安装scrapy-redis"><a href="#1-安装scrapy-redis" class="headerlink" title="1. 安装scrapy-redis"></a>1. 安装scrapy-redis</h3><p>&emsp;&emsp;scrapy-redis是一个基于Redis的Scrapy组件。利用Redis对用于爬取的请求（request）进行存储和调度。并对爬虫产生的项目（items）存储以供或许处理使用。<strong>scrapy-redis重写了scrapy中比较关键的代码，将Scarpy变成了一个可以运行在多台主机上同时运行的分布式爬虫。</strong><br><code>pip install scrapy-redis</code><br><code>pip install redis</code></p>
+<h3 id="2-配置scrapy的settings-py"><a href="#2-配置scrapy的settings-py" class="headerlink" title="2. 配置scrapy的settings.py"></a>2. 配置scrapy的settings.py</h3><p>#Redis设置<br><code>REDIS_URL = &#39;redis://username:***@xxx.xxx.xxx.xxx:6379/0&#39;</code><br>或者  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">REDIS_HOST</span> = <span class="string">"***.***.***.***"</span>    <span class="comment"># ip地址</span></span><br><span class="line"><span class="attr">REDIS_PORT</span> = <span class="number">6379</span>       <span class="comment"># 端口号</span></span><br><span class="line"><span class="attr">REDIS_PASSWORD</span> = <span class="string">"***"</span>  <span class="comment"># 默认redis没有密码</span></span><br><span class="line"><span class="attr">REDIS_DB</span> = <span class="number">0</span>            <span class="comment"># 数据库索引号，一般使用0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-配置scrapy-redis"><a href="#3-配置scrapy-redis" class="headerlink" title="3. 配置scrapy-redis"></a>3. 配置scrapy-redis</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用scrapy-redis中的去重组件</span></span><br><span class="line">DUPEFILTER_CLASS = <span class="string">'scrapy_redis.dupefilter.RFPDupeFilter'</span></span><br><span class="line"><span class="comment"># 使用scrapy-redis中的调度器</span></span><br><span class="line">SCHEDULER = <span class="string">'scrapy_redis.scheduler.Scheduler'</span></span><br><span class="line"><span class="comment"># 允许暂停后能够保存进度</span></span><br><span class="line">SCHEDULER_PERSIST = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定排序爬取地址使用的队列</span></span><br><span class="line">SCHEDULER_QUEUE_CLASS = <span class="string">'scrapy_redis.queue.SpiderPriorityQueue'</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-配置ITEM-PIPELINES"><a href="#4-配置ITEM-PIPELINES" class="headerlink" title="4. 配置ITEM_PIPELINES"></a>4. 配置ITEM_PIPELINES</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">'ITEM_PIPELINES':</span> <span class="string">&#123;</span></span><br><span class="line">            <span class="comment"># 使用了scrapy-redis定义的管道处理爬虫数据</span></span><br><span class="line">            <span class="attr">'scrapy_redis.pipelines.RedisPipeline':</span> <span class="number">400</span><span class="string">,</span></span><br><span class="line">        <span class="string">&#125;,</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-改写爬虫文件"><a href="#5-改写爬虫文件" class="headerlink" title="5. 改写爬虫文件"></a>5. 改写爬虫文件</h3><ol>
+<li>继承自<code>scrapy_redis.spiders.RedisSpider</code>类</li>
+<li>配置<code>redis_key</code>属性<ul>
+<li>这个属性的值是redis数据库中的一个<code>列表字段名</code>，把需要爬取的urls放到这个列表中。（<code>gen_urls.py</code>负责把urls放到redis的redis_key中。）</li>
+</ul>
+</li>
+</ol>
+<p><code>gen_urls.py</code></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> redis import Redis</span><br><span class="line"></span><br><span class="line">redis = Redis(</span><br><span class="line">    <span class="attribute">host</span>=<span class="string">'***.***.***.***'</span>,</span><br><span class="line">    <span class="attribute">port</span>=6379,</span><br><span class="line">)</span><br><span class="line">base_url = <span class="string">'链接'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    # redis的spider:start_url中放入需要爬取的urls</span><br><span class="line">    redis.lpush(<span class="string">'spider:start_urls'</span>, base_url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在爬虫文件中的redis_key = 'spider:start_urls'</span></span><br><span class="line"><span class="comment"># 这里只是放入了一个url，如果有多个url，使用循环或者依次加入到redis_key列表中。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="部署工作"><a href="#部署工作" class="headerlink" title="部署工作"></a>部署工作</h2><ol>
+<li>开启目标主机的redis服务器<code>redis-server.exe redis.windows.conf</code></li>
+<li>把爬虫文件拷贝到不同的主机上</li>
+<li>多台slave主机同时run爬虫文件</li>
+<li>master主机执行生成起始url的脚本文件</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/redis%E5%88%86%E5%B8%83%E5%BC%8F%E7%88%AC%E5%8F%96/" data-id="ck78s1tpa004w1g9yebathlvy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python 虚拟环境 windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%20windows/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.913Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%20windows/">python 虚拟环境 windows</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="python虚拟环境"><a href="#python虚拟环境" class="headerlink" title="python虚拟环境"></a>python虚拟环境</h2><p>&emsp;&emsp;虚拟环境的作用主要是避免多个项目之间对依赖包版本不同造成冲突，而新建的python开发环境。<br>&emsp;&emsp;虚拟环境的使用，极大的方便了项目的迁移和部署。  </p>
+<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><p>如果使用的是python3，则执行以下命令常见虚拟环境<br><code>python -m venv 虚拟环境名称</code>  </p>
+<p>如果是Python较早的版本，首先  </p>
+<ol>
+<li>安装<code>virtualenv</code><br><code>pip install virtualenv</code></li>
+<li>创建虚拟环境<br><code>virtual 虚拟环境名称</code></li>
+</ol>
+<h2 id="开启虚拟环境"><a href="#开启虚拟环境" class="headerlink" title="开启虚拟环境"></a>开启虚拟环境</h2><p>在已经创建好的虚拟环境的文件夹下，进入Scripts文件夹，开启虚拟环境<br><code>activate</code>   </p>
+<h2 id="退出虚拟环境"><a href="#退出虚拟环境" class="headerlink" title="退出虚拟环境"></a>退出虚拟环境</h2><p>在已经创建好的虚拟环境的文件夹下，进入Scripts文件夹，退出虚拟环境<br><code>deactivate</code>  </p>
+<h2 id="第三方库导入导出安装"><a href="#第三方库导入导出安装" class="headerlink" title="第三方库导入导出安装"></a>第三方库导入导出安装</h2><p>&emsp;&emsp;通常在虚拟环境开发完成之后需要部署到服务器上，此时需要知道开发过程中使用到了哪些依赖包，所以需要把使用到的依赖包的名称导出到文件中，在服务器上从文件读取依赖包的名称，一键完成依赖包的安装。  </p>
+<p>导入命令：<br><code>pip freeze &gt; requirements.txt</code>  </p>
+<p>一键安装命令：<br><code>pip install -r requirements.txt</code>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%20windows/" data-id="ck78s1tox00491g9y7nnk4xux" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-解决方案：scrapyd服务器报错processing failed" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9Ascrapyd%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%A5%E9%94%99processing%20failed/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.890Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9Ascrapyd%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%A5%E9%94%99processing%20failed/">解决方案：scrapyd服务器报错processing failed</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="scrapyd服务器报错processing-failed"><a href="#scrapyd服务器报错processing-failed" class="headerlink" title="scrapyd服务器报错processing failed"></a>scrapyd服务器报错processing failed</h2><p>&emsp;&emsp;Scrapyd服务器报错<code>Processing failed</code>，网上又没有明确的解决方案，搜来搜去，大概知道是Twisted的版本过高，Scrapy与其不兼容。<br>&emsp;&emsp;尝试换Twisted版本，又需要安装<code>Microsoft Visual C++ 14.0</code>，由于VS太大，这种方案我放弃了。<br>&emsp;&emsp;于是去官网找Twisted的低版本，发现18/17版本的Twisted没有适合Python3的。<br>&emsp;&emsp;神奇，官网没有低版本的兼容Py3的版本，但是别人百度网盘中却有。（mmp）<br>&emsp;&emsp;果断保存并立马降低Twisted版本！<br>&emsp;&emsp;问题由此被解决！  </p>
+<p><strong>附上<a href="https://pan.baidu.com/s/1Dbv1CqFXnBFxhprxeIkukw&shfl=sharepset" target="_blank" rel="noopener">Twisted链接</a> 提取码：4oxn</strong></p>
+<h2 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h2><p><code>pip install [下载好的Twisted文件路径]</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9Ascrapyd%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%A5%E9%94%99processing%20failed/" data-id="ck78s1tqj007j1g9ydr6c8cbd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/8/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

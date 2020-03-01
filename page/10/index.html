@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="open the new world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bsj&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/10/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="open the new world">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Bsj">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-1.scrapyd文档" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/1.scrapyd%E6%96%87%E6%A1%A3/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.874Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/1.scrapyd%E6%96%87%E6%A1%A3/">1.scrapyd文档</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、scrapyd文档概述"><a href="#一、scrapyd文档概述" class="headerlink" title="一、scrapyd文档概述"></a>一、scrapyd文档概述</h2><h3 id="scrapy简介"><a href="#scrapy简介" class="headerlink" title="scrapy简介"></a>scrapy简介</h3><p>&emsp;&emsp;Scrapyd是一个运行和部署爬虫的应用，它能够使你部署你的爬虫项目，并且使用一个JSON API控制爬虫项目。  </p>
+<h3 id="项目和版本"><a href="#项目和版本" class="headerlink" title="项目和版本"></a>项目和版本</h3><p>&emsp;&emsp;Scrapyd能够部署多个文件，每个文件有多个版本，但是只有最新的版本才能够发起爬虫。也就是说，同一个爬虫，可以被覆盖。  </p>
+<h3 id="scrapyd如何工作"><a href="#scrapyd如何工作" class="headerlink" title="scrapyd如何工作"></a>scrapyd如何工作</h3><ul>
+<li>典型的守护进程</li>
+<li>为每个爬虫项目提供监听服务，生成进程</li>
+<li>同时运行多个进程</li>
+<li><strong>scrapyd在Twisted里面执行</strong></li>
+<li>提供json网络服务去部署和调度爬虫</li>
+</ul>
+<h3 id="开启Scrapyd服务器"><a href="#开启Scrapyd服务器" class="headerlink" title="开启Scrapyd服务器"></a>开启Scrapyd服务器</h3><p><code>scrapyd</code></p>
+<h3 id="Scrapyd的网络接口"><a href="#Scrapyd的网络接口" class="headerlink" title="Scrapyd的网络接口"></a>Scrapyd的网络接口</h3><p>scrapyd自带一个网络接口，为了运行爬虫和访问日志 <a href="http://localhost:6800/" target="_blank" rel="noopener">Scrapyd的Web接口</a>  </p>
+<h3 id="依赖版本"><a href="#依赖版本" class="headerlink" title="依赖版本"></a>依赖版本</h3><ul>
+<li>python3.6</li>
+<li>scrapy==1.6.0</li>
+<li>scrapyd==1.2.0</li>
+<li>scrapyd-client==1.2.0a1</li>
+<li>Twisted==17.1.0   (17和18版本应该都可以)</li>
+</ul>
+<hr>
+<h2 id="Scrapyd的默认配置文件"><a href="#Scrapyd的默认配置文件" class="headerlink" title="Scrapyd的默认配置文件"></a>Scrapyd的默认配置文件</h2><p>&emsp;&emsp;Scrapyd的默认配置文件是<code>Scrapyd</code>依赖包下的<code>default_scrapyd.conf</code><br>&emsp;&emsp;远程部署<code>Scrapyd</code>时需要修改此文件配置。  </p>
+<h2 id="Scrapyd服务器上的爬虫文件在哪？数据在哪？"><a href="#Scrapyd服务器上的爬虫文件在哪？数据在哪？" class="headerlink" title="Scrapyd服务器上的爬虫文件在哪？数据在哪？"></a>Scrapyd服务器上的爬虫文件在哪？数据在哪？</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/1.scrapyd%E6%96%87%E6%A1%A3/" data-id="ck78s1tml00121g9y49cvdars" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3.scrapy-client部署爬虫项目到Scrapyd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/3.scrapy-client%E9%83%A8%E7%BD%B2%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE%E5%88%B0Scrapyd/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.855Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/3.scrapy-client%E9%83%A8%E7%BD%B2%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE%E5%88%B0Scrapyd/">3.scrapy-client部署爬虫项目到Scrapyd</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="scrapy-client部署爬虫项目到Scrapyd"><a href="#scrapy-client部署爬虫项目到Scrapyd" class="headerlink" title="scrapy-client部署爬虫项目到Scrapyd"></a>scrapy-client部署爬虫项目到Scrapyd</h2><p>使用命令：<br><code>scrapyd-deploy</code>  </p>
+<p>部署爬虫项目的两个步骤：  </p>
+<ol>
+<li>打包项目</li>
+<li>上传项目</li>
+</ol>
+<p>&emsp;&emsp;如果需要部署到远程服务器，则配置scrapyd服务的配置文件文件。    </p>
+<p><strong>参考网址</strong>：<a href="https://github.com/scrapy/scrapyd-client" target="_blank" rel="noopener">scrapyd工具scrapyd-client使用教程</a></p>
+<h3 id="1-配置"><a href="#1-配置" class="headerlink" title="1. 配置"></a>1. 配置</h3><p>配置<code>scrapy.cfg</code>文件  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[deploy:target]</span></span><br><span class="line"><span class="attr">url</span> = http://scrapyd.example.com/api/scrapyd</span><br><span class="line"><span class="comment"># username = scrapy</span></span><br><span class="line"><span class="comment"># password = secret</span></span><br><span class="line"><span class="attr">project</span> = yourproject</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-部署爬虫项目到scrapyd"><a href="#2-部署爬虫项目到scrapyd" class="headerlink" title="2. 部署爬虫项目到scrapyd"></a>2. 部署爬虫项目到scrapyd</h3><ul>
+<li><strong>部署到scrapyd</strong>  </li>
+</ul>
+<p>部署项目<br><code>scrapyd-deploy &lt;target&gt; -p &lt;project&gt;</code>  </p>
+<p>部署多个项目 -a<br><code>scrapyd-deploy -a -p &lt;project&gt;</code>  </p>
+<p>自定义项目版本 –version<br><code>scrapyd-deploy &lt;target&gt; -p &lt;project&gt; --version &lt;version&gt;</code>  </p>
+<p>自定义多个项目版本<br><code>scrapyd-deploy -a -p &lt;project&gt; --version &lt;version&gt;</code>  </p>
+<ul>
+<li><strong>获取所有项目实例</strong></li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lists all projects on the default target</span></span><br><span class="line">scrapyd-client projects</span><br><span class="line"></span><br><span class="line"><span class="comment"># lists all projects from a custom URL</span></span><br><span class="line">scrapyd-client -t http:<span class="regexp">//</span>scrapyd.example.net projects</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>调度爬虫项目运行</strong></li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># schedules all spiders from the 'knowledge' project</span></span><br><span class="line"><span class="keyword">scrapyd-client </span><span class="keyword">schedule </span>-p knowledge \*</span><br><span class="line"></span><br><span class="line"><span class="comment"># schedules any spider（可能不支持此命令）</span></span><br><span class="line"><span class="keyword">scrapyd-client </span><span class="keyword">schedule</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword"># </span><span class="keyword">schedules </span>any spider from any project whose name ends with <span class="string">'_daily'</span>（可能不支持此命令）</span><br><span class="line"><span class="keyword">scrapyd-client </span><span class="keyword">schedule </span>-p \* *_daily</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>获取爬虫实例</strong></li>
+</ul>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># lists all spiders <span class="keyword">from</span> the <span class="string">'knowledge'</span> project</span><br><span class="line">scrapyd-client spiders -p knowledge</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-保留本地配置"><a href="#3-保留本地配置" class="headerlink" title="3.保留本地配置"></a>3.保留本地配置</h3><p>&emsp;&emsp;如果你想保留本地配置，创建一个文件<code>local_Settings.py</code>，在<code>scrapyd.cfg</code>文件添加如下：  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> local_settings <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">except</span> ImportError:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/3.scrapy-client%E9%83%A8%E7%BD%B2%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE%E5%88%B0Scrapyd/" data-id="ck78s1tlp00041g9y92x2djbp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2.curl管理Scrapyd服务器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/2.curl%E7%AE%A1%E7%90%86Scrapyd%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.841Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/2.curl%E7%AE%A1%E7%90%86Scrapyd%E6%9C%8D%E5%8A%A1%E5%99%A8/">2.curl管理Scrapyd服务器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="curl管理Scrapyd服务器"><a href="#curl管理Scrapyd服务器" class="headerlink" title="curl管理Scrapyd服务器"></a>curl管理Scrapyd服务器</h2><h4 id="检查scrapyd服务状态-daemonstatus-json"><a href="#检查scrapyd服务状态-daemonstatus-json" class="headerlink" title="检查scrapyd服务状态(daemonstatus.json)"></a>检查scrapyd服务状态(daemonstatus.json)</h4><p><code>curl http://localhost:6800/daemonstatus.json</code>  </p>
+<ul>
+<li>请求类型：<code>GET</code>  </li>
+</ul>
+<p>正常会返回类似如下的json数据<br><code>{ &quot;status&quot;: &quot;ok&quot;, &quot;running&quot;: &quot;0&quot;, &quot;pending&quot;: &quot;0&quot;, &quot;finished&quot;: &quot;0&quot;, &quot;node_name&quot;: &quot;node-name&quot; }</code></p>
+<h4 id="增加项目版本-addversion-json"><a href="#增加项目版本-addversion-json" class="headerlink" title="增加项目版本(addversion.json)"></a>增加项目版本(addversion.json)</h4><p>&emsp;&emsp;添加一个项目版本，如果版本不存在，则创建项目。  </p>
+<p><code>curl http://localhost:6800/addversion.json -F project=myproject -F version=r23 -F egg=@myproject.egg</code>  </p>
+<ul>
+<li>请求类型： <code>POST</code>  </li>
+<li>参数<ul>
+<li>project：项目名称</li>
+<li>version：项目版本</li>
+<li>egg：包含项目代码的实例</li>
+</ul>
+</li>
+</ul>
+<h4 id="调度爬虫项目运行-schedule-json"><a href="#调度爬虫项目运行-schedule-json" class="headerlink" title="调度爬虫项目运行(schedule.json)"></a>调度爬虫项目运行(schedule.json)</h4><p>&emsp;&emsp;调度爬虫项目运行，返回项目id  </p>
+<p><code>curl http://localhost:6800/schedule.json -d project=myproject -d spider=somespider -d setting=DOWNLOAD_DELAY=2</code>  </p>
+<ul>
+<li>请求类型：<code>POST</code>  </li>
+<li>参数<ul>
+<li>project：项目名称</li>
+<li>spider：爬虫名称</li>
+<li>settings：爬虫运行时的配置</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h4 id="停止爬虫项目-cancle-json"><a href="#停止爬虫项目-cancle-json" class="headerlink" title="停止爬虫项目(cancle.json)"></a>停止爬虫项目(cancle.json)</h4><p>&emsp;&emsp;如果爬虫项目在等待，则移除此爬虫。如果项目已经运行，则停止该爬虫运行。  </p>
+<p><code>curl http://localhost:6800/cancel.json -d project=myproject -d job=6487ec79947edab326d6db28a2d86511e8247444</code>  </p>
+<ul>
+<li>请求类型：<code>POST</code></li>
+<li>参数  <ul>
+<li>project：项目名称</li>
+<li>job：job id</li>
+</ul>
+</li>
+</ul>
+<h4 id="获取服务器上的爬虫项目-listprojects-json"><a href="#获取服务器上的爬虫项目-listprojects-json" class="headerlink" title="获取服务器上的爬虫项目(listprojects.json)"></a>获取服务器上的爬虫项目(listprojects.json)</h4><p><code>curl http://localhost:6800/listprojects.json</code>  </p>
+<ul>
+<li>请求类型：GET</li>
+</ul>
+<h4 id="获取项目版本-listversions-json"><a href="#获取项目版本-listversions-json" class="headerlink" title="获取项目版本(listversions.json)"></a>获取项目版本(listversions.json)</h4><p>&emsp;&emsp;获取Scrapyd服务器上某些项目的版本<br><code>curl http://localhost:6800/listversions.json?project=myproject</code>  </p>
+<ul>
+<li>请求类型：<code>GET</code></li>
+<li>参数<ul>
+<li>project：项目名称</li>
+</ul>
+</li>
+</ul>
+<h4 id="获取可用的爬虫项目-listspiders-json"><a href="#获取可用的爬虫项目-listspiders-json" class="headerlink" title="获取可用的爬虫项目(listspiders.json)"></a>获取可用的爬虫项目(listspiders.json)</h4><p>&emsp;&emsp;罗列Scrapyd服务器上最新版本的爬虫项目。<br><code>curl http://localhost:6800/listspiders.json?project=myproject</code>  </p>
+<ul>
+<li>请求类型：<code>GET</code></li>
+<li>参数<ul>
+<li>project：项目名称</li>
+<li>_version：需要查看的项目的版本</li>
+</ul>
+</li>
+</ul>
+<h4 id="获取jobs-listjobs-json"><a href="#获取jobs-listjobs-json" class="headerlink" title="获取jobs(listjobs.json)"></a>获取jobs(listjobs.json)</h4><p>&emsp;&emsp;获取等待、运行、完成的jobs。  </p>
+<p><code>curl http://localhost:6800/listjobs.json?project=myproject | python -m json.tool</code>  </p>
+<ul>
+<li>请求类型：<code>GET</code></li>
+<li>参数<ul>
+<li>project：项目名称，<strong>这个参数限制只查询当前项目的爬虫的状态</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="删除项目版本"><a href="#删除项目版本" class="headerlink" title="删除项目版本"></a>删除项目版本</h4><p>&emsp;&emsp;删除一个项目版本。  </p>
+<p><code>curl http://localhost:6800/delversion.json -d project=myproject -d version=r99</code>  </p>
+<ul>
+<li>请求类型： <code>POST</code>  </li>
+<li>参数<ul>
+<li>project：项目名称</li>
+<li>version：项目版本</li>
+</ul>
+</li>
+</ul>
+<h4 id="删除一个项目的所有版本"><a href="#删除一个项目的所有版本" class="headerlink" title="删除一个项目的所有版本"></a>删除一个项目的所有版本</h4><p><code>curl http://localhost:6800/delproject.json -d project=myproject</code>  </p>
+<ul>
+<li>请求类型： <code>POST</code></li>
+<li>参数<ul>
+<li>project：项目名称</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/2.curl%E7%AE%A1%E7%90%86Scrapyd%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ck78s1tlo00031g9y1p8b0vtw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-解决方案：`basename` argument not specified, and could &#39;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%60basename%60%20argument%20not%20specified,%20and%20could%20'/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.818Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%60basename%60%20argument%20not%20specified,%20and%20could%20'/">解决方案：`basename` argument not specified, and could &#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="报错一"><a href="#报错一" class="headerlink" title="报错一"></a>报错一</h2><p>ModuleNotFoundError: No module named ‘tutorial.quickstart’</p>
+<p>学习django的REST framework框架的quick Tutorial时候，测试的代码报以上错误，网上查找的解决方案是把<code>tutorial.quickstart</code>替换成<code>quickstart</code></p>
+<p><a href="https://blog.csdn.net/qq_44335891/article/details/97024089" target="_blank" rel="noopener">解决方案</a></p>
+<h2 id="报错二"><a href="#报错二" class="headerlink" title="报错二"></a>报错二</h2><p><code>basename</code> argument not specified, and could ‘ \  </p>
+<p>替换之后，报错如上。解决方案如下</p>
+<p>在<code>urls.py</code>中，在register中加上<code>base_name</code>字段</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">router = routers.DefaultRouter()</span><br><span class="line">router.register(<span class="string">r'users'</span>, views.UserViewSet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">router = routers.DefaultRouter()</span><br><span class="line">router.register(<span class="string">r'users'</span>, views.UserViewSet, base_name=<span class="string">'users'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://blog.csdn.net/weixin_43667829/article/details/100041651" target="_blank" rel="noopener">解决方案</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%60basename%60%20argument%20not%20specified,%20and%20could%20'/" data-id="ck78s1tqi007h1g9yho4ygr4i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-绘制图表：pyecharts模块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8%EF%BC%9Apyecharts%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.794Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8%EF%BC%9Apyecharts%E6%A8%A1%E5%9D%97/">绘制图表：pyecharts模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="pyechars模块"><a href="#pyechars模块" class="headerlink" title="pyechars模块"></a>pyechars模块</h2><p><code>pip install pyecharts==0.5.11</code><br>#pyecharts=echarts+python<br>&emsp;&emsp;pycharts模块用来生成ecahrts的图表库。<br>&emsp;&emsp;优点  </p>
+<ol>
+<li>动态美观</li>
+<li>具有交互性，方便数据的对比分析</li>
+<li>生成动态的echarts网页，也可以在flask/django中集成使用  <h2 id="pyecharts制图实例"><a href="#pyecharts制图实例" class="headerlink" title="pyecharts制图实例"></a>pyecharts制图实例</h2>pyecharts模块包含的图表：  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Bar（柱状图/条形图） </span><br><span class="line">　　Bar3D（<span class="number">3</span>D 柱状图） </span><br><span class="line">　　Boxplot（箱形图） </span><br><span class="line">　　EffectScatter（带有涟漪特效动画的散点图） </span><br><span class="line">　　Funnel（漏斗图） </span><br><span class="line">　　Gauge（仪表盘） </span><br><span class="line">　　Geo（地理坐标系） </span><br><span class="line">　　Graph（关系图） </span><br><span class="line">　　HeatMap（热力图） </span><br><span class="line">　　Kline（K线图） </span><br><span class="line">　　Line（折线/面积图） </span><br><span class="line">　　Line3D（<span class="number">3</span>D 折线图） </span><br><span class="line">　　Liquid（水球图） </span><br><span class="line">　　Map（地图） </span><br><span class="line">　　Parallel（平行坐标系） </span><br><span class="line">　　Pie（饼图） </span><br><span class="line">　　Polar（极坐标系） </span><br><span class="line">　　Radar（雷达图） </span><br><span class="line">　　Sankey（桑基图） </span><br><span class="line">　　Scatter（散点图） </span><br><span class="line">　　Scatter3D（<span class="number">3</span>D 散点图） </span><br><span class="line">　　ThemeRiver（主题河流图） </span><br><span class="line">　　WordCloud（词云图）</span><br><span class="line"></span><br><span class="line">　　用户自定义</span><br><span class="line"></span><br><span class="line">　　Grid 类：并行显示多张图 </span><br><span class="line">　　Overlap 类：结合不同类型图表叠加画在同张图上 </span><br><span class="line">　　Page 类：同一网页按顺序展示多图 </span><br><span class="line">　　Timeline 类：提供时间线轮播多张图</span><br></pre></td></tr></table></figure>
+
+<p>以下是几种常用的图表实例代码<br>&emsp;&emsp;柱状图/柱状3D图/折线图/折线3D图/饼图/地图/散点图/3D散点图/雷达图/k线图  </p>
+<p>主要列举了以下几种常用的图的实例示例</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">from</span> pyecharts <span class="meta">import</span> <span class="keyword">Bar, </span><span class="keyword">Bar3D, </span>Pie, Line, Line3D, <span class="meta">Map</span>, Scatter, Scatter3D, Radar, Kline, WordCloud</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 柱状图---------------------------</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">add(name, x_axis, y_axis)</span></span><br><span class="line"><span class="string">x_axis 横坐标轴数据</span></span><br><span class="line"><span class="string">y_axis 纵坐标轴数据</span></span><br><span class="line"><span class="string">x_axis/y_axis的数据个数需要一致</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">bar = Bar(<span class="string">'柱状图'</span>, <span class="string">'测试'</span>)</span><br><span class="line">x_axis = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>]</span><br><span class="line">bar.add(<span class="string">'b'</span>, x_axis, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>])</span><br><span class="line">bar.add(<span class="string">'a'</span>, x_axis, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">bar.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%9F%B1%E7%8A%B6%E5%9B%BE.png" alt="alt"></p>
+<h3 id="柱状3D图"><a href="#柱状3D图" class="headerlink" title="柱状3D图"></a>柱状3D图</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Bar3D图---------------------------</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">add(name, x_axis, y_axis, data)</span></span><br><span class="line"><span class="string">其中：data是x，y的数据集，每一行代表一条数据(x,y,data)，每一列代表一个维度</span></span><br><span class="line"><span class="string">设置网格透明度（默认值为1）：grid_opacity=1</span></span><br><span class="line"><span class="string">设置网格颜色/样式（没测出来什么意思）：grid_shading=1</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line">bar_3d = Bar3D()</span><br><span class="line">x_axis = ['one', 'two', 'three']</span><br><span class="line">y_asis = ['python', 'java', 'php', 'c++']</span><br><span class="line">data = [</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">5</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">7</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">15</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>], [<span class="number">1</span>, <span class="number">3</span>, <span class="number">20</span>], [<span class="number">2</span>, <span class="number">0</span>, <span class="number">11</span>], [<span class="number">2</span>, <span class="number">1</span>, <span class="number">9</span>], [<span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>], ]</span><br><span class="line">bar_3d.add('a', x_axis, y_asis, data, grid3d_opacity=<span class="number">0.5</span>, grid3d_shading='realistic')</span><br><span class="line">bar_3d.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%9F%B1%E7%8A%B6%E5%9B%BE3D.png" alt="alt"></p>
+<h3 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 折线图----------------------------</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">add(name, x_axis, y_axis)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">设置是否是阶梯型 bool ：is_step</span></span><br><span class="line"><span class="string">设置是否平滑 bool：is_smooth</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">line = Line(<span class="string">'折线图'</span>, <span class="string">'子标题'</span>)</span><br><span class="line">x_axis = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>]</span><br><span class="line">y_axis = [100, 50, 75, 82]</span><br><span class="line">line.<span class="builtin-name">add</span>(<span class="string">'图表名称'</span>, x_axis, y_axis, <span class="attribute">is_smooth</span>=<span class="literal">True</span>, <span class="attribute">is_step</span>=<span class="literal">False</span>, <span class="attribute">is_fill</span>=<span class="literal">False</span>)</span><br><span class="line">line.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%8A%98%E7%BA%BF%E5%9B%BE.png" alt="alt"></p>
+<h3 id="折线图3D"><a href="#折线图3D" class="headerlink" title="折线图3D"></a>折线图3D</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 折线图<span class="number">3</span>D---------------------------</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">add(name, data)</span></span><br><span class="line"><span class="string">name: 图表名称</span></span><br><span class="line"><span class="string">data: 每一行是一行数据，每一列是一个维度</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">line_3d = Line3D('Line3D折线图', '这是子标题')</span><br><span class="line">data = [</span><br><span class="line">    [<span class="number">1.5</span>, <span class="number">0</span>, <span class="number">7.3</span>], [<span class="number">2</span>, <span class="number">0</span>, <span class="number">7.8</span>], [<span class="number">2.5</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">3</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">3.85</span>, <span class="number">0</span>, <span class="number">7.85</span>], [<span class="number">4.4</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">4.6</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">5.15</span>, <span class="number">0</span>, <span class="number">7.85</span>], [<span class="number">6</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">6.5</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">7</span>, <span class="number">0</span>, <span class="number">7.8</span>], [<span class="number">7.5</span>, <span class="number">0</span>, <span class="number">7.3</span>], [<span class="number">4.5</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">4.5</span>, <span class="number">0.6</span>, <span class="number">8</span>], [<span class="number">4.5</span>, <span class="number">1</span>, <span class="number">8.5</span>], [<span class="number">4.5</span>, <span class="number">1.5</span>, <span class="number">8.8</span>]</span><br><span class="line">]</span><br><span class="line">line_3d.add('图表名称', data, grid3d_opacity=<span class="number">0.5</span>, is_smooth=True)</span><br><span class="line">line_3d.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%8A%98%E7%BA%BF%E5%9B%BE3D.png" alt="alt"></p>
+<h3 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 饼状图-----------------------------</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">add(name, attr, value)</span></span><br><span class="line"><span class="string">每一个attr对应一个比例值（整数）</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">pie = Pie()</span><br><span class="line">attr = [<span class="string">'python'</span>, <span class="string">'java'</span>, <span class="string">'php'</span>]</span><br><span class="line">value = [<span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>]</span><br><span class="line">pie.add(<span class="string">'饼状图'</span>, attr, value, rosetype=<span class="string">'area'</span>, radius=[<span class="number">10</span>, <span class="number">75</span>], center=[<span class="number">50</span>, <span class="number">60</span>])</span><br><span class="line">pie.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E9%A5%BC%E7%8A%B6%E5%9B%BE.png" alt="alt"></p>
+<h3 id="地图map"><a href="#地图map" class="headerlink" title="地图map"></a>地图map</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 地图 map-------------------------</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">参数：</span></span><br><span class="line"><span class="string">name: 地图名称</span></span><br><span class="line"><span class="string">attr: 标记城市</span></span><br><span class="line"><span class="string">value：标记值</span></span><br><span class="line"><span class="string">maptype（显示地图区域）：国家/省份/城市</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">map = Map()</span><br><span class="line">attr = [<span class="string">'项城市'</span>, <span class="string">'沈丘县'</span>, <span class="string">'鹿邑县'</span>, <span class="string">'太康县'</span>]</span><br><span class="line">values = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">map.add(<span class="string">'china'</span>, attr, values, maptype=<span class="string">'周口'</span>, is_label_show=<span class="literal">True</span>)</span><br><span class="line">map.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E5%9C%B0%E5%9B%BE.png" alt="alt"></p>
+<h3 id="Scatter-直角坐标系散点图"><a href="#Scatter-直角坐标系散点图" class="headerlink" title="Scatter 直角坐标系散点图"></a>Scatter 直角坐标系散点图</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Scatter 直角坐标系散点图-----------------</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">参数：</span></span><br><span class="line"><span class="string">name: 图表名称</span></span><br><span class="line"><span class="string">x_axis: x轴参数</span></span><br><span class="line"><span class="string">y_axis: y轴参数</span></span><br><span class="line"><span class="string">x_axis/y_axis的list值都必须为数值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">scatter = Scatter()</span><br><span class="line">x_axis = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">y_axis = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">extra_data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">scatter.add('scatter', x_axis, y_axis, extra_data=extra_data)</span><br><span class="line">scatter.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%95%A3%E7%82%B9%E5%9B%BE.png" alt="alt"></p>
+<h3 id="3D-Scatter-直角坐标系散点图"><a href="#3D-Scatter-直角坐标系散点图" class="headerlink" title="3D Scatter 直角坐标系散点图"></a>3D Scatter 直角坐标系散点图</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Scatter3D 散点图<span class="number">3</span>D------------------</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">参数：</span></span><br><span class="line"><span class="string">name: 图表名称</span></span><br><span class="line"><span class="string">data: 每一行是一行数据，每一列是一个维度</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">scatter_3d = Scatter3D()</span><br><span class="line">data = [</span><br><span class="line">    [<span class="number">1.5</span>, <span class="number">0</span>, <span class="number">7.3</span>], [<span class="number">2</span>, <span class="number">0</span>, <span class="number">7.8</span>], [<span class="number">2.5</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">3</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">3.85</span>, <span class="number">0</span>, <span class="number">7.85</span>], [<span class="number">4.4</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">4.6</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">5.15</span>, <span class="number">0</span>, <span class="number">7.85</span>], [<span class="number">6</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">6.5</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">7</span>, <span class="number">0</span>, <span class="number">7.8</span>], [<span class="number">7.5</span>, <span class="number">0</span>, <span class="number">7.3</span>], [<span class="number">4.5</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">4.5</span>, <span class="number">0.6</span>, <span class="number">8</span>]</span><br><span class="line">]</span><br><span class="line">scatter_3d.add('Scatter3D', data=data)</span><br><span class="line">scatter_3d.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%95%A3%E7%82%B9%E5%9B%BE3D.png" alt="alt"></p>
+<h3 id="k线图"><a href="#k线图" class="headerlink" title="k线图"></a>k线图</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Kline k线图--------------------</span><br><span class="line">kline = Kline()</span><br><span class="line">x_axis = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>]</span><br><span class="line">y_axis = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>],</span><br><span class="line">    [<span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">15</span>],</span><br><span class="line">]</span><br><span class="line">kline.add(<span class="string">'k线图'</span>, x_axis, y_axis)</span><br><span class="line">kline.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/k%E7%BA%BF%E5%9B%BE.png" alt="alt"></p>
+<h3 id="词云图"><a href="#词云图" class="headerlink" title="词云图"></a>词云图</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># WordCloud 词云图--------------------</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">shape:设置词云图的展示格式</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">word_cloud = WordCloud()</span><br><span class="line">attr = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>]</span><br><span class="line">value = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">word_cloud.add(<span class="string">'WordCloud'</span>, attr, value, shape=<span class="string">'star'</span>)</span><br><span class="line">word_cloud.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E8%AF%8D%E4%BA%91%E5%9B%BE.png" alt="alt"></p>
+<h3 id="组合图"><a href="#组合图" class="headerlink" title="组合图"></a>组合图</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">overlap组合图<span class="comment">-----------------------</span></span><br><span class="line"><span class="keyword">import</span> pyecharts <span class="keyword">as</span> pye</span><br><span class="line">attr = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>]</span><br><span class="line">v1 = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>]</span><br><span class="line">v2 = [<span class="number">38</span>, <span class="number">28</span>, <span class="number">58</span>, <span class="number">48</span>, <span class="number">78</span>, <span class="number">68</span>]</span><br><span class="line">bar = pye.Bar("Line - Bar 示例")</span><br><span class="line">bar.<span class="keyword">add</span>("bar", attr, v1)</span><br><span class="line"><span class="type">line</span> = pye.Line()</span><br><span class="line"><span class="type">line</span>.<span class="keyword">add</span>("line", attr, v2)</span><br><span class="line">overlap = pye.Overlap()</span><br><span class="line">overlap.<span class="keyword">add</span>(bar)</span><br><span class="line">overlap.<span class="keyword">add</span>(<span class="type">line</span>)</span><br><span class="line">overlap.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E7%BB%84%E5%90%88%E5%9B%BE.png" alt="alt"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E7%BB%98%E5%88%B6%E5%9B%BE%E8%A1%A8%EF%BC%9Apyecharts%E6%A8%A1%E5%9D%97/" data-id="ck78s1tqf007c1g9y84athal8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-进步、改变自己：从改变工作模式开始" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E8%BF%9B%E6%AD%A5%E3%80%81%E6%94%B9%E5%8F%98%E8%87%AA%E5%B7%B1%EF%BC%9A%E4%BB%8E%E6%94%B9%E5%8F%98%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%BC%80%E5%A7%8B/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.766Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E8%BF%9B%E6%AD%A5%E3%80%81%E6%94%B9%E5%8F%98%E8%87%AA%E5%B7%B1%EF%BC%9A%E4%BB%8E%E6%94%B9%E5%8F%98%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%BC%80%E5%A7%8B/">进步、改变自己：从改变工作模式开始</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="先前的工作模式"><a href="#先前的工作模式" class="headerlink" title="先前的工作模式"></a>先前的工作模式</h2><p>&emsp;&emsp;我觉得自己先前的工作模式是一种<strong>非常浪费时间</strong>、<strong>进步很慢</strong>的方式！  </p>
+<p>&emsp;&emsp;<strong>“我有一种患得患失的恐惧感，我总是想造自己的轮子，它让我不能更好的使用别人造好的轮子，不能更好的进步。”</strong> 有时候我会特别抗拒拿来就用的模块，可能那就是很好的一个模块，但是代码终归不是自己写的，思想上特别抗拒。但如果抗拒使用别人造好的轮子，这很可怕，这无疑是一个非常浪费开发时间的行为！  </p>
+<p>&emsp;&emsp;<strong>“为什么每次都想造自己的轮子？因为我怕失去造轮子的能力。”</strong> 我是一名开发者，我更是一个学者。我不能仅仅局限于具有使用工具的能力，我必须还要拥有能够造工具的能力。对于<strong>解决可变性问题的能力</strong>，我是永远不能够丢失掉的。但如果不断重复的造别人造过的轮子，这也很可怕，我将会失去大量的学习时间。</p>
+<p>&emsp;&emsp;<strong>“开发的时候想使用新技术，学习的时候想做开发练手。”</strong> 之前的学习模式是一种混乱的模式，我没有清楚的认识到自己是在开发还是在学习，总是孤军奋战，也不太喜欢团队合作。开发的时候想要使用新技术，学习的时候想要做开发练手，这也是很可怕的一件事情。  </p>
+<h2 id="优化工作模式"><a href="#优化工作模式" class="headerlink" title="优化工作模式"></a>优化工作模式</h2><h3 id="一、分清学习时间和开发时间"><a href="#一、分清学习时间和开发时间" class="headerlink" title="一、分清学习时间和开发时间"></a>一、分清学习时间和开发时间</h3><p>&emsp;&emsp;<strong>“学习是自我输入，开发是自我输出。”</strong> 学习和开发的关系，<strong>就像计算机IO流一样，输出的同时，过多的输入会占用输出的时间，降低输出的效率</strong>。同理，输入的同时，也不要过多的输出。    </p>
+<p>&emsp;&emsp;<strong>“开发时间要做什么？开发是自我输出，这个时候过多的自我输入会降低开发效率”</strong> 毫无疑问，开发的时候，讲究开发的效率，需要很快的开发出完整的项目，需要的是<strong>自身现有的知识、信息检索的能力以及使用别人轮子的能力</strong>。现有的知识越是丰富，开发的过程就愈发的快。信息检索能够精准的、友好的检索到问题的解决方案以及更好的开发方案，所以也需要更多信息检索以及能够提供技术和信息的平台，这些技术平台需要自己去积累。更重要的是使用别人造的轮子的能力，对于别人造的轮子，能够快速的理解并且能够使用。   </p>
+<p>&emsp;&emsp;<strong>“学习时间要做什么？如何学习框架和学习不易更迭的技术”</strong> 学习有很多种。学习不易更迭或者不会更迭的技术，需要<strong>由浅入深的学，需要花费时间和精力总结</strong>。而学习框架和“别人封装的代码” ，只需要学习其<strong>架构和运行机制</strong>，在开发能力的基本功扎实的基础上，这只是一种记忆性的学习行为，很好的记忆方式就能够满足这种学习。   </p>
+<h3 id="二、怎么学习别人的轮子、使用别人的轮子"><a href="#二、怎么学习别人的轮子、使用别人的轮子" class="headerlink" title="二、怎么学习别人的轮子、使用别人的轮子"></a>二、怎么学习别人的轮子、使用别人的轮子</h3><p>&emsp;&emsp;<strong>“怎么学习别人的轮子、使用别人的轮子？”</strong> 众所周知，站在巨人的肩上，才能够看的更远。在紧张的开发阶段，需要快速的拿来别人的轮子就用，可能需要经常从网上找一些好的代码修改，这个时候要能够快速转化成自己的东西。开发结束之后才是学习别人轮子的阶段，这个时候要花费一点点时间，去理解这个东西的架构和运行机制。<br>&emsp;&emsp;<strong>“用别人的轮子，造别人没造过的轮子”</strong> 学会学习和使用别人的轮子，转化所有能够想到的知识，造别人没造过的轮子。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E8%BF%9B%E6%AD%A5%E3%80%81%E6%94%B9%E5%8F%98%E8%87%AA%E5%B7%B1%EF%BC%9A%E4%BB%8E%E6%94%B9%E5%8F%98%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%BC%80%E5%A7%8B/" data-id="ck78s1tqo007w1g9yf4s3hqwp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-冒泡排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.754Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">冒泡排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序<br><strong>数组的下标从0开始</strong>  </p>
+<p>假如有n个数<br>（i,j下标从0开始）<br>外层循环，循环（n-1次）<br>每次从零循环，每次循环（n-1-i次）  </p>
+<p><strong>输入示例</strong><br>十个无序数<br>5 6 3 2 1 4 7 8 9 10</p>
+<p><strong>输入示例</strong><br>升序<br>1 2 3 4 5 6 7 8 9 10</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> number[<span class="number">10</span>],i,j,m;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;number[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    冒泡排序</span></span><br><span class="line"><span class="comment">    数组的下标从0开始</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    假如有n个数</span></span><br><span class="line"><span class="comment">    （i,j下标从0开始）</span></span><br><span class="line"><span class="comment">    外层循环，循环（n-1次）</span></span><br><span class="line"><span class="comment">    每次从零循环，每次循环（n-1-i次）</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">9</span>;i++)</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">9</span>-i;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(number[j]&gt;number[j+<span class="number">1</span>])&#123;</span><br><span class="line">            m = number[j];</span><br><span class="line">            number[j] = number[j+<span class="number">1</span>];</span><br><span class="line">            number[j+<span class="number">1</span>] = m;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">9</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>,number[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,number[<span class="number">9</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" data-id="ck78s1tpr005u1g9yegs7ab95" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-getattr方法和hasattr" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/getattr%E6%96%B9%E6%B3%95%E5%92%8Chasattr/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.733Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/getattr%E6%96%B9%E6%B3%95%E5%92%8Chasattr/">getattr方法和hasattr</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="getattr方法"><a href="#getattr方法" class="headerlink" title="getattr方法"></a>getattr方法</h2><p>获取类中的属性或方法  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    a = <span class="number">100</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">b</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>        print(<span class="string">"hello"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.b()</span><br><span class="line">hello</span><br><span class="line"><span class="comment"># 获取类中的方法名，返回一个函数对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(A,<span class="string">'b'</span>)</span><br><span class="line">&lt;function A.b at <span class="number">0x000001C61A8E57B8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(A,<span class="string">'b'</span>)()</span><br><span class="line">hello</span><br><span class="line"><span class="comment"># 获取类中的属性名，返回属性的值</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(A,<span class="string">'b'</span>)()</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+<h2 id="hasattr方法"><a href="#hasattr方法" class="headerlink" title="hasattr方法"></a>hasattr方法</h2><p>判断类中是否有某一属性或方法，返回值为布尔型  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    a = <span class="number">100</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">b</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>        print(<span class="string">"hello"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(A,<span class="string">'a'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(A,<span class="string">'b'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(A,<span class="string">'c'</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/getattr%E6%96%B9%E6%B3%95%E5%92%8Chasattr/" data-id="ck78s1tnz002y1g9yg5tvgkh5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Django数据模型中如何声明自定义主键" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/Django%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E5%A3%B0%E6%98%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%94%AE/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.687Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/Django%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E5%A3%B0%E6%98%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%94%AE/">Django数据模型中如何声明自定义主键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="声明自定义主键"><a href="#声明自定义主键" class="headerlink" title="声明自定义主键"></a>声明自定义主键</h2><p>&emsp;&emsp;如<code>name = models.CharField(max_length=20,primary_key=True)</code>，需要添加<code>primary_key</code>属性为<code>True</code>。   </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/Django%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E5%A3%B0%E6%98%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%94%AE/" data-id="ck78s1tmm00141g9yh1w943fi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/" rel="tag">Django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-django 数据模型中 null=True 和 blank=True的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/django%20%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%AD%20null=True%20%E5%92%8C%20blank=True%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time datetime="2020-03-01T08:32:41.679Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/django%20%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%AD%20null=True%20%E5%92%8C%20blank=True%E7%9A%84%E5%8C%BA%E5%88%AB/">django 数据模型中 null=True 和 blank=True的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="django-数据模型中-null-True-和-blank-True的区别"><a href="#django-数据模型中-null-True-和-blank-True的区别" class="headerlink" title="django 数据模型中 null=True 和 blank=True的区别"></a>django 数据模型中 null=True 和 blank=True的区别</h2><ul>
+<li>null 是针对数据库而言，如果 null=True, 表示数据库的该字段可以为空。</li>
+<li>blank 是针对表单的，如果 blank=True，表示你的表单填写该字段的时候可以不填，但是对数据库来说，没有任何影响</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/django%20%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%AD%20null=True%20%E5%92%8C%20blank=True%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ck78s1tno002f1g9y34ygavqw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/" rel="tag">Django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/9/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/11/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

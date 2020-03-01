@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python抽象类和接口类总结 | Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python接口类和抽象类总结&amp;emsp;&amp;emsp;总结一下接口和抽象这两个概念（不要在这个过程中想着如何写代码，去体会两者的含义）&amp;emsp;&amp;emsp;首先列出五个名词：抽象&#x2F;抽象类&#x2F;抽象方法&#x2F;接口&#x2F;接口类&amp;emsp;&amp;emsp;其中抽象和接口是面向对象的两个概念，我们重点去理解抽象类和接口类的概念，之后，抽象和接口的概念就会不点自通了。   &amp;emsp;&amp;emsp;抽象类和接口类&amp;emsp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python抽象类和接口类总结">
+<meta property="og:url" content="http://yoursite.com/2020/03/01/Python%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%B1%BB%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="Python接口类和抽象类总结&amp;emsp;&amp;emsp;总结一下接口和抽象这两个概念（不要在这个过程中想着如何写代码，去体会两者的含义）&amp;emsp;&amp;emsp;首先列出五个名词：抽象&#x2F;抽象类&#x2F;抽象方法&#x2F;接口&#x2F;接口类&amp;emsp;&amp;emsp;其中抽象和接口是面向对象的两个概念，我们重点去理解抽象类和接口类的概念，之后，抽象和接口的概念就会不点自通了。   &amp;emsp;&amp;emsp;抽象类和接口类&amp;emsp">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-01T08:32:44.018Z">
+<meta property="article:modified_time" content="2019-08-02T11:36:10.480Z">
+<meta property="article:author" content="Bsj">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python抽象类和接口类总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/Python%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%B1%BB%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-03-01T08:32:44.018Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python抽象类和接口类总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Python接口类和抽象类总结"><a href="#Python接口类和抽象类总结" class="headerlink" title="Python接口类和抽象类总结"></a>Python接口类和抽象类总结</h2><p>&emsp;&emsp;总结一下接口和抽象这两个概念（不要在这个过程中想着如何写代码，去体会两者的含义）<br>&emsp;&emsp;首先列出五个名词：抽象/抽象类/抽象方法/接口/接口类<br>&emsp;&emsp;其中抽象和接口是面向对象的两个概念，我们重点去理解<strong>抽象类</strong>和<strong>接口类</strong>的概念，之后，抽象和接口的概念就会不点自通了。  </p>
+<p>&emsp;&emsp;<strong>抽象类和接口类</strong><br>&emsp;&emsp;1、抽象类：含有抽象方法的类被我们称为抽象类。（含有，含有一个也是含有，只要含有抽象方法的类，就是抽象类，自然，这样说的话抽象类这个范围就囊括了接口类。）<br>&emsp;&emsp;有的人会好奇，那么抽象类能含有普通方法吗？当然能，我的意思是只要含有抽象方法的类就是抽象类，其他爱有什么有什么。<br>&emsp;&emsp;2、接口类：只含有抽象方法的类被我们称为接口类，“只含有抽象方法”，很明显除了抽象方法其他什么都不能有。否则它就不能被称为接口类。如果除了抽象方法还含有其他的，它就要被称为抽象类。  </p>
+<p>&emsp;&emsp;<strong>抽象类：“只要含有”</strong><br>&emsp;&emsp;<strong>接口类：“只含有”</strong>  </p>
+<p>&emsp;&emsp;我觉得上面的概念已经把抽象类和接口类解释的很清楚了，下面举例加深印象。  </p>
+<p>&emsp;&emsp;再来说一个点：如果继承了含有抽象方法的类，需要在子类中把继承的抽象方法给实现（也就是重写），否则这个子类依旧是个抽象类。为什么呢？因为它继承了父类的所有属性和方法，也就是说，它继承了抽象方法，刚才我们说，含有抽象方法的类就是抽象类，所以没有实现父类抽象方法的子类就还是抽象类。</p>
+<p>&emsp;&emsp;3、抽象方法：以 <strong>@abstractmethod</strong>装饰且<strong>不实现</strong>具体功能的方法</p>
+<p><strong>1、代码示例详解接口类</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta, abstractmethod</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口类</span></span><br><span class="line"><span class="comment"># 接口类AnimalRun</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalRun</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 抽象方法</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口类</span></span><br><span class="line"><span class="comment"># 接口类AnimalSwim</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalSwim</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 抽象方法</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swim</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口类</span></span><br><span class="line"><span class="comment"># 接口类AnimalEat</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalEat</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 抽象方法</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们再创建一个有关人类说话这个动作的接口类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeopleLanguage</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Language</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个“飞”这个动作的接口类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalFly</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fly</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个植物“光合作用”这个功能的接口类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PlantPht</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pht</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+
+<p>&emsp;&emsp;现在我手里有六个接口类，不要管是什么接口类，反正我现在有六个接口类。<br>&emsp;&emsp;好了，我要开始装逼了。<br>&emsp;&emsp;我手里有这些接口类，我现在想要造一只老虎，没错，我要造个老虎，我要看看造老虎能用到哪些接口类。<br>&emsp;&emsp;现在来扒拉扒拉我的接口类里面有什么可以拿来让我造老虎的，众所周知，对于老虎来说，老虎没有语言，也不会光合作用，老虎会run/swim/eat，所以AnimalEat()/AnimalSwim()/AnimalRun()这些可以拿来让我造老虎。<br>开始造老虎，创建一个Tiger类，继承这三个接口类。<br>&emsp;&emsp;既然继承了某个接口类，那么我就必须要实现（重写）这个接口类提供的功能。不然，我为什么要继承这个接口呢？</p>
+<p><strong>代码如下</strong>  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 老虎类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tiger</span><span class="params">(AnimalRun, AnimalSwim, AnimalEat)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"tiger run"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swim</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"tiger swim"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"tiger eat"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">造完老虎类之后，来实例化一个老虎对象。</span></span><br><span class="line"><span class="string">如下，我的老虎有了run/swim/eat这些功能。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">tiger = Tiger()</span><br><span class="line"></span><br><span class="line">tiger.run()</span><br><span class="line">tiger.swim()</span><br><span class="line">tiger.eat()</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;有的同学要问了，在继承的接口类中，能不能其中一个接口类不去实现？你看，如果你不去实现这个接口类，那你为什么要继承它呢？mmp哦。<br>&emsp;&emsp;记住一点：<strong>如果某些接口类没用，则不继承！如果继承某个接口类，就要实现某个接口类里面提供的所有方法。</strong><br>就比如我们上面写的People/PlantPht这些类，老虎继承它没用，所以就不去继承。  </p>
+<p>&emsp;&emsp;我觉得上面对接口类的整理已经很清晰了。  </p>
+<hr>
+<p>&emsp;&emsp;下面来看看抽象类，刚才说了，<strong>“只要含有”抽象方法的类就是抽象类！</strong><br>&emsp;&emsp;下面举几个例子。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 抽象类举例</span></span><br><span class="line"><span class="comment"># 1、含有属性的抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbsClassAttr</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里不强调什么属性，含有什么属性都行,为了方便，我们在这里使用对象属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.attr = <span class="string">'含有属性的抽象类'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽象类无法实例化</span></span><br><span class="line"><span class="comment"># a = AbsClassAttr()</span></span><br><span class="line"><span class="comment"># a.method()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">当我去尝试实例化一个抽象类时，系统报错告诉我不能实例化一个含有抽象方法的类。</span></span><br><span class="line"><span class="string">接下来我去创建一个类，去继承并且实例化这个抽象类中的抽象方法，且输出它的属性值。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个类继承抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span><span class="params">(AbsClassAttr)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"输出继承之后的属性："</span> + self.attr)</span><br><span class="line">        print(<span class="string">"重写抽象类的方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化这个类</span></span><br><span class="line"><span class="comment"># 完全ojbk</span></span><br><span class="line">c = ChildClass()</span><br><span class="line">c.method()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、含有普通方法的抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbsClassMethod</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">normal_method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"这是一个普通方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽象类无法实例化</span></span><br><span class="line"><span class="comment"># a = AbsClassMethod()</span></span><br><span class="line"><span class="comment"># a.method()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个类继承抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span><span class="params">(AbsClassMethod)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"重写抽象类的方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化这个类</span></span><br><span class="line"><span class="comment"># 完全ojbk</span></span><br><span class="line">c = ChildClass()</span><br><span class="line">c.method()</span><br><span class="line"><span class="comment"># 调用继承之后的普通方法</span></span><br><span class="line">c.normal_method()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、含有属性和普通方法的抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbsClassAtrrMethod</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.attr = <span class="string">"这是抽象类的属性"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">normal_method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"这是一个普通方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽象类无法实例化</span></span><br><span class="line"><span class="comment"># a = AbsClassAtrrMethod()</span></span><br><span class="line"><span class="comment"># a.method()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个类继承抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span><span class="params">(AbsClassAtrrMethod)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"继承父类之后的属性："</span> + self.attr)</span><br><span class="line">        print(<span class="string">"重写抽象类的方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化这个类</span></span><br><span class="line"><span class="comment"># 完全ojbk</span></span><br><span class="line">c = ChildClass()</span><br><span class="line">c.method()</span><br><span class="line"><span class="comment"># 调用继承之后的普通方法</span></span><br><span class="line">c.normal_method()</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;以上三条测试发现，与我们在开始的时候提到的抽闲类的概念完全符合。<br>&emsp;&emsp;什么是接口类？什么是抽象类？看完上面这些，对这两个概念有近一步理解吗？<br>&emsp;&emsp;接口类和抽象类总结说这么多吧。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/Python%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%B1%BB%E6%80%BB%E7%BB%93/" data-id="ck78s1tn0001j1g9y29aubm2t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/01/Python%E7%B1%BB%E4%B8%AD%E5%8D%95%E4%B8%8B%E5%88%92%E7%BA%BF%E5%92%8C%E5%8F%8C%E4%B8%8B%E5%88%92%E7%BA%BF%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python类中单下划线和双下划线的区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/01/Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python面向对象总体概述思维导图</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

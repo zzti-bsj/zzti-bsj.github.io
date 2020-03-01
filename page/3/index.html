@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="open the new world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bsj&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="open the new world">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Bsj">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-简单了解常见的加密方式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.961Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F/">简单了解常见的加密方式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="几种常见的加密方式"><a href="#几种常见的加密方式" class="headerlink" title="几种常见的加密方式"></a>几种常见的加密方式</h2><h3 id="md5（Message-Digest-Algorithm）"><a href="#md5（Message-Digest-Algorithm）" class="headerlink" title="md5（Message Digest Algorithm）"></a>md5（Message Digest Algorithm）</h3><p>&emsp;&emsp;md5，中文名称为<strong>消息摘要算法</strong>，字面意思上来说，是一种采用摘要进行加密的算法。<br>&emsp;&emsp;md5加密的特点：<br>&emsp;&emsp;1.加密之后是一个32位的字符串<br>&emsp;&emsp;2.属于不可逆加密方式<br><strong>注：md5算法虽然不可逆，但是对于一些简单的字符串，还是可以通过md5加密之后暴力匹配出来的。</strong><br>（网上有一些专门破解md5加密的网站，有兴趣的可以搜索一下，下面给一段代码，可以生成简单的md5加密之后的数据，贴在解密网站上是可以解密的。）<br>&emsp;&emsp;<strong>代码示例</strong>：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta"># 其实在加密之前给string编码一下，就可以避免汉字问题。</span></span><br><span class="line"><span class="meta"># 注：utf-8使用三个字符表示汉字，gbk使用两个字符表示汉字，给汉字不同的编码，使用md5之后加密的字符串也不同。</span></span><br><span class="line"><span class="meta"># encode()默认编码成urf-8格式</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 导入hashlib 包</span></span><br><span class="line">from hashlib <span class="keyword">import</span> md5</span><br><span class="line"><span class="keyword">new</span><span class="type">_md_object</span> = md5()  <span class="meta"># 获取md5对象</span></span><br><span class="line"><span class="keyword">new</span><span class="type">_md_object</span>.update(string.encode())  <span class="meta"># update()将字符串载入md5对象，获得md5加密</span></span><br><span class="line"><span class="keyword">new</span><span class="type">_digest_string</span> = <span class="keyword">new</span><span class="type">_md_object</span>.hexdigest()  <span class="meta"># hexdigest()返回一个md5加密之后的32位字符串</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="AES（Advanced-Encryption-Standard）"><a href="#AES（Advanced-Encryption-Standard）" class="headerlink" title="AES（Advanced Encryption Standard）"></a>AES（Advanced Encryption Standard）</h3><p>&emsp;&emsp;AES：高级加密标准，DES是它的前任标准。  </p>
+<h3 id="DES（Data-Encryption-Standard）"><a href="#DES（Data-Encryption-Standard）" class="headerlink" title="DES（Data Encryption Standard）"></a>DES（Data Encryption Standard）</h3><p>&emsp;&emsp;DES：数据加密标准  </p>
+<h3 id="哈希-盐"><a href="#哈希-盐" class="headerlink" title="哈希+盐"></a>哈希+盐</h3><p>&emsp;&emsp;哈希+盐，也是一种常用的加密手段。哈希，是利用加密方法，盐：一般是随机字符串。通过哈希+盐的方式进行加密，使加密的安全性更高。<br>&emsp;&emsp;比如说，md5可以通过暴力碰撞的方式进行破解，那密码的安全性就受到了威胁。在这种情况下，我们把原字符串+盐，然厚进行加密，就得到了一个新的md5值，这样的话，提升了加密的安全性。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 简单举例，实际上这个盐并不一定这么简单：</span></span><br><span class="line"></span><br><span class="line">from hashlib <span class="keyword">import</span> md5</span><br><span class="line">s = <span class="string">'这是随机字符串'</span></span><br><span class="line"><span class="keyword">new</span><span class="type">_md5</span> = md5()</span><br><span class="line"><span class="keyword">new</span><span class="type">_string</span> = <span class="keyword">new</span><span class="type">_md5</span>.update((string+s).encode).hexdigest()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F/" data-id="ck78s1tqe00771g9y27f47z2h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-LeetCode写题解格式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/LeetCode%E5%86%99%E9%A2%98%E8%A7%A3%E6%A0%BC%E5%BC%8F/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.950Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/LeetCode%E5%86%99%E9%A2%98%E8%A7%A3%E6%A0%BC%E5%BC%8F/">LeetCode写题解模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目名称"><a href="#题目名称" class="headerlink" title="题目名称"></a>题目名称</h2><p>题目描述（包含输入输出样例）  </p>
+<p>（多写，多看）</p>
+<h2 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h2><p>解题思路<br>复杂度分析  </p>
+<h3 id="代码样例"><a href="#代码样例" class="headerlink" title="代码样例"></a>代码样例</h3><p>代码/None</p>
+<hr>
+<h2 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h2><p>解题思路<br>复杂度分析  </p>
+<h3 id="代码样例-1"><a href="#代码样例-1" class="headerlink" title="代码样例"></a>代码样例</h3><p>代码/None</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/LeetCode%E5%86%99%E9%A2%98%E8%A7%A3%E6%A0%BC%E5%BC%8F/" data-id="ck78s1tms001c1g9y01kwhv7d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-把json数据转成python对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/%E6%8A%8Ajson%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%88%90python%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.942Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/%E6%8A%8Ajson%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%88%90python%E5%AF%B9%E8%B1%A1/">把json数据转成python对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="把json数据转成python对象"><a href="#把json数据转成python对象" class="headerlink" title="把json数据转成python对象"></a>把json数据转成python对象</h2><h3 id="了解json"><a href="#了解json" class="headerlink" title="了解json"></a>了解json</h3><p>JSON（JavaScript Object Notation）<strong>JavaScript 对象表示法</strong><br>json是纯文本</p>
+<h4 id="json是什么？"><a href="#json是什么？" class="headerlink" title="json是什么？"></a>json是什么？</h4><p>1、JSON是存储和交换文本信息的语法，类似于xml<br>2、JSON是<strong>轻量级</strong>的<strong>文本数据交换格式</strong>  </p>
+<p><strong>相比于xml，json更小、更快、更容易解析</strong></p>
+<h4 id="json的语法"><a href="#json的语法" class="headerlink" title="json的语法"></a>json的语法</h4><p>在json的语法格式中：<br>（1）用{ }表示JavaScript的对象。对象中只能包含键值对，<strong>键必须使用双引号</strong>包括，值可以是JavaScript的对象、数组、JavaScript的基本数据类型的数据（整型/浮点型/布尔型/null）<br>（2）用[ ]表示JavaScript的数组。数组中可以包含对象、数组、javascript的基本数据类型的数据（整型/浮点型/布尔型/null）  </p>
+<p>&emsp;&emsp;<strong>在python中，json的bool类型/null将被转成python中对应的bool类型/None</strong></p>
+<h4 id="json对象实例"><a href="#json对象实例" class="headerlink" title="json对象实例"></a>json对象实例</h4><p>（1）简单的json对象实例：  </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"otnw"</span>,</span><br><span class="line">    <span class="attr">"age"</span>: <span class="number">21</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）简单的json数组实例：<br><code>[&quot;java&quot;, &quot;python&quot;, 21, true, null]</code></p>
+<p>&emsp;&emsp;使用python自带的json模块的loads()函数，true会被转化为True，null会被转化成None，双引号的字符串会被转换成单引号的字符串</p>
+<p>（3）一个标准的json实例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"otnw"</span>,</span><br><span class="line">    <span class="attr">"age"</span>: <span class="number">21</span>,</span><br><span class="line">    <span class="attr">"sex"</span>: <span class="literal">true</span>, </span><br><span class="line">    <span class="attr">"money"</span>: <span class="literal">null</span>, </span><br><span class="line">    <span class="attr">"lanuage"</span>: &#123;</span><br><span class="line">        <span class="attr">"python"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"c"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"java"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"易语言"</span>: <span class="literal">false</span></span><br><span class="line">        <span class="string">"other"</span>: [<span class="string">"php"</span>, <span class="string">"css and html"</span>, <span class="string">"算法"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用的有关json转成python对象的库"><a href="#常用的有关json转成python对象的库" class="headerlink" title="常用的有关json转成python对象的库"></a>常用的有关json转成python对象的库</h2><p>python自带的库：json<br>第三方库：demjson  </p>
+<h3 id="使用json模块loads-函数，将json-str-转成-python-obj"><a href="#使用json模块loads-函数，将json-str-转成-python-obj" class="headerlink" title="使用json模块loads()函数，将json_str 转成 python_obj"></a>使用json模块loads()函数，将json_str 转成 python_obj</h3><p>&emsp;&emsp;使用上面三个json数据  <strong>json_str -&gt; python_obj</strong>  </p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">json</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># <span class="number">1</span>、简单的<span class="type">json</span>对象</span><br><span class="line"># （<span class="number">1</span>）json_str -&gt; python_obj</span><br><span class="line">json_str = """</span><br><span class="line">&#123;</span><br><span class="line">    "<span class="type">name</span>": "otnw",</span><br><span class="line">    "age": 21</span><br><span class="line">&#125;</span><br><span class="line">"""</span><br><span class="line">python_obj = <span class="type">json</span>.loads(json_str)</span><br><span class="line">print(<span class="keyword">type</span>(python_obj), python_obj)</span><br><span class="line"></span><br><span class="line"># &gt;&gt;&gt; &lt;<span class="keyword">class</span> <span class="string">'dict'</span>&gt; &#123;<span class="string">'name'</span>: <span class="string">'otnw'</span>, <span class="string">'age'</span>: <span class="number">21</span>&#125;</span><br><span class="line"></span><br><span class="line"># （<span class="number">2</span>）dict -&gt; json_str</span><br><span class="line">json_str = <span class="type">json</span>.dumps(python_obj)</span><br><span class="line">print(<span class="keyword">type</span>(json_str), json_str)</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span>、简单的<span class="type">json</span>数组</span><br><span class="line"># （<span class="number">1</span>）json_str -&gt; python_obj</span><br><span class="line">json_str = """</span><br><span class="line">["java", "python", 21, true, null]</span><br><span class="line">"""</span><br><span class="line">python_obj = <span class="type">json</span>.loads(json_str)</span><br><span class="line">print(<span class="keyword">type</span>(python_obj), python_obj)</span><br><span class="line"></span><br><span class="line"># &gt;&gt;&gt; &lt;<span class="keyword">class</span> <span class="string">'list'</span>&gt; [<span class="string">'java'</span>, <span class="string">'python'</span>, <span class="number">21</span>, <span class="keyword">True</span>, <span class="keyword">None</span>]</span><br><span class="line"># 在python中，会把JavaScript的<span class="type">bool</span>类型和<span class="keyword">null</span>转换成python中对应的<span class="type">bool</span>型和<span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"># （<span class="number">2</span>）list -&gt; json_str</span><br><span class="line">json_str = <span class="type">json</span>.dumps(python_obj)</span><br><span class="line">print(<span class="keyword">type</span>(json_str), json_str)</span><br><span class="line"></span><br><span class="line"># <span class="number">3</span>、一个标准的<span class="type">json</span>对象实例</span><br><span class="line"># （<span class="number">1</span>）json_str -&gt; python_obj</span><br><span class="line">json_str = """</span><br><span class="line">&#123;</span><br><span class="line">    "<span class="type">name</span>": "otnw",</span><br><span class="line">    "age": 21,</span><br><span class="line">    "sex": true, </span><br><span class="line">    "<span class="type">money</span>": null, </span><br><span class="line">    "lanuage": &#123;</span><br><span class="line">        "python": true,</span><br><span class="line">        "c": true,</span><br><span class="line">        "java": true,</span><br><span class="line">        "易语言": false,</span><br><span class="line">        "other": ["php", "css <span class="keyword">and</span> html", "算法"]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">"""</span><br><span class="line">python_obj = <span class="type">json</span>.loads(json_str)</span><br><span class="line">print(<span class="keyword">type</span>(python_obj), python_obj)</span><br><span class="line"></span><br><span class="line"># &gt;&gt;&gt; &lt;<span class="keyword">class</span> <span class="string">'dict'</span>&gt; &#123;<span class="string">'name'</span>: <span class="string">'otnw'</span>, <span class="string">'age'</span>: <span class="number">21</span>, <span class="string">'sex'</span>: <span class="keyword">True</span>, <span class="string">'money'</span>: <span class="keyword">None</span>, <span class="string">'lanuage'</span>: &#123;<span class="string">'python'</span>: <span class="keyword">True</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'java'</span>: <span class="keyword">True</span>, <span class="string">'易语言'</span>: <span class="keyword">False</span>, <span class="string">'other'</span>: [<span class="string">'php'</span>, <span class="string">'css and html'</span>, <span class="string">'算法'</span>]&#125;&#125;</span><br><span class="line"></span><br><span class="line"># （<span class="number">2</span>）dict -&gt; json_str</span><br><span class="line">json_str = <span class="type">json</span>.dumps(python_obj)</span><br><span class="line">print(<span class="keyword">type</span>(json_str), json_str)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;在了解json是什么以及明白json语法之后，在测试了json和python对象之间的转化基础上，我们可以做一些总结：<br>（1）使用json.loads(json_str)把<strong>json字符串</strong>转成<strong>python对象</strong><br>（2）使用json.dumps(python_obj)把<strong>python对象</strong>  dict/list/str -&gt; 转化成<strong>json字符串</strong>  </p>
+<h3 id="使用第三方库demjson把json字符串转成python对象"><a href="#使用第三方库demjson把json字符串转成python对象" class="headerlink" title="使用第三方库demjson把json字符串转成python对象"></a>使用第三方库demjson把json字符串转成python对象</h3><p>第三方库：demjson<br>转化方法：decode(json_str)/encode(python_obj)  </p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># decode(json_str)是把json字符串转成python对象的。</span></span><br><span class="line"><span class="comment"># encode(python_obj)是把python_obj转化成json_str的。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> demjson</span><br><span class="line"><span class="comment"># 1、转化标准json  -&gt; python_obj</span></span><br><span class="line"><span class="literal">result</span> = demjson.decode('&#123;<span class="string">"name"</span>: <span class="string">"otnw"</span>&#125;')</span><br><span class="line">print(<span class="literal">result</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、转化形如字典的json -&gt; python_obj</span></span><br><span class="line"><span class="literal">result</span> = demjson.decode(<span class="string">"&#123;'name': 'otnw'&#125;"</span>)</span><br><span class="line">print(<span class="literal">result</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注：demjson比json库更强大一点，可以把单引号形如字典的数据转化成python对象，而json只能把标准json字符串转化成python对象。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/%E6%8A%8Ajson%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%88%90python%E5%AF%B9%E8%B1%A1/" data-id="ck78s1tpy006e1g9yb9gpcb9n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-scrapy运行机制和项目架构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/scrapy%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.915Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/scrapy%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84/">scrapy运行机制和项目架构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="scrapy"><a href="#scrapy" class="headerlink" title="scrapy"></a>scrapy</h2><p>&emsp;&emsp;scrapy是一个爬虫框架。<br>&emsp;&emsp;在一个框架中，首先要了解它的<strong>运行机制</strong>和框架的<strong>项目架构</strong></p>
+<h3 id="scrapy的运行机制"><a href="#scrapy的运行机制" class="headerlink" title="scrapy的运行机制"></a>scrapy的运行机制</h3><p>&emsp;&emsp;<br><img src="/imag/scrapy%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84/%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6.jpg" alt="alt"><br>&emsp;&emsp;上图是scrapy的运行机制流程图  </p>
+<p>Scheduler：调度器<br>Downloader：下载器<br>Spider：爬虫文件（爬虫）<br>Scrapy Engine：项目的引擎<br>Item/Pipelines：items/管道</p>
+<p>这个流程图的具体执行流程：<br>（1）<strong>爬虫</strong>发出爬取请求，<strong>引擎</strong>从调度器队列中取出url，送到<strong>下载器</strong> (爬虫-&gt;引擎-&gt;下载器)<br>（2）<strong>下载器</strong>收到请求并下载内容，返回给<strong>引擎</strong>，引擎将内容返回给<strong>爬虫</strong> (下载器-&gt;引擎-&gt;爬虫)<br>（3）<strong>爬虫</strong>解析从引擎获取的内容，将解析后的数据项给<strong>管道</strong>处理 (爬虫-&gt;管道)<br>（4）<strong>管道</strong>负责将传来的数据做相应的处理，如：下载/存储 (管道处理数据)  </p>
+<h3 id="scrapy的项目架构"><a href="#scrapy的项目架构" class="headerlink" title="scrapy的项目架构"></a>scrapy的项目架构</h3><p><img src="/imag/scrapy%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84.png" alt="alt"><br>上图是一个新建的scrapy项目的整体架构  </p>
+<p>（1）items.py：items中的类用来定义数据项，其实例结构形如字典，用来暂存数据，后续交给管道处理。<br>（2）pipelines.py：中文名称，管道。接收数据项item，<strong>在管道文件中编写处理数据的相关类和方法</strong>。<br>（3）middlewares.py：中文名称，中间件。<strong>处理请求和相应的相关事务。</strong> 目测有三种中间件：<br>&emsp;&emsp;spidermiddlewares<br>&emsp;&emsp;schedulermiddlewares<br>&emsp;&emsp;downloadermiddlewares，<br>&emsp;&emsp;其中最为常用的是downloadermiddlewares中间件。<br>（4）settings.py：scrapy项目的配置文件，这里是<strong>核心配置文件</strong>。基本架构相关的配置都在其中。<br>&emsp;&emsp;比如：配置<strong>scrapy调用相关ITEM_PIPELINES</strong>/<strong>下载时使用的管道DOWNLOADER_MIDDLEWARES</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/scrapy%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84/" data-id="ck78s1tpi00581g9ygxaqe9ll" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-scrapy实战：爬取斗图网之scrapy基础用法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/scrapy%E5%AE%9E%E6%88%98%EF%BC%9A%E7%88%AC%E5%8F%96%E6%96%97%E5%9B%BE%E7%BD%91%E4%B9%8Bscrapy%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.893Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/scrapy%E5%AE%9E%E6%88%98%EF%BC%9A%E7%88%AC%E5%8F%96%E6%96%97%E5%9B%BE%E7%BD%91%E4%B9%8Bscrapy%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/">scrapy实战：爬取斗图网之操作scrapy基本流程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="项目代码"><a href="#项目代码" class="headerlink" title="项目代码"></a>项目代码</h2><p>&emsp;&emsp;整个项目的代码在码云上：<a href="https://gitee.com/zzti-bsj/doutuwang" target="_blank" rel="noopener">码云地址</a>，以此项目为参考往下阅读。</p>
+<h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><p>&emsp;&emsp;当前项目是scrapy的一个实战项目，是操作scrapy的常规流程。<br>&emsp;&emsp;<strong>总结一下这个scrapy项目我的个人思路</strong>。<br>&emsp;&emsp;此项目可作为scrapy框架基础用法的参考。  </p>
+<hr>
+<h4 id="一、spider文件配置"><a href="#一、spider文件配置" class="headerlink" title="一、spider文件配置"></a>一、spider文件配置</h4><p>&emsp;&emsp;项目的核心配置文件是settings，从settings中copy相关配置到爬虫文件的custom_settings中，设置爬虫的专属settings。<br>&emsp;&emsp;（1）反爬虫的相关配置，如robots.txt/延迟/cookies/请求的并发数量/日志文件/日志文件保存的日志类型<br>&emsp;&emsp;（2）pipelines/middlewares配置，以及files/images的下载配置。其中request/response等相关主要是通过middlewares配置的。<br>&emsp;&emsp;（3）日志/scrapy自带的下载文件/图片的settings等设置。</p>
+<p><strong>更多settings参考：<a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/settings.html" target="_blank" rel="noopener">scrapy的settings文档</a></strong></p>
+<hr>
+<p><strong>技巧</strong>：<br><strong>多封装通用的代码脚本。</strong><br>积累是一种进步的方式，不要让自己的眼光局限于底层。  </p>
+<hr>
+<h4 id="二、编写spider具体代码"><a href="#二、编写spider具体代码" class="headerlink" title="二、编写spider具体代码"></a>二、编写spider具体代码</h4><p>&emsp;&emsp;在这里书写具体的逻辑，解析数据/数据清理/返回数据项item，为具体的某条数据设置缓存（去重），这里常使用基于文件的（<strong>redis数据库缓存/文件缓存</strong>）以及<strong>布隆过滤</strong>等方法  </p>
+<p>注：<br><strong>缓存（一般缓存的是具体某条数据的唯一的字段，如：url）</strong>  </p>
+<hr>
+<h4 id="三、items-定义数据项"><a href="#三、items-定义数据项" class="headerlink" title="三、items 定义数据项"></a>三、items 定义数据项</h4><p>&emsp;&emsp;这里涉及到定义数据项item的字段。</p>
+<p>注：<strong>可能会有多个表，这里涉及到表的创建，在此次项目中使用pipelines.py文件中的SqlitePipeline类（在码云上这个类单独放在SqlitePipeline文件中，便于其他scrapy项目引用）</strong></p>
+<hr>
+<h4 id="四、middlewares-中间件"><a href="#四、middlewares-中间件" class="headerlink" title="四、middlewares 中间件"></a>四、middlewares 中间件</h4><p>&emsp;&emsp;配置通用的中间件文件，引用scrapy的中间件或者自定义中间件。这里可以使用自定义好的脚本文件，再对不同的scrapy项目，稍加修改。  </p>
+<p>注：<strong>在其他scrapy项目中可以直接引用本脚本，只需稍加修改headers的内容</strong><br>封装好的脚本对应码云上的<strong>downloadermiddleware</strong>.py文件</p>
+<hr>
+<h4 id="五、pipelines-存储-下载"><a href="#五、pipelines-存储-下载" class="headerlink" title="五、pipelines(存储/下载)"></a>五、pipelines(存储/下载)</h4><p>&emsp;&emsp;（1）<strong>保存数据</strong>：采集图片信息，将图片的本地路径/图片的名称/url，保存到sqlite数据库<br>&emsp;&emsp;（2）<strong>下载图片</strong>：尝试使用scrapy的pipelines提供的多种方式方式下载图片。(files文件下载/images图片下载/<strong>自定义管道</strong>下载)<br>&emsp;&emsp;使用pipelines下载的时候涉及到一些数据的处理。比如：下载时需要的url为可迭代的数据类型，但sqlite存储时不能存储列表，此时，在下载完毕之后，需要<strong>重写files/imags文件提供的方法处理item数据项</strong>。（重写<strong>item_completed()</strong> 方法，其中的results参数含有item数据内容/file_path()方法，改写文件后缀名，或者获取图片路径）<br>（3）自定义管道（管道是个类）都要实现process_item(item, spider)方法，并返回一个item<br>&emsp;&emsp;<strong>注</strong>：scrapy.pipelines中的images提供的文件只能下载jpg静态图片，无法下载gif动图（修改后缀也不行）<br>&emsp;&emsp;下载动图使用files或者自定义下载的管道文件。   </p>
+<hr>
+<h3 id="六、somethings-importantly"><a href="#六、somethings-importantly" class="headerlink" title="六、somethings importantly"></a>六、somethings importantly</h3><p>&emsp;&emsp;（1）对于未知代码，<strong>断点调试，测试输出数据</strong>。<br>&emsp;&emsp;（2）<strong>深入了解scrapy官方文档。</strong>  </p>
+<h3 id="可引用脚本-代码段"><a href="#可引用脚本-代码段" class="headerlink" title="可引用脚本/代码段"></a>可引用脚本/代码段</h3><p>（1）downloader中间件脚本：downloadermiddlewars.py<br>（2）pipeline存储管道类脚本：SqlitePipeline.py  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/scrapy%E5%AE%9E%E6%88%98%EF%BC%9A%E7%88%AC%E5%8F%96%E6%96%97%E5%9B%BE%E7%BD%91%E4%B9%8Bscrapy%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" data-id="ck78s1tpg00531g9yes0p2kih" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bloomfilter4py3模块：python实现布隆过滤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/bloomfilter4py3%E6%A8%A1%E5%9D%97%EF%BC%9Apython%E5%AE%9E%E7%8E%B0%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.852Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/bloomfilter4py3%E6%A8%A1%E5%9D%97%EF%BC%9Apython%E5%AE%9E%E7%8E%B0%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4/">bloomfilter4py3模块：python实现布隆过滤</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="布隆过滤"><a href="#布隆过滤" class="headerlink" title="布隆过滤"></a>布隆过滤</h2><p>#布隆过滤/数据去重  </p>
+<p>&emsp;&emsp;简单介绍一下布隆过滤：<br>&emsp;&emsp;布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量和一系列随机映射函数。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都比一般的算法要好的多，缺点是有一定的误识别率和删除困难<br>优点：<br>（1）空间效率高<br>（2）查询时间短<br>缺点：<br>（1）有一定的误识别率<br>（2）删除困难  </p>
+<h2 id="bloomfilter4py3模块"><a href="#bloomfilter4py3模块" class="headerlink" title="bloomfilter4py3模块"></a>bloomfilter4py3模块</h2><p>&emsp;&emsp;bloomfilter4py3是Python实现布隆过滤的一个模块，这里我使用这个模块实现布隆过滤涉及的一系列数据去重问题<br><a href="https://pypi.org/project/bloomfilter4py3/" target="_blank" rel="noopener">bloomfilter4py3</a><br>&emsp;&emsp;1、安装：<br><code>pip install bloomfilter4py3</code><br>&emsp;&emsp;2、引入：<br><code>import bloomfilter</code>  </p>
+<h3 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h3><p>bloomfilter4py3常用的有三个方法  </p>
+<h4 id="test"><a href="#test" class="headerlink" title="test()"></a>test()</h4><p>参数：<br>item：需要去重判断的数据，如果存在，test()返回true，否则返回false  </p>
+<h4 id="add"><a href="#add" class="headerlink" title="add()"></a>add()</h4><p>参数：<br>item：需要与bit位映射的数据，每次add之后需要保存一下。  </p>
+<h4 id="save"><a href="#save" class="headerlink" title="save()"></a>save()</h4><p>参数：<br>filepath：保存布隆过滤文件的文件路径  </p>
+<h4 id="Bloomfilter"><a href="#Bloomfilter" class="headerlink" title="Bloomfilter()"></a>Bloomfilter()</h4><p>构造方法Bloomfilter()<br>参数：<br>nbits_filepath：布隆过滤文件路径或者bit数，一个bit可以映射一条数据</p>
+<h4 id="布隆过滤实例"><a href="#布隆过滤实例" class="headerlink" title="布隆过滤实例"></a>布隆过滤实例</h4><p>&emsp;&emsp;为了测试这个模块对bit位的利用率，我在Bloomfilter()方法中设置了100个bit，并且从我本地数据库中取出100条数据，按顺序加入，我发现其利用率差不多是50%，空间开辟的小了，冲突率很高。<br>&emsp;&emsp;在使用bloomfilter的时候，尽量把参数nbits设置的大一些<br>&emsp;&emsp;1024 -&gt; 1kb -&gt; 可最多映射1024个数据</p>
+<p>&emsp;&emsp;下面这个代码实例是可以直接使用的，数据量比较小，如果有需要，可以自行使用大量数据测试，在add_data()构造函数中传入可迭代的数据即可  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> bloomfilter <span class="keyword">import</span> Bloomfilter</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试布隆过滤的类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> os.path.exists(<span class="string">"test.bm"</span>):</span><br><span class="line">                self.bloom = Bloomfilter(<span class="string">"test.bm"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># /Bloomfilter的参数是nbits，一个bit标志着一个数据是否存在</span></span><br><span class="line">            self.bloom = Bloomfilter(<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_data</span><span class="params">(self, lst)</span>:</span></span><br><span class="line">        <span class="comment"># 添加一个lst数据</span></span><br><span class="line">        exis_num = <span class="number">0</span></span><br><span class="line">        not_exis_num = <span class="number">0</span></span><br><span class="line">        total_num = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> lst:</span><br><span class="line">            total_num += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 多次运行，如果存在，则不加入</span></span><br><span class="line">            <span class="keyword">if</span> self.bloom.test(str(i)):</span><br><span class="line">                exis_num += <span class="number">1</span></span><br><span class="line">                print(<span class="string">'已存在'</span>, str(i))</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            self.bloom.add(str(i))</span><br><span class="line">            self.bloom.save(<span class="string">'test.bm'</span>)</span><br><span class="line">            not_exis_num += <span class="number">1</span></span><br><span class="line">            print(<span class="string">'已加入'</span>, str(i))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 总数</span></span><br><span class="line">        print(<span class="string">'总数：'</span>, total_num)</span><br><span class="line">        <span class="comment"># 计算容错率</span></span><br><span class="line">        error_rate = exis_num / total_num</span><br><span class="line">        print(<span class="string">'容错率：'</span>, error_rate, exis_num)</span><br><span class="line">        <span class="comment"># 加入率</span></span><br><span class="line">        right_rate = not_exis_num / total_num</span><br><span class="line">        print(<span class="string">'正确率：'</span>, right_rate, not_exis_num)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">lst = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">82</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">3</span>]</span><br><span class="line">test = Test()</span><br><span class="line">test.add_data(lst)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/bloomfilter4py3%E6%A8%A1%E5%9D%97%EF%BC%9Apython%E5%AE%9E%E7%8E%B0%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4/" data-id="ck78s1tnj00291g9y9n7c4ewf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python与时间相关模块date datetime calendar" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/python%E4%B8%8E%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97date%20datetime%20calendar/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.842Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/python%E4%B8%8E%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97date%20datetime%20calendar/">python与时间相关模块date/datetime/calendar</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="三个模块time-datetime-calendar"><a href="#三个模块time-datetime-calendar" class="headerlink" title="三个模块time/datetime/calendar"></a>三个模块time/datetime/calendar</h2><h3 id="常用的功能"><a href="#常用的功能" class="headerlink" title="常用的功能"></a>常用的功能</h3><p>对应我们编程，经常使用的功能：</p>
+<ol>
+<li>获取当前的年月日-时分秒、年月日、时分秒。</li>
+<li>获取时间戳</li>
+<li>延时</li>
+<li>程序处理时间</li>
+<li>今天是周几？</li>
+<li>获取年、月、日、时、分、秒</li>
+</ol>
+<p>经常使用的三个模块time、datetime、calendar</p>
+<ol>
+<li>time模块<ul>
+<li>time() #获取时间戳</li>
+<li>sleep() # 设置延时 参数单位为秒</li>
+</ul>
+</li>
+<li>datetime（年月日-时分秒模块）<ul>
+<li>datetime类<ul>
+<li>无参构造实例（默认当前年月日-时分秒）/有参构造实例(年月日-时分秒)</li>
+<li>fields和methods</li>
+<li>常用方法：today()/date()/time()/weekday()</li>
+</ul>
+</li>
+<li>date类<ul>
+<li>无参构造实例（默认当前年月日）/有参构造实例(年月日)</li>
+<li>fields和methods</li>
+<li>常用方法：today()/weekday()</li>
+</ul>
+</li>
+<li>time类<ul>
+<li>无参构造实例（默认当前时分秒）/有参构造实例(时分秒)</li>
+<li>fields和methods</li>
+<li>个人认为没有什么常用方法，但可以通过调用函数之后返回的对象调用year/month/day等属性，以上的类 （同）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>calendar（日历模块）<ul>
+<li>获取日历相关的日期，一般我们日历都是date（year,month,day,weekday）</li>
+<li>itermonthdates()/itermonthdays()/itermonthdays1…看起来都类似。</li>
+</ul>
+</li>
+</ol>
+<h3 id="测试源码"><a href="#测试源码" class="headerlink" title="测试源码"></a>测试源码</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">import time, datetime, calendar</span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string"># 时间戳：从1970年1月1日到现在的所有秒数之和</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"><span class="comment"># time模块常用方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、time() 返回时间戳</span></span><br><span class="line">timestamp = time.time()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、sleep() 延迟函数，参数是秒数，可以为float型</span></span><br><span class="line"><span class="comment"># time.sleep(2)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、process_time()/process_time_ns() 程序处理时间  程序处理时间的纳秒</span></span><br><span class="line">processtime = time.process_time()</span><br><span class="line">processtime_ns = time.process_time_ns()</span><br><span class="line"><span class="builtin-name">print</span>(processtime)</span><br><span class="line"><span class="builtin-name">print</span>(processtime_ns)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、ctime()/asctime() 返回当前时间的字符串形式</span></span><br><span class="line">cur_time_str = time.asctime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time_str)</span><br><span class="line">cur_time_str = time.ctime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、localtime() 返回一个元组表达式形式的列表</span></span><br><span class="line">cur_time = time.localtime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time)</span><br><span class="line"></span><br><span class="line"><span class="comment"># datetime模块</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">datetime模块中的三个类class</span></span><br><span class="line"><span class="string">    1、datetime：年月日-时分秒</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用datetime创建一个实例，需要传入时间（整型:年、月、日、时、分、秒。。。）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的年月日-时分秒。methods: today()/date()/time()/weekday()/other methods</span></span><br><span class="line"><span class="string">    2、date：年月日</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用date创建一个实例，需要传入时间（整型:年、月、日）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的年月日。methods: today()/weekday()/other methods</span></span><br><span class="line"><span class="string">    3、time：时分秒</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用time创建一个实例，需要传入时间（整型:时、分、秒）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的时分秒。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">***！之前一直对时间很模糊，现在基本了解了程序中具体到分秒的时间：date（年月日） - time（时分秒），同时这对应着datetime类的两个方法date()/time()，返回什么值自然一想就知道了，肯定是date()返回年月日，time()返回时分秒</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 返回时分秒</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).time()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回ctime类型的字符串</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).ctime()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回年月日</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).date()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回一个当前具体的时间</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).now()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line">x = datetime.datetime.today().hour</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回星期几</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).weekday()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># strptime的用法</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).strptime(<span class="string">"2019-05-24"</span>, <span class="string">"%Y-%m-%d"</span>)</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># class: date</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'*'</span><span class="number">*20</span>)</span><br><span class="line">today = datetime.time</span><br><span class="line"></span><br><span class="line"><span class="comment"># class: time</span></span><br><span class="line"><span class="builtin-name">print</span>(today)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calender模块</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'*'</span><span class="number">*20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># weekday()方法</span></span><br><span class="line">weekday = calendar.weekday(2019, 7, 26)</span><br><span class="line"><span class="builtin-name">print</span>(weekday)</span><br><span class="line"></span><br><span class="line"><span class="comment"># class:</span></span><br><span class="line"><span class="comment"># 获取calendar对象</span></span><br><span class="line"><span class="comment"># 设置firstweekday=6</span></span><br><span class="line">calendar = calendar.Calendar(<span class="attribute">firstweekday</span>=6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 day</span></span><br><span class="line">all_dates = calendar.itermonthdates(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_dates:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 year-month-day</span></span><br><span class="line">all_ = calendar.itermonthdays(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(day,weekday) 其中weekday是0-6</span></span><br><span class="line">all_ = calendar.itermonthdays2(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(year, month, day)</span></span><br><span class="line">all_ = calendar.itermonthdays3(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(year, month, day, weekday)</span></span><br><span class="line">all_ = calendar.itermonthdays4(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间的格式化问题</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/python%E4%B8%8E%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97date%20datetime%20calendar/" data-id="ck78s1tp0004h1g9y1r211acw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-itertools模块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/itertools%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.786Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/itertools%E6%A8%A1%E5%9D%97/">itertools模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="itertools模块"><a href="#itertools模块" class="headerlink" title="itertools模块"></a>itertools模块</h2><h3 id="itertools模块整理"><a href="#itertools模块整理" class="headerlink" title="itertools模块整理"></a>itertools模块整理</h3><p>这里的返回值都是可以迭代的，但是是生成器。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"></span><br><span class="line"># <span class="number">1</span>、count()/返回一个不断循环的generator <span class="keyword">return</span> consecutive values</span><br><span class="line"># x = itertools.count(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line"># <span class="built_in">print</span>(type(x))	</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span>、islice()/从一个迭代器中 取一段（左闭右开）返回一个generator，可设置步长。</span><br><span class="line">y = <span class="built_in">list</span>(itertools.islice(x, <span class="number">5</span>, <span class="number">10</span>, <span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(y)</span><br><span class="line"></span><br><span class="line"># <span class="number">3</span>、cycle()/根据可迭代对象 返回一个不断循环的generator</span><br><span class="line">x = itertools.cycle('ABC')</span><br><span class="line"><span class="built_in">print</span>(type(x))</span><br><span class="line"></span><br><span class="line"># <span class="number">4</span>、dropwhile()和takewhile()(这里不再赘述，看名字就知道功能了) /根据predicate（谓语，动作）筛选迭代对象的值，并返回一个新的generator对象。</span><br><span class="line">x = itertools.dropwhile(lambda e: e &lt; <span class="number">5</span>, range(<span class="number">1</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"># <span class="number">5</span>、filterfalse() 根dropwhile() 有异曲同工之处.</span><br><span class="line"># filterfalse() ---&gt; 如果为<span class="literal">false</span>，则留下。</span><br><span class="line"># dropwhile() ---&gt; 如果为True，则丢掉。</span><br><span class="line">x = itertools.dropwhile(lambda e: e &lt; <span class="number">5</span>, range(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"># &gt;&gt;&gt;[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">x = itertools.filterfalse(lambda e: e &lt; <span class="number">5</span>, range(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"># &gt;&gt;&gt;[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"># <span class="number">6</span>、groupby() 对一个迭代器中的元素分组，根据后面提供的谓语,返回(condition, <span class="built_in">list</span>)generator</span><br><span class="line">x = itertools.groupby(range(<span class="number">10</span>), lambda x: x &lt; <span class="number">5</span> <span class="keyword">or</span> x &gt; <span class="number">8</span>)</span><br><span class="line"><span class="keyword">for</span> condition, numbers in x:</span><br><span class="line">    <span class="built_in">print</span>(condition, <span class="built_in">list</span>(numbers))</span><br><span class="line"></span><br><span class="line"># <span class="number">7</span>、product() 返回多个迭代器的（积）的generator</span><br><span class="line">x = itertools.product('ABC', range(3), range(3))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"></span><br><span class="line"># <span class="number">8</span>、starmap() 根据给定的函数，在后面的可迭代对象中循环判定，然后返回一个判定结果generator。</span><br><span class="line">x = itertools.starmap(str.islower, 'aBCDefGhI')</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"></span><br><span class="line"># <span class="number">9</span>、tee() / 根据提供的参数：迭代器/n  返回n个迭代器对象参数组成的generator。</span><br><span class="line">x = itertools.tee(range(<span class="number">10</span>), <span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> i in x:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>(i))</span><br><span class="line"></span><br><span class="line"># <span class="number">10</span>、内置函数zip() 和 zip_longest()函数 /根据提供的多个可迭代类型的对象，返回压缩的generator元组</span><br><span class="line">a = range(<span class="number">10</span>)</span><br><span class="line">b = range(<span class="number">8</span>)</span><br><span class="line"># zip() /返回一个generator元组。以最短的对象为准</span><br><span class="line">x = zip(a, b)</span><br><span class="line"></span><br><span class="line"># itertools.zip_longest() /返回一个generator元组，以最长的对象为准，缺少的地方值为None。</span><br><span class="line">y = itertools.zip_longest(a, b)</span><br><span class="line"></span><br><span class="line"># <span class="number">11</span>、repeat() /重复一个值n遍，返回一个generator</span><br><span class="line">x = itertools.repeat(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"># <span class="number">12</span>、permutations() /根据提供的迭代器对象以及参数n，返回一个由迭代器元素组成的n位排列的generator</span><br><span class="line">x = itertools.permutations(range(<span class="number">4</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"># <span class="number">13</span>、compress() /根据真值表筛选元素，返回筛选之后元素的generator</span><br><span class="line">x = itertools.compress(range(<span class="number">5</span>), (True, False, True, True, False))</span><br><span class="line"># &gt;&gt;&gt; 这个迭代器实例中的值为 [<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"># <span class="number">14</span>、combinations()  参数：迭代器类型/n  组合：不允许元素与自身组合 /combinations_with_replacement() 允许元素与自身组合。</span><br><span class="line"># 根据提供的迭代器对象，和参数n，返回一个迭代器元素的全部组合的generator。</span><br><span class="line">x = itertools.combinations(range(<span class="number">4</span>), <span class="number">3</span>)</span><br><span class="line"># &gt;&gt;&gt; 迭代器的值：[(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>), (<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>), (<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)]</span><br><span class="line">x = itertools.combinations_with_replacement('ABC', 2)</span><br><span class="line"># &gt;&gt;&gt; 迭代器的值：[(<span class="string">'A'</span>, <span class="string">'A'</span>), (<span class="string">'A'</span>, <span class="string">'B'</span>), (<span class="string">'A'</span>, <span class="string">'C'</span>), (<span class="string">'B'</span>, <span class="string">'B'</span>), (<span class="string">'B'</span>, <span class="string">'C'</span>), (<span class="string">'C'</span>, <span class="string">'C'</span>)]</span><br><span class="line"></span><br><span class="line"># <span class="number">15</span>、accumulate() /根据提供的迭代器类型对象，按索引累加返回一个新的generator类型的对象。</span><br><span class="line">x = itertools.accumulate(range(<span class="number">10</span>))</span><br><span class="line"># &gt;&gt;&gt;[<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">21</span>, <span class="number">28</span>, <span class="number">36</span>, <span class="number">45</span>]</span><br><span class="line"></span><br><span class="line"># <span class="number">16</span>、chain() / 返回一个连接多个迭代器类型对象的generator。</span><br><span class="line">x = itertools.chain(range(<span class="number">10</span>), [<span class="string">'x'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"># &gt;&gt;&gt;[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="string">'x'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/itertools%E6%A8%A1%E5%9D%97/" data-id="ck78s1to800361g9y6uv5fk4l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-os模块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/os%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.765Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/os%E6%A8%A1%E5%9D%97/">os模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="os模块"><a href="#os模块" class="headerlink" title="os模块"></a>os模块</h2><h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><p>os: Operating System<br>&emsp;&emsp;想一想我们能想到的os能为我们做的事，并且是常做的事情。</p>
+<ol>
+<li>创建文件夹</li>
+<li>创建多重嵌套文件夹</li>
+<li>修改文件名称</li>
+<li>删除文件(只能删除空文件夹)</li>
+<li>删除文件夹(只能删除空文件夹)</li>
+<li>获取文件路径</li>
+<li>获取文件名以及后缀名</li>
+<li>获取文件的后缀名和文件路径  </li>
+<li>获取文件信息<br>os模块的这些东西大多都与文件夹/文件有关系。一想到文件及文件夹问题，我们需要来看看os模块和os的path模块了<h3 id="os模块的一些常用用法"><a href="#os模块的一些常用用法" class="headerlink" title="os模块的一些常用用法"></a>os模块的一些常用用法</h3></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment"># 0、模块函数cpu_count() 输出cpu的数量</span></span><br><span class="line">print(os.cpu_count())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、模块函数makedirs() 创建文件夹</span></span><br><span class="line"><span class="comment"># makedirs和mkdir()在makedirs()的函数说明里说的明明白白的，makedirs可以创建多级目录，如果目录存在的话，并且可以设置参数exists_ok=True，不会报错。</span></span><br><span class="line">os.mkdir(<span class="string">"image"</span>)</span><br><span class="line">os.makedirs(<span class="string">"image/a/b/c"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、模块函数getcwd() 获得当前工作目录的绝对路径</span></span><br><span class="line">print(os.getcwd())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、模块函数listdir() 打印当前路径下的文件/文件夹的名称，不会再深入下一层目录</span></span><br><span class="line"><span class="comment"># 无参，返回当前路径下的文件/文件夹名称</span></span><br><span class="line"><span class="comment"># 有参，返回参数路径下的文件/文件夹名称</span></span><br><span class="line">print(os.listdir(<span class="string">"D:/python_project/python_student_zhiyou"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、模块函数walk() 返回指定的根目录(包括参数根目录)的文件夹中所有文件夹对应的root, dirs, files</span></span><br><span class="line">gen_path = os.walk(<span class="string">"D:\python_project\python_student_zhiyou"</span>)</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> gen_path:</span><br><span class="line">    print(root, <span class="string">"***"</span>, dirs, <span class="string">"***"</span>, files)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、模块函数remove() 删除指定文件，如果想删除某个路径下的所有文件，可以配合walk使用，删除某个文件夹下的所有文件</span></span><br><span class="line">os.remove(<span class="string">r"D:/python_project/python_student_zhiyou/imges/favicon.png"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6、path.splitext() 以元组形式获取文件名/后缀名(filename, 后缀名)</span></span><br><span class="line">gen_path = os.walk(<span class="string">"D:\python_project\python_student_zhiyou"</span>)</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> gen_path:</span><br><span class="line">    print(root, <span class="string">"***"</span>, dirs, <span class="string">"***"</span>, files)</span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">        <span class="comment"># 由此可见，splitext返回的是一个文件名和其后缀名</span></span><br><span class="line">        print(os.path.splitext(file))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7、模块函数replace() 给文件重命名</span></span><br><span class="line">os.replace(<span class="string">r"D:\python_project\python_student_zhiyou\imges\test\favicon.png"</span>, <span class="string">r"D:\python_project\python_student_zhiyou\imges\test\t.png"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 8、模块函数rmdir()/removedirs() 删除文件夹</span></span><br><span class="line"><span class="comment"># os.rmdir() # 删除一个空文件夹</span></span><br><span class="line">os.rmdir(<span class="string">'a'</span>)</span><br><span class="line">print(os.getcwd())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 9、os.removedirs() # 删除多重嵌套的文件夹（空文件夹）</span></span><br><span class="line">os.removedirs(<span class="string">r'b\c\e'</span>)</span><br><span class="line">print(os.getcwd())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 10、查看某文件的信息</span></span><br><span class="line">file_stas = os.stat(<span class="string">'1.txt'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="os之path模块常用用法"><a href="#os之path模块常用用法" class="headerlink" title="os之path模块常用用法"></a>os之path模块常用用法</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">1</span>、判断是否是绝对路径</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">os</span>.<span class="built_in">path</span>.isabs(<span class="string">'1.txt'</span>))</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span>、返回文件的路径、文件的扩展名</span><br><span class="line"><span class="built_in">path</span>, ext_name = <span class="built_in">os</span>.<span class="built_in">path</span>.splitext(<span class="string">'1.txt'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">path</span>, ext_name)</span><br><span class="line"></span><br><span class="line"># <span class="number">3</span>、返回上一级的路径</span><br><span class="line"><span class="built_in">path</span> = <span class="built_in">os</span>.<span class="built_in">path</span>.dirname(<span class="string">'/iamge/2.jpg'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">path</span>)</span><br><span class="line"></span><br><span class="line"># <span class="number">4</span>、返回路径的最后的文件夹或者文件名称</span><br><span class="line"><span class="built_in">path</span> = <span class="built_in">os</span>.<span class="built_in">path</span>.basename(<span class="string">'/iamge/2.jpg'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">path</span>)</span><br><span class="line"></span><br><span class="line"># <span class="number">5</span>、获取文件的信息</span><br><span class="line"># <span class="built_in">os</span>.<span class="built_in">path</span>.getatime()/<span class="built_in">os</span>.<span class="built_in">path</span>.getctime()/<span class="built_in">os</span>.<span class="built_in">path</span>.getmtime()/<span class="built_in">os</span>.<span class="built_in">path</span>.getsize()等这些方法</span><br></pre></td></tr></table></figure>
+
+<h4 id="实际练习"><a href="#实际练习" class="headerlink" title="实际练习"></a>实际练习</h4><ul>
+<li>删除多重嵌套</li>
+</ul>
+<p>删除文件夹下的多级文件夹及文件  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">path_root = <span class="string">r'D:\python_project\python_student_zhiyou\2019-7-29\t'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dir_path</span><span class="params">(path_root)</span>:</span></span><br><span class="line">    genpath = os.walk(path_root)</span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> genpath:</span><br><span class="line">        print(path)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        先判断是不是文件夹</span></span><br><span class="line"><span class="string">        1、如果是文件夹，传入一个路径，调用自己</span></span><br><span class="line"><span class="string">        1、如果是文件，删除文件及path_root。</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> path[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">for</span> dir <span class="keyword">in</span> path[<span class="number">1</span>]:</span><br><span class="line">                tem_path = os.path.join(path[<span class="number">0</span>], dir)</span><br><span class="line">                dir_path(tem_path)</span><br><span class="line">        <span class="keyword">for</span> filename <span class="keyword">in</span> path[<span class="number">2</span>]:</span><br><span class="line">            tem_path = os.path.join(path[<span class="number">0</span>], filename)</span><br><span class="line">            os.remove(tem_path)</span><br><span class="line">            <span class="comment"># 删除这个文件夹中的文件之后删除这个文件夹</span></span><br><span class="line">            os.removedirs(path_root)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用这个函数</span></span><br><span class="line">dir_path(path_root)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/os%E6%A8%A1%E5%9D%97/" data-id="ck78s1tov00451g9ydulg2993" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mysql分区分表" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/mysql%E5%88%86%E5%8C%BA%E5%88%86%E8%A1%A8/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.721Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/01/mysql%E5%88%86%E5%8C%BA%E5%88%86%E8%A1%A8/">mysql分区分表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="为什么分区分表？"><a href="#为什么分区分表？" class="headerlink" title="为什么分区分表？"></a>为什么分区分表？</h1><p>分表：提高表的查询性能（查询速度）<br>分区：提高数据库的并发性能<br>既分表又分区：提高表的查询速度以及提高数据库的并发性能  </p>
+<h2 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h2><p>&emsp;&emsp;<strong>选择恰当的分表策略，按照一定的规则分解成多张具有独立存储空间的实体表</strong>  </p>
+<p>特点：</p>
+<ol>
+<li>解决了单表数据量大带来的查询效率下降的问题（提高了表的访问速度）</li>
+<li>无法给数据库并发处理能力带来质的提升  </li>
+</ol>
+<p>子表可以在同一磁盘，也可以在不同机器上。  </p>
+<h2 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h2><p>&emsp;&emsp;<strong>对数据库进行拆分，将数据分段划分在多个位置存放，从而提高数据库写入能力</strong>  </p>
+<p>特点：  </p>
+<ol>
+<li>提高数据库的并发性能</li>
+</ol>
+<h2 id="既分库又分表"><a href="#既分库又分表" class="headerlink" title="既分库又分表"></a>既分库又分表</h2><p>&emsp;&emsp;分成不同的数据库，在不同的数据库中又有多个相同的表结构，用来存储结构相同的数据。<br>解决的问题：  </p>
+<ol>
+<li>数据库面临的高并发压力</li>
+<li>海量数据的存储问题</li>
+</ol>
+<h3 id="分库分表策略"><a href="#分库分表策略" class="headerlink" title="分库分表策略"></a>分库分表策略</h3><ol>
+<li>中间变量 = user_id % (分库数量 * 每个库的表数量)</li>
+<li>库 = 取整数 (中间变量 / 每个库的表数量)</li>
+<li>表 = 中间变量 % 每个库的表数量</li>
+</ol>
+<h3 id="分库分区测试代码（sqlite）"><a href="#分库分区测试代码（sqlite）" class="headerlink" title="分库分区测试代码（sqlite）"></a>分库分区测试代码（sqlite）</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">import sqlite3</span><br><span class="line">import pymysql</span><br><span class="line">from DB_tool import DBTool,DB_type</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">存储stu信息：name，id</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1、使用sqlite，创建256个数据库。</span></span><br><span class="line"><span class="string">每个数据集创建20个表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2、插入一条stu信息</span></span><br><span class="line"><span class="string">id = 3000</span></span><br><span class="line"><span class="string">name = '张三'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">3、查询这条信息在哪个数据库哪个表中</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 分库分表策略</span></span><br><span class="line"><span class="string"># temp = temp % (table_num * db_num)</span></span><br><span class="line"><span class="string"># db_id = temp / table_num</span></span><br><span class="line"><span class="string"># table_id = temp % table_num</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">id = <span class="number">3000</span></span><br><span class="line">name = <span class="string">'张三'</span></span><br><span class="line">temp = id % (<span class="number">256</span> * <span class="number">20</span>)</span><br><span class="line">db_id = temp <span class="regexp">//</span> <span class="number">20</span></span><br><span class="line">tab_id = temp % <span class="number">20</span></span><br><span class="line">print(db_id, tab_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def con_sqlite(db_name):</span><br><span class="line">    db = sqlite3.connect(db_name)</span><br><span class="line">    return db</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建多个数据库及表</span></span><br><span class="line">def multi_sqlite():</span><br><span class="line">    <span class="comment"># 创建256个库</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>):</span><br><span class="line">        <span class="comment"># 连接256个数据库</span></span><br><span class="line">        db = con_sqlite(f<span class="string">"db_&#123;i&#125;"</span>)</span><br><span class="line">        cursor = db.cursor()</span><br><span class="line">        <span class="comment"># 每个数据库创建256个表</span></span><br><span class="line">        print(f<span class="string">'创建第&#123;i&#125;数据库'</span>)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">            sql = f<span class="string">"""CREATE TABLE table_&#123;j&#125;(name VARCHAR (25), age INTEGER PRIMARY KEY AUTOINCREMENT);"""</span></span><br><span class="line">            cursor.execute(sql)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照分库分表策略插入数据到特定的数据库中</span></span><br><span class="line">def insert(db_id, tab_id, id, name):</span><br><span class="line">    db = con_sqlite(f<span class="string">'db_&#123;db_id&#125;'</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    sql = f<span class="string">"""</span></span><br><span class="line"><span class="string">        INSERT INTO table_&#123;tab_id&#125; VALUES (?,?);</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    cursor.execute(sql, (name, id))</span><br><span class="line">    db.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询数据在哪个数据库中</span></span><br><span class="line">def select(db_id, tab_id):</span><br><span class="line">    db = con_sqlite(f<span class="string">'db_&#123;db_id&#125;'</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    sql = f<span class="string">"""</span></span><br><span class="line"><span class="string">        SELECT * FROM table_&#123;tab_id&#125;;</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    cursor.execute(sql)</span><br><span class="line">    result = cursor.fetchall()</span><br><span class="line">    print(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 初始化分区分表</span></span><br><span class="line"><span class="comment"># multi_sqlite()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入数据</span></span><br><span class="line"><span class="comment"># insert(db_id, tab_id, id, name)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询数据</span></span><br><span class="line"><span class="comment"># select(db_id, tab_id)</span></span><br></pre></td></tr></table></figure>
+
+<p>DB_tool代码</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">import sqlite3</span><br><span class="line"><span class="comment"># db=DataBase=数据库</span></span><br><span class="line">import pymysql</span><br><span class="line">from enum import Enum</span><br><span class="line"></span><br><span class="line">MYSQL_COF = &#123;</span><br><span class="line">    <span class="comment"># host主机名 user数据库的用户名 password数据库登录密码 database 要连接的数据库</span></span><br><span class="line">    <span class="string">'host'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">    <span class="string">'port'</span>: <span class="number">3306</span>,</span><br><span class="line">    <span class="string">'user'</span>: <span class="string">'root'</span>,</span><br><span class="line">    <span class="string">'password'</span>: <span class="string">'root'</span>,</span><br><span class="line">    <span class="string">'database'</span>: <span class="string">'db'</span>,</span><br><span class="line">    <span class="string">'charset'</span>: <span class="string">'utf8'</span></span><br><span class="line">&#125;</span><br><span class="line">SQLITE_COF = &#123;</span><br><span class="line">    <span class="string">'database'</span>: <span class="string">'db.sqlite'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DB_type</span>(<span class="title">Enum</span>):</span></span><br><span class="line">    MYSQL = <span class="string">'mysql'</span></span><br><span class="line">    SQLITE = <span class="string">'sqlite'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DBTool</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">db_type:</span> DB_type = DB_type.MYSQL)</span></span><span class="symbol">:</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 提示用户输入正确的数据库类型</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(db_type, DB_type)<span class="symbol">:</span></span><br><span class="line">            raise TypeError(<span class="string">"参数类型不对,请使用'DB_type.MYSQL'的形式"</span>)</span><br><span class="line">        <span class="keyword">if</span> db_type.value == <span class="string">'mysql'</span><span class="symbol">:</span></span><br><span class="line">            con = pymysql.connect(**MYSQL_COF)</span><br><span class="line">        elif db_type.value == <span class="string">'sqlite'</span><span class="symbol">:</span></span><br><span class="line">            con = sqlite3.connect(**SQLITE_COF)</span><br><span class="line">        <span class="keyword">self</span>.__con = con</span><br><span class="line">        <span class="keyword">self</span>.__cursor = <span class="keyword">self</span>.__con.cursor()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_all</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print(<span class="string">"关闭游标和连接对象"</span>)</span><br><span class="line">        <span class="keyword">self</span>.__cursor.close()</span><br><span class="line">        <span class="keyword">self</span>.__con.close()</span><br><span class="line">        <span class="keyword">self</span>.__cursor = None</span><br><span class="line">        <span class="keyword">self</span>.__con = None</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="symbol">try:</span></span><br><span class="line">            <span class="keyword">self</span>.close_all()</span><br><span class="line">        except Exception as <span class="symbol">e:</span></span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_table</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        print(<span class="string">"创建表成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">drop_table</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">table_name:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="comment"># 删除表要慎重</span></span><br><span class="line">        <span class="comment"># 1）表是否存在  2）表中的数据怎么办</span></span><br><span class="line">        sql = f<span class="string">"drop table IF EXISTS &#123;table_name&#125;"</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line">        print(<span class="string">"删除表成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># lazyload=懒加载=用到的时候再创建</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">params:</span> list = None)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">for</span> param <span class="keyword">in</span> <span class="symbol">params:</span></span><br><span class="line">            <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">            <span class="keyword">self</span>.__con.commit()</span><br><span class="line">            print(<span class="string">"插入成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetchone</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">tuple:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.__cursor.fetchone()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetchall</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">list:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.__cursor.fetchall()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/mysql%E5%88%86%E5%8C%BA%E5%88%86%E8%A1%A8/" data-id="ck78s1tou00421g9ya8jx9t4h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

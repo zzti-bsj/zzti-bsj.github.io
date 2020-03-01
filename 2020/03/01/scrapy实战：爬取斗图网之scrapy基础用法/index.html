@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>scrapy实战：爬取斗图网之操作scrapy基本流程 | Bsj&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="项目代码&amp;emsp;&amp;emsp;整个项目的代码在码云上：码云地址，以此项目为参考往下阅读。 项目概述&amp;emsp;&amp;emsp;当前项目是scrapy的一个实战项目，是操作scrapy的常规流程。&amp;emsp;&amp;emsp;总结一下这个scrapy项目我的个人思路。&amp;emsp;&amp;emsp;此项目可作为scrapy框架基础用法的参考。    一、spider文件配置&amp;emsp;&amp;emsp;项目的核心配置文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scrapy实战：爬取斗图网之操作scrapy基本流程">
+<meta property="og:url" content="http://yoursite.com/2020/03/01/scrapy%E5%AE%9E%E6%88%98%EF%BC%9A%E7%88%AC%E5%8F%96%E6%96%97%E5%9B%BE%E7%BD%91%E4%B9%8Bscrapy%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="Bsj&#39;s Blog">
+<meta property="og:description" content="项目代码&amp;emsp;&amp;emsp;整个项目的代码在码云上：码云地址，以此项目为参考往下阅读。 项目概述&amp;emsp;&amp;emsp;当前项目是scrapy的一个实战项目，是操作scrapy的常规流程。&amp;emsp;&amp;emsp;总结一下这个scrapy项目我的个人思路。&amp;emsp;&amp;emsp;此项目可作为scrapy框架基础用法的参考。    一、spider文件配置&amp;emsp;&amp;emsp;项目的核心配置文件">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-01T08:32:43.893Z">
+<meta property="article:modified_time" content="2019-08-17T09:25:39.794Z">
+<meta property="article:author" content="Bsj">
+<meta property="article:tag" content="Scrapy">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Bsj&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-scrapy实战：爬取斗图网之scrapy基础用法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/01/scrapy%E5%AE%9E%E6%88%98%EF%BC%9A%E7%88%AC%E5%8F%96%E6%96%97%E5%9B%BE%E7%BD%91%E4%B9%8Bscrapy%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" class="article-date">
+  <time datetime="2020-03-01T08:32:43.893Z" itemprop="datePublished">2020-03-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      scrapy实战：爬取斗图网之操作scrapy基本流程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="项目代码"><a href="#项目代码" class="headerlink" title="项目代码"></a>项目代码</h2><p>&emsp;&emsp;整个项目的代码在码云上：<a href="https://gitee.com/zzti-bsj/doutuwang" target="_blank" rel="noopener">码云地址</a>，以此项目为参考往下阅读。</p>
+<h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><p>&emsp;&emsp;当前项目是scrapy的一个实战项目，是操作scrapy的常规流程。<br>&emsp;&emsp;<strong>总结一下这个scrapy项目我的个人思路</strong>。<br>&emsp;&emsp;此项目可作为scrapy框架基础用法的参考。  </p>
+<hr>
+<h4 id="一、spider文件配置"><a href="#一、spider文件配置" class="headerlink" title="一、spider文件配置"></a>一、spider文件配置</h4><p>&emsp;&emsp;项目的核心配置文件是settings，从settings中copy相关配置到爬虫文件的custom_settings中，设置爬虫的专属settings。<br>&emsp;&emsp;（1）反爬虫的相关配置，如robots.txt/延迟/cookies/请求的并发数量/日志文件/日志文件保存的日志类型<br>&emsp;&emsp;（2）pipelines/middlewares配置，以及files/images的下载配置。其中request/response等相关主要是通过middlewares配置的。<br>&emsp;&emsp;（3）日志/scrapy自带的下载文件/图片的settings等设置。</p>
+<p><strong>更多settings参考：<a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/settings.html" target="_blank" rel="noopener">scrapy的settings文档</a></strong></p>
+<hr>
+<p><strong>技巧</strong>：<br><strong>多封装通用的代码脚本。</strong><br>积累是一种进步的方式，不要让自己的眼光局限于底层。  </p>
+<hr>
+<h4 id="二、编写spider具体代码"><a href="#二、编写spider具体代码" class="headerlink" title="二、编写spider具体代码"></a>二、编写spider具体代码</h4><p>&emsp;&emsp;在这里书写具体的逻辑，解析数据/数据清理/返回数据项item，为具体的某条数据设置缓存（去重），这里常使用基于文件的（<strong>redis数据库缓存/文件缓存</strong>）以及<strong>布隆过滤</strong>等方法  </p>
+<p>注：<br><strong>缓存（一般缓存的是具体某条数据的唯一的字段，如：url）</strong>  </p>
+<hr>
+<h4 id="三、items-定义数据项"><a href="#三、items-定义数据项" class="headerlink" title="三、items 定义数据项"></a>三、items 定义数据项</h4><p>&emsp;&emsp;这里涉及到定义数据项item的字段。</p>
+<p>注：<strong>可能会有多个表，这里涉及到表的创建，在此次项目中使用pipelines.py文件中的SqlitePipeline类（在码云上这个类单独放在SqlitePipeline文件中，便于其他scrapy项目引用）</strong></p>
+<hr>
+<h4 id="四、middlewares-中间件"><a href="#四、middlewares-中间件" class="headerlink" title="四、middlewares 中间件"></a>四、middlewares 中间件</h4><p>&emsp;&emsp;配置通用的中间件文件，引用scrapy的中间件或者自定义中间件。这里可以使用自定义好的脚本文件，再对不同的scrapy项目，稍加修改。  </p>
+<p>注：<strong>在其他scrapy项目中可以直接引用本脚本，只需稍加修改headers的内容</strong><br>封装好的脚本对应码云上的<strong>downloadermiddleware</strong>.py文件</p>
+<hr>
+<h4 id="五、pipelines-存储-下载"><a href="#五、pipelines-存储-下载" class="headerlink" title="五、pipelines(存储/下载)"></a>五、pipelines(存储/下载)</h4><p>&emsp;&emsp;（1）<strong>保存数据</strong>：采集图片信息，将图片的本地路径/图片的名称/url，保存到sqlite数据库<br>&emsp;&emsp;（2）<strong>下载图片</strong>：尝试使用scrapy的pipelines提供的多种方式方式下载图片。(files文件下载/images图片下载/<strong>自定义管道</strong>下载)<br>&emsp;&emsp;使用pipelines下载的时候涉及到一些数据的处理。比如：下载时需要的url为可迭代的数据类型，但sqlite存储时不能存储列表，此时，在下载完毕之后，需要<strong>重写files/imags文件提供的方法处理item数据项</strong>。（重写<strong>item_completed()</strong> 方法，其中的results参数含有item数据内容/file_path()方法，改写文件后缀名，或者获取图片路径）<br>（3）自定义管道（管道是个类）都要实现process_item(item, spider)方法，并返回一个item<br>&emsp;&emsp;<strong>注</strong>：scrapy.pipelines中的images提供的文件只能下载jpg静态图片，无法下载gif动图（修改后缀也不行）<br>&emsp;&emsp;下载动图使用files或者自定义下载的管道文件。   </p>
+<hr>
+<h3 id="六、somethings-importantly"><a href="#六、somethings-importantly" class="headerlink" title="六、somethings importantly"></a>六、somethings importantly</h3><p>&emsp;&emsp;（1）对于未知代码，<strong>断点调试，测试输出数据</strong>。<br>&emsp;&emsp;（2）<strong>深入了解scrapy官方文档。</strong>  </p>
+<h3 id="可引用脚本-代码段"><a href="#可引用脚本-代码段" class="headerlink" title="可引用脚本/代码段"></a>可引用脚本/代码段</h3><p>（1）downloader中间件脚本：downloadermiddlewars.py<br>（2）pipeline存储管道类脚本：SqlitePipeline.py  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/01/scrapy%E5%AE%9E%E6%88%98%EF%BC%9A%E7%88%AC%E5%8F%96%E6%96%97%E5%9B%BE%E7%BD%91%E4%B9%8Bscrapy%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" data-id="ck78s1tpg00531g9yes0p2kih" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/01/scrapy%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          scrapy运行机制和项目架构
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/01/bloomfilter4py3%E6%A8%A1%E5%9D%97%EF%BC%9Apython%E5%AE%9E%E7%8E%B0%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">bloomfilter4py3模块：python实现布隆过滤</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Bsj<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
