@@ -70,6 +70,181 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java的基础语法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/26/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time datetime="2019-04-26T07:08:02.000Z" itemprop="datePublished">2019-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/26/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">Java的基础语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="java的基础语法"><a href="#java的基础语法" class="headerlink" title="java的基础语法"></a>java的基础语法</h2><p>&emsp;&emsp;自我认为<code>C/C++</code>是我接触编程语言时的母语，经过对<code>C</code>语法长时间的使用，在学习<code>Php、Java、python</code>等编程语言的时候，我个人会进行一些相对于<code>C</code>语言的比较，<code>Java</code>的基础语法和<code>C/C++</code>类似，对我来说应该是能够更快的学习<code>Java</code>。  </p>
+<h2 id="Jave的基础语法"><a href="#Jave的基础语法" class="headerlink" title="Jave的基础语法"></a>Jave的基础语法</h2><h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>Java的<strong>类型</strong>包括两种  </p>
+<ol>
+<li>基本类型<br>基本类型又包括5类：<br>（1）字节型：byte（1个字节）<br>（2）整型：short（2个字节）、int（4个字节）、long（8个字节）<br>（3）浮点型：float（4个字节）、double（8个字节）<br>（4）字符型：char（2个字节）<br>（5）布尔型：boolean（Java中没有给定boolean的字节）  </li>
+<li>类类型  </li>
+</ol>
+<p><strong>– Note –</strong><br>&emsp;&emsp;（1）所谓的基本类型，就是在使用时，考虑一下数据用多少内存比较经济，由JVM为用户在内存中配置与管理<br>&emsp;&emsp;（2）浮点数在写入的时候默认为是double型的，如果使用float，请使用类型转化</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用float存储小数</span></span><br><span class="line"><span class="built_in">float</span> x = <span class="number">3.14</span>F</span><br><span class="line"><span class="built_in">float</span> x = (<span class="built_in">float</span>) <span class="number">3.14</span></span><br></pre></td></tr></table></figure>
+<h3 id="常用的格式控制符"><a href="#常用的格式控制符" class="headerlink" title="常用的格式控制符"></a>常用的格式控制符</h3><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%%</td>
+<td>格式化输出一个%</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>格式化输出整数类型的数，除此之外还有byte、Byte、Short、Integer、Long、BigInteger</td>
+</tr>
+<tr>
+<td>%f</td>
+<td><strong>十进制浮点数</strong>格式输出，除此之外还有Float、Double、BigDecimal</td>
+</tr>
+<tr>
+<td>%e、%E</td>
+<td><strong>科学计数法浮点数</strong>格式输出，除此之外还有Float、Double、BigDecimal，%e代表e小写，%E代表E大写</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>八进制整数类型格式输出，除此之外还有byte、Byte、Short、Integer、Long、BigInteger</td>
+</tr>
+<tr>
+<td>%x、%X</td>
+<td>十六进制整数格式化输出，除此之外还有byte、Byte、Short、Integer、Long、BigInteger</td>
+</tr>
+<tr>
+<td>%s、%S</td>
+<td>字符串格式化符号</td>
+</tr>
+<tr>
+<td>%c、%C</td>
+<td>字符格式输出<strong>提供的数必须是byte、short、char、Byte、Short、Charactor或者是Integer</strong>，%c表示字母小写，%C表示字母大写</td>
+</tr>
+<tr>
+<td>%b、%B</td>
+<td>输出boolean值，%b代表小写true/false，%B代表大写TRUE/FALSE</td>
+</tr>
+<tr>
+<td>%h、%H</td>
+<td>使用Integer.toHexString(arg.hashCode())来得到输出结果，如果arg是null，则输出null，也常用于十六进制格式输出</td>
+</tr>
+<tr>
+<td>%n</td>
+<td><strong>输出平台特定的换行符号</strong>，Windows下是”\r\n”，Linux下是’\n’</td>
+</tr>
+</tbody></table>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ol>
+<li>命名规范<br>（1）不可为关键字、保留字<br>（2）变量名不可数字开头<br>（3）不可使用特殊符号  </li>
+<li>命名习惯<br>&emsp;&emsp;Java的命名习惯，通常以小写字母开头，并且在每个单词的开头大写，这种命名方式称为<strong>驼峰命名法</strong><br>&emsp;&emsp;如：<code>int ageOfStudent;</code>  </li>
+</ol>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ol>
+<li>几种常见进制数的表示方法<br>（1）二进制数（0b开头）：<code>int num = 0b10010011;</code><br>（2）八进制数（0开头）：<code>int num = 014;</code><br>（3）十进制数：<code>int num = 12</code><br>（4）十六进制数（0x开头）：<code>0xC</code>  </li>
+<li>常见的转义字符</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\\</td>
+<td>反斜杠\</td>
+</tr>
+<tr>
+<td>\‘</td>
+<td>单引号’</td>
+</tr>
+<tr>
+<td>\“</td>
+<td>双引号”</td>
+</tr>
+<tr>
+<td>\uxxxx</td>
+<td>以十六进制指定Unicode字符输出，x表示数字</td>
+</tr>
+<tr>
+<td>\xxx</td>
+<td>以八进制指定Unicode字符输出，x表示数字</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>倒退一个字符</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>换页</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>光标移至行首</td>
+</tr>
+<tr>
+<td>3. Java中的常量表示法</td>
+<td></td>
+</tr>
+<tr>
+<td>&emsp;&emsp;从Java SE7之后，撰写整数或者浮点数能够使用下划线更清楚的表示某些数字，如：</td>
+<td></td>
+</tr>
+<tr>
+<td>&emsp;&emsp;<code>int number = 1234_5678;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>&emsp;&emsp;<code>int mask = 0b1010_1010_1010;</code></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ol>
+<li>算数运算符<br><code>+ - * / %</code></li>
+<li>比较、条件运算符<br><code>&gt; &lt; &gt;= &lt;= == !=</code>  </li>
+</ol>
+<p><strong>– Note –</strong><br>&emsp;&emsp;三目运算符：<code>?:</code> –&gt; <code>例：a&gt;b?a:b;</code><br>3. 逻辑运算符<br><code>(与)&amp;&amp; (或)|| (非)！</code><br>4. 位运算符<br><code>(移位运算符)&gt;&gt; &lt;&lt; (逻辑与)&amp; (逻辑或)| (异或)^ (非)~</code><br>5. 递增递减运算<br><code>++ --</code><br>6. 指定运算符<br><code>+= -= /= %= ^= &amp;= 等等</code></p>
+<h3 id="类型转换的经度问题"><a href="#类型转换的经度问题" class="headerlink" title="类型转换的经度问题"></a>类型转换的经度问题</h3><p>&emsp;&emsp;前面在基本类型介绍的时候已经举例说明float的转换方法了，在这里简单说几点要点。<br>&emsp;&emsp;1、运算时<br>&emsp;&emsp;（1）如果表达式中包括不同类型数值，则运算时以长度最长的类型为主，其他数值自动提升类型。<br>&emsp;&emsp;（2）Java在运算整数时，如果全部的操作数都不是大于int的，一律在int的空间中运算。  </p>
+<p><strong>– Note –</strong><br>&emsp;&emsp;注意精度遗失的发生。</p>
+<h3 id="流程控制（与C同）"><a href="#流程控制（与C同）" class="headerlink" title="流程控制（与C同）"></a>流程控制（与C同）</h3><p><code>if else</code><br><code>for</code><br><code>switch</code><br><code>while</code><br><code>do while</code></p>
+<p><strong>– Note –</strong><br>&emsp;&emsp;这些都与C相同，在此不再赘述  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/26/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ck78s1tm8000p1g9y99ege725" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-使用Django新建一个项目" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/19/%E4%BD%BF%E7%94%A8Django%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/" class="article-date">
@@ -1176,179 +1351,6 @@ get_img(html)</code></pre>
 
 
   
-    <article id="post-Python_爬虫实例（爬取糗事百科数据）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/07/Python_%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B%EF%BC%88%E7%88%AC%E5%8F%96%E7%B3%97%E4%BA%8B%E7%99%BE%E7%A7%91%E6%95%B0%E6%8D%AE%EF%BC%89/" class="article-date">
-  <time datetime="2019-01-07T15:10:46.000Z" itemprop="datePublished">2019-01-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/07/Python_%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B%EF%BC%88%E7%88%AC%E5%8F%96%E7%B3%97%E4%BA%8B%E7%99%BE%E7%A7%91%E6%95%B0%E6%8D%AE%EF%BC%89/">Python_爬虫实例(爬取糗事百科数据)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="爬虫实例–爬取糗事百科数据"><a href="#爬虫实例–爬取糗事百科数据" class="headerlink" title="爬虫实例–爬取糗事百科数据"></a>爬虫实例–爬取糗事百科数据</h3><p>整理一下思路这个项目的思路：</p>
-<ul>
-<li><p>定义了两个类</p>
-<ol>
-<li>工具类DataTool</li>
-<li>数据类QSBKSpider（爬虫类）</li>
-</ol>
-</li>
-<li><p>数据类中有两个方法</p>
-<ol>
-<li><strong>get_html_code(self,page_num)</strong> 获取网站源代码 第二个参数是网站的不同页码</li>
-<li><strong>parse_list_html(self,html)</strong> 对网站源代码进行数据提取 第二个参数是一个请求得到的数据源码</li>
-</ol>
-</li>
-<li><p>工具类中有一个方法</p>
-<ol>
-<li>对提取到的数据进一步精确处理，这个实例是去掉其中的</br>和\n<ul>
-<li><strong>process_tuple_data(self,origin_tuple_data)</strong> 返回了一个元组（加工后的数据）</li>
-</ul>
-</li>
-<li>之后的数据可以放入数据库中（，后续补充）</li>
-</ol>
-</li>
-<li><p><strong>re.sub()</strong> 函数</p>
-<ol>
-<li>param1：替换规则（正则表达式规则）</li>
-<li>param2：想要替换成的字符</li>
-<li>param3：目标字符串</li>
-</ol>
-</li>
-<li><p><strong>re.compile(r’\n’,re.S)</strong> 函数返回一个pattern object</p>
-</li>
-<li><p><strong>re.findall(pattern,string)</strong> 函数返回一个列表</p>
-</li>
-</ul>
-<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><pre><code>#coding:gbk
-
-# 导入包
-import sqlite3,re
-from urllib.request import Request,urlopen
-
-#  工具类
-class DataTool(object):
-
-     # 定义删除\n字符的正则表达式
-     pattern_n =re.compile(r&apos;\n&apos;,re.S)
-
-     #定义删除&lt;br/&gt;字符的正则表达式
-     pattern_br = re.compile(r&apos;&lt;br/&gt;&apos;,re.S)
-
-     def process_tuple_data(self,origin_tuple_data):
-          &quot;&quot;&quot;
-          用于对提取的原始元组进行数据处理的函数
-          :param origin_tuple_data: 原始数据元组
-          :return: 返回整理之后的元组
-          # 需要处理的数据：用户昵称、段子内容
-          &quot;&quot;&quot;
-          # sub()是正则表达式中的替换方法
-          # 三个参数 ：替换规则 替换结果 进行替换的字符串
-          nick_name = re.sub(self.pattern_n,&apos;&apos;,origin_tuple_data[0])
-
-          # 处理段子内容
-          content = re.sub(self.pattern_n,&apos;&apos;,origin_tuple_data[2])
-          content = re.sub(self.pattern_br,&apos;&apos;,content)
-
-          # 将处理后的数据再封装成一个元组，返回
-          data = (nick_name,origin_tuple_data[1],content,origin_tuple_data[3],origin_tuple_data[4])
-          return data
-
-
-
-# 爬虫类
-class QSBKSpider(object):
-
-     def __init__(self):
-          # 通用路径，self.base_url
-          self.base_url = &apos;https://www.qiushibaike.com/hot/page/&apos;
-
-          # 伪装为浏览器发起的请求
-          self.headers = {
-               &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&apos;
-          }
-
-          # 实例化工具类DataTool对象
-          self.Tool = DataTool()
-
-     def get_list_html_code(self,page_num):
-          &quot;&quot;&quot;
-          获取每一个列表页html网页源代码
-          :return:
-          &quot;&quot;&quot;
-
-          # 构造每一页的url地址
-          page_url = self.base_url + str(page_num)
-
-          # 向page_url发起GET请求，开始获取当前页page_num的网页源代码
-          # 先构造一个Request请求对象
-          request = Request(page_url,headers=self.headers)
-          try:
-               response = urlopen(request)
-          except Exception as e:
-               print(&apos;请求失败：地址{},原因{}&apos;.format(page_url,e))
-               return None
-          else:
-          #无异常，会执行else语句，如果出现了异常就不会执行else语句了。
-               return response.read().decode()
-
-     def parse_list_html(self,html):
-          &quot;&quot;&quot;
-          解析上一个函数请求的html源代码
-          :param html: 列表的网页源代码
-          :return:
-          &quot;&quot;&quot;
-          if html:
-               # 写正则注意事项：
-               # 使用的是网站源代码
-
-               # pattern 样式 规则
-               pattern = re.compile(r&apos;&lt;div class=&quot;article block.*?&quot;&gt;.*?&lt;div class=&quot;author clearfix&quot;&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div class=&quot;articleGender.*?&quot;&gt;(.*?)&lt;/div&gt;.*?&lt;div class=&quot;content&quot;&gt;.*?&lt;span&gt;(.*?)&lt;/span&gt;.*?&lt;div class=&quot;stats&quot;&gt;.*?&lt;i class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;.*?&lt;i class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)
-               results_list = re.findall(pattern,html)
-               for data in results_list:
-                    new_data = self.Tool.process_tuple_data(data)
-                    print(new_data)
-          else:
-               print(&apos;html源代码为None&apos;)
-
-
-
-# 定义一个qsbk的对象
-obj = QSBKSpider()
-
-# 获取网站源代码
-html = obj.get_list_html_code(1)
-
-# 对获取的数据进行语法处理
-obj.parse_list_html(html)</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/07/Python_%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B%EF%BC%88%E7%88%AC%E5%8F%96%E7%B3%97%E4%BA%8B%E7%99%BE%E7%A7%91%E6%95%B0%E6%8D%AE%EF%BC%89/" data-id="ck78s1tmy001g1g9y7g6c73ey" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1377,7 +1379,7 @@ obj.parse_list_html(html)</code></pre>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 12.22px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
     </div>
   </div>
 
@@ -1399,6 +1401,10 @@ obj.parse_list_html(html)</code></pre>
       <ul>
         
           <li>
+            <a href="/2020/03/02/hexo%20%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">hexo简单搭建博客</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
           </li>
         
@@ -1412,10 +1418,6 @@ obj.parse_list_html(html)</code></pre>
         
           <li>
             <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/2.%E7%AD%89%E4%BB%B7%E5%A4%9A%E7%B1%B3%E8%AF%BA%E9%AA%A8%E7%89%8C%E5%AF%B9%E7%9A%84%E6%95%B0%E9%87%8F/">等价多米诺骨牌对的数量</a>
           </li>
         
       </ul>
