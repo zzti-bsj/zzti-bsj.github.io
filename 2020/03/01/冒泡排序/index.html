@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -144,9 +146,43 @@
 <p>假如有n个数<br>（i,j下标从0开始）<br>外层循环，循环（n-1次）<br>每次从零循环，每次循环（n-1-i次）  </p>
 <p><strong>输入示例</strong><br>十个无序数<br>5 6 3 2 1 4 7 8 9 10</p>
 <p><strong>输入示例</strong><br>升序<br>1 2 3 4 5 6 7 8 9 10</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> number[<span class="number">10</span>],i,j,m;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;number[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    冒泡排序</span></span><br><span class="line"><span class="comment">    数组的下标从0开始</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    假如有n个数</span></span><br><span class="line"><span class="comment">    （i,j下标从0开始）</span></span><br><span class="line"><span class="comment">    外层循环，循环（n-1次）</span></span><br><span class="line"><span class="comment">    每次从零循环，每次循环（n-1-i次）</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">9</span>;i++)</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">9</span>-i;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(number[j]&gt;number[j+<span class="number">1</span>])&#123;</span><br><span class="line">            m = number[j];</span><br><span class="line">            number[j] = number[j+<span class="number">1</span>];</span><br><span class="line">            number[j+<span class="number">1</span>] = m;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">9</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>,number[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,number[<span class="number">9</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="C">#include &lt;iostream&gt;
+#include&lt;stdio.h&gt;
+using namespace std;
+
+int main()
+{
+    int number[10],i,j,m;
+    for(i=0;i&lt;10;i++){
+        cin&gt;&gt;number[i];
+    }
+    /*
+    冒泡排序
+    数组的下标从0开始
+
+    假如有n个数
+    （i,j下标从0开始）
+    外层循环，循环（n-1次）
+    每次从零循环，每次循环（n-1-i次）
+    */
+    for(i=0;i&lt;9;i++)
+    for(j=0;j&lt;9-i;j++){
+        if(number[j]&gt;number[j+1]){
+            m = number[j];
+            number[j] = number[j+1];
+            number[j+1] = m;
+        }
+    }
+    for(i=0;i&lt;9;i++){
+        printf(&quot;%d &quot;,number[i]);
+    }
+    printf(&quot;%d\n&quot;,number[9]);
+}
+</code></pre>
+
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -140,10 +142,34 @@
         </li>
     </ul>
     <div class="post-content">
-        <h2 id="自定义线程，继承threading-Thread"><a href="#自定义线程，继承threading-Thread" class="headerlink" title="自定义线程，继承threading.Thread"></a>自定义线程，继承threading.Thread</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">import threading</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MovieThread(threading.Thread):</span><br><span class="line">    def __init__(self, movie_name, movie_time):</span><br><span class="line">        # 继承子类时，先执行父类的构造函数</span><br><span class="line">        super(MovieThread, self).__init__()</span><br><span class="line">        self.movie_name = movie_name</span><br><span class="line">        self.movie_time = movie_time</span><br><span class="line"></span><br><span class="line">    def <span class="builtin-name">run</span>(self):</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">"开始下载!"</span>)</span><br><span class="line">        time.sleep(3)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    mt1 = MovieThread(<span class="attribute">movie_name</span>=<span class="string">"1"</span>, <span class="attribute">movie_time</span>=1)</span><br><span class="line">    mt2 = MovieThread(<span class="attribute">movie_name</span>=<span class="string">"1"</span>, <span class="attribute">movie_time</span>=1)</span><br><span class="line">    mt3 = MovieThread(<span class="attribute">movie_name</span>=<span class="string">"1"</span>, <span class="attribute">movie_time</span>=1)</span><br><span class="line">    mt1.start()</span><br><span class="line">    mt2.start()</span><br><span class="line">    mt3.start()</span><br></pre></td></tr></table></figure>
+        <h2 id="自定义线程，继承threading-Thread"><a href="#自定义线程，继承threading-Thread" class="headerlink" title="自定义线程，继承threading.Thread"></a>自定义线程，继承threading.Thread</h2><pre><code># coding:utf-8
+import threading
+import time
 
+
+class MovieThread(threading.Thread):
+    def __init__(self, movie_name, movie_time):
+        # 继承子类时，先执行父类的构造函数
+        super(MovieThread, self).__init__()
+        self.movie_name = movie_name
+        self.movie_time = movie_time
+
+    def run(self):
+        print(&quot;开始下载!&quot;)
+        time.sleep(3)
+
+
+if __name__ == &#39;__main__&#39;:
+    mt1 = MovieThread(movie_name=&quot;1&quot;, movie_time=1)
+    mt2 = MovieThread(movie_name=&quot;1&quot;, movie_time=1)
+    mt3 = MovieThread(movie_name=&quot;1&quot;, movie_time=1)
+    mt1.start()
+    mt2.start()
+    mt3.start()
+</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

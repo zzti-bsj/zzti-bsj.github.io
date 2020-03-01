@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -144,15 +146,28 @@
 <h3 id="2-ajax创建对象的两种方式"><a href="#2-ajax创建对象的两种方式" class="headerlink" title="2. ajax创建对象的两种方式"></a>2. ajax创建对象的两种方式</h3><h4 id="1、创建XMLHttpRequest对象"><a href="#1、创建XMLHttpRequest对象" class="headerlink" title="1、创建XMLHttpRequest对象"></a>1、创建XMLHttpRequest对象</h4><p><code>var xhrhttp = new XMLHttpRequest();</code></p>
 <h4 id="2、创建ActiveX对象"><a href="#2、创建ActiveX对象" class="headerlink" title="2、创建ActiveX对象"></a>2、创建ActiveX对象</h4><p><code>var xhrhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP);</code></p>
 <p>代码段示例：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var xhrhttp;</span><br><span class="line">if (windows.XMLHttpRequest)&#123;</span><br><span class="line">    xmlhttp = new XMLHttpRequest();</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="html">var xhrhttp;
+if (windows.XMLHttpRequest){
+    xmlhttp = new XMLHttpRequest();
+}else{
+    xmlhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+}
+</code></pre>
 <h3 id="3-ajax发送请求"><a href="#3-ajax发送请求" class="headerlink" title="3. ajax发送请求"></a>3. ajax发送请求</h3><h4 id="open-和send-方法"><a href="#open-和send-方法" class="headerlink" title="open()和send()方法"></a>open()和send()方法</h4><p>&emsp;&emsp;ajax发送请求的两个函数分别是open()和send()<br>&emsp;&emsp;两种发送请求的方式：get、post，其中send()可以用来传递post的参数。<br>参数：  </p>
 <ol>
 <li>open()参数<br>param1：method，请求方法get/post<br>param2：url，请求的网址<br>param3：async，是否异步执行，默认为true    </li>
 <li>send()参数<br>param1：strings仅用于post请求    </li>
 </ol>
 <p>代码段示例：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--xmlhttp XMLHttpRequest对象--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--发送get请求--&gt;</span></span><br><span class="line">xmlhttp.open("GET", url, true)</span><br><span class="line">xmlhttp.send()</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--发送post请求--&gt;</span></span><br><span class="line">xmlhttp.open("POST",url,true);</span><br><span class="line">xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");</span><br><span class="line">xmlhttp.send("fname=Bill&amp;lname=Gates");</span><br></pre></td></tr></table></figure>
+<pre><code class="html">&lt;!--xmlhttp XMLHttpRequest对象--&gt;
+&lt;!--发送get请求--&gt;
+xmlhttp.open(&quot;GET&quot;, url, true)
+xmlhttp.send()
+
+&lt;!--发送post请求--&gt;
+xmlhttp.open(&quot;POST&quot;,url,true);
+xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+xmlhttp.send(&quot;fname=Bill&amp;lname=Gates&quot;);</code></pre>
 <h3 id="4-onreadystatechange"><a href="#4-onreadystatechange" class="headerlink" title="4. onreadystatechange"></a>4. onreadystatechange</h3><ol>
 <li>三个属性  <ul>
 <li>onreadystatechange：当readystate改变时调用这个函数  </li>
@@ -168,6 +183,7 @@
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

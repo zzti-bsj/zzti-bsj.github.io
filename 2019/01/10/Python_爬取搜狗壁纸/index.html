@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -156,7 +158,7 @@ from hashlib import md5
 class SouGouImg(object):
      def __init__(self):
           self.headers = {
-               &apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&apos;
+               &#39;User-Agent&#39;:&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&#39;
           }
 
      # 获取图片的url  后面改着改着把这个函数改成了下载图片的函数
@@ -169,19 +171,19 @@ class SouGouImg(object):
           # 新建一个list
           all_img_url = []
           for i in range(0,num):
-               json_base_str = &apos;https://pic.sogou.com/pics?query=%B1%DA%D6%BD&amp;mode=1&amp;dm=4&amp;cwidth=1920&amp;cheight=1080&amp;start=&apos;+str(num)+&apos;&amp;reqType=ajax&amp;reqFrom=result&amp;tn=0&apos;
+               json_base_str = &#39;https://pic.sogou.com/pics?query=%B1%DA%D6%BD&amp;mode=1&amp;dm=4&amp;cwidth=1920&amp;cheight=1080&amp;start=&#39;+str(num)+&#39;&amp;reqType=ajax&amp;reqFrom=result&amp;tn=0&#39;
                img_html = requests.get(json_base_str,headers=self.headers).text
 
                img_dict = json.loads(img_html)
 
                # 接下来，我需要这个字典中items
-               for item_dict in img_dict[&apos;items&apos;]:
+               for item_dict in img_dict[&#39;items&#39;]:
 
                     #每一个item又是一个字典
-                    # print(item_dict[&apos;ori_pic_url&apos;])
-                    self.download_images(item_dict[&apos;ori_pic_url&apos;])
+                    # print(item_dict[&#39;ori_pic_url&#39;])
+                    self.download_images(item_dict[&#39;ori_pic_url&#39;])
 
-                    # all_img_url.append(item_dict[&apos;ori_pic_url&apos;])
+                    # all_img_url.append(item_dict[&#39;ori_pic_url&#39;])
           # return all_img_url
 
      # 根据图片网址下载图片资源
@@ -190,24 +192,25 @@ class SouGouImg(object):
                response = requests.get(img_url,headers=self.headers)
                if response.status_code == 200:
                     img_content = response.content
-                    img_name = md5(img_url.encode(&apos;utf-8&apos;)).hexdigest()
-                    file = open(&apos;imag/{}.jpg&apos;.format(img_name),&apos;wb&apos;)
+                    img_name = md5(img_url.encode(&#39;utf-8&#39;)).hexdigest()
+                    file = open(&#39;imag/{}.jpg&#39;.format(img_name),&#39;wb&#39;)
                     file.write(img_content)
                     file.close()
                else:
-                    print(&apos;请求失败：url = {}, status_code = {}&apos;.format(img_url,response.status_code))
+                    print(&#39;请求失败：url = {}, status_code = {}&#39;.format(img_url,response.status_code))
           except Exception as e:
-                print(&apos;请求异常：url = {}, error = {}&apos;.format(img_url,e))
+                print(&#39;请求异常：url = {}, error = {}&#39;.format(img_url,e))
 
 
-if __name__ == &apos;__main__&apos;:
+if __name__ == &#39;__main__&#39;:
      obj = SouGouImg()
 
-     num = int(input(&apos;请输入要获取的图片页数(每页48张)：&apos;))
+     num = int(input(&#39;请输入要获取的图片页数(每页48张)：&#39;))
      # 下载图片  这个函数改着改着成了下载图片的函数
      obj.get_imags_url(num)</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

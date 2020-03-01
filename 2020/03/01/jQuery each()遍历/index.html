@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -143,27 +145,62 @@
         <h2 id="jQuery-each-用法"><a href="#jQuery-each-用法" class="headerlink" title="jQuery each()用法"></a>jQuery each()用法</h2><ul>
 <li>用法一 </li>
 </ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">selector</span>).each(<span class="function"><span class="keyword">function</span><span class="params">(<span class="keyword">index</span>,element)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">    //这里指定动作</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span>)</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">param1</span>:</span> <span class="keyword">index</span> - 索引</span><br><span class="line">param2: element - 值</span><br></pre></td></tr></table></figure>
+<pre><code>$(selector).each(function(index,element){
+    //这里指定动作
+})
 
-<ul>
+param1: index - 索引
+param2: element - 值</code></pre><ul>
 <li>用法二（普遍适用遍历js数组、js对象，html元素）</li>
 </ul>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="constructor">$(<span class="params">itreable</span>, <span class="params">function</span>(<span class="params">index</span>, <span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//在这里指定动作</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">param1: index - 索引</span><br><span class="line">param2: element - 值</span><br></pre></td></tr></table></figure>
+<pre><code>
+$(itreable, function(index, value){
+    //在这里指定动作
+})
 
-<h2 id="jQuery遍历数组和对象"><a href="#jQuery遍历数组和对象" class="headerlink" title="jQuery遍历数组和对象"></a>jQuery遍历数组和对象</h2><ul>
-<li>遍历元素<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;ul&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span><span class="number">1</span><span class="params">&lt;/li&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span><span class="number">2</span><span class="params">&lt;/li&gt;</span></span><br><span class="line">    <span class="params">&lt;li&gt;</span><span class="number">3</span><span class="params">&lt;/li&gt;</span></span><br><span class="line"><span class="params">&lt;/ul&gt;</span></span><br><span class="line"></span><br><span class="line">var elements = $(<span class="string">"li"</span>)</span><br><span class="line">$.each(elements, function(index,element)&#123;</span><br><span class="line">    console.log(index, element)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//result</span></span><br><span class="line"><span class="number">0</span> <span class="params">&lt;li&gt;</span><span class="number">1</span><span class="params">&lt;/li&gt;</span></span><br><span class="line"><span class="number">1</span> <span class="params">&lt;li&gt;</span><span class="number">2</span><span class="params">&lt;/li&gt;</span></span><br><span class="line"><span class="number">2</span> <span class="params">&lt;li&gt;</span><span class="number">3</span><span class="params">&lt;/li&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-</li>
+param1: index - 索引
+param2: element - 值</code></pre><h2 id="jQuery遍历数组和对象"><a href="#jQuery遍历数组和对象" class="headerlink" title="jQuery遍历数组和对象"></a>jQuery遍历数组和对象</h2><ul>
+<li>遍历元素<pre><code>&lt;ul&gt;
+  &lt;li&gt;1&lt;/li&gt;
+  &lt;li&gt;2&lt;/li&gt;
+  &lt;li&gt;3&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre></li>
 </ul>
-<ul>
-<li>遍历数组<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../static/jquery-3.4.1.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">    var array = $("li");</span></span><br><span class="line"><span class="xml">    var array = ['a', 'b', 'c', 'd'];</span></span><br><span class="line"><span class="xml">    $.each(array, function (index, value) </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">        console.log(index, <span class="keyword">value</span>)</span></span><br><span class="line"><span class="xquery">    &#125;</span><span class="xml">)</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//result</span><br><span class="line"><span class="number">0</span> <span class="string">"a"</span></span><br><span class="line"><span class="number">1</span> <span class="string">"b"</span></span><br><span class="line"><span class="number">2</span> <span class="string">"c"</span></span><br><span class="line"><span class="number">3</span> <span class="string">"d"</span></span><br></pre></td></tr></table></figure></li>
-<li>遍历对象</li>
-</ul>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../static/jquery-3.4.1.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">    //定义js对象</span></span><br><span class="line"><span class="xml">    var obj = </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">        <span class="string">'name'</span>: <span class="string">'otnw'</span>,</span></span><br><span class="line"><span class="xquery">        <span class="string">'age'</span>: <span class="number">18</span>,</span></span><br><span class="line"><span class="xquery">        <span class="string">'phone'</span>: <span class="number">110120119</span>,</span></span><br><span class="line"><span class="xquery">    &#125;</span><span class="xml">;</span></span><br><span class="line"><span class="xml">    //遍历js对象</span></span><br><span class="line"><span class="xml">    $.each(obj, function (key, value) </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">        console.log<span class="built_in">(key</span>, <span class="keyword">value</span>)</span></span><br><span class="line"><span class="xquery">    &#125;</span><span class="xml">)</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">//result</span><br><span class="line">name otnw</span><br><span class="line">age <span class="number">18</span></span><br><span class="line">phone <span class="number">110120119</span></span><br></pre></td></tr></table></figure>
+<p>var elements = $(“li”)<br>$.each(elements, function(index,element){<br>    console.log(index, element)<br>})<br>//result<br>0 <li>1</li><br>1 <li>2</li><br>2 <li>3</li></p>
+<pre><code>
 
+* 遍历数组</code></pre><script src="../static/jquery-3.4.1.js"></script>
+<script>
+    var array = $("li");
+    var array = ['a', 'b', 'c', 'd'];
+    $.each(array, function (index, value) {
+        console.log(index, value)
+    })
+</script>
+
+
+<p>//result<br>0 “a”<br>1 “b”<br>2 “c”<br>3 “d”</p>
+<pre><code>* 遍历对象
+</code></pre><script src="../static/jquery-3.4.1.js"></script>
+<script>
+    //定义js对象
+    var obj = {
+        'name': 'otnw',
+        'age': 18,
+        'phone': 110120119,
+    };
+    //遍历js对象
+    $.each(obj, function (key, value) {
+        console.log(key, value)
+    })
+</script>
+
+<p>//result<br>name otnw<br>age 18<br>phone 110120119</p>
+<pre><code></code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

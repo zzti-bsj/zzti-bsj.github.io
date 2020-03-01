@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,9 +143,7 @@
     </ul>
     <div class="post-content">
         <p>1.十进制转十六进制函数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dechex()<span class="comment">//直接把十进制数转换成十六进制。</span></span><br></pre></td></tr></table></figure>
-
-
+<pre><code class="php">    dechex()//直接把十进制数转换成十六进制。</code></pre>
 <p>2.手写了一个十进制转十六进制函数：</p>
 <h3 id="算法思想："><a href="#算法思想：" class="headerlink" title="算法思想："></a>算法思想：</h3><h4 id="十进制转其他进制："><a href="#十进制转其他进制：" class="headerlink" title="十进制转其他进制："></a><strong><em>十进制转其他进制：</em></strong></h4><ul>
 <li>十进制转化十六进制：<strong>x先对16取余 后x除等于16，每次存下余数，直到x为零，倒序输出余数，即为正解！</strong></li>
@@ -155,9 +155,40 @@
 <li>十六进制转十进制：对应十六进制上的数，乘以 <strong>16</strong>的 <strong>对应位-1</strong> 次方的和，即为正解！</li>
 </ul>
 <hr>
-<h3 id="十进制转十六进制代码："><a href="#十进制转十六进制代码：" class="headerlink" title="十进制转十六进制代码："></a>十进制转十六进制代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$num = rand(<span class="number">601</span>,<span class="number">899</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"十进制随机数："</span>;</span><br><span class="line"><span class="keyword">echo</span> $num.<span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"转化成十六进制："</span>;</span><br><span class="line">$array = [</span><br><span class="line">    <span class="string">"10"</span> =&gt; <span class="string">"A"</span>,</span><br><span class="line">    <span class="string">"11"</span> =&gt; <span class="string">"B"</span>,</span><br><span class="line">    <span class="string">"12"</span> =&gt; <span class="string">"C"</span>,</span><br><span class="line">    <span class="string">"13"</span> =&gt; <span class="string">"D"</span>,</span><br><span class="line">    <span class="string">"14"</span> =&gt; <span class="string">"E"</span>,</span><br><span class="line">    <span class="string">"15"</span> =&gt; <span class="string">"F"</span>,</span><br><span class="line">];<span class="comment">//直接定义数组变量，5.4之前是使用array()函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>($num &gt; <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    $x =$num %<span class="number">16</span>;</span><br><span class="line">    <span class="keyword">if</span>($x &lt; <span class="number">16</span> &amp;&amp; $x &gt; <span class="number">9</span>)</span><br><span class="line">        $a = $a.$array[<span class="string">"$x"</span>];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        $a = $a.$x;</span><br><span class="line">    $num = floor( $num/<span class="number">16</span> );<span class="comment">//</span></span><br><span class="line">    <span class="comment">//echo "num的值：".$num."&lt;br&gt;";num的值不会自动取整，需要取整函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//echo $a."&lt;br&gt;";</span></span><br><span class="line"><span class="keyword">echo</span> implode(array_reverse(str_split($a)));<span class="comment">//实现倒序输出</span></span><br><span class="line"><span class="comment">//implode(separator,array) 把数组元素组合为字符串 第一个参数为规定字符之间防止的内容 如 implode("  " , $arr) 字符与字符之间放置了空格</span></span><br><span class="line"><span class="comment">//array_reverse(array,preserve) 以相反的元素顺序返回数组 第二个参数是否保留原有数组的键名</span></span><br><span class="line"><span class="comment">//str_split(string,length) 把字符串 ＂Shanghai＂ 分割到数组 ,两个参数 length默认为1</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="十进制转十六进制代码："><a href="#十进制转十六进制代码：" class="headerlink" title="十进制转十六进制代码："></a>十进制转十六进制代码：</h3><pre><code class="php">    &lt;?php
+    $num = rand(601,899);
+    echo &quot;十进制随机数：&quot;;
+    echo $num.&quot;&lt;br&gt;&quot;;
+    echo &quot;转化成十六进制：&quot;;
+    $array = [
+        &quot;10&quot; =&gt; &quot;A&quot;,
+        &quot;11&quot; =&gt; &quot;B&quot;,
+        &quot;12&quot; =&gt; &quot;C&quot;,
+        &quot;13&quot; =&gt; &quot;D&quot;,
+        &quot;14&quot; =&gt; &quot;E&quot;,
+        &quot;15&quot; =&gt; &quot;F&quot;,
+    ];//直接定义数组变量，5.4之前是使用array()函数
+
+    while($num &gt; 0)
+    {
+        $x =$num %16;
+        if($x &lt; 16 &amp;&amp; $x &gt; 9)
+            $a = $a.$array[&quot;$x&quot;];
+        else
+            $a = $a.$x;
+        $num = floor( $num/16 );//
+        //echo &quot;num的值：&quot;.$num.&quot;&lt;br&gt;&quot;;num的值不会自动取整，需要取整函数
+    }
+    //echo $a.&quot;&lt;br&gt;&quot;;
+    echo implode(array_reverse(str_split($a)));//实现倒序输出
+    //implode(separator,array) 把数组元素组合为字符串 第一个参数为规定字符之间防止的内容 如 implode(&quot;  &quot; , $arr) 字符与字符之间放置了空格
+    //array_reverse(array,preserve) 以相反的元素顺序返回数组 第二个参数是否保留原有数组的键名
+    //str_split(string,length) 把字符串 ＂Shanghai＂ 分割到数组 ,两个参数 length默认为1
+    ?&gt;</code></pre>
+
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

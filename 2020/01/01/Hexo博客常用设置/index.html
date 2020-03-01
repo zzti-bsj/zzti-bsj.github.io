@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -150,12 +152,7 @@
 </ol>
 <p>发布文章： hexo d -g   如果发布时出现错误，执行 npm install hexo-deployer-git –save</p>
 <h3 id="图片的插入：-如"><a href="#图片的插入：-如" class="headerlink" title="图片的插入： 如"></a>图片的插入： 如</h3><p> <img src="/imag/ww.jpg" alt="alt ww" title="ww"></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">alt ww</span>](<span class="link">/imag/ww.jpg "ww"</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<p>（路径就按照这个路径格式，因为文章在与imag路径的 _post 下。）</p>
+<pre><code>![alt ww](/imag/ww.jpg &quot;ww&quot;) </code></pre><p>（路径就按照这个路径格式，因为文章在与imag路径的 _post 下。）</p>
 <h3 id="主题的更换："><a href="#主题的更换：" class="headerlink" title="主题的更换："></a>主题的更换：</h3><ol>
 <li>在themes文件夹下，把主题下载下来，执行git clone [主题地址]</li>
 <li>打开Hexo文件夹下的_config.yml文件，修改里面的theme为主题文件夹名称</li>
@@ -175,6 +172,7 @@ post-default-img-mobile: /imag/p.jpg #移动端显示的图片 这个可以是�
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

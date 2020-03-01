@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,17 +143,43 @@
     </ul>
     <div class="post-content">
         <h2 id="1-全局声明let和var变量的区别"><a href="#1-全局声明let和var变量的区别" class="headerlink" title="1. 全局声明let和var变量的区别"></a>1. 全局声明let和var变量的区别</h2><p>全局声明的时候，let定义的变量不能作为window的属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局作用域时，let定义的变量不能作为全局对象windows的属性</span></span><br><span class="line">    <span class="comment">// 全局声明写在最上面</span></span><br><span class="line">    <span class="keyword">var</span> var_v = <span class="string">"hello"</span>;</span><br><span class="line">    <span class="keyword">let</span> let_v = <span class="string">"hello"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用严格模式运行代码</span></span><br><span class="line"><span class="meta">    "use strict"</span>;</span><br><span class="line">    test_2();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// let 的定义域是块定义域，而var的定义域是函数定义域，比较大。</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test_2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">window</span>.var_v);  <span class="comment">//hello</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">window</span>.let_v); <span class="comment">// undefined</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre><code>//全局作用域时，let定义的变量不能作为全局对象windows的属性
+    // 全局声明写在最上面
+    var var_v = &quot;hello&quot;;
+    let let_v = &quot;hello&quot;;
 
-<h2 id="2-let变量（块作用域）、var变量（函数作用域）"><a href="#2-let变量（块作用域）、var变量（函数作用域）" class="headerlink" title="2. let变量（块作用域）、var变量（函数作用域）"></a>2. let变量（块作用域）、var变量（函数作用域）</h2><p>var的作用域是函数作用域，let的作用域是块作用域。 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用严格模式运行代码</span></span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line">test_1();</span><br><span class="line"></span><br><span class="line"><span class="comment">// let 的定义域是块定义域，而var的定义域是函数定义域，比较大。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test_1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> var_v = <span class="string">"hello"</span>;</span><br><span class="line">        <span class="keyword">let</span> let_v = <span class="string">"hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(var_v);</span><br><span class="line">    <span class="built_in">console</span>.log(let_v);</span><br><span class="line">    <span class="comment">// 结果：都是undefined类型的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码运行结果，在{}块内let定义的变量在块外输出报错。  </p>
-<h2 id="3-在同一作用域，let不允许重复声明同名变量"><a href="#3-在同一作用域，let不允许重复声明同名变量" class="headerlink" title="3. 在同一作用域，let不允许重复声明同名变量"></a>3. 在同一作用域，let不允许重复声明同名变量</h2><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">let</span><span class="number">_</span>v  = <span class="string">'foo'</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">let</span><span class="number">_</span>v  = <span class="string">'bar'</span>; <span class="comment">//SyntaxError: Identifier 'me' has already been declared</span></span><br><span class="line"></span><br><span class="line">var var<span class="number">_</span>v = <span class="string">'foo'</span>;</span><br><span class="line">var var<span class="number">_</span>v = <span class="string">'bar'</span>; <span class="comment">//这里var_v被替代了，是可以重复声明的</span></span><br></pre></td></tr></table></figure>
+    // 使用严格模式运行代码
+    &quot;use strict&quot;;
+    test_2();
 
-<h3 id="let的应用场景"><a href="#let的应用场景" class="headerlink" title="let的应用场景"></a>let的应用场景</h3><p>一般在块作用域中使用let，避免使用var造成的<strong>变量污染</strong>  </p>
+    // let 的定义域是块定义域，而var的定义域是函数定义域，比较大。
+    function test_2() {
+        console.log(window.var_v);  //hello
+        console.log(window.let_v); // undefined
+    }</code></pre><h2 id="2-let变量（块作用域）、var变量（函数作用域）"><a href="#2-let变量（块作用域）、var变量（函数作用域）" class="headerlink" title="2. let变量（块作用域）、var变量（函数作用域）"></a>2. let变量（块作用域）、var变量（函数作用域）</h2><p>var的作用域是函数作用域，let的作用域是块作用域。 </p>
+<pre><code>    // 使用严格模式运行代码
+    &quot;use strict&quot;;
+    test_1();
+
+    // let 的定义域是块定义域，而var的定义域是函数定义域，比较大。
+    function test_1() {
+        {
+            var var_v = &quot;hello&quot;;
+            let let_v = &quot;hello&quot;;
+        }
+        console.log(var_v);
+        console.log(let_v);
+        // 结果：都是undefined类型的
+    }</code></pre><p>以上代码运行结果，在{}块内let定义的变量在块外输出报错。  </p>
+<h2 id="3-在同一作用域，let不允许重复声明同名变量"><a href="#3-在同一作用域，let不允许重复声明同名变量" class="headerlink" title="3. 在同一作用域，let不允许重复声明同名变量"></a>3. 在同一作用域，let不允许重复声明同名变量</h2><pre><code>    let let_v  = &#39;foo&#39;;
+    let let_v  = &#39;bar&#39;; //SyntaxError: Identifier &#39;me&#39; has already been declared
+
+    var var_v = &#39;foo&#39;;
+    var var_v = &#39;bar&#39;; //这里var_v被替代了，是可以重复声明的</code></pre><h3 id="let的应用场景"><a href="#let的应用场景" class="headerlink" title="let的应用场景"></a>let的应用场景</h3><p>一般在块作用域中使用let，避免使用var造成的<strong>变量污染</strong>  </p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

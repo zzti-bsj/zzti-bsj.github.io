@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -152,12 +154,31 @@
 <li><p>删除之前的源 <code>sudo rm /etc/apt/sources.list</code>  </p>
 </li>
 <li><p>配置新的源：<code>sudo vi /etc/apt/sources.list</code><br>&emsp;&emsp;这里提供一些源，无法满足需要则百度  </p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">deb</span> cdrom:[Ubuntu <span class="number">16.04</span> LTS _Xenial Xerus_ - Release amd64 (<span class="number">20160420.1</span>)]/ xenial main restricted  </span><br><span class="line">    <span class="keyword">deb</span>-src http://archive.ubuntu.<span class="keyword">com</span>/ubuntu xenial main restricted #Added by software-properties  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial main restricted  </span><br><span class="line">    <span class="keyword">deb</span>-src http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial main restricted multiverse universe #Added by software-properties  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-updates main restricted  </span><br><span class="line">    <span class="keyword">deb</span>-src http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial universe  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-updates universe  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial multiverse  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-updates multiverse  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-backports main restricted universe multiverse  </span><br><span class="line">    <span class="keyword">deb</span>-src http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties  </span><br><span class="line">    <span class="keyword">deb</span> http://archive.canonical.<span class="keyword">com</span>/ubuntu xenial partner  </span><br><span class="line">    <span class="keyword">deb</span>-src http://archive.canonical.<span class="keyword">com</span>/ubuntu xenial partner  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-security main restricted  </span><br><span class="line">    <span class="keyword">deb</span>-src http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-security universe  </span><br><span class="line">    <span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/ubuntu/ xenial-security multiverse</span><br></pre></td></tr></table></figure>
-</li>
+<pre><code># deb cdrom:[Ubuntu 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.1)]/ xenial main restricted  
+  deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted  
+  deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted  
+  deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial universe  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse  
+  deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties  
+  deb http://archive.canonical.com/ubuntu xenial partner  
+  deb-src http://archive.canonical.com/ubuntu xenial partner  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted  
+  deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe  
+  deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse</code></pre></li>
 <li><p>更新源：<code>sudo apt-get update</code> </p>
 <h3 id="安装python3-6"><a href="#安装python3-6" class="headerlink" title="安装python3.6"></a>安装python3.6</h3></li>
 <li><p>安装python3.6  </p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get install software-properties-common  </span><br><span class="line">add-apt-repository ppa:jonathonf/python-3.6  </span><br><span class="line">apt-get update  </span><br><span class="line">apt-get install python3.6</span><br></pre></td></tr></table></figure></li>
+<pre><code>apt-get install software-properties-common  
+add-apt-repository ppa:jonathonf/python-3.6  
+apt-get update  
+apt-get install python3.6  </code></pre></li>
 <li><p>找到python3目录，把Python3的其他版本替换成python3.6<br><code>which python3</code></p>
 </li>
 <li><p>删除快捷键。<br><code>rm python3</code>  </p>
@@ -169,109 +190,127 @@
 <li><p>更改python对应python3  </p>
 </li>
 <li><p>后面的数字100/150是优先级</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">update</span>-alternatives --install /usr/bin/<span class="keyword">python</span> <span class="keyword">python</span> /usr/bin/python2 <span class="number">100</span></span><br><span class="line"></span><br><span class="line">sudo <span class="keyword">update</span>-alternatives --install /usr/bin/<span class="keyword">python</span> <span class="keyword">python</span> /usr/bin/<span class="keyword">python3</span> <span class="number">150</span></span><br><span class="line"></span><br><span class="line">sudo <span class="keyword">update</span>-alternatives --<span class="keyword">list</span> <span class="keyword">python</span></span><br><span class="line"></span><br><span class="line">如果要切换到Python2，执行：</span><br><span class="line"></span><br><span class="line">sudo <span class="keyword">update</span>-alternatives --config <span class="keyword">python</span></span><br><span class="line"></span><br><span class="line">按照提示输入数字按回车即可</span><br></pre></td></tr></table></figure></li>
-<li><p>升级pip<br><code>pip install --upgrade pip</code>  或者<br><code>pip3 install --upgrade pip</code>  </p>
-</li>
+<pre><code>sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100
+</code></pre></li>
 </ul>
-<hr>
-<ul>
-<li>如果找不到pip或者pip3：  </li>
-<li>重新安装 pip 但不是通过 apt-get 而是通过 python -m <ul>
-<li>执行：<code>sudo python -m pip install --upgrade --force-reinstall pip</code>或者<code>sudo python3 -m pip install --upgrade --force-reinstall pip</code>  </li>
-</ul>
-</li>
-<li>参考以下博客：<br><code>https://blog.csdn.net/cjeric/article/details/71104445</code><br><code>https://www.cnblogs.com/banshaohuan/p/10963547.html?tdsourcetag=s_pctim_aiomsg</code></li>
-</ul>
-<h3 id="安装django项目依赖包"><a href="#安装django项目依赖包" class="headerlink" title="安装django项目依赖包"></a>安装django项目依赖包</h3><ul>
-<li><p>从项目导出。生成requirements.txt<br><code>pip freeze &gt; requirements.txt</code></p>
-</li>
-<li><p>在服务器安装部署。执行requirements文件<br><code>pip install -r requirement.txt</code>  </p>
-</li>
-<li><p>如果不能安装成功，则手动安装每个包  </p>
-</li>
-</ul>
-<h3 id="安装、配置mysql和redis服务"><a href="#安装、配置mysql和redis服务" class="headerlink" title="安装、配置mysql和redis服务"></a>安装、配置mysql和redis服务</h3><ul>
-<li><p>安装mysql服务：<code>sudo apt-get install redis-server</code>  </p>
-</li>
-<li><p>安装redis服务：<code>sudo apt-get install mysql-server</code>  </p>
-</li>
-<li><p>启动redis <code>service reids start</code></p>
-</li>
-<li><p>创建mysql数据库  </p>
-</li>
-</ul>
-<h3 id="django部署准备工作（测试运行时不能配置这些文件）"><a href="#django部署准备工作（测试运行时不能配置这些文件）" class="headerlink" title="django部署准备工作（测试运行时不能配置这些文件）"></a>django部署准备工作（测试运行时不能配置这些文件）</h3><ul>
-<li>修改<code>DEBUG</code>为<code>False</code>  </li>
-<li>设置<code>ALLOW_HOST</code>为 <code>&quot;*&quot;</code>  </li>
-<li><code>INSTALL_APPS</code>下添加<code>gunicron</code>  </li>
-<li>搜集静态文件  <ul>
-<li><code>python manage.py collectstatic</code>  </li>
-<li><code>STATIC_ROOT = os.path.jois(BASE_DIR, &#39;STATIC/&#39;)</code>  </li>
-<li>在static下出现admin文件夹</li>
-</ul>
-</li>
-<li>设置静态文件的路由<ul>
-<li>配置urls.py文件</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.staticfiles.urls import staticfiles_urlpatterns</span><br><span class="line"></span><br><span class="line"><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># debug为false的时候使用这个静态文件的路径</span></span><br><span class="line">urlpatterns += staticfiles_urlpatterns()</span><br></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li>数据迁移。<ul>
-<li>服务器上没有数据库文件的时候，删除本地历史数据迁移文件，在<strong>ubuntu16.04服务器</strong>上执行如下命令：</li>
-<li><code>python manage.py makemigrations</code></li>
-<li><code>python manage.py migrate</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="安装支持django项目运行的依赖包"><a href="#安装支持django项目运行的依赖包" class="headerlink" title="安装支持django项目运行的依赖包"></a>安装支持django项目运行的依赖包</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 <span class="keyword">install</span>  gunicorn              <span class="comment"># python的高性能的WSGI HTTP服务器</span></span><br><span class="line">用来运行django项目</span><br><span class="line">$ pip3 <span class="keyword">install</span> greenlet              <span class="comment"># Required for both</span></span><br><span class="line">$ pip3 <span class="keyword">install</span> eventlet              <span class="comment"># For eventlet workers</span></span><br><span class="line">$ pip3 <span class="keyword">install</span> gevent                <span class="comment"># For gevent workers</span></span><br><span class="line"></span><br><span class="line">$ pip3 <span class="keyword">install</span> virtualenv            <span class="comment"># 安装virtualenv</span></span><br><span class="line">虚拟环境</span><br></pre></td></tr></table></figure>
+<p>sudo update-alternatives –install /usr/bin/python python /usr/bin/python3 150</p>
+<p>sudo update-alternatives –list python</p>
+<p>如果要切换到Python2，执行：</p>
+<p>sudo update-alternatives –config python</p>
+<p>按照提示输入数字按回车即可</p>
+<pre><code>* 升级pip  
+`pip install --upgrade pip`  或者  
+`pip3 install --upgrade pip`  
 
-<h3 id="此时在项目根目录下可以测试项目运行"><a href="#此时在项目根目录下可以测试项目运行" class="headerlink" title="此时在项目根目录下可以测试项目运行"></a>此时在项目根目录下可以测试项目运行</h3><p>DjangoProject: 项目名称<br><code>gunicorn -w 3 -k gevent -b 0.0.0.0:8000 DjangoProject.wsgi:application</code></p>
-<h2 id="一、gunicorn配置"><a href="#一、gunicorn配置" class="headerlink" title="一、gunicorn配置"></a>一、gunicorn配置</h2><p><a href="https://codeac.top/2019/09/21/gunicorn%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" target="_blank" rel="noopener">gunicorn配置及使用详解</a>  </p>
-<p>在settings同目录下新建<code>gunicorn.conf.py</code>文件，根据需要修改相关配置信息  </p>
-<ul>
-<li>修改bind，端口号要与DjangoProject.conf的server端口相同，这里使用8000</li>
-<li>根据需求修改最大并发量</li>
-<li>修改访问日志和错误信息日志路径中项目名称</li>
-<li>修改进程文件目录中的项目名称</li>
-<li>修改proc_name为django项目名称<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="built_in">import</span> os</span><br><span class="line">from multiprocessing <span class="built_in">import</span> cpu_count</span><br><span class="line"></span><br><span class="line"><span class="attr">bind</span> = <span class="string">"0.0.0.0:8000"</span></span><br><span class="line"><span class="attr">daemon</span> = True <span class="comment"># 设置守护进程,将进程交给supervisor管理</span></span><br><span class="line"><span class="comment"># 并行工作进程数</span></span><br><span class="line"><span class="attr">workers</span> = <span class="number">2</span>*cpu_count() + <span class="number">1</span>  <span class="comment"># workers是工作线程数，一般设置成：2*服务器CPU个数 + 1，这样的话，在任何时候都有一半的worker在做IO</span></span><br><span class="line"><span class="comment"># 指定每个工作者的线程数</span></span><br><span class="line"><span class="attr">threads</span> = <span class="number">2</span></span><br><span class="line"><span class="attr">worker_class</span> = <span class="string">"gevent"</span></span><br><span class="line"><span class="attr">forworded_allow_ips</span> = '*'</span><br><span class="line"><span class="attr">keepalive</span> = <span class="number">6</span></span><br><span class="line"><span class="attr">timeout</span> = <span class="number">65</span></span><br><span class="line"><span class="attr">graceful_timeout</span> = <span class="number">10</span></span><br><span class="line"><span class="comment"># 设置最大并发量</span></span><br><span class="line"><span class="attr">worker_connections</span> = <span class="number">65535</span></span><br><span class="line"><span class="comment"># 设置进程文件目录</span></span><br><span class="line"><span class="attr">pidfile</span> = '/www/DjangoPro/gunicorn.pid'</span><br><span class="line"><span class="comment"># 设置访问日志和错误信息日志路径</span></span><br><span class="line"><span class="attr">errorlog</span> = '/www/DjangoPro/gunicorn.error.log'</span><br><span class="line"><span class="attr">accesslog</span> = '/www/DjangoPro/gunicorn.access.log'</span><br><span class="line"><span class="comment"># 日志等级 </span></span><br><span class="line"><span class="comment"># debug    : 打印全部的日志(notset等同于debug)</span></span><br><span class="line"><span class="comment"># info     : 打印info,warning,error,critical级别的日志</span></span><br><span class="line"><span class="comment"># warning  : 打印warning,error,critical级别的日志</span></span><br><span class="line"><span class="comment"># error    : 打印error,critical级别的日志</span></span><br><span class="line"><span class="comment"># critical : 打印critical级别</span></span><br><span class="line"><span class="attr">loglevel</span> = 'info'</span><br><span class="line"><span class="attr">proc_name</span> = 'DjangoPro'</span><br></pre></td></tr></table></figure>
-<h2 id="二、Nginx服务器安装、配置"><a href="#二、Nginx服务器安装、配置" class="headerlink" title="二、Nginx服务器安装、配置"></a>二、Nginx服务器安装、配置</h2><a href="https://codeac.top/2019/09/21/Nginx配置及使用详解/" target="_blank" rel="noopener">Nginx配置及使用详解</a>  <h4 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h4></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install apache2-utils <span class="comment"># 安装apache测试命令</span></span></span><br><span class="line">测试服务器对请求的承载量</span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install nginx         <span class="comment"># 安装nginx服务器</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> systemctl <span class="built_in">enable</span> nginx                <span class="comment"># 设置nginx开机自启动</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>启动nginx：<code>service nginx start</code>  </li>
-<li>测试访问：输入ip，成功则出现<strong>Welcome to nginx!</strong>。（输入ip默认访问80端口，即访问到Nginx服务）</li>
-</ul>
-<h4 id="修改默认的nginx的默认端口"><a href="#修改默认的nginx的默认端口" class="headerlink" title="修改默认的nginx的默认端口"></a>修改默认的nginx的默认端口</h4><p>&emsp;&emsp;此步骤为了让django项目使用默认端口80</p>
-<ul>
-<li>修改Nginx默认配置文件，把Nginx服务器默认端口由80改为81或其他<ul>
-<li><code>vi /etc/nginx/sites-enabled/default</code>  </li>
-</ul>
-</li>
-</ul>
-<h4 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h4><ul>
-<li>设置并发量<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vi</span> /etc/nginx/nginx.<span class="keyword">conf</span></span><br><span class="line">work_connections设置为<span class="number">65535</span></span><br></pre></td></tr></table></figure>
-<h4 id="DjangoProject-conf文件配置"><a href="#DjangoProject-conf文件配置" class="headerlink" title="DjangoProject.conf文件配置"></a>DjangoProject.conf文件配置</h4></li>
-<li>在Nginx下添加DjangoProject.conf配置文件<br><code>vi /etc/nginx/conf.d/djangopro.conf</code></li>
-<li>listen使用默认的80端口</li>
-<li>保持server与gunicorn中的地址相同（如果只使用本机一台服务器，gunicorn可以使用<code>0.0.0.0:port</code>）</li>
-<li>注意<code>DjangoProject</code>更改为项目名称<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">upstream</span> <span class="string">app_server &#123;</span></span><br><span class="line">    <span class="attr">server</span> <span class="string">127.0.0.1:8000;  #与gunicorn配置中bind的地址一致</span></span><br><span class="line"><span class="attr">&#125;</span></span><br><span class="line"><span class="attr">server</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">listen</span>       <span class="string">80; # niginx的端口 该端口要开放 </span></span><br><span class="line">    <span class="attr">server_name</span>  <span class="string">0.0.0.0;  #域名或主机地址</span></span><br><span class="line">    <span class="attr">access_log</span>  <span class="string">/www/DjangoProject/host.access.log;</span></span><br><span class="line">    <span class="attr">location</span> = <span class="string">/favicon.ico  &#123;</span></span><br><span class="line">        <span class="attr">empty_gif;</span></span><br><span class="line">        <span class="attr">access_log</span> <span class="string">off;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line">    <span class="attr">location</span> <span class="string">/static/ &#123;</span></span><br><span class="line">        <span class="attr">root</span>   <span class="string">/www/DjangoProject/;</span></span><br><span class="line">        <span class="attr">expires</span> <span class="string">30d;</span></span><br><span class="line">        <span class="attr">access_log</span> <span class="string">off;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line">   <span class="attr">location</span> <span class="string">/media/ &#123;</span></span><br><span class="line"><span class="comment"># 同上这个文件我的项目中是放图片和头像的</span></span><br><span class="line">       <span class="attr">root</span> <span class="string">/www/DjangoProject/;</span></span><br><span class="line">   <span class="attr">&#125;</span></span><br><span class="line">    <span class="attr">location</span> <span class="string">/ &#123;</span></span><br><span class="line">        <span class="attr">proxy_set_header</span> <span class="string">X-Forwarded-For $proxy_add_x_forwarded_for;</span></span><br><span class="line">        <span class="attr">proxy_set_header</span> <span class="string">Host $http_host;</span></span><br><span class="line">        <span class="attr">proxy_redirect</span> <span class="string">off;</span></span><br><span class="line">        <span class="attr">proxy_pass</span> <span class="string">http://app_server;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line">    <span class="attr">error_page</span>   <span class="string">500 502 503 504  /50x.html;</span></span><br><span class="line">    <span class="attr">location</span> = <span class="string">/50x.html &#123;</span></span><br><span class="line">        <span class="attr">root</span>   <span class="string">html;</span></span><br><span class="line">    <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="启动django项目"><a href="#启动django项目" class="headerlink" title="启动django项目"></a>启动django项目</h3></li>
-<li>重启nginx： <code>service nginx restart</code></li>
-<li>启动gunicorn：<code>gunicorn -w 3 -k gevent -b  DjangoProject.wsgi:application</code></li>
-<li>访问ip</li>
-</ul>
-<p>网站部署基本完成，supervisor自启项目后续再做。</p>
-<hr>
-<h3 id="报错解决方案"><a href="#报错解决方案" class="headerlink" title="报错解决方案"></a>报错解决方案</h3><ul>
-<li>error: command ‘x86_64-linux-gnu-gcc’ failed with exit status 1 解决办法  </li>
-<li>安装必要的依赖<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install build-essential python3-<span class="built_in">dev</span> libssl-<span class="built_in">dev</span> libffi-<span class="built_in">dev</span> libxml2 libxml2-<span class="built_in">dev</span> libxslt1-<span class="built_in">dev</span> zlib1g-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+---
 
+* 如果找不到pip或者pip3：  
+* 重新安装 pip 但不是通过 apt-get 而是通过 python -m 
+    * 执行：`sudo python -m pip install --upgrade --force-reinstall pip`或者`sudo python3 -m pip install --upgrade --force-reinstall pip`  
+* 参考以下博客：  
+`https://blog.csdn.net/cjeric/article/details/71104445`  
+`https://www.cnblogs.com/banshaohuan/p/10963547.html?tdsourcetag=s_pctim_aiomsg`
+
+### 安装django项目依赖包
+
+* 从项目导出。生成requirements.txt  
+`pip freeze &gt; requirements.txt`
+
+* 在服务器安装部署。执行requirements文件  
+`pip install -r requirement.txt`  
+
+* 如果不能安装成功，则手动安装每个包  
+
+
+### 安装、配置mysql和redis服务
+* 安装mysql服务：`sudo apt-get install redis-server`  
+* 安装redis服务：`sudo apt-get install mysql-server`  
+
+* 启动redis `service reids start`
+* 创建mysql数据库  
+
+### django部署准备工作（测试运行时不能配置这些文件）
+* 修改`DEBUG`为`False`  
+* 设置`ALLOW_HOST`为 `&quot;*&quot;`  
+* `INSTALL_APPS`下添加`gunicron`  
+* 搜集静态文件  
+    * `python manage.py collectstatic`  
+    * `STATIC_ROOT = os.path.jois(BASE_DIR, &#39;STATIC/&#39;)`  
+    * 在static下出现admin文件夹
+* 设置静态文件的路由
+    * 配置urls.py文件
+</code></pre><p>from django.contrib.staticfiles.urls import staticfiles_urlpatterns</p>
+<p>……</p>
+<h1 id="debug为false的时候使用这个静态文件的路径"><a href="#debug为false的时候使用这个静态文件的路径" class="headerlink" title="debug为false的时候使用这个静态文件的路径"></a>debug为false的时候使用这个静态文件的路径</h1><p>urlpatterns += staticfiles_urlpatterns()</p>
+<pre><code>---
+* 数据迁移。
+    * 服务器上没有数据库文件的时候，删除本地历史数据迁移文件，在**ubuntu16.04服务器**上执行如下命令：
+    * `python manage.py makemigrations`
+    * `python manage.py migrate`
+
+### 安装支持django项目运行的依赖包
+</code></pre><p>$ pip3 install  gunicorn              # python的高性能的WSGI HTTP服务器<br>用来运行django项目<br>$ pip3 install greenlet              # Required for both<br>$ pip3 install eventlet              # For eventlet workers<br>$ pip3 install gevent                # For gevent workers</p>
+<p>$ pip3 install virtualenv            # 安装virtualenv<br>虚拟环境</p>
+<pre><code>
+### 此时在项目根目录下可以测试项目运行  
+DjangoProject: 项目名称  
+`gunicorn -w 3 -k gevent -b 0.0.0.0:8000 DjangoProject.wsgi:application`
+## 一、gunicorn配置
+[gunicorn配置及使用详解](https://codeac.top/2019/09/21/gunicorn%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/)  
+
+在settings同目录下新建`gunicorn.conf.py`文件，根据需要修改相关配置信息  
+* 修改bind，端口号要与DjangoProject.conf的server端口相同，这里使用8000
+* 根据需求修改最大并发量
+* 修改访问日志和错误信息日志路径中项目名称
+* 修改进程文件目录中的项目名称
+* 修改proc_name为django项目名称</code></pre><p>#!/usr/bin/env python</p>
+<h1 id="coding-utf-8"><a href="#coding-utf-8" class="headerlink" title="-- coding:utf-8 --"></a>-<em>- coding:utf-8 -</em>-</h1><p>import os<br>from multiprocessing import cpu_count</p>
+<p>bind = “0.0.0.0:8000”<br>daemon = True # 设置守护进程,将进程交给supervisor管理</p>
+<h1 id="并行工作进程数"><a href="#并行工作进程数" class="headerlink" title="并行工作进程数"></a>并行工作进程数</h1><p>workers = 2<em>cpu_count() + 1  # workers是工作线程数，一般设置成：2</em>服务器CPU个数 + 1，这样的话，在任何时候都有一半的worker在做IO</p>
+<h1 id="指定每个工作者的线程数"><a href="#指定每个工作者的线程数" class="headerlink" title="指定每个工作者的线程数"></a>指定每个工作者的线程数</h1><p>threads = 2<br>worker_class = “gevent”<br>forworded_allow_ips = ‘*’<br>keepalive = 6<br>timeout = 65<br>graceful_timeout = 10</p>
+<h1 id="设置最大并发量"><a href="#设置最大并发量" class="headerlink" title="设置最大并发量"></a>设置最大并发量</h1><p>worker_connections = 65535</p>
+<h1 id="设置进程文件目录"><a href="#设置进程文件目录" class="headerlink" title="设置进程文件目录"></a>设置进程文件目录</h1><p>pidfile = ‘/www/DjangoPro/gunicorn.pid’</p>
+<h1 id="设置访问日志和错误信息日志路径"><a href="#设置访问日志和错误信息日志路径" class="headerlink" title="设置访问日志和错误信息日志路径"></a>设置访问日志和错误信息日志路径</h1><p>errorlog = ‘/www/DjangoPro/gunicorn.error.log’<br>accesslog = ‘/www/DjangoPro/gunicorn.access.log’</p>
+<h1 id="日志等级"><a href="#日志等级" class="headerlink" title="日志等级"></a>日志等级</h1><h1 id="debug-打印全部的日志-notset等同于debug"><a href="#debug-打印全部的日志-notset等同于debug" class="headerlink" title="debug    : 打印全部的日志(notset等同于debug)"></a>debug    : 打印全部的日志(notset等同于debug)</h1><h1 id="info-打印info-warning-error-critical级别的日志"><a href="#info-打印info-warning-error-critical级别的日志" class="headerlink" title="info     : 打印info,warning,error,critical级别的日志"></a>info     : 打印info,warning,error,critical级别的日志</h1><h1 id="warning-打印warning-error-critical级别的日志"><a href="#warning-打印warning-error-critical级别的日志" class="headerlink" title="warning  : 打印warning,error,critical级别的日志"></a>warning  : 打印warning,error,critical级别的日志</h1><h1 id="error-打印error-critical级别的日志"><a href="#error-打印error-critical级别的日志" class="headerlink" title="error    : 打印error,critical级别的日志"></a>error    : 打印error,critical级别的日志</h1><h1 id="critical-打印critical级别"><a href="#critical-打印critical级别" class="headerlink" title="critical : 打印critical级别"></a>critical : 打印critical级别</h1><p>loglevel = ‘info’<br>proc_name = ‘DjangoPro’</p>
+<pre><code>## 二、Nginx服务器安装、配置
+[Nginx配置及使用详解](https://codeac.top/2019/09/21/Nginx配置及使用详解/)  
+#### 安装nginx
+</code></pre><p>$ sudo apt-get install apache2-utils # 安装apache测试命令<br>测试服务器对请求的承载量<br>$ sudo apt-get install nginx         # 安装nginx服务器<br>$ systemctl enable nginx                # 设置nginx开机自启动</p>
+<pre><code>* 启动nginx：`service nginx start`  
+* 测试访问：输入ip，成功则出现**Welcome to nginx!**。（输入ip默认访问80端口，即访问到Nginx服务）
+
+#### 修改默认的nginx的默认端口
+&amp;emsp;&amp;emsp;此步骤为了让django项目使用默认端口80
+* 修改Nginx默认配置文件，把Nginx服务器默认端口由80改为81或其他
+    * `vi /etc/nginx/sites-enabled/default`  
+
+#### nginx配置
+* 设置并发量</code></pre><p>vi /etc/nginx/nginx.conf<br>work_connections设置为65535</p>
+<pre><code>#### DjangoProject.conf文件配置
+* 在Nginx下添加DjangoProject.conf配置文件  
+`vi /etc/nginx/conf.d/djangopro.conf`
+* listen使用默认的80端口
+* 保持server与gunicorn中的地址相同（如果只使用本机一台服务器，gunicorn可以使用`0.0.0.0:port`）
+* 注意`DjangoProject`更改为项目名称</code></pre><p>upstream app_server {<br>    server 127.0.0.1:8000;  #与gunicorn配置中bind的地址一致<br>}<br>server {<br>    listen       80; # niginx的端口 该端口要开放<br>    server_name  0.0.0.0;  #域名或主机地址<br>    access_log  /www/DjangoProject/host.access.log;<br>    location = /favicon.ico  {<br>        empty_gif;<br>        access_log off;<br>    }<br>    location /static/ {<br>        root   /www/DjangoProject/;<br>        expires 30d;<br>        access_log off;<br>    }<br>   location /media/ {</p>
+<h1 id="同上这个文件我的项目中是放图片和头像的"><a href="#同上这个文件我的项目中是放图片和头像的" class="headerlink" title="同上这个文件我的项目中是放图片和头像的"></a>同上这个文件我的项目中是放图片和头像的</h1><pre><code>   root /www/DjangoProject/;</code></pre><p>   }<br>    location / {<br>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>        proxy_set_header Host $http_host;<br>        proxy_redirect off;<br>        proxy_pass <a href="http://app_server" target="_blank" rel="noopener">http://app_server</a>;<br>    }<br>    error_page   500 502 503 504  /50x.html;<br>    location = /50x.html {<br>        root   html;<br>    }<br>}</p>
+<pre><code>### 启动django项目
+* 重启nginx： `service nginx restart`
+* 启动gunicorn：`gunicorn -w 3 -k gevent -b  DjangoProject.wsgi:application`
+* 访问ip
+
+网站部署基本完成，supervisor自启项目后续再做。
+
+---
+
+
+### 报错解决方案
+
+* error: command &#39;x86_64-linux-gnu-gcc&#39; failed with exit status 1 解决办法  
+* 安装必要的依赖</code></pre><p>sudo apt-get install build-essential python3-dev libssl-dev libffi-dev libxml2 libxml2-dev libxslt1-dev zlib1g-dev</p>
+<pre><code></code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

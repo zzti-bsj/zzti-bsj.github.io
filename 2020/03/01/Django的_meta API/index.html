@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -144,19 +146,64 @@
 <ul>
 <li>检索模型的某个字段 <code>Model._meta.get_field(field_name)</code> </li>
 </ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="keyword">from</span> django.contrib.auth.models import User</span><br><span class="line"></span><br><span class="line"><span class="comment"># A field on the model</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'username'</span>)</span><br><span class="line">&lt;django.db.models.fields.CharField: username&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># A field from another model that has a relation with the current model</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'logentry'</span>)</span><br><span class="line">&lt;ManyToOneRel: admin.logentry&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># A non existent field</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'does_not_exist'</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    <span class="built_in">..</span>.</span><br><span class="line">FieldDoesNotExist:<span class="built_in"> User </span>has <span class="literal">no</span> field named <span class="string">'does_not_exist'</span></span><br></pre></td></tr></table></figure>
+<pre><code>&gt;&gt;&gt; from django.contrib.auth.models import User
 
-<ul>
+# A field on the model
+&gt;&gt;&gt; User._meta.get_field(&#39;username&#39;)
+&lt;django.db.models.fields.CharField: username&gt;
+
+# A field from another model that has a relation with the current model
+&gt;&gt;&gt; User._meta.get_field(&#39;logentry&#39;)
+&lt;ManyToOneRel: admin.logentry&gt;
+
+# A non existent field
+&gt;&gt;&gt; User._meta.get_field(&#39;does_not_exist&#39;)
+Traceback (most recent call last):
+    ...
+FieldDoesNotExist: User has no field named &#39;does_not_exist&#39;</code></pre><ul>
 <li>检索模型的所有字段 <code>Model._meta.get_fields(include_parents = True，include_hidden = False)</code> </li>
 </ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="selector-tag">from</span> <span class="selector-tag">django</span><span class="selector-class">.contrib</span><span class="selector-class">.auth</span><span class="selector-class">.models</span> <span class="selector-tag">import</span> <span class="selector-tag">User</span></span><br><span class="line">&gt;&gt;&gt; <span class="selector-tag">User</span><span class="selector-class">._meta</span><span class="selector-class">.get_fields</span>()</span><br><span class="line">(&lt;<span class="attribute">ManyToOneRel</span>: admin.logentry&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">AutoField</span>: id&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: password&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: last_login&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_superuser&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: username&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: first_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: last_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">EmailField</span>: email&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_staff&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_active&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: date_joined&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: groups&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: user_permissions&gt;)</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">Also</span> <span class="selector-tag">include</span> <span class="selector-tag">hidden</span> <span class="selector-tag">fields</span>.</span><br><span class="line">&gt;&gt;&gt; <span class="selector-tag">User</span><span class="selector-class">._meta</span><span class="selector-class">.get_fields</span>(include_hidden=True)</span><br><span class="line">(&lt;<span class="attribute">ManyToOneRel</span>: auth.user_groups&gt;,</span><br><span class="line"> &lt;<span class="attribute">ManyToOneRel</span>: auth.user_user_permissions&gt;,</span><br><span class="line"> &lt;<span class="attribute">ManyToOneRel</span>: admin.logentry&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">AutoField</span>: id&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: password&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: last_login&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_superuser&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: username&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: first_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: last_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">EmailField</span>: email&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_staff&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_active&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: date_joined&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: groups&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: user_permissions&gt;)</span><br></pre></td></tr></table></figure>
+<pre><code>&gt;&gt;&gt; from django.contrib.auth.models import User
+&gt;&gt;&gt; User._meta.get_fields()
+(&lt;ManyToOneRel: admin.logentry&gt;,
+ &lt;django.db.models.fields.AutoField: id&gt;,
+ &lt;django.db.models.fields.CharField: password&gt;,
+ &lt;django.db.models.fields.DateTimeField: last_login&gt;,
+ &lt;django.db.models.fields.BooleanField: is_superuser&gt;,
+ &lt;django.db.models.fields.CharField: username&gt;,
+ &lt;django.db.models.fields.CharField: first_name&gt;,
+ &lt;django.db.models.fields.CharField: last_name&gt;,
+ &lt;django.db.models.fields.EmailField: email&gt;,
+ &lt;django.db.models.fields.BooleanField: is_staff&gt;,
+ &lt;django.db.models.fields.BooleanField: is_active&gt;,
+ &lt;django.db.models.fields.DateTimeField: date_joined&gt;,
+ &lt;django.db.models.fields.related.ManyToManyField: groups&gt;,
+ &lt;django.db.models.fields.related.ManyToManyField: user_permissions&gt;)
 
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><ul>
+# Also include hidden fields.
+&gt;&gt;&gt; User._meta.get_fields(include_hidden=True)
+(&lt;ManyToOneRel: auth.user_groups&gt;,
+ &lt;ManyToOneRel: auth.user_user_permissions&gt;,
+ &lt;ManyToOneRel: admin.logentry&gt;,
+ &lt;django.db.models.fields.AutoField: id&gt;,
+ &lt;django.db.models.fields.CharField: password&gt;,
+ &lt;django.db.models.fields.DateTimeField: last_login&gt;,
+ &lt;django.db.models.fields.BooleanField: is_superuser&gt;,
+ &lt;django.db.models.fields.CharField: username&gt;,
+ &lt;django.db.models.fields.CharField: first_name&gt;,
+ &lt;django.db.models.fields.CharField: last_name&gt;,
+ &lt;django.db.models.fields.EmailField: email&gt;,
+ &lt;django.db.models.fields.BooleanField: is_staff&gt;,
+ &lt;django.db.models.fields.BooleanField: is_active&gt;,
+ &lt;django.db.models.fields.DateTimeField: date_joined&gt;,
+ &lt;django.db.models.fields.related.ManyToManyField: groups&gt;,
+ &lt;django.db.models.fields.related.ManyToManyField: user_permissions&gt;)</code></pre><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><ul>
 <li>这里有一个使用此功能封装的实例，用于将django的orm对象转成json字符串 <a href="https://gitee.com/zzti-bsj/tools/tree/master/6%E3%80%81orm2json" target="_blank" rel="noopener">orm2json</a></li>
 </ul>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

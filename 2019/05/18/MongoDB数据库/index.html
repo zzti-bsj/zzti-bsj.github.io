@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -142,11 +144,15 @@
     <div class="post-content">
         <h3 id="MongDB数据库"><a href="#MongDB数据库" class="headerlink" title="MongDB数据库"></a>MongDB数据库</h3><p>&emsp;&emsp;关于MongoDB数据库，简单整理一下MongoDB的使用和配置问题  </p>
 <h3 id="MongoDB的安装"><a href="#MongoDB的安装" class="headerlink" title="MongoDB的安装"></a>MongoDB的安装</h3><p>&emsp;&emsp;1 <a href="https://www.mongodb.com/download-center" target="_blank" rel="noopener">官网下载</a> MongoDB，然后安装。<br><img src="/imag/MongoDB1/1.png" alt="image"><br>安装的时候取消下图的勾选<br><img src="/imag/MongoDB1/2.jpg" alt="image"><br>&emsp;&emsp;2 我的安装在<code>D:\MongoDB</code>下，在对应<code>D:\MongoDB\data</code>下新建两个文件夹<code>log</code>和<code>db</code><br>&emsp;&emsp;3 配置环境变量，在系统环境变量Path中加入<code>D:\MongoDB\bin</code><br>&emsp;&emsp;4 在<code>D:\MongoDB</code>下创建mongod.cfg文件，内容如下:</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">systemLog</span>:</span><br><span class="line">    <span class="attribute">destination</span>: file</span><br><span class="line">    <span class="attribute">path</span>: <span class="attribute">d</span>:\MongoDB\data\log\mongod.log</span><br><span class="line"><span class="attribute">storage</span>:</span><br><span class="line">    <span class="attribute">dbPath</span>: <span class="attribute">d</span>:\MongoDB\data\db</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;5 执行命令：<code>D:\MongoDB\bin\mongod --dbpath d:\MongoDB\data\db</code> (这一步好像不需要) (根据自己的实际路径执行)<br>&emsp;&emsp;6 注册MongoDB的服务，执行如下命令:<code>D:\MongoDB\bin\mongod.exe --config &quot;D:\MongoDB\mongod.cfg&quot; --install</code><br>&emsp;&emsp;7 启动MongoDB数据库：<code>net start MongoDB</code><br>&emsp;&emsp;8 移除服务:<code>D:\MongoDB\bin\mongod.exe --remove</code></p>
+<pre><code>systemLog:
+    destination: file
+    path: d:\MongoDB\data\log\mongod.log
+storage:
+    dbPath: d:\MongoDB\data\db</code></pre><p>&emsp;&emsp;5 执行命令：<code>D:\MongoDB\bin\mongod --dbpath d:\MongoDB\data\db</code> (这一步好像不需要) (根据自己的实际路径执行)<br>&emsp;&emsp;6 注册MongoDB的服务，执行如下命令:<code>D:\MongoDB\bin\mongod.exe --config &quot;D:\MongoDB\mongod.cfg&quot; --install</code><br>&emsp;&emsp;7 启动MongoDB数据库：<code>net start MongoDB</code><br>&emsp;&emsp;8 移除服务:<code>D:\MongoDB\bin\mongod.exe --remove</code></p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

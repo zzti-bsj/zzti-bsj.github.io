@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -146,24 +148,49 @@
 <li>qq邮箱的授权码设置</li>
 </ul>
 <h4 id="php-ini配置"><a href="#php-ini配置" class="headerlink" title="php.ini配置"></a>php.ini配置</h4><p>主要配置三点：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SMTP = smtp<span class="selector-class">.qq</span>.com</span><br><span class="line">smto_port = <span class="number">25</span></span><br><span class="line"><span class="comment">//(邮箱服务端口)</span></span><br><span class="line"></span><br><span class="line">sendmail_from = yourname@qq.com</span><br><span class="line"><span class="comment">//自己的邮箱账号</span></span><br><span class="line"></span><br><span class="line">sendmail_path = <span class="string">"D:\sendmail\sendmail.exe -t"</span></span><br><span class="line"><span class="comment">//自己安装sendmail的路径</span></span><br></pre></td></tr></table></figure>
+<pre><code>
+SMTP = smtp.qq.com
+smto_port = 25
+//(邮箱服务端口)
 
+sendmail_from = yourname@qq.com
+//自己的邮箱账号
 
-<h4 id="sendmail下载及配置"><a href="#sendmail下载及配置" class="headerlink" title="sendmail下载及配置"></a>sendmail下载及配置</h4><p>sendmail下载之后，解压到自定义目录，如我的是：D:\sendmail</p>
+sendmail_path = &quot;D:\sendmail\sendmail.exe -t&quot;
+//自己安装sendmail的路径
+</code></pre><h4 id="sendmail下载及配置"><a href="#sendmail下载及配置" class="headerlink" title="sendmail下载及配置"></a>sendmail下载及配置</h4><p>sendmail下载之后，解压到自定义目录，如我的是：D:\sendmail</p>
 <ol>
 <li>配置sendmail.ini</li>
 </ol>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">smtp_server=smtp.qq.com</span><br><span class="line">smtp_port=25</span><br><span class="line"> </span><br><span class="line">//开启 log 方便排错，生成的log文件在sendmail根目录</span><br><span class="line">error_logfile=error.log</span><br><span class="line">debug_logfile=debug.log</span><br><span class="line"> </span><br><span class="line">auth_username=你的邮箱地址</span><br><span class="line">auth_password=你的授权码</span><br><span class="line"></span><br><span class="line">force_sender=你的邮箱地址 （和auth_username一样）</span><br></pre></td></tr></table></figure>
-<ol start="2">
+<pre><code>smtp_server=smtp.qq.com
+smtp_port=25
+
+//开启 log 方便排错，生成的log文件在sendmail根目录
+error_logfile=error.log
+debug_logfile=debug.log
+
+auth_username=你的邮箱地址
+auth_password=你的授权码
+
+force_sender=你的邮箱地址 （和auth_username一样）</code></pre><ol start="2">
 <li>qq授权码的获取</li>
 </ol>
 <p>登录qq邮箱<a href="https://mail.qq.com" target="_blank" rel="noopener">mail.qq.com</a>，<br>选择“设置”–“账号”–“POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务”</p>
 <p>开启如下服务,生成授权码，并填写在sendmail中授权码的位置。<br><img src="/imag/php/php7.png" alt="alt &quot;php7&quot;" title="php7"></p>
 <p><strong>配置完成！</strong></p>
-<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$to = <span class="string">'*********@qq.com'</span>;</span><br><span class="line"><span class="comment">//填写接受者的邮箱</span></span><br><span class="line"></span><br><span class="line">$subject = <span class="string">'Test mail'</span>;</span><br><span class="line">$message = <span class="string">'恭喜！（测试邮箱发送！）'</span>;</span><br><span class="line">mail($to, $subject, $message);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Mail Sent."</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><pre><code class="php">    &lt;?php
+    $to = &#39;*********@qq.com&#39;;
+    //填写接受者的邮箱
+
+    $subject = &#39;Test mail&#39;;
+    $message = &#39;恭喜！（测试邮箱发送！）&#39;;
+    mail($to, $subject, $message);
+    echo &quot;Mail Sent.&quot;;
+    ?&gt;</code></pre>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

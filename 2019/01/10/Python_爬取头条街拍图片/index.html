@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -163,14 +165,14 @@ from hashlib import md5
 
 class JiePaiSpider(object):
     # 进程池无法序列化pymongo对象，因为pymongo数据库中含有线程锁。
-    # TypeError: can&apos;t pickle _thread.lock objects
+    # TypeError: can&#39;t pickle _thread.lock objects
     # 建立pymongo的链接
-    client = pymongo.MongoClient(&apos;localhost&apos;)
-    db = client[&apos;jiepai&apos;]
+    client = pymongo.MongoClient(&#39;localhost&#39;)
+    db = client[&#39;jiepai&#39;]
 
     def __init__(self):
         self.headers = {
-            &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.12 Safari/537.36&apos;
+            &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.12 Safari/537.36&#39;
         }
     # https://goss.veer.com/creative/vcg/veer/1600/veer-309035499.jpg
     def get_list_json(self, offset):
@@ -182,26 +184,26 @@ class JiePaiSpider(object):
         # https://www.toutiao.com/search_content/?offset=0&amp;format=json&amp;keyword=%E8%A1%97%E6%8B%8D&amp;autoload=true&amp;count=20&amp;cur_tab=1&amp;from=search_tab&amp;pd=synthesis
         # 准备接口参数
         params = {
-            &apos;offset&apos;: offset,
-            &apos;format&apos;: &apos;json&apos;,
-            &apos;keyword&apos;: &apos;街拍&apos;,
-            &apos;autoload&apos;: &apos;true&apos;,
-            &apos;count&apos;: &apos;20&apos;,
-            &apos;cur_tab&apos;: &apos;1&apos;,
-            &apos;from&apos;: &apos;search_tab&apos;,
-            &apos;pd&apos;: &apos;synthesis&apos;
+            &#39;offset&#39;: offset,
+            &#39;format&#39;: &#39;json&#39;,
+            &#39;keyword&#39;: &#39;街拍&#39;,
+            &#39;autoload&#39;: &#39;true&#39;,
+            &#39;count&#39;: &#39;20&#39;,
+            &#39;cur_tab&#39;: &#39;1&#39;,
+            &#39;from&#39;: &#39;search_tab&#39;,
+            &#39;pd&#39;: &#39;synthesis&#39;
         }
-        api_url = &apos;https://www.toutiao.com/search_content/?&apos; + urlencode(params)
+        api_url = &#39;https://www.toutiao.com/search_content/?&#39; + urlencode(params)
         try:
             response = requests.get(api_url, headers=self.headers)
             if response.status_code == 200:
                 # 响应状态码是200，说明GET请求成功
                 return response.text
             else:
-                print(&apos;请求异常：url={}, status_code={}&apos;.format(api_url, response.status_code))
+                print(&#39;请求异常：url={}, status_code={}&#39;.format(api_url, response.status_code))
                 return None
         except Exception as e:
-            print(&apos;请求异常：url={}, error={}&apos;.format(api_url, e))
+            print(&#39;请求异常：url={}, error={}&#39;.format(api_url, e))
             return None
 
 
@@ -212,15 +214,15 @@ class JiePaiSpider(object):
         :return:
         &quot;&quot;&quot;
         json_dict = json.loads(json_str)
-        if &apos;data&apos; in json_dict.keys():
-            # 判断字典json_dict的所有键中是否包含&apos;data&apos;，如果有，可以解析，如果没有，可能没有数据或者发生异常了。
-            data_list = json_dict.get(&apos;data&apos;, None)
+        if &#39;data&#39; in json_dict.keys():
+            # 判断字典json_dict的所有键中是否包含&#39;data&#39;，如果有，可以解析，如果没有，可能没有数据或者发生异常了。
+            data_list = json_dict.get(&#39;data&#39;, None)
             if data_list and len(data_list) &gt; 0:
                 # 说明还有数据，可以解析
                 urls = []
                 for item in data_list:
-                    if &apos;single_mode&apos; not in item and &apos;cell_type&apos; not in item:
-                        article_url = item[&apos;article_url&apos;]
+                    if &#39;single_mode&#39; not in item and &#39;cell_type&#39; not in item:
+                        article_url = item[&#39;article_url&#39;]
                         urls.append(article_url)
                 return urls
 
@@ -231,22 +233,22 @@ class JiePaiSpider(object):
                 # 响应状态码是200，说明GET请求成功
                 return response.text
             else:
-                print(&apos;请求异常：url={}, status_code={}&apos;.format(detail_url, response.status_code))
+                print(&#39;请求异常：url={}, status_code={}&#39;.format(detail_url, response.status_code))
                 return None
         except Exception as e:
-            print(&apos;请求异常：url={}, error={}&apos;.format(detail_url, e))
+            print(&#39;请求异常：url={}, error={}&#39;.format(detail_url, e))
             return None
 
     def parse_detail_page(self, detail_html):
         # \(：表示对正则表达式中的(进行转义，转化为一个普通的字符。
-        js_json_str = re.findall(re.compile(r&apos;gallery: JSON.parse\((.*?)\),&apos;, re.S), detail_html)[0].replace(&apos;\\&apos;, &apos;&apos;).strip(&apos;&quot;&apos;)
+        js_json_str = re.findall(re.compile(r&#39;gallery: JSON.parse\((.*?)\),&#39;, re.S), detail_html)[0].replace(&#39;\\&#39;, &#39;&#39;).strip(&#39;&quot;&#39;)
         # 数据保存到Mongo中
         data_dict = json.loads(js_json_str)
         self.save_dict_to_db(data_dict)
 
         # 解析Json，取出图片的url地址，下载图片到本地。
-        for item_dict in data_dict[&apos;sub_images&apos;]:
-            img_url = item_dict[&apos;url&apos;]
+        for item_dict in data_dict[&#39;sub_images&#39;]:
+            img_url = item_dict[&#39;url&#39;]
             # 根据图片url地址，下载图片
             self.download_image(img_url)
 
@@ -258,20 +260,20 @@ class JiePaiSpider(object):
             content = response.content
             # md5()函数的参数需要是一个bytes字节码，不能是str类型的字符串。
             # hexdigest(): 获取md5加密后的结果。
-            img_name = md5(img_url.encode(&apos;utf-8&apos;)).hexdigest()
+            img_name = md5(img_url.encode(&#39;utf-8&#39;)).hexdigest()
 
-            # &apos;w&apos;: 写入普通文本；&apos;wb&apos;: 专门用于写入二进制数据(图片、音频、视频)
-            f = open(&apos;images/{}.jpg&apos;.format(img_name), &apos;wb&apos;)
+            # &#39;w&#39;: 写入普通文本；&#39;wb&#39;: 专门用于写入二进制数据(图片、音频、视频)
+            f = open(&#39;images/{}.jpg&#39;.format(img_name), &#39;wb&#39;)
             f.write(content)
             f.close()
         else:
-            print(&apos;图片请求失败：{}&apos;.format(img_url))
+            print(&#39;图片请求失败：{}&#39;.format(img_url))
 
     def save_dict_to_db(self, dic):
-        self.db[&apos;img&apos;].insert_one(dic)
+        self.db[&#39;img&#39;].insert_one(dic)
 
     def start_spider(self, offset):
-        print(&apos;正在请求偏移量为{}的图片&apos;.format(offset))
+        print(&#39;正在请求偏移量为{}的图片&#39;.format(offset))
         json_str = self.get_list_json(offset)
         if json_str:
             urls = self.parse_list_json(json_str)
@@ -280,7 +282,7 @@ class JiePaiSpider(object):
                 if detail_html:
                     self.parse_detail_page(detail_html)
 
-if __name__ == &apos;__main__&apos;:
+if __name__ == &#39;__main__&#39;:
     jp = JiePaiSpider()
     pool = Pool(3)
     pool.map(jp.start_spider, [x for x in range(0, 101) if x % 20 == 0])
@@ -289,6 +291,7 @@ if __name__ == &apos;__main__&apos;:
     pool.join()</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

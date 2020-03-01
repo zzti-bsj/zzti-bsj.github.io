@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,10 +143,91 @@
     </ul>
     <div class="post-content">
         <h2 id="itertools模块"><a href="#itertools模块" class="headerlink" title="itertools模块"></a>itertools模块</h2><h3 id="itertools模块整理"><a href="#itertools模块整理" class="headerlink" title="itertools模块整理"></a>itertools模块整理</h3><p>这里的返回值都是可以迭代的，但是是生成器。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"></span><br><span class="line"># <span class="number">1</span>、count()/返回一个不断循环的generator <span class="keyword">return</span> consecutive values</span><br><span class="line"># x = itertools.count(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line"># <span class="built_in">print</span>(type(x))	</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span>、islice()/从一个迭代器中 取一段（左闭右开）返回一个generator，可设置步长。</span><br><span class="line">y = <span class="built_in">list</span>(itertools.islice(x, <span class="number">5</span>, <span class="number">10</span>, <span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(y)</span><br><span class="line"></span><br><span class="line"># <span class="number">3</span>、cycle()/根据可迭代对象 返回一个不断循环的generator</span><br><span class="line">x = itertools.cycle('ABC')</span><br><span class="line"><span class="built_in">print</span>(type(x))</span><br><span class="line"></span><br><span class="line"># <span class="number">4</span>、dropwhile()和takewhile()(这里不再赘述，看名字就知道功能了) /根据predicate（谓语，动作）筛选迭代对象的值，并返回一个新的generator对象。</span><br><span class="line">x = itertools.dropwhile(lambda e: e &lt; <span class="number">5</span>, range(<span class="number">1</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"># <span class="number">5</span>、filterfalse() 根dropwhile() 有异曲同工之处.</span><br><span class="line"># filterfalse() ---&gt; 如果为<span class="literal">false</span>，则留下。</span><br><span class="line"># dropwhile() ---&gt; 如果为True，则丢掉。</span><br><span class="line">x = itertools.dropwhile(lambda e: e &lt; <span class="number">5</span>, range(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"># &gt;&gt;&gt;[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">x = itertools.filterfalse(lambda e: e &lt; <span class="number">5</span>, range(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"># &gt;&gt;&gt;[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"># <span class="number">6</span>、groupby() 对一个迭代器中的元素分组，根据后面提供的谓语,返回(condition, <span class="built_in">list</span>)generator</span><br><span class="line">x = itertools.groupby(range(<span class="number">10</span>), lambda x: x &lt; <span class="number">5</span> <span class="keyword">or</span> x &gt; <span class="number">8</span>)</span><br><span class="line"><span class="keyword">for</span> condition, numbers in x:</span><br><span class="line">    <span class="built_in">print</span>(condition, <span class="built_in">list</span>(numbers))</span><br><span class="line"></span><br><span class="line"># <span class="number">7</span>、product() 返回多个迭代器的（积）的generator</span><br><span class="line">x = itertools.product('ABC', range(3), range(3))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"></span><br><span class="line"># <span class="number">8</span>、starmap() 根据给定的函数，在后面的可迭代对象中循环判定，然后返回一个判定结果generator。</span><br><span class="line">x = itertools.starmap(str.islower, 'aBCDefGhI')</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"></span><br><span class="line"># <span class="number">9</span>、tee() / 根据提供的参数：迭代器/n  返回n个迭代器对象参数组成的generator。</span><br><span class="line">x = itertools.tee(range(<span class="number">10</span>), <span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> i in x:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>(i))</span><br><span class="line"></span><br><span class="line"># <span class="number">10</span>、内置函数zip() 和 zip_longest()函数 /根据提供的多个可迭代类型的对象，返回压缩的generator元组</span><br><span class="line">a = range(<span class="number">10</span>)</span><br><span class="line">b = range(<span class="number">8</span>)</span><br><span class="line"># zip() /返回一个generator元组。以最短的对象为准</span><br><span class="line">x = zip(a, b)</span><br><span class="line"></span><br><span class="line"># itertools.zip_longest() /返回一个generator元组，以最长的对象为准，缺少的地方值为None。</span><br><span class="line">y = itertools.zip_longest(a, b)</span><br><span class="line"></span><br><span class="line"># <span class="number">11</span>、repeat() /重复一个值n遍，返回一个generator</span><br><span class="line">x = itertools.repeat(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"># <span class="number">12</span>、permutations() /根据提供的迭代器对象以及参数n，返回一个由迭代器元素组成的n位排列的generator</span><br><span class="line">x = itertools.permutations(range(<span class="number">4</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"># <span class="number">13</span>、compress() /根据真值表筛选元素，返回筛选之后元素的generator</span><br><span class="line">x = itertools.compress(range(<span class="number">5</span>), (True, False, True, True, False))</span><br><span class="line"># &gt;&gt;&gt; 这个迭代器实例中的值为 [<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"># <span class="number">14</span>、combinations()  参数：迭代器类型/n  组合：不允许元素与自身组合 /combinations_with_replacement() 允许元素与自身组合。</span><br><span class="line"># 根据提供的迭代器对象，和参数n，返回一个迭代器元素的全部组合的generator。</span><br><span class="line">x = itertools.combinations(range(<span class="number">4</span>), <span class="number">3</span>)</span><br><span class="line"># &gt;&gt;&gt; 迭代器的值：[(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>), (<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>), (<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)]</span><br><span class="line">x = itertools.combinations_with_replacement('ABC', 2)</span><br><span class="line"># &gt;&gt;&gt; 迭代器的值：[(<span class="string">'A'</span>, <span class="string">'A'</span>), (<span class="string">'A'</span>, <span class="string">'B'</span>), (<span class="string">'A'</span>, <span class="string">'C'</span>), (<span class="string">'B'</span>, <span class="string">'B'</span>), (<span class="string">'B'</span>, <span class="string">'C'</span>), (<span class="string">'C'</span>, <span class="string">'C'</span>)]</span><br><span class="line"></span><br><span class="line"># <span class="number">15</span>、accumulate() /根据提供的迭代器类型对象，按索引累加返回一个新的generator类型的对象。</span><br><span class="line">x = itertools.accumulate(range(<span class="number">10</span>))</span><br><span class="line"># &gt;&gt;&gt;[<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">21</span>, <span class="number">28</span>, <span class="number">36</span>, <span class="number">45</span>]</span><br><span class="line"></span><br><span class="line"># <span class="number">16</span>、chain() / 返回一个连接多个迭代器类型对象的generator。</span><br><span class="line">x = itertools.chain(range(<span class="number">10</span>), [<span class="string">'x'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(x))</span><br><span class="line"># &gt;&gt;&gt;[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="string">'x'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="C">import itertools
+
+# 1、count()/返回一个不断循环的generator return consecutive values
+# x = itertools.count(0, 1)
+# print(type(x))    
+
+# 2、islice()/从一个迭代器中 取一段（左闭右开）返回一个generator，可设置步长。
+y = list(itertools.islice(x, 5, 10, 1))
+print(y)
+
+# 3、cycle()/根据可迭代对象 返回一个不断循环的generator
+x = itertools.cycle(&#39;ABC&#39;)
+print(type(x))
+
+# 4、dropwhile()和takewhile()(这里不再赘述，看名字就知道功能了) /根据predicate（谓语，动作）筛选迭代对象的值，并返回一个新的generator对象。
+x = itertools.dropwhile(lambda e: e &lt; 5, range(1, 10))
+
+# 5、filterfalse() 根dropwhile() 有异曲同工之处.
+# filterfalse() ---&gt; 如果为false，则留下。
+# dropwhile() ---&gt; 如果为True，则丢掉。
+x = itertools.dropwhile(lambda e: e &lt; 5, range(10))
+print(list(x))
+# &gt;&gt;&gt;[5, 6, 7, 8, 9]
+
+x = itertools.filterfalse(lambda e: e &lt; 5, range(10))
+print(list(x))
+# &gt;&gt;&gt;[5, 6, 7, 8, 9]
+
+# 6、groupby() 对一个迭代器中的元素分组，根据后面提供的谓语,返回(condition, list)generator
+x = itertools.groupby(range(10), lambda x: x &lt; 5 or x &gt; 8)
+for condition, numbers in x:
+    print(condition, list(numbers))
+
+# 7、product() 返回多个迭代器的（积）的generator
+x = itertools.product(&#39;ABC&#39;, range(3), range(3))
+print(list(x))
+
+# 8、starmap() 根据给定的函数，在后面的可迭代对象中循环判定，然后返回一个判定结果generator。
+x = itertools.starmap(str.islower, &#39;aBCDefGhI&#39;)
+print(list(x))
+
+# 9、tee() / 根据提供的参数：迭代器/n  返回n个迭代器对象参数组成的generator。
+x = itertools.tee(range(10), 3)
+for i in x:
+    print(list(i))
+
+# 10、内置函数zip() 和 zip_longest()函数 /根据提供的多个可迭代类型的对象，返回压缩的generator元组
+a = range(10)
+b = range(8)
+# zip() /返回一个generator元组。以最短的对象为准
+x = zip(a, b)
+
+# itertools.zip_longest() /返回一个generator元组，以最长的对象为准，缺少的地方值为None。
+y = itertools.zip_longest(a, b)
+
+# 11、repeat() /重复一个值n遍，返回一个generator
+x = itertools.repeat(0, 5)
+
+# 12、permutations() /根据提供的迭代器对象以及参数n，返回一个由迭代器元素组成的n位排列的generator
+x = itertools.permutations(range(4), 3)
+
+# 13、compress() /根据真值表筛选元素，返回筛选之后元素的generator
+x = itertools.compress(range(5), (True, False, True, True, False))
+# &gt;&gt;&gt; 这个迭代器实例中的值为 [0, 2, 3]
+
+# 14、combinations()  参数：迭代器类型/n  组合：不允许元素与自身组合 /combinations_with_replacement() 允许元素与自身组合。
+# 根据提供的迭代器对象，和参数n，返回一个迭代器元素的全部组合的generator。
+x = itertools.combinations(range(4), 3)
+# &gt;&gt;&gt; 迭代器的值：[(0, 1, 2), (0, 1, 3), (0, 2, 3), (1, 2, 3)]
+x = itertools.combinations_with_replacement(&#39;ABC&#39;, 2)
+# &gt;&gt;&gt; 迭代器的值：[(&#39;A&#39;, &#39;A&#39;), (&#39;A&#39;, &#39;B&#39;), (&#39;A&#39;, &#39;C&#39;), (&#39;B&#39;, &#39;B&#39;), (&#39;B&#39;, &#39;C&#39;), (&#39;C&#39;, &#39;C&#39;)]
+
+# 15、accumulate() /根据提供的迭代器类型对象，按索引累加返回一个新的generator类型的对象。
+x = itertools.accumulate(range(10))
+# &gt;&gt;&gt;[0, 1, 3, 6, 10, 15, 21, 28, 36, 45]
+
+# 16、chain() / 返回一个连接多个迭代器类型对象的generator。
+x = itertools.chain(range(10), [&#39;x&#39;, &#39;a&#39;, &#39;b&#39;])
+print(list(x))
+# &gt;&gt;&gt;[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, &#39;x&#39;, &#39;a&#39;, &#39;b&#39;]
+</code></pre>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

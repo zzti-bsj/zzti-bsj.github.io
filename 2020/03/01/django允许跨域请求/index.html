@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -151,34 +153,58 @@
 <h2 id="配置settings"><a href="#配置settings" class="headerlink" title="配置settings"></a>配置settings</h2><ul>
 <li>1、添加app</li>
 </ul>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">INSTALLED_APPS</span> = [</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">'corsheaders'</span>，</span><br><span class="line">    ...</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
-<ul>
+<pre><code>INSTALLED_APPS = [
+    ...
+    &#39;corsheaders&#39;，
+    ...
+ ]</code></pre><ul>
 <li>2、添加中间件  </li>
 </ul>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">MIDDLEWARE</span> = [  </span><br><span class="line">    <span class="comment"># 放在CommonMiddleware上面</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="string">'corsheaders.middleware.CorsMiddleware'</span>,</span><br><span class="line">    <span class="string">'django.middleware.common.CommonMiddleware'</span>,</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<ul>
+<pre><code>MIDDLEWARE = [  
+    # 放在CommonMiddleware上面
+    ...
+    &#39;corsheaders.middleware.CorsMiddleware&#39;,
+    &#39;django.middleware.common.CommonMiddleware&#39;,
+    ...
+]</code></pre><ul>
 <li>3、设置允许请求的域</li>
 </ul>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 如果CORS_ORIGIN_ALLOW_ALL为True，将不再使用白名单，默认接收所有来源的请求</span></span><br><span class="line">CORS_ORIGIN_ALLOW_ALL = True</span><br><span class="line"></span><br><span class="line"><span class="meta"># 将允许访问的源，写入白名单。</span></span><br><span class="line">CORS_ORIGIN_WHITELIST = (</span><br><span class="line">      <span class="string">'localhost:63343'</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="meta"># 使用正则表达式的方式设置允许访问的域，这里不做介绍，有需要访问官方文档</span></span><br></pre></td></tr></table></figure>
+<pre><code># 如果CORS_ORIGIN_ALLOW_ALL为True，将不再使用白名单，默认接收所有来源的请求
+CORS_ORIGIN_ALLOW_ALL = True
 
-<hr>
+# 将允许访问的源，写入白名单。
+CORS_ORIGIN_WHITELIST = (
+      &#39;localhost:63343&#39;,
+)
+
+# 使用正则表达式的方式设置允许访问的域，这里不做介绍，有需要访问官方文档</code></pre><hr>
 <ul>
 <li>4、设置允许访问的方法</li>
 </ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">CORS_ALLOW_METHODS</span> = (</span><br><span class="line">    <span class="string">'GET'</span>,</span><br><span class="line">    <span class="string">'POST'</span>,</span><br><span class="line">    <span class="string">'PUT'</span>,</span><br><span class="line">    <span class="string">'PATCH'</span>,</span><br><span class="line">    <span class="string">'DELETE'</span>,</span><br><span class="line">    <span class="string">'OPTIONS'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<ul>
+<pre><code>CORS_ALLOW_METHODS = (
+    &#39;GET&#39;,
+    &#39;POST&#39;,
+    &#39;PUT&#39;,
+    &#39;PATCH&#39;,
+    &#39;DELETE&#39;,
+    &#39;OPTIONS&#39;
+)</code></pre><ul>
 <li>5、设置允许的header</li>
 </ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">CORS_ALLOW_HEADERS</span> = (</span><br><span class="line">    <span class="symbol">'x</span>-requested-<span class="keyword">with</span>',</span><br><span class="line">    <span class="symbol">'content</span>-<span class="class"><span class="keyword">type</span>',</span></span><br><span class="line"><span class="class">    '<span class="title">accept</span>',</span></span><br><span class="line"><span class="class">    '<span class="title">origin</span>',</span></span><br><span class="line"><span class="class">    '<span class="title">authorization</span>',</span></span><br><span class="line"><span class="class">    '<span class="title">x-csrftoken</span>'</span></span><br><span class="line"><span class="class">)</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="重启服务器，使用ajax发送请求测试"><a href="#重启服务器，使用ajax发送请求测试" class="headerlink" title="重启服务器，使用ajax发送请求测试"></a>重启服务器，使用ajax发送请求测试</h2><ul>
+<pre><code>CORS_ALLOW_HEADERS = (
+    &#39;x-requested-with&#39;,
+    &#39;content-type&#39;,
+    &#39;accept&#39;,
+    &#39;origin&#39;,
+    &#39;authorization&#39;,
+    &#39;x-csrftoken&#39;
+)</code></pre><h2 id="重启服务器，使用ajax发送请求测试"><a href="#重启服务器，使用ajax发送请求测试" class="headerlink" title="重启服务器，使用ajax发送请求测试"></a>重启服务器，使用ajax发送请求测试</h2><ul>
 <li>注意：ajax请求的数据类型不能为<code>&quot;JSONP&quot;</code></li>
 </ul>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

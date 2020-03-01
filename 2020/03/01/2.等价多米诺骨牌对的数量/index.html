@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -146,10 +148,36 @@
 <p>输入：dominoes = [[1,2],[2,1],[3,4],[5,6]]<br>输出：1  </p>
 <p>思路：<br>1、双重循环，暴力。不用想，超时。<br>2、暴力+剪枝，超时。把列表中的元素一个一个的pop()出来，按题目描述的两种形式，如果存在于剩下的列表元素中，则，num+1。<br>    1.剩下的列表中所有元素是否唯一？是否会被忽略<br>    2.剩下的列表中的元素是否是[x,x]形式？是否会重复<br>3、哈希表。<br>&emsp;&emsp;从列表中取出一个元素<code>pop()</code>，判断题目描述的两种形式是否在于哈希表中，如果不存在，对应的元素在哈希表中的值设置为1，如果存在，则对应的元素在哈希表中的值+1，最后遍历整个哈希表，取其值做组合运算。</p>
 <p>代码：  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numEquivDominoPairs</span><span class="params">(self, dominoes)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type dominoes: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">while</span> dominoes:</span><br><span class="line">            <span class="comment"># 取出最后一个</span></span><br><span class="line">            dom = dominoes.pop()</span><br><span class="line">            <span class="comment"># 如果剩下的元素中有与当前元素重复的呢？</span></span><br><span class="line">            <span class="comment"># 如果dom[0], dom[1]相同呢？如果两者不同呢？</span></span><br><span class="line">            <span class="comment"># 在里面，有几个？</span></span><br><span class="line">            dom = [str(i) <span class="keyword">for</span> i <span class="keyword">in</span> dom]</span><br><span class="line">            <span class="keyword">if</span> <span class="string">""</span>.join([dom[<span class="number">0</span>], dom[<span class="number">1</span>]]) <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="comment"># 字典的键有什么要求?</span></span><br><span class="line">                dic[<span class="string">""</span>.join([dom[<span class="number">0</span>], dom[<span class="number">1</span>]])] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="string">""</span>.join([dom[<span class="number">1</span>], dom[<span class="number">0</span>]]) <span class="keyword">in</span> dic:</span><br><span class="line">                dic[<span class="string">""</span>.join([dom[<span class="number">1</span>], dom[<span class="number">0</span>]])] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dic[<span class="string">""</span>.join([dom[<span class="number">0</span>], dom[<span class="number">1</span>]])] = <span class="number">1</span></span><br><span class="line">        <span class="comment"># 遍历一遍字典</span></span><br><span class="line">        length = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> d <span class="keyword">in</span> dic.values():</span><br><span class="line">            <span class="keyword">if</span> d != <span class="number">1</span>:</span><br><span class="line">                length += d * (d - <span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">        <span class="comment"># 计算组合数</span></span><br><span class="line">        <span class="keyword">return</span> length</span><br></pre></td></tr></table></figure>
-
+<pre><code>def numEquivDominoPairs(self, dominoes):
+        &quot;&quot;&quot;
+        :type dominoes: List[List[int]]
+        :rtype: int
+        &quot;&quot;&quot;
+        dic = {}
+        while dominoes:
+            # 取出最后一个
+            dom = dominoes.pop()
+            # 如果剩下的元素中有与当前元素重复的呢？
+            # 如果dom[0], dom[1]相同呢？如果两者不同呢？
+            # 在里面，有几个？
+            dom = [str(i) for i in dom]
+            if &quot;&quot;.join([dom[0], dom[1]]) in dic:
+                # 字典的键有什么要求?
+                dic[&quot;&quot;.join([dom[0], dom[1]])] += 1
+            elif &quot;&quot;.join([dom[1], dom[0]]) in dic:
+                dic[&quot;&quot;.join([dom[1], dom[0]])] += 1
+            else:
+                dic[&quot;&quot;.join([dom[0], dom[1]])] = 1
+        # 遍历一遍字典
+        length = 0
+        for d in dic.values():
+            if d != 1:
+                length += d * (d - 1) / 2
+        # 计算组合数
+        return length</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

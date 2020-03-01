@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -163,13 +165,175 @@
 <li>库 = 取整数 (中间变量 / 每个库的表数量)</li>
 <li>表 = 中间变量 % 每个库的表数量</li>
 </ol>
-<h3 id="分库分区测试代码（sqlite）"><a href="#分库分区测试代码（sqlite）" class="headerlink" title="分库分区测试代码（sqlite）"></a>分库分区测试代码（sqlite）</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">import sqlite3</span><br><span class="line">import pymysql</span><br><span class="line">from DB_tool import DBTool,DB_type</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">存储stu信息：name，id</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1、使用sqlite，创建256个数据库。</span></span><br><span class="line"><span class="string">每个数据集创建20个表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2、插入一条stu信息</span></span><br><span class="line"><span class="string">id = 3000</span></span><br><span class="line"><span class="string">name = '张三'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">3、查询这条信息在哪个数据库哪个表中</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 分库分表策略</span></span><br><span class="line"><span class="string"># temp = temp % (table_num * db_num)</span></span><br><span class="line"><span class="string"># db_id = temp / table_num</span></span><br><span class="line"><span class="string"># table_id = temp % table_num</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">id = <span class="number">3000</span></span><br><span class="line">name = <span class="string">'张三'</span></span><br><span class="line">temp = id % (<span class="number">256</span> * <span class="number">20</span>)</span><br><span class="line">db_id = temp <span class="regexp">//</span> <span class="number">20</span></span><br><span class="line">tab_id = temp % <span class="number">20</span></span><br><span class="line">print(db_id, tab_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def con_sqlite(db_name):</span><br><span class="line">    db = sqlite3.connect(db_name)</span><br><span class="line">    return db</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建多个数据库及表</span></span><br><span class="line">def multi_sqlite():</span><br><span class="line">    <span class="comment"># 创建256个库</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>):</span><br><span class="line">        <span class="comment"># 连接256个数据库</span></span><br><span class="line">        db = con_sqlite(f<span class="string">"db_&#123;i&#125;"</span>)</span><br><span class="line">        cursor = db.cursor()</span><br><span class="line">        <span class="comment"># 每个数据库创建256个表</span></span><br><span class="line">        print(f<span class="string">'创建第&#123;i&#125;数据库'</span>)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">            sql = f<span class="string">"""CREATE TABLE table_&#123;j&#125;(name VARCHAR (25), age INTEGER PRIMARY KEY AUTOINCREMENT);"""</span></span><br><span class="line">            cursor.execute(sql)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照分库分表策略插入数据到特定的数据库中</span></span><br><span class="line">def insert(db_id, tab_id, id, name):</span><br><span class="line">    db = con_sqlite(f<span class="string">'db_&#123;db_id&#125;'</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    sql = f<span class="string">"""</span></span><br><span class="line"><span class="string">        INSERT INTO table_&#123;tab_id&#125; VALUES (?,?);</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    cursor.execute(sql, (name, id))</span><br><span class="line">    db.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询数据在哪个数据库中</span></span><br><span class="line">def select(db_id, tab_id):</span><br><span class="line">    db = con_sqlite(f<span class="string">'db_&#123;db_id&#125;'</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    sql = f<span class="string">"""</span></span><br><span class="line"><span class="string">        SELECT * FROM table_&#123;tab_id&#125;;</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    cursor.execute(sql)</span><br><span class="line">    result = cursor.fetchall()</span><br><span class="line">    print(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 初始化分区分表</span></span><br><span class="line"><span class="comment"># multi_sqlite()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入数据</span></span><br><span class="line"><span class="comment"># insert(db_id, tab_id, id, name)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询数据</span></span><br><span class="line"><span class="comment"># select(db_id, tab_id)</span></span><br></pre></td></tr></table></figure>
+<h3 id="分库分区测试代码（sqlite）"><a href="#分库分区测试代码（sqlite）" class="headerlink" title="分库分区测试代码（sqlite）"></a>分库分区测试代码（sqlite）</h3><pre><code># coding:utf-8
+import sqlite3
+import pymysql
+from DB_tool import DBTool,DB_type
+&quot;&quot;&quot;
+存储stu信息：name，id
 
-<p>DB_tool代码</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">import sqlite3</span><br><span class="line"><span class="comment"># db=DataBase=数据库</span></span><br><span class="line">import pymysql</span><br><span class="line">from enum import Enum</span><br><span class="line"></span><br><span class="line">MYSQL_COF = &#123;</span><br><span class="line">    <span class="comment"># host主机名 user数据库的用户名 password数据库登录密码 database 要连接的数据库</span></span><br><span class="line">    <span class="string">'host'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">    <span class="string">'port'</span>: <span class="number">3306</span>,</span><br><span class="line">    <span class="string">'user'</span>: <span class="string">'root'</span>,</span><br><span class="line">    <span class="string">'password'</span>: <span class="string">'root'</span>,</span><br><span class="line">    <span class="string">'database'</span>: <span class="string">'db'</span>,</span><br><span class="line">    <span class="string">'charset'</span>: <span class="string">'utf8'</span></span><br><span class="line">&#125;</span><br><span class="line">SQLITE_COF = &#123;</span><br><span class="line">    <span class="string">'database'</span>: <span class="string">'db.sqlite'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DB_type</span>(<span class="title">Enum</span>):</span></span><br><span class="line">    MYSQL = <span class="string">'mysql'</span></span><br><span class="line">    SQLITE = <span class="string">'sqlite'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DBTool</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">db_type:</span> DB_type = DB_type.MYSQL)</span></span><span class="symbol">:</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 提示用户输入正确的数据库类型</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(db_type, DB_type)<span class="symbol">:</span></span><br><span class="line">            raise TypeError(<span class="string">"参数类型不对,请使用'DB_type.MYSQL'的形式"</span>)</span><br><span class="line">        <span class="keyword">if</span> db_type.value == <span class="string">'mysql'</span><span class="symbol">:</span></span><br><span class="line">            con = pymysql.connect(**MYSQL_COF)</span><br><span class="line">        elif db_type.value == <span class="string">'sqlite'</span><span class="symbol">:</span></span><br><span class="line">            con = sqlite3.connect(**SQLITE_COF)</span><br><span class="line">        <span class="keyword">self</span>.__con = con</span><br><span class="line">        <span class="keyword">self</span>.__cursor = <span class="keyword">self</span>.__con.cursor()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_all</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print(<span class="string">"关闭游标和连接对象"</span>)</span><br><span class="line">        <span class="keyword">self</span>.__cursor.close()</span><br><span class="line">        <span class="keyword">self</span>.__con.close()</span><br><span class="line">        <span class="keyword">self</span>.__cursor = None</span><br><span class="line">        <span class="keyword">self</span>.__con = None</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="symbol">try:</span></span><br><span class="line">            <span class="keyword">self</span>.close_all()</span><br><span class="line">        except Exception as <span class="symbol">e:</span></span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_table</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        print(<span class="string">"创建表成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">drop_table</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">table_name:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="comment"># 删除表要慎重</span></span><br><span class="line">        <span class="comment"># 1）表是否存在  2）表中的数据怎么办</span></span><br><span class="line">        sql = f<span class="string">"drop table IF EXISTS &#123;table_name&#125;"</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line">        print(<span class="string">"删除表成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># lazyload=懒加载=用到的时候再创建</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">params:</span> list = None)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">for</span> param <span class="keyword">in</span> <span class="symbol">params:</span></span><br><span class="line">            <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">            <span class="keyword">self</span>.__con.commit()</span><br><span class="line">            print(<span class="string">"插入成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetchone</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">tuple:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.__cursor.fetchone()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetchall</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">list:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.__cursor.fetchall()</span><br></pre></td></tr></table></figure>
+1、使用sqlite，创建256个数据库。
+每个数据集创建20个表
 
+2、插入一条stu信息
+id = 3000
+name = &#39;张三&#39;
+
+3、查询这条信息在哪个数据库哪个表中
+
+# 分库分表策略
+# temp = temp % (table_num * db_num)
+# db_id = temp / table_num
+# table_id = temp % table_num
+&quot;&quot;&quot;
+
+id = 3000
+name = &#39;张三&#39;
+temp = id % (256 * 20)
+db_id = temp // 20
+tab_id = temp % 20
+print(db_id, tab_id)
+
+
+def con_sqlite(db_name):
+    db = sqlite3.connect(db_name)
+    return db
+
+
+# 创建多个数据库及表
+def multi_sqlite():
+    # 创建256个库
+    for i in range(256):
+        # 连接256个数据库
+        db = con_sqlite(f&quot;db_{i}&quot;)
+        cursor = db.cursor()
+        # 每个数据库创建256个表
+        print(f&#39;创建第{i}数据库&#39;)
+        for j in range(20):
+            sql = f&quot;&quot;&quot;CREATE TABLE table_{j}(name VARCHAR (25), age INTEGER PRIMARY KEY AUTOINCREMENT);&quot;&quot;&quot;
+            cursor.execute(sql)
+
+# 按照分库分表策略插入数据到特定的数据库中
+def insert(db_id, tab_id, id, name):
+    db = con_sqlite(f&#39;db_{db_id}&#39;)
+    cursor = db.cursor()
+    sql = f&quot;&quot;&quot;
+        INSERT INTO table_{tab_id} VALUES (?,?);
+    &quot;&quot;&quot;
+    cursor.execute(sql, (name, id))
+    db.commit()
+
+
+# 查询数据在哪个数据库中
+def select(db_id, tab_id):
+    db = con_sqlite(f&#39;db_{db_id}&#39;)
+    cursor = db.cursor()
+    sql = f&quot;&quot;&quot;
+        SELECT * FROM table_{tab_id};
+    &quot;&quot;&quot;
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    print(result)
+
+
+# # 初始化分区分表
+# multi_sqlite()
+
+# 插入数据
+# insert(db_id, tab_id, id, name)
+
+# 查询数据
+# select(db_id, tab_id)
+</code></pre><p>DB_tool代码</p>
+<pre><code># coding:utf-8
+import sqlite3
+# db=DataBase=数据库
+import pymysql
+from enum import Enum
+
+MYSQL_COF = {
+    # host主机名 user数据库的用户名 password数据库登录密码 database 要连接的数据库
+    &#39;host&#39;: &#39;127.0.0.1&#39;,
+    &#39;port&#39;: 3306,
+    &#39;user&#39;: &#39;root&#39;,
+    &#39;password&#39;: &#39;root&#39;,
+    &#39;database&#39;: &#39;db&#39;,
+    &#39;charset&#39;: &#39;utf8&#39;
+}
+SQLITE_COF = {
+    &#39;database&#39;: &#39;db.sqlite&#39;
+}
+
+
+class DB_type(Enum):
+    MYSQL = &#39;mysql&#39;
+    SQLITE = &#39;sqlite&#39;
+
+
+class DBTool:
+
+    def __init__(self, db_type: DB_type = DB_type.MYSQL):
+
+        # 提示用户输入正确的数据库类型
+        if not isinstance(db_type, DB_type):
+            raise TypeError(&quot;参数类型不对,请使用&#39;DB_type.MYSQL&#39;的形式&quot;)
+        if db_type.value == &#39;mysql&#39;:
+            con = pymysql.connect(**MYSQL_COF)
+        elif db_type.value == &#39;sqlite&#39;:
+            con = sqlite3.connect(**SQLITE_COF)
+        self.__con = con
+        self.__cursor = self.__con.cursor()
+
+    def close_all(self):
+        print(&quot;关闭游标和连接对象&quot;)
+        self.__cursor.close()
+        self.__con.close()
+        self.__cursor = None
+        self.__con = None
+
+    def __del__(self):
+        try:
+            self.close_all()
+        except Exception as e:
+            pass
+
+    def create_table(self, sql: str) -&gt; None:
+        self.__cursor.execute(sql)
+        print(&quot;创建表成功&quot;)
+
+    def drop_table(self, table_name: str) -&gt; None:
+        # 删除表要慎重
+        # 1）表是否存在  2）表中的数据怎么办
+        sql = f&quot;drop table IF EXISTS {table_name}&quot;
+        self.__cursor.execute(sql)
+        self.__con.commit()
+        print(&quot;删除表成功&quot;)
+
+    # lazyload=懒加载=用到的时候再创建
+    def insert(self, sql: str, params: list = None) -&gt; None:
+        for param in params:
+            self.__cursor.execute(sql, param)
+            self.__con.commit()
+            print(&quot;插入成功&quot;)
+
+    def delete(self, sql: str) -&gt; None:
+        self.__cursor.execute(sql)
+        self.__con.commit()
+
+    def update(self, sql: str, param: tuple = None) -&gt; None:
+        self.__cursor.execute(sql, param)
+        self.__con.commit()
+
+    def fetchone(self, sql: str, param: tuple = None) -&gt; tuple:
+        self.__cursor.execute(sql, param)
+        return self.__cursor.fetchone()
+
+    def fetchall(self, sql: str, param: tuple = None) -&gt; list:
+        self.__cursor.execute(sql, param)
+        return self.__cursor.fetchall()</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

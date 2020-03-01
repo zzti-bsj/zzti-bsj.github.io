@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -145,17 +147,143 @@
 <p>&emsp;&emsp;如果对以下文字没有耐心，直接就去看每部分的<strong>代码实例详解</strong></p>
 <h3 id="1、在单个类中"><a href="#1、在单个类中" class="headerlink" title="1、在单个类中"></a>1、在单个类中</h3><p>&emsp;&emsp;既然类是具有相同属性和方法的对象的集合，那么我们来看看类的方法和属性的权限问题<br>&emsp;&emsp;在c++中修饰方法和属性的权限关键字有public/protected/private，三者权限依次是递减的。private的权限最严格。<br>&emsp;&emsp;（Python中没有这些关键字）但Python中有没有所谓的public/protected/private权限呢？理论上是有这种权限存在的，但是没有public/protected/private这三个关键字，在python中相对应的应该是无下划线、单下划线、双下划线。  </p>
 <h4 id="类中属性-方法的权限"><a href="#类中属性-方法的权限" class="headerlink" title="类中属性/方法的权限"></a>类中属性/方法的权限</h4><p><strong>代码实例详解：</strong>   </p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个测试类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="comment"># 测试</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, name, age, sex)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="string">""</span><span class="string">"三者依次是无下划线、一个下划线、双下划线的属性"</span><span class="string">""</span></span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">        <span class="keyword">self</span>._age = age</span><br><span class="line">        <span class="keyword">self</span>.__sex = sex</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置三种不同的方法权限分别为public/protected/private级别</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method_1</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"method_1"</span>, <span class="keyword">self</span>.name, <span class="keyword">self</span>._age, <span class="keyword">self</span>.__sex</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_method_2</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"method_2"</span>, <span class="keyword">self</span>.name, <span class="keyword">self</span>._age, <span class="keyword">self</span>.__sex</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__method_3</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"method_3"</span>, <span class="keyword">self</span>.name, <span class="keyword">self</span>._age, <span class="keyword">self</span>.__sex</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化一个Test类 做测试</span></span><br><span class="line">test = Test(<span class="string">'otnw'</span>, <span class="number">21</span>, <span class="string">'男'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、类外依次访问三个属性</span></span><br><span class="line">print(test.name)</span><br><span class="line">print(test._age)  <span class="comment"># 不合规矩，一般不直接调用protected的属性和protected方法</span></span><br><span class="line"><span class="comment"># print(test.__sex)</span></span><br><span class="line"><span class="comment"># 发现test.__sex这里会有提示，并且运行之后会报错，说明在类外不能调用类的private属性</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、类外依次访问三个方法</span></span><br><span class="line">print(test.method_1())</span><br><span class="line">print(test._method_2())</span><br><span class="line"><span class="comment"># print(test.__methond_3())</span></span><br><span class="line"><span class="comment"># 发现test.__methond_3()这里会有提示，并且运行之后会报错，说明在类外不能调用类的private方法</span></span><br></pre></td></tr></table></figure>
+<pre><code># 创建一个测试类
+class Test(object):
+    # 测试
+    def __init__(self, name, age, sex):
+        &quot;&quot;&quot;三者依次是无下划线、一个下划线、双下划线的属性&quot;&quot;&quot;
+        self.name = name
+        self._age = age
+        self.__sex = sex
 
-<p>&emsp;&emsp;贴两张测试时的图片<br>测试属性<br><img src="/imag/python/1/class_1.png" alt="alt ww" title="ww"><br>测试方法<br><img src="/imag/python/1/class_2.png" alt="alt ww" title="ww"></p>
+    # 设置三种不同的方法权限分别为public/protected/private级别
+    def method_1(self):
+        return &quot;method_1&quot;, self.name, self._age, self.__sex
+
+    def _method_2(self):
+        return &quot;method_2&quot;, self.name, self._age, self.__sex
+
+    def __method_3(self):
+        return &quot;method_3&quot;, self.name, self._age, self.__sex
+
+
+# 实例化一个Test类 做测试
+test = Test(&#39;otnw&#39;, 21, &#39;男&#39;)
+
+# 1、类外依次访问三个属性
+print(test.name)
+print(test._age)  # 不合规矩，一般不直接调用protected的属性和protected方法
+# print(test.__sex)
+# 发现test.__sex这里会有提示，并且运行之后会报错，说明在类外不能调用类的private属性
+
+# 2、类外依次访问三个方法
+print(test.method_1())
+print(test._method_2())
+# print(test.__methond_3())
+# 发现test.__methond_3()这里会有提示，并且运行之后会报错，说明在类外不能调用类的private方法
+</code></pre><p>&emsp;&emsp;贴两张测试时的图片<br>测试属性<br><img src="/imag/python/1/class_1.png" alt="alt ww" title="ww"><br>测试方法<br><img src="/imag/python/1/class_2.png" alt="alt ww" title="ww"></p>
 <h3 id="2、对于这些权限的属性-方法，子类继承了父类的哪些？"><a href="#2、对于这些权限的属性-方法，子类继承了父类的哪些？" class="headerlink" title="2、对于这些权限的属性/方法，子类继承了父类的哪些？"></a>2、对于这些权限的属性/方法，子类继承了父类的哪些？</h3><p>&emsp;&emsp;涉及到继承的概念，这个词，我们在生活中常常知道<strong>儿子继承父亲的财产（父亲有什么，儿子继承什么。儿子继承父亲的财产之后，拥有了父亲的钱/公司）、太子继承皇位（皇上有什么，太子继承什么。太子继承皇位之后，拥有了皇上的江山/权利/待遇）</strong>，继承的思想就是这样的思想。在继承中，子类可以看做是父类的孩子。<br>&emsp;&emsp;所谓继承，就是子类继承父类留下来的东西。而无论是子类还是父类，<strong>而类：是具有相同属性和方法的对象的集合。</strong> 既然类只有属性和方法，那子类继承，也就只能继承父类的属性和方法咯。<br>&emsp;&emsp;大概了解了继承之后，再看，由于不同语言有不同的规定，我们去网上找一下Python自己规定的继承的概念。  </p>
 <hr>
 <p>&emsp;&emsp;继承：即一个派生类（derived class）继承基类（base class）的字段和方法。继承也允许把一个派生类的对象作为一个基类对象对待。例如，有这样一个设计：一个Dog类型的对象派生自Animal类，这是模拟”是一个（is-a）”关系（例图，Dog是一个Animal）。  </p>
 <p>&emsp;&emsp;暂时先不对这个概念做解释，先看看就行了，没记住没关系，大概了解继承是啥就行。接下来看代码。  </p>
 <p><strong>代码实例详解：</strong><br>&emsp;&emsp;看完这些你应该就不会再纠结单下划线和双下划线的区别了。    </p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个测试类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="comment"># 测试</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, name, age, sex)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="string">""</span><span class="string">"三者依次是无下划线、一个下划线、双下划线的属性"</span><span class="string">""</span></span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">        <span class="keyword">self</span>._age = age</span><br><span class="line">        <span class="keyword">self</span>.__sex = sex</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置三种不同的方法权限分别为public/protected/private级别</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method_1</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"method_1"</span>, <span class="keyword">self</span>.name, <span class="keyword">self</span>._age, <span class="keyword">self</span>.__sex</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_method_2</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"method_2"</span>, <span class="keyword">self</span>.name, <span class="keyword">self</span>._age, <span class="keyword">self</span>.__sex</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__method_3</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"method_3"</span>, <span class="keyword">self</span>.name, <span class="keyword">self</span>._age, <span class="keyword">self</span>.__sex</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化一个Test类 做测试</span></span><br><span class="line">test = Test(<span class="string">'otnw'</span>, <span class="number">21</span>, <span class="string">'男'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、类外依次访问三个属性</span></span><br><span class="line">print(test.name)</span><br><span class="line">print(test._age)  <span class="comment"># 不合规矩，一般不直接调用protected的属性和protected方法</span></span><br><span class="line"><span class="comment"># print(test.__sex)</span></span><br><span class="line"><span class="comment"># 发现test.__sex这里会有提示，并且运行之后会报错，说明在类外不能调用类的private属性</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、类外依次访问三个方法</span></span><br><span class="line"><span class="comment"># print(test.method_1())</span></span><br><span class="line"><span class="comment"># print(test._method_2())</span></span><br><span class="line"><span class="comment"># print(test.__methond_3())</span></span><br><span class="line"><span class="comment"># 发现test.__methond_3()这里会有提示，并且运行之后会报错，说明在类外不能调用类的private方法</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 再创建一个类，用于继承Test类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test1</span>(<span class="title">Test</span>):</span></span><br><span class="line">    <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">        Test类包含(public/protected/private)这三种属性和方法。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        python中是没有这三个关键字的，为了方便记忆和理解，</span></span><br><span class="line"><span class="string">        后面我就使用public代表无下划线的属性/方法，</span></span><br><span class="line"><span class="string">        使用protected代表单下划线的属性/方法，</span></span><br><span class="line"><span class="string">        使用private代表双下划线的属性/方法。</span></span><br><span class="line"><span class="string">    "</span><span class="string">""</span></span><br><span class="line">    <span class="comment"># Test1就写个other属性吧</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, name, age, sex, other)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">super</span>().__init_<span class="number">_</span>(name, age, sex)</span><br><span class="line">        <span class="keyword">self</span>.__other = other</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 待会在下面的测试中依次调用以下的方法，测试是否是继承了父类的三种类型的属性</span></span><br><span class="line">    <span class="comment"># 使用父类public属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_attr_public</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print(<span class="keyword">self</span>.name)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用父类protected属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_attr_protected</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print(<span class="keyword">self</span>._age)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用父类private属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_attr_private</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print(<span class="keyword">self</span>.__sex)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 待会在下面的测试中依次调用以下的方法，测试是否是继承了父类的三种类型的方法</span></span><br><span class="line">    <span class="comment"># 使用父类的public方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_method_public</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.method_1()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用父类的protected方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_method_protected</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>._method_2()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用父类的private方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_method_private</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.__method_3()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建Test1实例</span></span><br><span class="line">test1 = Test1(<span class="string">'bsj'</span>, <span class="number">21</span>, <span class="string">'男'</span>, <span class="string">'其他'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、测试继承了父类的哪些属性</span></span><br><span class="line">test1.get_attr_public()</span><br><span class="line">test1.get_attr_protected()</span><br><span class="line"><span class="comment"># test1.get_attr_private()</span></span><br><span class="line"><span class="comment"># 测试结果发现，调用get_attr_private()方法会报错，没有继承父类的private属性.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、测试继承了父类的哪些方法</span></span><br><span class="line">print(test1.get_method_public())</span><br><span class="line">print(test1.get_method_protected())</span><br><span class="line"><span class="comment"># print(test1.get_method_private())</span></span><br><span class="line"><span class="comment"># 测试结果发现，调用get_method_private()方法会报错，子类没有继承父类的private方法。</span></span><br></pre></td></tr></table></figure>
+<pre><code># coding:utf-8
 
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><strong>类的属性和方法的权限问题</strong></p>
+
+# 创建一个测试类
+class Test(object):
+    # 测试
+    def __init__(self, name, age, sex):
+        &quot;&quot;&quot;三者依次是无下划线、一个下划线、双下划线的属性&quot;&quot;&quot;
+        self.name = name
+        self._age = age
+        self.__sex = sex
+
+    # 设置三种不同的方法权限分别为public/protected/private级别
+    def method_1(self):
+        return &quot;method_1&quot;, self.name, self._age, self.__sex
+
+    def _method_2(self):
+        return &quot;method_2&quot;, self.name, self._age, self.__sex
+
+    def __method_3(self):
+        return &quot;method_3&quot;, self.name, self._age, self.__sex
+
+
+# 实例化一个Test类 做测试
+test = Test(&#39;otnw&#39;, 21, &#39;男&#39;)
+
+# 1、类外依次访问三个属性
+print(test.name)
+print(test._age)  # 不合规矩，一般不直接调用protected的属性和protected方法
+# print(test.__sex)
+# 发现test.__sex这里会有提示，并且运行之后会报错，说明在类外不能调用类的private属性
+
+# 2、类外依次访问三个方法
+# print(test.method_1())
+# print(test._method_2())
+# print(test.__methond_3())
+# 发现test.__methond_3()这里会有提示，并且运行之后会报错，说明在类外不能调用类的private方法
+
+
+# 再创建一个类，用于继承Test类
+class Test1(Test):
+    &quot;&quot;&quot;
+        Test类包含(public/protected/private)这三种属性和方法。
+
+        python中是没有这三个关键字的，为了方便记忆和理解，
+        后面我就使用public代表无下划线的属性/方法，
+        使用protected代表单下划线的属性/方法，
+        使用private代表双下划线的属性/方法。
+    &quot;&quot;&quot;
+    # Test1就写个other属性吧
+    def __init__(self, name, age, sex, other):
+        super().__init__(name, age, sex)
+        self.__other = other
+
+    # 待会在下面的测试中依次调用以下的方法，测试是否是继承了父类的三种类型的属性
+    # 使用父类public属性
+    def get_attr_public(self):
+        print(self.name)
+
+    # 使用父类protected属性
+    def get_attr_protected(self):
+        print(self._age)
+
+    # 使用父类private属性
+    def get_attr_private(self):
+        print(self.__sex)
+
+    # 待会在下面的测试中依次调用以下的方法，测试是否是继承了父类的三种类型的方法
+    # 使用父类的public方法
+    def get_method_public(self):
+        return self.method_1()
+
+    # 使用父类的protected方法
+    def get_method_protected(self):
+        return self._method_2()
+
+    # 使用父类的private方法
+    def get_method_private(self):
+        return self.__method_3()
+
+
+# 创建Test1实例
+test1 = Test1(&#39;bsj&#39;, 21, &#39;男&#39;, &#39;其他&#39;)
+
+# 1、测试继承了父类的哪些属性
+test1.get_attr_public()
+test1.get_attr_protected()
+# test1.get_attr_private()
+# 测试结果发现，调用get_attr_private()方法会报错，没有继承父类的private属性.
+
+
+# 2、测试继承了父类的哪些方法
+print(test1.get_method_public())
+print(test1.get_method_protected())
+# print(test1.get_method_private())
+# 测试结果发现，调用get_method_private()方法会报错，子类没有继承父类的private方法。
+</code></pre><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><strong>类的属性和方法的权限问题</strong></p>
 <ol>
 <li>无下划线的属性可以看做 public（公共的）</li>
 <li>单下划线的属性可以看做 protected（受保护的，虽然可以直接调用，但一般不在类外直接调用，不合规矩）</li>
@@ -169,6 +297,7 @@
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

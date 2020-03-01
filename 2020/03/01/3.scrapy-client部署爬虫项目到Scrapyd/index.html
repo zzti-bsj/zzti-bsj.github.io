@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -149,9 +151,11 @@
 <p>&emsp;&emsp;如果需要部署到远程服务器，则配置scrapyd服务的配置文件文件。    </p>
 <p><strong>参考网址</strong>：<a href="https://github.com/scrapy/scrapyd-client" target="_blank" rel="noopener">scrapyd工具scrapyd-client使用教程</a></p>
 <h3 id="1-配置"><a href="#1-配置" class="headerlink" title="1. 配置"></a>1. 配置</h3><p>配置<code>scrapy.cfg</code>文件  </p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[deploy:target]</span></span><br><span class="line"><span class="attr">url</span> = http://scrapyd.example.com/api/scrapyd</span><br><span class="line"><span class="comment"># username = scrapy</span></span><br><span class="line"><span class="comment"># password = secret</span></span><br><span class="line"><span class="attr">project</span> = yourproject</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-部署爬虫项目到scrapyd"><a href="#2-部署爬虫项目到scrapyd" class="headerlink" title="2. 部署爬虫项目到scrapyd"></a>2. 部署爬虫项目到scrapyd</h3><ul>
+<pre><code>[deploy:target]
+url = http://scrapyd.example.com/api/scrapyd
+# username = scrapy
+# password = secret
+project = yourproject</code></pre><h3 id="2-部署爬虫项目到scrapyd"><a href="#2-部署爬虫项目到scrapyd" class="headerlink" title="2. 部署爬虫项目到scrapyd"></a>2. 部署爬虫项目到scrapyd</h3><ul>
 <li><strong>部署到scrapyd</strong>  </li>
 </ul>
 <p>部署项目<br><code>scrapyd-deploy &lt;target&gt; -p &lt;project&gt;</code>  </p>
@@ -161,24 +165,32 @@
 <ul>
 <li><strong>获取所有项目实例</strong></li>
 </ul>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lists all projects on the default target</span></span><br><span class="line">scrapyd-client projects</span><br><span class="line"></span><br><span class="line"><span class="comment"># lists all projects from a custom URL</span></span><br><span class="line">scrapyd-client -t http:<span class="regexp">//</span>scrapyd.example.net projects</span><br></pre></td></tr></table></figure>
-<ul>
+<pre><code># lists all projects on the default target
+scrapyd-client projects
+
+# lists all projects from a custom URL
+scrapyd-client -t http://scrapyd.example.net projects</code></pre><ul>
 <li><strong>调度爬虫项目运行</strong></li>
 </ul>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># schedules all spiders from the 'knowledge' project</span></span><br><span class="line"><span class="keyword">scrapyd-client </span><span class="keyword">schedule </span>-p knowledge \*</span><br><span class="line"></span><br><span class="line"><span class="comment"># schedules any spider（可能不支持此命令）</span></span><br><span class="line"><span class="keyword">scrapyd-client </span><span class="keyword">schedule</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword"># </span><span class="keyword">schedules </span>any spider from any project whose name ends with <span class="string">'_daily'</span>（可能不支持此命令）</span><br><span class="line"><span class="keyword">scrapyd-client </span><span class="keyword">schedule </span>-p \* *_daily</span><br></pre></td></tr></table></figure>
+<pre><code># schedules all spiders from the &#39;knowledge&#39; project
+scrapyd-client schedule -p knowledge \*
 
-<ul>
+# schedules any spider（可能不支持此命令）
+scrapyd-client schedule
+
+# schedules any spider from any project whose name ends with &#39;_daily&#39;（可能不支持此命令）
+scrapyd-client schedule -p \* *_daily</code></pre><ul>
 <li><strong>获取爬虫实例</strong></li>
 </ul>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># lists all spiders <span class="keyword">from</span> the <span class="string">'knowledge'</span> project</span><br><span class="line">scrapyd-client spiders -p knowledge</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="3-保留本地配置"><a href="#3-保留本地配置" class="headerlink" title="3.保留本地配置"></a>3.保留本地配置</h3><p>&emsp;&emsp;如果你想保留本地配置，创建一个文件<code>local_Settings.py</code>，在<code>scrapyd.cfg</code>文件添加如下：  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> local_settings <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">except</span> ImportError:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-
+<pre><code># lists all spiders from the &#39;knowledge&#39; project
+scrapyd-client spiders -p knowledge</code></pre><h3 id="3-保留本地配置"><a href="#3-保留本地配置" class="headerlink" title="3.保留本地配置"></a>3.保留本地配置</h3><p>&emsp;&emsp;如果你想保留本地配置，创建一个文件<code>local_Settings.py</code>，在<code>scrapyd.cfg</code>文件添加如下：  </p>
+<pre><code>try:
+    from local_settings import *
+except ImportError:
+    pass</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

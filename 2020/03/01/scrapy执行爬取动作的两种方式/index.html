@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,10 +143,13 @@
     </ul>
     <div class="post-content">
         <h2 id="1、命令行输入执行命令"><a href="#1、命令行输入执行命令" class="headerlink" title="1、命令行输入执行命令"></a>1、命令行输入执行命令</h2><p><code>scrapy crawl spider_name</code></p>
-<h2 id="2、在爬虫文件中写入执行爬虫的代码段"><a href="#2、在爬虫文件中写入执行爬虫的代码段" class="headerlink" title="2、在爬虫文件中写入执行爬虫的代码段"></a>2、在爬虫文件中写入执行爬虫的代码段</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</span><br><span class="line">    # <span class="keyword">execute</span>的参数类型为一个列表</span><br><span class="line">    cmdline.<span class="keyword">execute</span>(`scrapy crawl spider_name`.split(" "))</span><br></pre></td></tr></table></figure>
-
+<h2 id="2、在爬虫文件中写入执行爬虫的代码段"><a href="#2、在爬虫文件中写入执行爬虫的代码段" class="headerlink" title="2、在爬虫文件中写入执行爬虫的代码段"></a>2、在爬虫文件中写入执行爬虫的代码段</h2><pre><code>if __name__ == &#39;__main__&#39;:
+    from scrapy import cmdline
+    # execute的参数类型为一个列表
+    cmdline.execute(`scrapy crawl spider_name`.split(&quot; &quot;))</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

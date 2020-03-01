@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,18 +143,56 @@
     </ul>
     <div class="post-content">
         <h2 id="form具有提交数据的功能"><a href="#form具有提交数据的功能" class="headerlink" title="form具有提交数据的功能"></a>form具有提交数据的功能</h2><ul>
-<li>表单实例：点击按钮便可以向本地8000端口提交input标签中的数据<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://127.0.0.1:8000/stu/"</span>, <span class="attr">method</span>=<span class="string">"put"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">label</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"stu_name"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">label</span>&gt;</span>年龄：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"stu_age"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">label</span>&gt;</span>班级：<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"stu_cls"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">id</span>=<span class="string">"put-btn"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<li>表单实例：点击按钮便可以向本地8000端口提交input标签中的数据<pre><code class="html">&lt;form action=&quot;http://127.0.0.1:8000/stu/&quot;, method=&quot;put&quot;&gt;
+  &lt;label&gt;姓名：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;stu_name&quot;&gt;
+  &lt;label&gt;年龄：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;stu_age&quot;&gt;
+  &lt;label&gt;班级：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;stu_cls&quot;&gt;
+  &lt;input type=&quot;submit&quot; id=&quot;put-btn&quot;/&gt;
+&lt;/form&gt;</code></pre>
 </li>
 </ul>
 <h2 id="阻止form的默认提交"><a href="#阻止form的默认提交" class="headerlink" title="阻止form的默认提交"></a>阻止form的默认提交</h2><p>&emsp;&emsp;当使用ajax发送put/delete/等请求的时候，我们想要使用<code>form</code>的序列化<br><strong>$(“form”).serialize()</strong> 作为参数。我们不想使用form自动提交功能。需要阻止<code>form</code>的自动提交。  </p>
 <ul>
-<li><code>event.preventDefault()</code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		...表单</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery-3.4.1.js"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">		$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">			$(<span class="string">"#put-btn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">	    		<span class="comment">&lt;!--组织表单的默认提交--&gt;</span></span></span></span><br><span class="line">				event.preventDefault()</span><br><span class="line">				</span><br><span class="line"><span class="javascript">				$.ajax(&#123;</span></span><br><span class="line"><span class="actionscript">					type: <span class="string">'put'</span>,</span></span><br><span class="line"><span class="actionscript">					url: <span class="string">'http://127.0.0.1:8000/stu/'</span>,</span></span><br><span class="line"><span class="javascript">					data: $(<span class="string">"form"</span>).serialize(),</span></span><br><span class="line"><span class="actionscript">					dataType: <span class="string">'JSON'</span>,</span></span><br><span class="line"><span class="actionscript">					success: <span class="function"><span class="keyword">function</span><span class="params">(data, status)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">						<span class="built_in">console</span>.log(data)</span></span><br><span class="line">					&#125;,</span><br><span class="line"><span class="actionscript">					error: <span class="function"><span class="keyword">function</span><span class="params">(error)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">						<span class="built_in">console</span>.log(error)</span></span><br><span class="line">					&#125;</span><br><span class="line">				&#125;)</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<li><p><code>event.preventDefault()</code></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  ...表单
+&lt;/body&gt;
+&lt;script src=&quot;js/jquery-3.4.1.js&quot;&gt;
+&lt;/script&gt;
+&lt;script&gt;
+  $(function(){
+      $(&quot;#put-btn&quot;).click(function(event){
+          &lt;!--组织表单的默认提交--&gt;
+          event.preventDefault()
 
+          $.ajax({
+              type: &#39;put&#39;,
+              url: &#39;http://127.0.0.1:8000/stu/&#39;,
+              data: $(&quot;form&quot;).serialize(),
+              dataType: &#39;JSON&#39;,
+              success: function(data, status){
+                  console.log(data)
+              },
+              error: function(error){
+                  console.log(error)
+              }
+          })
+      })
+  })
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre></li>
+</ul>
+<pre><code></code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

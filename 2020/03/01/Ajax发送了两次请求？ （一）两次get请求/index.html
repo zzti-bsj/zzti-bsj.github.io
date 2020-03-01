@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,12 +143,19 @@
     </ul>
     <div class="post-content">
         <h2 id="ajax发送两次get请求"><a href="#ajax发送两次get请求" class="headerlink" title="ajax发送两次get请求"></a>ajax发送两次get请求</h2><p>&emsp;&emsp;这个坑不踩还真的不以为意。<br>&emsp;&emsp;之前遇到了ajax向后台发送两次请求的问题，百度之后说是一次为OPTION，一次为GET，我的两次都是GET。。。<br>&emsp;&emsp;后来仔细看自己写jquery代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处的代码敲出来纯粹是手痒，莫看，假的。</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        ....<span class="comment">//</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><code class="javascript">//此处的代码敲出来纯粹是手痒，莫看，假的。
+$(document).ready(function (){
+    $.ajax({
+        ....//
+    })
+})
+</code></pre>
 <p>&emsp;&emsp;发现，自己把jquery代码放到了<body>标签中，那这样的话，也就是在document准备好之前发送了一次，在准备好之后又发送了一次。所以是两次get请求。</p>
 <p><strong>解决方案：把代码放在<body>外面就好啦。</strong></p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

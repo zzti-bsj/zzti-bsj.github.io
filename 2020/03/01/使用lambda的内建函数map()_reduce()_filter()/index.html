@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,24 +143,41 @@
     </ul>
     <div class="post-content">
         <h2 id="什么是lambda？"><a href="#什么是lambda？" class="headerlink" title="什么是lambda？"></a>什么是lambda？</h2><p>&emsp;&emsp;简而言之，lambda是一个表达式，又称为匿名函数。是一个可以实现一些功能的代码段。<br><strong>代码示例：</strong><br>&emsp;&emsp;这个简单的lambda是一个求和的表达式，其返回值是一个function，显而易见：<strong>lambda的返回值是一个函数！</strong></p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">add</span> = lambda x, y: x + y</span><br><span class="line"><span class="builtin-name">print</span>(<span class="builtin-name">add</span>(1, 2))</span><br><span class="line"><span class="builtin-name">print</span>(type(add))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行结果</span></span><br><span class="line">&gt;&gt;&gt; 3</span><br><span class="line">&gt;&gt;&gt; &lt;class <span class="string">'function'</span>&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>add = lambda x, y: x + y
+print(add(1, 2))
+print(type(add))
 
-<p>&emsp;&emsp;</p>
+# 运行结果
+&gt;&gt;&gt; 3
+&gt;&gt;&gt; &lt;class &#39;function&#39;&gt;</code></pre><p>&emsp;&emsp;</p>
 <h2 id="使用lambda的内建函数map-reduce-filter"><a href="#使用lambda的内建函数map-reduce-filter" class="headerlink" title="使用lambda的内建函数map()/reduce()/filter()"></a>使用lambda的内建函数map()/reduce()/filter()</h2><p>&emsp;&emsp;这里记录一下三个函数，都比较容易理解。分别是map()/reduce()/filter()，这三个函数都使用到了lambda表达式。（注：这三个函数的第一个参数function也可以使用自定义函数）</p>
 <h3 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h3><p>看一下map()的函数说明：<br>1、map(func(), iterable)/作用：映射<br>&emsp;&emsp;<strong>Make an iterator that computes the function using arguments from each of the iterables.</strong><br>&emsp;&emsp;map的作用是映射。把可迭代对象按照function规则映射为一个map对象  –&gt; iterator  </p>
 <p><strong>代码示例：</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="number">-2</span>, <span class="number">5</span>, <span class="number">-7</span>, <span class="number">3</span>, <span class="number">-6</span>]</span><br><span class="line"></span><br><span class="line"># <span class="number">1</span>)求列表的绝对值</span><br><span class="line">result = list(map(lambda x: abs(x), list1))</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span>)列表求和</span><br><span class="line">list1 = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>]</span><br><span class="line">list2 = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">8</span>]</span><br><span class="line">result = list(map(lambda x, y: x+y, list1, list2))</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+<pre><code>list1 = [-2, 5, -7, 3, -6]
 
-<h3 id="functools-reduce"><a href="#functools-reduce" class="headerlink" title="functools.reduce()"></a>functools.reduce()</h3><p>Python3中，reduce()被封装到functools模块中了。  </p>
+# 1)求列表的绝对值
+result = list(map(lambda x: abs(x), list1))
+print(result)
+
+# 2)列表求和
+list1 = [1, 3, 5, 7]
+list2 = [1, 4, 2, 8]
+result = list(map(lambda x, y: x+y, list1, list2))
+print(result)</code></pre><h3 id="functools-reduce"><a href="#functools-reduce" class="headerlink" title="functools.reduce()"></a>functools.reduce()</h3><p>Python3中，reduce()被封装到functools模块中了。  </p>
 <p>看一下reduce()的函数说明：<br>1、reduce(func(arg1,arg2), iterable)<br>&emsp;&emsp;<strong>Apply a function of two arguments cumulatively to the items of a sequence,from left to right, so as to reduce the sequence to a single value.</strong><br>&emsp;&emsp;reduce的作用是处理后面可迭代对象的cumulatively（累计的），说白了就是把后面可迭代对象里的元素分开做和/积，最终实现可迭代对象中所有元素的和/积。（一般情况下的使用方法）  </p>
 <p><strong>代码示例：</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line">lis = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line">result = functools.reduce(lambda x, y: x*y, lis)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
-<h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h3><p>看一下filter()的函数说明：<br>1、filter(func, iterable)<br>&emsp;&emsp;<strong>for those items, if function(item) is ture, yield this item.</strong><br>&emsp;&emsp;filter的作用就是根据前面的表达式判断后面可迭代对象中的每一个元素，如果返回True，则过滤出来，否则continue。</p>
+<pre><code>import functools
+lis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+result = functools.reduce(lambda x, y: x*y, lis)
+print(result)
+</code></pre><h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h3><p>看一下filter()的函数说明：<br>1、filter(func, iterable)<br>&emsp;&emsp;<strong>for those items, if function(item) is ture, yield this item.</strong><br>&emsp;&emsp;filter的作用就是根据前面的表达式判断后面可迭代对象中的每一个元素，如果返回True，则过滤出来，否则continue。</p>
 <p><strong>代码示例：</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lis = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line">result = list(filter(lambda x: x % <span class="number">2</span> != <span class="number">0</span>, lis))</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
-
+<pre><code>lis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+result = list(filter(lambda x: x % 2 != 0, lis))
+print(result)</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

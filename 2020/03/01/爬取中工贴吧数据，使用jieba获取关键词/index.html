@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -191,23 +193,159 @@
 </ol>
 <p>&emsp;&emsp;写入文件之后，面对10000行文字，我觉得不爽，接下来使用jieba模块提取这个文件的关键字。<br>&emsp;&emsp;另写一个py文件，操作刚刚的csv文件。  </p>
 <h3 id="结巴分词的浅记"><a href="#结巴分词的浅记" class="headerlink" title="结巴分词的浅记"></a>结巴分词的浅记</h3><p>代码不长，贴下：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># 作者：bsj</span></span><br><span class="line"><span class="comment"># 邮箱：2779090360@qq.com</span></span><br><span class="line"><span class="comment"># 时间：2019/7/24</span></span><br><span class="line">import jieba</span><br><span class="line"><span class="built_in">from</span> collections import Counter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def output_top_n():</span><br><span class="line">    list = []</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'zut_tieba.csv'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">line</span> <span class="keyword">in</span> f:</span><br><span class="line">            <span class="comment"># 对每一行使用jieba处理</span></span><br><span class="line">            cut = jieba.cut(<span class="built_in">line</span>)</span><br><span class="line">            <span class="comment"># 和空列表合并</span></span><br><span class="line">            list += cut</span><br><span class="line">    couter = Counter(list).most_common(<span class="number">10000</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">"key_word.txt"</span>, <span class="string">'a+'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> cou <span class="keyword">in</span> couter:</span><br><span class="line">            f.<span class="built_in">write</span>(str(cou))</span><br><span class="line">            f.<span class="built_in">write</span>(<span class="string">"\n"</span>)</span><br><span class="line">            print(cou)</span><br><span class="line">        f.<span class="built_in">close</span>()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">output_top_n()</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;使用jieba模块调用cut函数，传入字符串参数，返回一个关键字组成的生成器，这里我使用了列表合并，把关键字写入同了一个列表中。</p>
-<h4 id="精准匹配"><a href="#精准匹配" class="headerlink" title="精准匹配"></a>精准匹配</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">str</span> = <span class="string">"我是一个爱学习的Coder，学习也爱我，我没有女朋友"</span></span><br><span class="line">gen = jieba.cut(<span class="built_in">str</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">","</span>.<span class="built_in">join</span>(gen))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,，,学习,也,爱,我,，,我,没有,女朋友</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="全模式"><a href="#全模式" class="headerlink" title="全模式"></a>全模式</h4><p>全模式解析的好像更全了。</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="built_in">str</span> = <span class="string">"我是一个爱学习的Coder，学习也爱我，我没有女朋友"</span></span><br><span class="line">gen = jieba.cut(<span class="built_in">str</span>, cut_all=True)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">","</span>.<span class="built_in">join</span>(gen))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,,学习,也,爱,我,,,我,没有,女朋友,朋友</span><br></pre></td></tr></table></figure>
-
-<h4 id="搜索引擎模式"><a href="#搜索引擎模式" class="headerlink" title="搜索引擎模式"></a>搜索引擎模式</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="built_in">str</span> = <span class="string">"我是一个爱学习的Coder，学习也爱我，我没有女朋友"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">','</span>.<span class="built_in">join</span>(jieba.cut_for_search(<span class="built_in">str</span>)))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,，,学习,也,爱,我,，,我,没有,朋友,女朋友</span><br></pre></td></tr></table></figure>
+<pre><code># -*- coding:utf-8 -*-
+# 作者：bsj
+# 邮箱：2779090360@qq.com
+# 时间：2019/7/24
+import jieba
+from collections import Counter
 
 
-<h3 id="练习了Scrapy-jieba模块"><a href="#练习了Scrapy-jieba模块" class="headerlink" title="练习了Scrapy+jieba模块"></a>练习了Scrapy+jieba模块</h3><p>也发现的有问题，使用css选择器获取不到网页的数据，这可能涉及的更深的技术，接下来我会持续跟进更深的技术，欢迎关注我的博客  </p>
+def output_top_n():
+    list = []
+    with open(&#39;zut_tieba.csv&#39;) as f:
+        for line in f:
+            # 对每一行使用jieba处理
+            cut = jieba.cut(line)
+            # 和空列表合并
+            list += cut
+    couter = Counter(list).most_common(10000)
+    with open(&quot;key_word.txt&quot;, &#39;a+&#39;) as f:
+        for cou in couter:
+            f.write(str(cou))
+            f.write(&quot;\n&quot;)
+            print(cou)
+        f.close()
+
+
+output_top_n()</code></pre><p>&emsp;&emsp;使用jieba模块调用cut函数，传入字符串参数，返回一个关键字组成的生成器，这里我使用了列表合并，把关键字写入同了一个列表中。</p>
+<h4 id="精准匹配"><a href="#精准匹配" class="headerlink" title="精准匹配"></a>精准匹配</h4><pre><code>str = &quot;我是一个爱学习的Coder，学习也爱我，我没有女朋友&quot;
+gen = jieba.cut(str)
+print(&quot;,&quot;.join(gen))
+
+&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,，,学习,也,爱,我,，,我,没有,女朋友</code></pre><h4 id="全模式"><a href="#全模式" class="headerlink" title="全模式"></a>全模式</h4><p>全模式解析的好像更全了。</p>
+<pre><code>import jieba
+str = &quot;我是一个爱学习的Coder，学习也爱我，我没有女朋友&quot;
+gen = jieba.cut(str, cut_all=True)
+print(&quot;,&quot;.join(gen))
+
+&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,,学习,也,爱,我,,,我,没有,女朋友,朋友</code></pre><h4 id="搜索引擎模式"><a href="#搜索引擎模式" class="headerlink" title="搜索引擎模式"></a>搜索引擎模式</h4><pre><code>import jieba
+str = &quot;我是一个爱学习的Coder，学习也爱我，我没有女朋友&quot;
+print(&#39;,&#39;.join(jieba.cut_for_search(str)))
+
+&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,，,学习,也,爱,我,，,我,没有,朋友,女朋友</code></pre><h3 id="练习了Scrapy-jieba模块"><a href="#练习了Scrapy-jieba模块" class="headerlink" title="练习了Scrapy+jieba模块"></a>练习了Scrapy+jieba模块</h3><p>也发现的有问题，使用css选择器获取不到网页的数据，这可能涉及的更深的技术，接下来我会持续跟进更深的技术，欢迎关注我的博客  </p>
 <p>附上代码（包含scrapy/jieba模块，在scrapy项目下可以运行此代码）：  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># 作者：bsj</span></span><br><span class="line"><span class="comment"># 邮箱：2779090360@qq.com</span></span><br><span class="line"><span class="comment"># 时间：2019/7/24</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">css选择器的使用方法：</span></span><br><span class="line"><span class="string">1、含有多个类的标签，类之间使用.连接</span></span><br><span class="line"><span class="string">2、空格就代表了相对路径和绝对路径</span></span><br><span class="line"><span class="string">3、选择某个属性为***的标签： response.css('a[href="***"]')</span></span><br><span class="line"><span class="string">4、使用单引号</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">传参：</span></span><br><span class="line"><span class="string">1、scrapy.Request()使用meta传递参数。</span></span><br><span class="line"><span class="string">2、在背传入的函数中，使用meta[key]获取接受的参数。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZutTb</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"spider_zut_tb"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># start_urls = [</span></span><br><span class="line">    <span class="comment">#     "http://tieba.baidu.com/f?kw=%D6%D0%D4%AD%B9%A4%D1%A7%D4%BA&amp;fr=ala0&amp;tpl=5"</span></span><br><span class="line">    <span class="comment"># ]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义一个写入数据的函数</span></span><br><span class="line">    <span class="comment"># 存入到csv表中</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save_to_csv</span><span class="params">(self, pre_data)</span>:</span></span><br><span class="line">        <span class="keyword">with</span> open(<span class="string">'zut_tieba.csv'</span>,<span class="string">'a+'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(pre_data + <span class="string">"\n"</span>)</span><br><span class="line">            f.close()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里面，每次使用scrapy.Request()请求一个网页</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        urls = [</span><br><span class="line">            <span class="string">"http://tieba.baidu.com/f?kw=%D6%D0%D4%AD%B9%A4%D1%A7%D4%BA&amp;fr=ala0&amp;tpl=5"</span></span><br><span class="line">        ]</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url=url,</span><br><span class="line">                callback=self.parse,</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="comment"># 使用css解析网页</span></span><br><span class="line">        <span class="comment"># 使用response解析</span></span><br><span class="line">        <span class="comment"># 1、一个标签多个类之间使用.连接</span></span><br><span class="line">        <span class="comment"># 2、使用空格即有相对路径的作用</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取某个贴</span></span><br><span class="line">        all_tiebas = response.css(<span class="string">"li.j_thread_list.clearfix"</span>)</span><br><span class="line">        <span class="keyword">for</span> tieba <span class="keyword">in</span> all_tiebas:</span><br><span class="line">            <span class="comment"># 或取某个贴吧的回复数</span></span><br><span class="line">            num_res = tieba.css(<span class="string">"span.threadlist_rep_num.center_text::text"</span>).extract_first()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 获取贴吧主题</span></span><br><span class="line">            tieba_title = tieba.css(<span class="string">'a[rel="noreferrer"]::text'</span>).extract_first().strip()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 获取贴吧的href</span></span><br><span class="line">            <span class="comment"># 3、选择某个属性为**的标签</span></span><br><span class="line">            tieba_href = <span class="string">"http://tieba.baidu.com"</span> + tieba.css(<span class="string">'a[rel="noreferrer"]::attr(href)'</span>).extract_first()</span><br><span class="line">            <span class="comment"># print(tieba_href)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 把数据传入到另一个页面？</span></span><br><span class="line">            <span class="keyword">if</span> int(num_res) &gt;= <span class="number">5</span>:</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                        url=tieba_href,</span><br><span class="line">                        callback=self.get_pre_page_info,</span><br><span class="line">                        meta=&#123;</span><br><span class="line">                            <span class="string">'tieba_title'</span>: tieba_title,</span><br><span class="line">                        &#125;</span><br><span class="line">                    )</span><br><span class="line">                <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                    print(<span class="string">"异常"</span>)</span><br><span class="line">                    print(e)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 下一页</span></span><br><span class="line">        next_page = response.css(<span class="string">'a.next.pagination-item::attr(href)'</span>).extract_first()</span><br><span class="line">        <span class="keyword">if</span> next_page <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            next_page = response.urljoin(next_page)</span><br><span class="line">            print(next_page)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url=next_page,</span><br><span class="line">                callback=self.parse,</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取每一页的信息</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_pre_page_info</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="comment"># 贴吧 吧主</span></span><br><span class="line">        all_content_com = response.css(<span class="string">'div.d_post_content_main'</span>)</span><br><span class="line">        <span class="keyword">for</span> content_com <span class="keyword">in</span> all_content_com:</span><br><span class="line">            <span class="comment"># 获取content和com</span></span><br><span class="line">            content = content_com.css(<span class="string">'div.d_post_content.j_d_post_content.clearfix::text'</span>).extract_first().strip()</span><br><span class="line">            <span class="comment"># 我获取不到这个数据</span></span><br><span class="line">            <span class="comment"># com = content_com.css('div').extract()</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 已经获取到字符串</span></span><br><span class="line">            self.save_to_csv(content)</span><br><span class="line">            print(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用代码段运行scrapy爬虫</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</span><br><span class="line">    cmdline.execute(<span class="string">'scrapy crawl spider_zut_tb'</span>.split(<span class="string">" "</span>))</span><br></pre></td></tr></table></figure>
+<pre><code># -*- coding:utf-8 -*-
+# 作者：bsj
+# 邮箱：2779090360@qq.com
+# 时间：2019/7/24
+&quot;&quot;&quot;
+css选择器的使用方法：
+1、含有多个类的标签，类之间使用.连接
+2、空格就代表了相对路径和绝对路径
+3、选择某个属性为***的标签： response.css(&#39;a[href=&quot;***&quot;]&#39;)
+4、使用单引号
+
+传参：
+1、scrapy.Request()使用meta传递参数。
+2、在背传入的函数中，使用meta[key]获取接受的参数。
+&quot;&quot;&quot;
+import scrapy
+
+
+class ZutTb(scrapy.Spider):
+    name = &quot;spider_zut_tb&quot;
+
+    # start_urls = [
+    #     &quot;http://tieba.baidu.com/f?kw=%D6%D0%D4%AD%B9%A4%D1%A7%D4%BA&amp;fr=ala0&amp;tpl=5&quot;
+    # ]
+
+    # 定义一个写入数据的函数
+    # 存入到csv表中
+    def save_to_csv(self, pre_data):
+        with open(&#39;zut_tieba.csv&#39;,&#39;a+&#39;) as f:
+            f.write(pre_data + &quot;\n&quot;)
+            f.close()
+
+    # 这里面，每次使用scrapy.Request()请求一个网页
+    def start_requests(self):
+        urls = [
+            &quot;http://tieba.baidu.com/f?kw=%D6%D0%D4%AD%B9%A4%D1%A7%D4%BA&amp;fr=ala0&amp;tpl=5&quot;
+        ]
+        for url in urls:
+            yield scrapy.Request(
+                url=url,
+                callback=self.parse,
+            )
+
+    def parse(self, response):
+        # 使用css解析网页
+        # 使用response解析
+        # 1、一个标签多个类之间使用.连接
+        # 2、使用空格即有相对路径的作用
+
+        # 获取某个贴
+        all_tiebas = response.css(&quot;li.j_thread_list.clearfix&quot;)
+        for tieba in all_tiebas:
+            # 或取某个贴吧的回复数
+            num_res = tieba.css(&quot;span.threadlist_rep_num.center_text::text&quot;).extract_first()
+
+            # 获取贴吧主题
+            tieba_title = tieba.css(&#39;a[rel=&quot;noreferrer&quot;]::text&#39;).extract_first().strip()
+
+            # 获取贴吧的href
+            # 3、选择某个属性为**的标签
+            tieba_href = &quot;http://tieba.baidu.com&quot; + tieba.css(&#39;a[rel=&quot;noreferrer&quot;]::attr(href)&#39;).extract_first()
+            # print(tieba_href)
+
+            # 把数据传入到另一个页面？
+            if int(num_res) &gt;= 5:
+                try:
+                    yield scrapy.Request(
+                        url=tieba_href,
+                        callback=self.get_pre_page_info,
+                        meta={
+                            &#39;tieba_title&#39;: tieba_title,
+                        }
+                    )
+                except Exception as e:
+                    print(&quot;异常&quot;)
+                    print(e)
+
+        # 下一页
+        next_page = response.css(&#39;a.next.pagination-item::attr(href)&#39;).extract_first()
+        if next_page is not None:
+            next_page = response.urljoin(next_page)
+            print(next_page)
+            yield scrapy.Request(
+                url=next_page,
+                callback=self.parse,
+            )
+
+
+    # 获取每一页的信息
+    def get_pre_page_info(self, response):
+        # 贴吧 吧主
+        all_content_com = response.css(&#39;div.d_post_content_main&#39;)
+        for content_com in all_content_com:
+            # 获取content和com
+            content = content_com.css(&#39;div.d_post_content.j_d_post_content.clearfix::text&#39;).extract_first().strip()
+            # 我获取不到这个数据
+            # com = content_com.css(&#39;div&#39;).extract()
+
+            # 已经获取到字符串
+            self.save_to_csv(content)
+            print(content)
+
+
+# 使用代码段运行scrapy爬虫
+if __name__ == &#39;__main__&#39;:
+    from scrapy import cmdline
+    cmdline.execute(&#39;scrapy crawl spider_zut_tb&#39;.split(&quot; &quot;))
+</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

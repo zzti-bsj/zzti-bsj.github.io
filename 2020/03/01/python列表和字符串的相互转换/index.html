@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,20 +143,36 @@
     </ul>
     <div class="post-content">
         <h2 id="列表转换字符串"><a href="#列表转换字符串" class="headerlink" title="列表转换字符串"></a>列表转换字符串</h2><p>1、不含数字的列表转成字符串  </p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lis = [<span class="string">'1'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'3'</span>]</span><br><span class="line"><span class="string">""</span>.join(lis)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;<span class="string">'1432'</span></span><br></pre></td></tr></table></figure>
+<pre><code>lis = [&#39;1&#39;,&#39;3&#39;,&#39;4&#39;,&#39;3&#39;]
+&quot;&quot;.join(lis)
 
-<p>2、含有数字的列表转成字符串  </p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lis = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,'<span class="number">3</span>']</span><br><span class="line">lis = [str(i) for i in lis]</span><br><span class="line"><span class="string">""</span>.join(lis)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;'<span class="number">1432</span>'</span><br></pre></td></tr></table></figure>
+&gt;&gt;&gt;&#39;1432&#39;</code></pre><p>2、含有数字的列表转成字符串  </p>
+<pre><code>lis = [1,3,4,&#39;3&#39;]
+lis = [str(i) for i in lis]
+&quot;&quot;.join(lis)
 
-<h2 id="字符串转换成列表"><a href="#字符串转换成列表" class="headerlink" title="字符串转换成列表"></a>字符串转换成列表</h2><p>1、分割句子式</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">str</span> = <span class="string">"I love the world"</span></span><br><span class="line">lis = <span class="built_in">str</span>.<span class="built_in">split</span>(<span class="string">" "</span>)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;[<span class="string">'I'</span>, <span class="string">'love'</span>, <span class="string">'the'</span>, <span class="string">'world'</span>]</span><br></pre></td></tr></table></figure>
-<p>2、分割单词式</p>
+&gt;&gt;&gt;&#39;1432&#39;</code></pre><h2 id="字符串转换成列表"><a href="#字符串转换成列表" class="headerlink" title="字符串转换成列表"></a>字符串转换成列表</h2><p>1、分割句子式</p>
+<pre><code>str = &quot;I love the world&quot;
+lis = str.split(&quot; &quot;)
+
+&gt;&gt;&gt;[&#39;I&#39;, &#39;love&#39;, &#39;the&#39;, &#39;world&#39;]</code></pre><p>2、分割单词式</p>
 <ol>
-<li>使用列表解析<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">str</span> = <span class="string">"communication"</span></span><br><span class="line">lis = [i <span class="keyword">for</span> i in <span class="keyword">str</span>]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;[<span class="string">'c'</span>, <span class="string">'o'</span>, <span class="string">'m'</span>, <span class="string">'m'</span>, <span class="string">'u'</span>, <span class="string">'n'</span>, <span class="string">'i'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'t'</span>, <span class="string">'i'</span>, <span class="string">'o'</span>, <span class="string">'n'</span>]</span><br></pre></td></tr></table></figure></li>
+<li>使用列表解析<pre><code>str = &quot;communication&quot;
+lis = [i for i in str]
+</code></pre></li>
 </ol>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>[‘c’, ‘o’, ‘m’, ‘m’, ‘u’, ‘n’, ‘i’, ‘c’, ‘a’, ‘t’, ‘i’, ‘o’, ‘n’]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>```</p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -142,10 +144,30 @@
     <div class="post-content">
         <h2 id="Sqlite之在python中的应用"><a href="#Sqlite之在python中的应用" class="headerlink" title="Sqlite之在python中的应用"></a>Sqlite之在python中的应用</h2><p>&emsp;&emsp;在python中使用sqlite，需要引入sqlite3驱动sqlite。<br><code>import sqlite3</code>  </p>
 <h3 id="连接Sqlite，执行sql语句"><a href="#连接Sqlite，执行sql语句" class="headerlink" title="连接Sqlite，执行sql语句"></a>连接Sqlite，执行sql语句</h3><p>&emsp;&emsp;当前存在一个名为test.db的数据库文件，以下是连接sqlite数据库，获取数据库对象游标，执行sql语句，根据sqlite3包提供的方法，获取数据库中的数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">db_name = <span class="string">'test.db'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">con_sqlite</span><span class="params">(db_name)</span>:</span></span><br><span class="line">    <span class="comment"># 连接数据库，获取数据库对象</span></span><br><span class="line">    db = sqlite3.connect(db_name)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取数据库的操作游标</span></span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 使用游标cursor调用excute()执行sql语句，从而对数据库中的数据操作</span></span><br><span class="line">    sql = <span class="string">"""</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    cursor.excute(sql)</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">        使用sqlite3包提供的函数，对数据库中的数据执行相关的操作  </span></span><br><span class="line"><span class="string">        如：result = cursor.fetchall() # 匹配执行的sql语句中的所有结果并且返回到result中</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 关闭数据库的操作游标</span></span><br><span class="line">    cursor.close()</span><br><span class="line">    <span class="comment"># 提交事务，关闭数据库</span></span><br><span class="line">    db.commit()</span><br><span class="line">    db.close()</span><br></pre></td></tr></table></figure>
+<pre><code>db_name = &#39;test.db&#39;
+def con_sqlite(db_name):
+    # 连接数据库，获取数据库对象
+    db = sqlite3.connect(db_name)
 
+    # 获取数据库的操作游标
+    cursor = db.cursor()
+
+    # 使用游标cursor调用excute()执行sql语句，从而对数据库中的数据操作
+    sql = &quot;&quot;&quot;
+    &quot;&quot;&quot;
+    cursor.excute(sql)
+    &quot;&quot;&quot;
+        使用sqlite3包提供的函数，对数据库中的数据执行相关的操作  
+        如：result = cursor.fetchall() # 匹配执行的sql语句中的所有结果并且返回到result中
+    &quot;&quot;&quot;
+    # 关闭数据库的操作游标
+    cursor.close()
+    # 提交事务，关闭数据库
+    db.commit()
+    db.close()</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

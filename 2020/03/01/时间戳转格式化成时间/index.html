@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,9 +143,20 @@
     </ul>
     <div class="post-content">
         <h2 id="时间戳格式化成时间"><a href="#时间戳格式化成时间" class="headerlink" title="时间戳格式化成时间"></a>时间戳格式化成时间</h2><p>&emsp;&emsp;把时间戳格式化成时间，需要使用time模块。<br>&emsp;&emsp;先使用localtime(timestamp)转化成时间，然后使用strftime(fromat, timearray)把转化的时间格式化。<br>&emsp;&emsp;我这里使用了查看某个文件状态的例子，获取其访问的时间戳。  </p>
-<h3 id="实例源代码"><a href="#实例源代码" class="headerlink" title="实例源代码"></a>实例源代码</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import <span class="keyword">time</span></span><br><span class="line">import os</span><br><span class="line"><span class="comment"># 1、查看一个文件的状态</span></span><br><span class="line">file_stas = os.stat(<span class="string">'1.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 先给定时间戳，然后使用localtime把时间戳转化成时间元组，利用strftime()格式化时间元组</span></span><br><span class="line">timeStamp = file_stas.st_atime</span><br><span class="line">timeArray = time.localtime(timeStamp)</span><br><span class="line">otherStyleTime = time.strftime(<span class="string">"%Y-%b-%d %H:%M:%S"</span>, timeArray)</span><br><span class="line"><span class="keyword">print</span>(f<span class="string">"创建时间&#123;otherStyleTime&#125;"</span>)</span><br><span class="line"><span class="keyword">print</span>(file_stas)</span><br></pre></td></tr></table></figure>
+<h3 id="实例源代码"><a href="#实例源代码" class="headerlink" title="实例源代码"></a>实例源代码</h3><pre><code>import time
+import os
+# 1、查看一个文件的状态
+file_stas = os.stat(&#39;1.txt&#39;)
+
+# 先给定时间戳，然后使用localtime把时间戳转化成时间元组，利用strftime()格式化时间元组
+timeStamp = file_stas.st_atime
+timeArray = time.localtime(timeStamp)
+otherStyleTime = time.strftime(&quot;%Y-%b-%d %H:%M:%S&quot;, timeArray)
+print(f&quot;创建时间{otherStyleTime}&quot;)
+print(file_stas)</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

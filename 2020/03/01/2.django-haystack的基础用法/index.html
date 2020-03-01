@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -142,29 +144,89 @@
     <div class="post-content">
         <h2 id="启动搜索引擎"><a href="#启动搜索引擎" class="headerlink" title="启动搜索引擎"></a>启动搜索引擎</h2><p>&emsp;&emsp;在查询之前，要启动搜索引擎的服务，在Elasticsearch文件夹下启动Elasticsearch.bat文件。  </p>
 <h2 id="创建数据模型类"><a href="#创建数据模型类" class="headerlink" title="创建数据模型类"></a>创建数据模型类</h2><p>&emsp;&emsp;这一步是创建<strong>Django数据模型</strong>，创建了note应用之后，如下创建了一个Note数据模型类：  </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db import models</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.models import User</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Note(models.Model):</span><br><span class="line">   <span class="built_in"> user </span>= models.ForeignKey(User)</span><br><span class="line">    pub_date = models.DateTimeField()</span><br><span class="line">    title = models.CharField(<span class="attribute">max_length</span>=200)</span><br><span class="line">    body = models.TextField()</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.title</span><br></pre></td></tr></table></figure>
+<pre><code>from django.db import models
+from django.contrib.auth.models import User
 
-<h2 id="创建索引类"><a href="#创建索引类" class="headerlink" title="创建索引类"></a>创建索引类</h2><h3 id="SearchIndex"><a href="#SearchIndex" class="headerlink" title="SearchIndex"></a>SearchIndex</h3><p>&emsp;&emsp;<code>SearchIndex</code>决定将什么数据放入搜索索引，类似于Django的<code>Models</code>和<code>Forms</code>一样基于字段处理数据。<br>&emsp;&emsp;通常为每一个<strong>数据模型</strong>创建一个唯一的<code>SearchIndex</code>。在你的数据模型字段设置的非常标准的情况下，你可以在不同的数据模型之间使用相同的<code>SearchIndex</code>。  </p>
+
+class Note(models.Model):
+    user = models.ForeignKey(User)
+    pub_date = models.DateTimeField()
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+
+    def __str__(self):
+        return self.title
+</code></pre><h2 id="创建索引类"><a href="#创建索引类" class="headerlink" title="创建索引类"></a>创建索引类</h2><h3 id="SearchIndex"><a href="#SearchIndex" class="headerlink" title="SearchIndex"></a>SearchIndex</h3><p>&emsp;&emsp;<code>SearchIndex</code>决定将什么数据放入搜索索引，类似于Django的<code>Models</code>和<code>Forms</code>一样基于字段处理数据。<br>&emsp;&emsp;通常为每一个<strong>数据模型</strong>创建一个唯一的<code>SearchIndex</code>。在你的数据模型字段设置的非常标准的情况下，你可以在不同的数据模型之间使用相同的<code>SearchIndex</code>。  </p>
 <h3 id="创建索引类-1"><a href="#创建索引类-1" class="headerlink" title="创建索引类"></a>创建索引类</h3><p>&emsp;&emsp;在所属app中创建<code>search_indexes.py</code>文件，Haystack会根据此文件名自动寻路，创建与<code>Note</code>对应的<code>NoteIndex</code>索引类，继承<code>indexs.SearchIndex</code>和<code>indexs.Indexable</code>类。定义所需<code>fileds</code>和<code>get_model</code>方法  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> haystack <span class="keyword">import</span> indexes</span><br><span class="line"><span class="keyword">from</span> myapp.models <span class="keyword">import</span> Note</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NoteIndex</span><span class="params">(indexes.SearchIndex, indexes.Indexable)</span>:</span></span><br><span class="line">    <span class="comment"># text设置了document=True，text是Haystack和搜索引擎的主要字段</span></span><br><span class="line">    text = indexes.CharField(document=<span class="literal">True</span>, use_template=<span class="literal">True</span>)</span><br><span class="line">    author = indexes.CharField(model_attr=<span class="string">'user'</span>)</span><br><span class="line">    pub_date = indexes.DateTimeField(model_attr=<span class="string">'pub_date'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_model</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Note</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">index_queryset</span><span class="params">(self, using=None)</span>:</span></span><br><span class="line">        <span class="string">"""Used when the entire index for model is updated."""</span></span><br><span class="line">        <span class="keyword">return</span> self.get_model().objects.filter(pub_date__lte=datetime.datetime.now())</span><br></pre></td></tr></table></figure>
+<pre><code class="python">import datetime
+from haystack import indexes
+from myapp.models import Note
+
+
+class NoteIndex(indexes.SearchIndex, indexes.Indexable):
+    # text设置了document=True，text是Haystack和搜索引擎的主要字段
+    text = indexes.CharField(document=True, use_template=True)
+    author = indexes.CharField(model_attr=&#39;user&#39;)
+    pub_date = indexes.DateTimeField(model_attr=&#39;pub_date&#39;)
+
+    def get_model(self):
+        return Note
+
+    def index_queryset(self, using=None):
+        &quot;&quot;&quot;Used when the entire index for model is updated.&quot;&quot;&quot;
+        return self.get_model().objects.filter(pub_date__lte=datetime.datetime.now())</code></pre>
 <p>&emsp;&emsp;<code>document=True</code>指出哪个字段被用作Haystack和搜索引擎的<strong>主要搜索字段</strong>，通常这个字段被命名为<code>text</code>（只是一个惯例而已）<br>&emsp;&emsp;<code>use_template=True</code>指出允许我们使用数据模板来定义搜索引擎要搜索的文档。需要在<code>templates</code>目录下创建一个<code>search/indexes/myapp/myapp_text.txt</code>文件，并写入以下内容:  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//指定可以检索title、full_name、body字段的值</span><br><span class="line">&#123;&#123; object.title &#125;&#125;</span><br><span class="line">&#123;&#123; object.user.get_full_name &#125;&#125;</span><br><span class="line">&#123;&#123; object.body &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="url映射"><a href="#url映射" class="headerlink" title="url映射"></a>url映射</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(<span class="string">r'^search/'</span>, include(<span class="string">'haystack.urls'</span>)),</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;Haystack的URLconf只有一个<code>SearchView</code>实例，您可以通过传递几个关键字参数中的任意一个来更改该类的行为，或者使用自己的视图完全重写它。  </p>
+<pre><code class="python">//指定可以检索title、full_name、body字段的值
+{{ object.title }}
+{{ object.user.get_full_name }}
+{{ object.body }}</code></pre>
+<h2 id="url映射"><a href="#url映射" class="headerlink" title="url映射"></a>url映射</h2><pre><code>url(r&#39;^search/&#39;, include(&#39;haystack.urls&#39;)),</code></pre><p>&emsp;&emsp;Haystack的URLconf只有一个<code>SearchView</code>实例，您可以通过传递几个关键字参数中的任意一个来更改该类的行为，或者使用自己的视图完全重写它。  </p>
 <h3 id="搜索模板"><a href="#搜索模板" class="headerlink" title="搜索模板"></a>搜索模板</h3><p>&emsp;&emsp;您的搜索模板（默认情况下为search/search.html）可能非常简单。以下内容足以开始（您的模板/块名可能不同）：  </p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">extends</span></span> 'base.html' %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> content %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Search<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"get"</span> <span class="attr">action</span>=<span class="string">"."</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">table</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="template-variable">&#123;&#123; form.as_table &#125;&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="symbol">&amp;nbsp;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Search"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> query %&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Results<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> result <span class="keyword">in</span> page.object_list %&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; result.object.get_absolute_url &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-variable">&#123;&#123; result.object.title &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">empty</span></span> %&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>No results found.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_previous or page.has_next %&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_previous %&#125;</span><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?q=</span></span></span><span class="template-variable">&#123;&#123; query &#125;&#125;</span><span class="xml"><span class="tag"><span class="string"><span class="symbol">&amp;amp;</span>page=</span></span></span><span class="template-variable">&#123;&#123; page.previous_page_number &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"><span class="symbol">&amp;laquo;</span> Previous</span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_previous %&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">                    |</span></span><br><span class="line"><span class="xml">                    </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_next %&#125;</span><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?q=</span></span></span><span class="template-variable">&#123;&#123; query &#125;&#125;</span><span class="xml"><span class="tag"><span class="string"><span class="symbol">&amp;amp;</span>page=</span></span></span><span class="template-variable">&#123;&#123; page.next_page_number &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml">Next <span class="symbol">&amp;raquo;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> page.has_next %&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">else</span></span> %&#125;</span></span><br><span class="line"><span class="xml">            </span><span class="comment">&#123;# Show some example queries to run, maybe query syntax, something else? #&#125;</span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;<code>page.object_list</code>是查询结果对象，这些对象包含搜索索引中从该记录返回的所有数据以及分数，还可以通过<code>result.object</code>直接访问结果的模型，因此<code>result.object.title</code>使用数据库中的实际Note对象并访问其title字段。  </p>
+<pre><code>{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Search</h2>
+
+    <form method="get" action=".">
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input type="submit" value="Search">
+                </td>
+            </tr>
+        </table>
+
+        {% if query %}
+            <h3>Results</h3>
+
+            {% for result in page.object_list %}
+                <p>
+                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+                </p>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+    </form>
+{% endblock %}</code></pre><p>&emsp;&emsp;<code>page.object_list</code>是查询结果对象，这些对象包含搜索索引中从该记录返回的所有数据以及分数，还可以通过<code>result.object</code>直接访问结果的模型，因此<code>result.object.title</code>使用数据库中的实际Note对象并访问其title字段。  </p>
 <h2 id="重建-更新索引"><a href="#重建-更新索引" class="headerlink" title="重建/更新索引"></a>重建/更新索引</h2><p>&emsp;&emsp;最后一步，将数据从数据库中放入搜索索引中。Haystack的管理命令使这一步变得简单。  </p>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//重新建立索引</span></span><br><span class="line"><span class="keyword">python</span> manage.py rebuild_index</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//更新索引，当添加了新的数据之后，执行更新索引命令</span></span><br><span class="line"><span class="keyword">python</span> manage.py update_index</span><br></pre></td></tr></table></figure>
-
-<p><strong>Note:</strong><br>如果使用<code>Solr</code>搜索引擎后端，需要有额外的配置。<code>Solr</code>的配置是基于<code>XML</code>的，需要手动重新生成架构，则需要运行以下命令：  </p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//将<span class="type">XMl</span>输出到Solr的<span class="keyword">schema</span>.xml文件中，然后重启Solr服务器。</span><br><span class="line">python manage.py build_solr_schema</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>Note:</strong><br>只有在运行<code>manage.py update_index</code>或使用<code>manage.py rebuild_index</code>重新启动时，才会更新搜索索引内容。  </p>
+<pre><code>//重新建立索引
+python manage.py rebuild_index</code></pre><pre><code>//更新索引，当添加了新的数据之后，执行更新索引命令
+python manage.py update_index</code></pre><p><strong>Note:</strong><br>如果使用<code>Solr</code>搜索引擎后端，需要有额外的配置。<code>Solr</code>的配置是基于<code>XML</code>的，需要手动重新生成架构，则需要运行以下命令：  </p>
+<pre><code>//将XMl输出到Solr的schema.xml文件中，然后重启Solr服务器。
+python manage.py build_solr_schema</code></pre><p><strong>Note:</strong><br>只有在运行<code>manage.py update_index</code>或使用<code>manage.py rebuild_index</code>重新启动时，才会更新搜索索引内容。  </p>
 <p>您应该以最适合您的站点的时间间隔（使用–age=<num_hours>减少要更新的内容）创建一个<code>manage.py update_index</code>任务。  </p>
 <p>或者，如果您的流量很低并且/或者您的搜索引擎可以处理它，那么<code>RealtimeSignalProcessor</code>会自动为您处理更新/删除。  </p>
 <h2 id="示例查询结果"><a href="#示例查询结果" class="headerlink" title="示例查询结果"></a>示例查询结果</h2><p>&emsp;&emsp;如下图所示，输入关键字，查询相关的数据并展示：  </p>
@@ -172,6 +234,7 @@
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

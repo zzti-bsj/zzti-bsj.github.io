@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -146,14 +148,13 @@
 <h2 id="报错二"><a href="#报错二" class="headerlink" title="报错二"></a>报错二</h2><p><code>basename</code> argument not specified, and could ‘ \  </p>
 <p>替换之后，报错如上。解决方案如下</p>
 <p>在<code>urls.py</code>中，在register中加上<code>base_name</code>字段</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">router = routers.DefaultRouter()</span><br><span class="line">router.register(<span class="string">r'users'</span>, views.UserViewSet)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">router = routers.DefaultRouter()</span><br><span class="line">router.register(<span class="string">r'users'</span>, views.UserViewSet, base_name=<span class="string">'users'</span>)</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://blog.csdn.net/weixin_43667829/article/details/100041651" target="_blank" rel="noopener">解决方案</a></p>
+<pre><code>router = routers.DefaultRouter()
+router.register(r&#39;users&#39;, views.UserViewSet)</code></pre><pre><code>router = routers.DefaultRouter()
+router.register(r&#39;users&#39;, views.UserViewSet, base_name=&#39;users&#39;)</code></pre><p><a href="https://blog.csdn.net/weixin_43667829/article/details/100041651" target="_blank" rel="noopener">解决方案</a></p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

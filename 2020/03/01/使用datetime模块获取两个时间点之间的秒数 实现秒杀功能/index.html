@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -146,14 +148,30 @@
 <li>使用datetime类，调用now()函数，获取当前时间对象。  </li>
 </ol>
 <p><strong>代码示例：</strong></p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">from datetime import datetime</span><br><span class="line"><span class="meta"># 使用datetime类/获取到某个时间点的总秒数</span></span><br><span class="line"><span class="meta"># 两个时间点相减</span></span><br><span class="line"><span class="meta"># 实现设置延时/秒杀等功能</span></span><br><span class="line">time_future = <span class="built_in">datetime</span>(<span class="number">2019</span>, <span class="number">7</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"><span class="keyword">print</span>(time_future)</span><br><span class="line"><span class="keyword">print</span>(<span class="built_in">type</span>(time_future))</span><br><span class="line"></span><br><span class="line">time_delta = time_future - datetime.now()</span><br><span class="line"><span class="keyword">print</span>(<span class="built_in">type</span>(datetime.<span class="built_in">now</span>()))</span><br><span class="line"><span class="keyword">print</span>(time_delta)</span><br><span class="line"></span><br><span class="line"><span class="meta"># datetime.datetime.now()/datetime.datetime(2019, 7, 31, 0, 0, 0)的返回值类型都是datetime.datetime类型。</span></span><br><span class="line">&gt;&gt;&gt;&lt;class 'datetime.datetime'&gt;</span><br><span class="line"><span class="meta"># time_delta的类型是&lt;class 'datetime.timedelta'&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code>from datetime import datetime
+# 使用datetime类/获取到某个时间点的总秒数
+# 两个时间点相减
+# 实现设置延时/秒杀等功能
+time_future = datetime(2019, 7, 31, 0, 0, 0)
+print(time_future)
+print(type(time_future))
 
-<h2 id="使用datetime的timedetla类获取days-second的秒数"><a href="#使用datetime的timedetla类获取days-second的秒数" class="headerlink" title="使用datetime的timedetla类获取days/second的秒数**"></a>使用datetime的timedetla类获取days/second的秒数**</h2><p>&emsp;&emsp;使用datetime模块的timedelta类：给定参数/days/seconds，获取days天的秒数+seconds。<br>&emsp;&emsp;这个功能常常用来实现秒杀系统。</p>
+time_delta = time_future - datetime.now()
+print(type(datetime.now()))
+print(time_delta)
+
+# datetime.datetime.now()/datetime.datetime(2019, 7, 31, 0, 0, 0)的返回值类型都是datetime.datetime类型。
+&gt;&gt;&gt;&lt;class &#39;datetime.datetime&#39;&gt;
+# time_delta的类型是&lt;class &#39;datetime.timedelta&#39;&gt;</code></pre><h2 id="使用datetime的timedetla类获取days-second的秒数"><a href="#使用datetime的timedetla类获取days-second的秒数" class="headerlink" title="使用datetime的timedetla类获取days/second的秒数**"></a>使用datetime的timedetla类获取days/second的秒数**</h2><p>&emsp;&emsp;使用datetime模块的timedelta类：给定参数/days/seconds，获取days天的秒数+seconds。<br>&emsp;&emsp;这个功能常常用来实现秒杀系统。</p>
 <p><strong>代码示例：</strong></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"># total_seconds() 返回给定天数的总秒数，比如传入参数<span class="number">1</span></span><br><span class="line">x = timedelta(<span class="number">1</span>,<span class="number">60</span>).total_seconds()</span><br><span class="line">print(x)</span><br><span class="line"># &gt;&gt;&gt; <span class="number">86460.0</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>from datetime import timedelta
+# total_seconds() 返回给定天数的总秒数，比如传入参数1
+x = timedelta(1,60).total_seconds()
+print(x)
+# &gt;&gt;&gt; 86460.0</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

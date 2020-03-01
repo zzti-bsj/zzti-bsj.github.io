@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,14 +143,25 @@
     </ul>
     <div class="post-content">
         <h2 id="1、全局命令"><a href="#1、全局命令" class="headerlink" title="1、全局命令"></a>1、全局命令</h2><p>前缀加scrapy  </p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">.</span> <span class="string">startproject</span> <span class="string">[项目名称]</span> <span class="comment"># 创建一个scrapy项目</span></span><br><span class="line"><span class="number">2</span><span class="string">.</span> <span class="string">genspider</span>  <span class="string">[初始的url]</span> <span class="comment"># 创建一个scrapy爬虫文件</span></span><br><span class="line"><span class="number">3</span><span class="string">.</span> <span class="string">settings</span>  <span class="comment"># 查看项目的设置</span></span><br><span class="line"><span class="number">4</span><span class="string">.</span> <span class="string">shell</span>  <span class="string">[页面url]</span> <span class="comment"># shell调试模式</span></span><br><span class="line">    <span class="string">在shell模式的时候可以使用response.css()或者xpath语法的选择器来调试运行，response是页面返回的响应。</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span><span class="string">.</span> <span class="string">fetch</span>  <span class="string">[页面url]</span> <span class="comment"># 把页面输出到终端显示</span></span><br><span class="line"><span class="number">6</span><span class="string">.</span> <span class="string">view</span>  <span class="string">[页面url]</span> <span class="comment"># 以html形式打开这个页面</span></span><br><span class="line"><span class="number">7</span><span class="string">.</span> <span class="string">vesion</span>  <span class="comment"># 查看scrapy的版本</span></span><br><span class="line"><span class="number">8</span><span class="string">.</span> <span class="string">runspider</span> <span class="string">[spidername]</span> <span class="comment">#不依赖项目的时候运行爬虫</span></span><br></pre></td></tr></table></figure>
+<pre><code>1. startproject [项目名称] # 创建一个scrapy项目
+2. genspider  [初始的url] # 创建一个scrapy爬虫文件
+3. settings  # 查看项目的设置
+4. shell  [页面url] # shell调试模式
+    在shell模式的时候可以使用response.css()或者xpath语法的选择器来调试运行，response是页面返回的响应。
 
-<h2 id="2、项目命令"><a href="#2、项目命令" class="headerlink" title="2、项目命令"></a>2、项目命令</h2><p>有几个项目命令，其中常用的是crawl</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. crawl [spider_name] <span class="comment"># 运行蜘蛛</span></span><br><span class="line">2.<span class="built_in"> check </span><span class="comment"># 检查蜘蛛？</span></span><br><span class="line">3. list <span class="comment"># 显示spider文件夹下设置name属性的蜘蛛文件</span></span><br><span class="line">4. edit </span><br><span class="line">5. parse</span><br><span class="line">6. bench</span><br></pre></td></tr></table></figure>
-
-
+5. fetch  [页面url] # 把页面输出到终端显示
+6. view  [页面url] # 以html形式打开这个页面
+7. vesion  # 查看scrapy的版本
+8. runspider [spidername] #不依赖项目的时候运行爬虫</code></pre><h2 id="2、项目命令"><a href="#2、项目命令" class="headerlink" title="2、项目命令"></a>2、项目命令</h2><p>有几个项目命令，其中常用的是crawl</p>
+<pre><code>1. crawl [spider_name] # 运行蜘蛛
+2. check # 检查蜘蛛？
+3. list # 显示spider文件夹下设置name属性的蜘蛛文件
+4. edit 
+5. parse
+6. bench</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

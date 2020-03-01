@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,18 +143,27 @@
     </ul>
     <div class="post-content">
         <h2 id="几种常见的加密方式"><a href="#几种常见的加密方式" class="headerlink" title="几种常见的加密方式"></a>几种常见的加密方式</h2><h3 id="md5（Message-Digest-Algorithm）"><a href="#md5（Message-Digest-Algorithm）" class="headerlink" title="md5（Message Digest Algorithm）"></a>md5（Message Digest Algorithm）</h3><p>&emsp;&emsp;md5，中文名称为<strong>消息摘要算法</strong>，字面意思上来说，是一种采用摘要进行加密的算法。<br>&emsp;&emsp;md5加密的特点：<br>&emsp;&emsp;1.加密之后是一个32位的字符串<br>&emsp;&emsp;2.属于不可逆加密方式<br><strong>注：md5算法虽然不可逆，但是对于一些简单的字符串，还是可以通过md5加密之后暴力匹配出来的。</strong><br>（网上有一些专门破解md5加密的网站，有兴趣的可以搜索一下，下面给一段代码，可以生成简单的md5加密之后的数据，贴在解密网站上是可以解密的。）<br>&emsp;&emsp;<strong>代码示例</strong>：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta"># 其实在加密之前给string编码一下，就可以避免汉字问题。</span></span><br><span class="line"><span class="meta"># 注：utf-8使用三个字符表示汉字，gbk使用两个字符表示汉字，给汉字不同的编码，使用md5之后加密的字符串也不同。</span></span><br><span class="line"><span class="meta"># encode()默认编码成urf-8格式</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 导入hashlib 包</span></span><br><span class="line">from hashlib <span class="keyword">import</span> md5</span><br><span class="line"><span class="keyword">new</span><span class="type">_md_object</span> = md5()  <span class="meta"># 获取md5对象</span></span><br><span class="line"><span class="keyword">new</span><span class="type">_md_object</span>.update(string.encode())  <span class="meta"># update()将字符串载入md5对象，获得md5加密</span></span><br><span class="line"><span class="keyword">new</span><span class="type">_digest_string</span> = <span class="keyword">new</span><span class="type">_md_object</span>.hexdigest()  <span class="meta"># hexdigest()返回一个md5加密之后的32位字符串</span></span><br></pre></td></tr></table></figure>
+<pre><code>
+# 其实在加密之前给string编码一下，就可以避免汉字问题。
+# 注：utf-8使用三个字符表示汉字，gbk使用两个字符表示汉字，给汉字不同的编码，使用md5之后加密的字符串也不同。
+# encode()默认编码成urf-8格式
 
-
-
-
-<h3 id="AES（Advanced-Encryption-Standard）"><a href="#AES（Advanced-Encryption-Standard）" class="headerlink" title="AES（Advanced Encryption Standard）"></a>AES（Advanced Encryption Standard）</h3><p>&emsp;&emsp;AES：高级加密标准，DES是它的前任标准。  </p>
+# 导入hashlib 包
+from hashlib import md5
+new_md_object = md5()  # 获取md5对象
+new_md_object.update(string.encode())  # update()将字符串载入md5对象，获得md5加密
+new_digest_string = new_md_object.hexdigest()  # hexdigest()返回一个md5加密之后的32位字符串</code></pre><h3 id="AES（Advanced-Encryption-Standard）"><a href="#AES（Advanced-Encryption-Standard）" class="headerlink" title="AES（Advanced Encryption Standard）"></a>AES（Advanced Encryption Standard）</h3><p>&emsp;&emsp;AES：高级加密标准，DES是它的前任标准。  </p>
 <h3 id="DES（Data-Encryption-Standard）"><a href="#DES（Data-Encryption-Standard）" class="headerlink" title="DES（Data Encryption Standard）"></a>DES（Data Encryption Standard）</h3><p>&emsp;&emsp;DES：数据加密标准  </p>
 <h3 id="哈希-盐"><a href="#哈希-盐" class="headerlink" title="哈希+盐"></a>哈希+盐</h3><p>&emsp;&emsp;哈希+盐，也是一种常用的加密手段。哈希，是利用加密方法，盐：一般是随机字符串。通过哈希+盐的方式进行加密，使加密的安全性更高。<br>&emsp;&emsp;比如说，md5可以通过暴力碰撞的方式进行破解，那密码的安全性就受到了威胁。在这种情况下，我们把原字符串+盐，然厚进行加密，就得到了一个新的md5值，这样的话，提升了加密的安全性。</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 简单举例，实际上这个盐并不一定这么简单：</span></span><br><span class="line"></span><br><span class="line">from hashlib <span class="keyword">import</span> md5</span><br><span class="line">s = <span class="string">'这是随机字符串'</span></span><br><span class="line"><span class="keyword">new</span><span class="type">_md5</span> = md5()</span><br><span class="line"><span class="keyword">new</span><span class="type">_string</span> = <span class="keyword">new</span><span class="type">_md5</span>.update((string+s).encode).hexdigest()</span><br></pre></td></tr></table></figure>
+<pre><code># 简单举例，实际上这个盐并不一定这么简单：
 
+from hashlib import md5
+s = &#39;这是随机字符串&#39;
+new_md5 = md5()
+new_string = new_md5.update((string+s).encode).hexdigest()</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

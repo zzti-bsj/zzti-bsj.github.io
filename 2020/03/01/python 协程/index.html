@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -142,12 +144,40 @@
     <div class="post-content">
         <h2 id="协程-单进程的异步编程模型、单线程"><a href="#协程-单进程的异步编程模型、单线程" class="headerlink" title="协程(单进程的异步编程模型、单线程)"></a>协程(单进程的异步编程模型、单线程)</h2><p>&emsp;&emsp;协程：Coroutine<br>&emsp;&emsp;子程序调用：<strong>递归时经常会调用自己，中断而去执行更深层的函数，结束最底层的函数执行之后层层返回往下接着执行！</strong><br>&emsp;&emsp;协程：协程不同于子程序调用，协程没有经过函数调用。<strong>比如在执行A()一段时间后，突然切换去执行B()，这样看着像是多线程，分别执行A()、B()，但实际上只使用一个线程执行。</strong></p>
 <h2 id="协程优势"><a href="#协程优势" class="headerlink" title="协程优势"></a>协程优势</h2><p>&emsp;&emsp;以生产者消费者问题为例，一个线程负责生产，另一个线程负责消费，这个时候涉及到线程锁，以及线程切换，极大的浪费了时间；而使用协程，因为是单线程，所以不需要线程切换，省去了切换线程花费的时间，并且不涉及到<strong>数据互斥锁</strong>问题；<br>&emsp;&emsp;在一个问题中，线程的数量越多，使用协程的优势就越明显。</p>
-<h2 id="python使用yield实现协程"><a href="#python使用yield实现协程" class="headerlink" title="python使用yield实现协程"></a>python使用yield实现协程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">consumer</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 这里巧妙的使用了r = ''</span></span><br><span class="line">    r = <span class="string">''</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        n = <span class="keyword">yield</span> r</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> n:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        print(<span class="string">'[CONSUMER] Consuming %s...'</span> % n)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        r = <span class="string">'200 OK'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">produce</span><span class="params">(c)</span>:</span></span><br><span class="line">    <span class="comment"># python3中 使用next(c)执行生成器</span></span><br><span class="line">    next(c)</span><br><span class="line">    n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; <span class="number">5</span>:</span><br><span class="line">        n = n + <span class="number">1</span></span><br><span class="line">        print(<span class="string">'[PRODUCER] Producing %s...'</span> % n)</span><br><span class="line">        r = c.send(n)</span><br><span class="line">        print(<span class="string">'[PRODUCER] Consumer return: %s'</span> % r)</span><br><span class="line">    c.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    c = consumer()</span><br><span class="line">    produce(c)</span><br></pre></td></tr></table></figure>
+<h2 id="python使用yield实现协程"><a href="#python使用yield实现协程" class="headerlink" title="python使用yield实现协程"></a>python使用yield实现协程</h2><pre><code>import time
 
-<h2 id="协程应用举例"><a href="#协程应用举例" class="headerlink" title="协程应用举例"></a>协程应用举例</h2><p>待更新</p>
+
+def consumer():
+    # 这里巧妙的使用了r = &#39;&#39;
+    r = &#39;&#39;
+    while True:
+        n = yield r
+        if not n:
+            return
+        print(&#39;[CONSUMER] Consuming %s...&#39; % n)
+        time.sleep(1)
+        r = &#39;200 OK&#39;
+
+
+def produce(c):
+    # python3中 使用next(c)执行生成器
+    next(c)
+    n = 0
+    while n &lt; 5:
+        n = n + 1
+        print(&#39;[PRODUCER] Producing %s...&#39; % n)
+        r = c.send(n)
+        print(&#39;[PRODUCER] Consumer return: %s&#39; % r)
+    c.close()
+
+
+if __name__ == &#39;__main__&#39;:
+    c = consumer()
+    produce(c)</code></pre><h2 id="协程应用举例"><a href="#协程应用举例" class="headerlink" title="协程应用举例"></a>协程应用举例</h2><p>待更新</p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

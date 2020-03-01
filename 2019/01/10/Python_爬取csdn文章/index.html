@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -168,30 +170,30 @@ class csdn(object):
      &quot;&quot;&quot;
      def __init__(self):
           self.headers = {
-               &apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&apos;
+               &#39;User-Agent&#39;:&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&#39;
           }
           self.all_json_url = []
           self.deep = 0
 
           # 创建一个客户端
-          self.client = pymongo.MongoClient(&apos;Localhost&apos;)
+          self.client = pymongo.MongoClient(&#39;Localhost&#39;)
 
           # 数据库名称csdn
-          self.db = self.client[&apos;csdn&apos;]
+          self.db = self.client[&#39;csdn&#39;]
 
           #-----------数据库操作------------
           #存入到mongodb中
-          client = pymongo.MongoClient(&apos;localhost&apos;)
-          self.db = client[&apos;csdn&apos;]
+          client = pymongo.MongoClient(&#39;localhost&#39;)
+          self.db = client[&#39;csdn&#39;]
 
           # Insert a single document. The document to insert. Must be a mutable mapping  可变映射
-          # db[&apos;blog&apos;].insert_one() 必须插入一个字典dict
+          # db[&#39;blog&#39;].insert_one() 必须插入一个字典dict
 
           #---------------------------------
 
      # 返回第一个json的shown-offset
      def get_first_offset(self):
-          tar_url = &apos;https://www.csdn.net/nav/newarticles&apos;
+          tar_url = &#39;https://www.csdn.net/nav/newarticles&#39;
 
           # 获取数据的第一种方法
           # 创建一个请求对象
@@ -201,7 +203,7 @@ class csdn(object):
           #           # # 读取页面的源码
           #           # page_html = page.read().decode()
           #           #
-          #           # pattern = re.compile(r&apos;&lt;ul class=&quot;feedlist_mod newarticles&quot;.*?shown-offset=&quot;(.*?)&quot;&apos;,re.S)
+          #           # pattern = re.compile(r&#39;&lt;ul class=&quot;feedlist_mod newarticles&quot;.*?shown-offset=&quot;(.*?)&quot;&#39;,re.S)
           #           #
           #           # result = re.findall(pattern,page_html)[0]
           #           # print(result)
@@ -212,13 +214,13 @@ class csdn(object):
           response_html = requests.get(tar_url,headers=self.headers).text
 
           #        正则表达式
-          pattern = re.compile(r&apos;&lt;ul class=&quot;feedlist_mod newarticles&quot;.*?shown-offset=&quot;(.*?)&quot;&apos;, re.S)
+          pattern = re.compile(r&#39;&lt;ul class=&quot;feedlist_mod newarticles&quot;.*?shown-offset=&quot;(.*?)&quot;&#39;, re.S)
 
           # 获取所需的数据
           result = re.findall(pattern,response_html)[0]
           # result 的 type 是 str 型的
           #print(type(result))
-          first_json_url = &apos;https://www.csdn.net/api/articles?type=more&amp;category=newarticles&amp;shown_offset=&apos; + str(result)
+          first_json_url = &#39;https://www.csdn.net/api/articles?type=more&amp;category=newarticles&amp;shown_offset=&#39; + str(result)
           self.all_json_url = [first_json_url]
           self.deep = 1
 
@@ -241,11 +243,11 @@ class csdn(object):
           if(shown_offset is None):
                return
           if(shown_offset):
-               next_json_url = &apos;https://www.csdn.net/api/articles?type=more&amp;category=newarticles&amp;shown_offset=&apos;+str(shown_offset)
+               next_json_url = &#39;https://www.csdn.net/api/articles?type=more&amp;category=newarticles&amp;shown_offset=&#39;+str(shown_offset)
 
                self.all_json_url.append(next_json_url)
                self.deep += 1
-               # self.db[&apos;url&apos;].insert_one({&apos;key&apos;:next_json_url})
+               # self.db[&#39;url&#39;].insert_one({&#39;key&#39;:next_json_url})
 
                # 获取网页源码
                next_page_html = requests.get(next_json_url,headers=self.headers).text
@@ -254,7 +256,7 @@ class csdn(object):
                json_url_dict = json.loads(next_page_html)
 
                # 获取字典中的offset
-               next_shown_offset = json_url_dict[&apos;shown_offset&apos;]
+               next_shown_offset = json_url_dict[&#39;shown_offset&#39;]
 
                # print(next_shown_offset)
                # print(self.all_json_url)
@@ -279,14 +281,14 @@ class csdn(object):
                page_html = json.loads(page_html)
 
                # 取当前article这个键对应的值：list
-               articles_data = page_html[&apos;articles&apos;]
+               articles_data = page_html[&#39;articles&#39;]
                for article in articles_data:
                     # 发现 list 中的每个元素是字典，字典是某一个文章的详细信息，根据这个字典，获取文章的信息
-                    article_title = article[&apos;title&apos;]
-                    article_url = article[&apos;url&apos;]
-                    article_username = article[&apos;user_name&apos;]
-                    print(&apos;某个博客的信息：username:{}; article_title:{}; article_url:{};&apos;.format(article_username,article_title,article_url))
-                    self.db[&apos;Blog&apos;].insert_one({&apos;user_name&apos;:article_username,&apos;article_title&apos;:article_title,&apos;article_url&apos;:article_url})
+                    article_title = article[&#39;title&#39;]
+                    article_url = article[&#39;url&#39;]
+                    article_username = article[&#39;user_name&#39;]
+                    print(&#39;某个博客的信息：username:{}; article_title:{}; article_url:{};&#39;.format(article_username,article_title,article_url))
+                    self.db[&#39;Blog&#39;].insert_one({&#39;user_name&#39;:article_username,&#39;article_title&#39;:article_title,&#39;article_url&#39;:article_url})
 
                     # 待会儿把这些文章的简略信息，存储到数据库中
                     # 实现存入数据库操作
@@ -310,6 +312,7 @@ obj = csdn()
 obj.get_article_info()</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

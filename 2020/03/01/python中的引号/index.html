@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -145,10 +147,16 @@
 <h3 id="2、r—输出原字符串"><a href="#2、r—输出原字符串" class="headerlink" title="2、r—输出原字符串"></a>2、r—输出原字符串</h3><p>&emsp;&emsp;在引号之前加r，输出转义字符在内的原字符串。</p>
 <h2 id="三引号（””””””）的用法"><a href="#三引号（””””””）的用法" class="headerlink" title="三引号（””””””）的用法"></a>三引号（””””””）的用法</h2><p>1、多行显示字符串<br>2、常用来写sql语句  </p>
 <h2 id="单引号和双引号的区别"><a href="#单引号和双引号的区别" class="headerlink" title="单引号和双引号的区别"></a>单引号和双引号的区别</h2><p>&emsp;&emsp;单引号和双引号大体上没什么区别。在某些时候，可以避免转义字符的使用，如下示例代码。  </p>
-<h3 id="示例代码："><a href="#示例代码：" class="headerlink" title="示例代码："></a>示例代码：</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">my_word = <span class="string">'I want say "I like you"'</span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(my_word)</span></span></span><br><span class="line">&gt;&gt;&gt;I want say <span class="string">"I like you"</span></span><br><span class="line"></span><br><span class="line">my_word = <span class="string">"I want say 'I like you'"</span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(my_word)</span></span></span><br><span class="line">&gt;&gt;&gt;I want say <span class="string">'I like you'</span></span><br></pre></td></tr></table></figure>
+<h3 id="示例代码："><a href="#示例代码：" class="headerlink" title="示例代码："></a>示例代码：</h3><pre><code>my_word = &#39;I want say &quot;I like you&quot;&#39;
+print(my_word)
+&gt;&gt;&gt;I want say &quot;I like you&quot;
 
+my_word = &quot;I want say &#39;I like you&#39;&quot;
+print(my_word)
+&gt;&gt;&gt;I want say &#39;I like you&#39;</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

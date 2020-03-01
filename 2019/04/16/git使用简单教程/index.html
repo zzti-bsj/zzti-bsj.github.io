@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -147,9 +149,8 @@
 <p><strong>——查询配置——</strong></p>
 <p>查询配置信息：<br><code>git config --list</code>  </p>
 <p>查询单个信息如： user.name  </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>user.name  </span><br><span class="line">$ zzti-bsj</span><br></pre></td></tr></table></figure>
-
-<hr>
+<pre><code>  $ git config user.name  
+  $ zzti-bsj</code></pre><hr>
 <h3 id="git的基本操作"><a href="#git的基本操作" class="headerlink" title="git的基本操作"></a>git的基本操作</h3><p>&emsp;&emsp;在云端项目开发时，考虑到小组或者组织之间模块的整合等问题，为了解决推送、拉取、同步等等问题，使用git对项目的开发进行管理，以便于小组成员之间的工作协调一致，项目的顺利进行。<br>&emsp;&emsp;下面我总结了一些用法。</p>
 <h3 id="情况一：小组间开发项目"><a href="#情况一：小组间开发项目" class="headerlink" title="情况一：小组间开发项目"></a>情况一：小组间开发项目</h3><ul>
 <li>本地初始化项目仓库：<ul>
@@ -193,6 +194,7 @@
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

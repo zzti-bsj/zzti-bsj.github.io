@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -143,10 +145,26 @@
         <h2 id="配置settings"><a href="#配置settings" class="headerlink" title="配置settings"></a>配置settings</h2><p><code>MEDIA_ROOT = &#39;static/&#39;</code><br>设置用户上传文件的绝对路径的文件夹为static  </p>
 <h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>使用django的File类及其子类上传文件，django系统会自动把上传的文件放到设置好的绝对路径下。<br><code>file.save(filename,content,save)</code></p>
 <p>代码示例：  </p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def upload(request):</span><br><span class="line">    <span class="keyword">if</span> request<span class="function">.<span class="keyword">method</span> == '<span class="title">POST</span>':</span></span><br><span class="line">        # print(request.POST)</span><br><span class="line">        print(request.FILES)</span><br><span class="line">        print(request.FILES[<span class="string">'file'</span>])</span><br><span class="line">        file_content = ContentFile(request.FILES[<span class="string">'file'</span>].read())</span><br><span class="line">        print(file_content)</span><br><span class="line"></span><br><span class="line">        # 使用md5加密的图片名称</span><br><span class="line">        request.user.avatar.save(gen_img_name(request.user.nickname)+<span class="string">'.jpg'</span>, file_content)</span><br><span class="line">        <span class="keyword">result</span> = <span class="comment">&#123;</span></span><br><span class="line"><span class="comment">            'code': '001',</span></span><br><span class="line"><span class="comment">            'message': '上传成功'</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line">        return JsonResponse(<span class="keyword">result</span>)</span><br><span class="line">    elif request<span class="function">.<span class="keyword">method</span> == '<span class="title">GET</span>':</span></span><br><span class="line">        return render(request, <span class="string">'upload.html'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>def upload(request):
+    if request.method == &#39;POST&#39;:
+        # print(request.POST)
+        print(request.FILES)
+        print(request.FILES[&#39;file&#39;])
+        file_content = ContentFile(request.FILES[&#39;file&#39;].read())
+        print(file_content)
 
+        # 使用md5加密的图片名称
+        request.user.avatar.save(gen_img_name(request.user.nickname)+&#39;.jpg&#39;, file_content)
+        result = {
+            &#39;code&#39;: &#39;001&#39;,
+            &#39;message&#39;: &#39;上传成功&#39;
+        }
+        return JsonResponse(result)
+    elif request.method == &#39;GET&#39;:
+        return render(request, &#39;upload.html&#39;)</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

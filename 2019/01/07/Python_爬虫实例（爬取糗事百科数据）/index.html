@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -185,10 +187,10 @@ from urllib.request import Request,urlopen
 class DataTool(object):
 
      # 定义删除\n字符的正则表达式
-     pattern_n =re.compile(r&apos;\n&apos;,re.S)
+     pattern_n =re.compile(r&#39;\n&#39;,re.S)
 
      #定义删除&lt;br/&gt;字符的正则表达式
-     pattern_br = re.compile(r&apos;&lt;br/&gt;&apos;,re.S)
+     pattern_br = re.compile(r&#39;&lt;br/&gt;&#39;,re.S)
 
      def process_tuple_data(self,origin_tuple_data):
           &quot;&quot;&quot;
@@ -199,11 +201,11 @@ class DataTool(object):
           &quot;&quot;&quot;
           # sub()是正则表达式中的替换方法
           # 三个参数 ：替换规则 替换结果 进行替换的字符串
-          nick_name = re.sub(self.pattern_n,&apos;&apos;,origin_tuple_data[0])
+          nick_name = re.sub(self.pattern_n,&#39;&#39;,origin_tuple_data[0])
 
           # 处理段子内容
-          content = re.sub(self.pattern_n,&apos;&apos;,origin_tuple_data[2])
-          content = re.sub(self.pattern_br,&apos;&apos;,content)
+          content = re.sub(self.pattern_n,&#39;&#39;,origin_tuple_data[2])
+          content = re.sub(self.pattern_br,&#39;&#39;,content)
 
           # 将处理后的数据再封装成一个元组，返回
           data = (nick_name,origin_tuple_data[1],content,origin_tuple_data[3],origin_tuple_data[4])
@@ -216,11 +218,11 @@ class QSBKSpider(object):
 
      def __init__(self):
           # 通用路径，self.base_url
-          self.base_url = &apos;https://www.qiushibaike.com/hot/page/&apos;
+          self.base_url = &#39;https://www.qiushibaike.com/hot/page/&#39;
 
           # 伪装为浏览器发起的请求
           self.headers = {
-               &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&apos;
+               &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&#39;
           }
 
           # 实例化工具类DataTool对象
@@ -241,7 +243,7 @@ class QSBKSpider(object):
           try:
                response = urlopen(request)
           except Exception as e:
-               print(&apos;请求失败：地址{},原因{}&apos;.format(page_url,e))
+               print(&#39;请求失败：地址{},原因{}&#39;.format(page_url,e))
                return None
           else:
           #无异常，会执行else语句，如果出现了异常就不会执行else语句了。
@@ -258,13 +260,13 @@ class QSBKSpider(object):
                # 使用的是网站源代码
 
                # pattern 样式 规则
-               pattern = re.compile(r&apos;&lt;div class=&quot;article block.*?&quot;&gt;.*?&lt;div class=&quot;author clearfix&quot;&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div class=&quot;articleGender.*?&quot;&gt;(.*?)&lt;/div&gt;.*?&lt;div class=&quot;content&quot;&gt;.*?&lt;span&gt;(.*?)&lt;/span&gt;.*?&lt;div class=&quot;stats&quot;&gt;.*?&lt;i class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;.*?&lt;i class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)
+               pattern = re.compile(r&#39;&lt;div class=&quot;article block.*?&quot;&gt;.*?&lt;div class=&quot;author clearfix&quot;&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div class=&quot;articleGender.*?&quot;&gt;(.*?)&lt;/div&gt;.*?&lt;div class=&quot;content&quot;&gt;.*?&lt;span&gt;(.*?)&lt;/span&gt;.*?&lt;div class=&quot;stats&quot;&gt;.*?&lt;i class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;.*?&lt;i class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&#39;,re.S)
                results_list = re.findall(pattern,html)
                for data in results_list:
                     new_data = self.Tool.process_tuple_data(data)
                     print(new_data)
           else:
-               print(&apos;html源代码为None&apos;)
+               print(&#39;html源代码为None&#39;)
 
 
 
@@ -278,6 +280,7 @@ html = obj.get_list_html_code(1)
 obj.parse_list_html(html)</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

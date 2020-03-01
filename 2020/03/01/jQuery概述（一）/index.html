@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -162,7 +164,13 @@
 <li>action()：动作</li>
 </ol>
 <h3 id="jQuery命名冲突"><a href="#jQuery命名冲突" class="headerlink" title="jQuery命名冲突"></a>jQuery命名冲突</h3><p>有时候在jquery的函数中也可能使用到$，造成命名冲突。需要给jQuery重命名解决<br>代码示例：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//jQuery命名冲突时重命名jQuery库</span><br><span class="line">    var jq = jQuery.noConflict();</span><br><span class="line">    jq(document).ready(function () &#123;</span><br><span class="line">        jq("button").click(function () &#123;</span><br><span class="line">            jq("p").text("jQuery 仍在运行！");</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<pre><code class="html">//jQuery命名冲突时重命名jQuery库
+    var jq = jQuery.noConflict();
+    jq(document).ready(function () {
+        jq(&quot;button&quot;).click(function () {
+            jq(&quot;p&quot;).text(&quot;jQuery 仍在运行！&quot;);
+        });
+    });</code></pre>
 <h3 id="文档就绪函数"><a href="#文档就绪函数" class="headerlink" title="文档就绪函数"></a>文档就绪函数</h3><p>&emsp;&emsp;$(document).ready(func..)<br>&emsp;&emsp;所有的jQuery代码放在文档就绪函数中，这样做是为了防止文档未加载完成之前运行jQuery代码。<br>比如：  </p>
 <ol>
 <li>试图隐藏一个不存在的元素  </li>
@@ -184,15 +192,28 @@
 </ol>
 <p>事件代码示例：</p>
 <ol>
-<li>隐藏当前点击的p标签<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--隐藏当前点击的p标签--&gt;</span></span><br><span class="line">$(document).ready(function ()&#123;</span><br><span class="line">    $("p").click(function ()&#123;</span><br><span class="line">        $(this).hide()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>鼠标悬停和移开事件  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function ()&#123;</span><br><span class="line">    $("p").mouseover(function ()&#123;</span><br><span class="line">        $(this).css("color", "red")</span><br><span class="line">    &#125;)</span><br><span class="line">    $("p").mouseout(function ()&#123;</span><br><span class="line">        $(this).css("color", "")</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
+<li>隐藏当前点击的p标签<pre><code class="html">&lt;!--隐藏当前点击的p标签--&gt;
+$(document).ready(function (){
+ $(&quot;p&quot;).click(function (){
+     $(this).hide()
+ })
+})</code></pre>
+</li>
+<li>鼠标悬停和移开事件  <pre><code class="html">$(document).ready(function (){
+ $(&quot;p&quot;).mouseover(function (){
+     $(this).css(&quot;color&quot;, &quot;red&quot;)
+ })
+ $(&quot;p&quot;).mouseout(function (){
+     $(this).css(&quot;color&quot;, &quot;&quot;)
+ })
+})</code></pre>
 </li>
 </ol>
 <p>更多事件参考<a href="http://www.w3school.com.cn的jQuery教程" target="_blank" rel="noopener">www.w3school.com.cn的jQuery教程</a></p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

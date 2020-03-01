@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -150,15 +152,57 @@
 <h2 id="基于UDP的socket实现过程"><a href="#基于UDP的socket实现过程" class="headerlink" title="基于UDP的socket实现过程"></a>基于UDP的socket实现过程</h2><p><img src="/imag/Socket%E7%BC%96%E7%A8%8B/%E5%9F%BA%E4%BA%8Eudp%E7%9A%84socket%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B.png" alt="alt"></p>
 <h2 id="UDP无连接实现服务端客户端通信"><a href="#UDP无连接实现服务端客户端通信" class="headerlink" title="UDP无连接实现服务端客户端通信"></a>UDP无连接实现服务端客户端通信</h2><p>&emsp;&emsp;由于是无连接的，所以udp不占用通信线路，可以多个客户端给服务端发送消息。  </p>
 <p>服务端</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">1. 实例化socket</span></span><br><span class="line"><span class="string">2. 绑定服务器ip和端口</span></span><br><span class="line"><span class="string">3. 通信  recvfrom sendto</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">server = socket.socket(<span class="attribute">family</span>=socket.AF_INET, <span class="attribute">type</span>=socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定地址</span></span><br><span class="line">server_address = (<span class="string">'192.168.4.182'</span>, 8001)</span><br><span class="line">server.bind(server_address)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line">    # 不建立连接直接接收数据和客户端ip和端口</span><br><span class="line">    data, client_address = server.recvfrom(1024)</span><br><span class="line"></span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"这是客户端发来的数据："</span>, data.decode())</span><br><span class="line"></span><br><span class="line">    # 向客户端发送数据，使用sendto()</span><br><span class="line">    server.sendto(b<span class="string">'hello'</span>+data, client_address)</span><br></pre></td></tr></table></figure>
+<pre><code># coding:utf-8
+&quot;&quot;&quot;
+1. 实例化socket
+2. 绑定服务器ip和端口
+3. 通信  recvfrom sendto
 
-<p>客户端</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">1. 实例化socket</span></span><br><span class="line"><span class="string">2. 与服务器 通信</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">client = socket.socket(<span class="attribute">family</span>=socket.AF_INET, <span class="attribute">type</span>=socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务端的ip及port</span></span><br><span class="line">server_address = (<span class="string">'192.168.4.182'</span>, 8001)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    msg = input(<span class="string">"&gt;&gt;&gt;"</span>)</span><br><span class="line"></span><br><span class="line">    # 直接发送消息给服务端</span><br><span class="line">    client.sendto(msg.encode(), server_address)</span><br><span class="line"></span><br><span class="line">    # 接收服务端发来的消息</span><br><span class="line">    msg = client.recv(1024).decode()</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"客户端："</span>, msg)</span><br></pre></td></tr></table></figure>
+&quot;&quot;&quot;
+import socket
 
-<h2 id="recvfrom-buffer-缓冲区大小小于发送的数据报错"><a href="#recvfrom-buffer-缓冲区大小小于发送的数据报错" class="headerlink" title="recvfrom(buffer)缓冲区大小小于发送的数据报错"></a>recvfrom(buffer)缓冲区大小小于发送的数据报错</h2><p><code>recvfrom(x)</code>，由于客户端发送的数据大于x个字节，所以报错了！<br><img src="/imag/Socket%E7%BC%96%E7%A8%8B/buffre%E8%B6%85%E9%99%90%E6%8A%A5%E9%94%99.png" alt="alt"></p>
+server = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+# 绑定地址
+server_address = (&#39;192.168.4.182&#39;, 8001)
+server.bind(server_address)
+
+while True:
+
+    # 不建立连接直接接收数据和客户端ip和端口
+    data, client_address = server.recvfrom(1024)
+
+    print(&quot;这是客户端发来的数据：&quot;, data.decode())
+
+    # 向客户端发送数据，使用sendto()
+    server.sendto(b&#39;hello&#39;+data, client_address)
+</code></pre><p>客户端</p>
+<pre><code># coding:utf-8
+&quot;&quot;&quot;
+1. 实例化socket
+2. 与服务器 通信
+&quot;&quot;&quot;
+import socket
+
+client = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+# 服务端的ip及port
+server_address = (&#39;192.168.4.182&#39;, 8001)
+
+while True:
+    msg = input(&quot;&gt;&gt;&gt;&quot;)
+
+    # 直接发送消息给服务端
+    client.sendto(msg.encode(), server_address)
+
+    # 接收服务端发来的消息
+    msg = client.recv(1024).decode()
+    print(&quot;客户端：&quot;, msg)
+</code></pre><h2 id="recvfrom-buffer-缓冲区大小小于发送的数据报错"><a href="#recvfrom-buffer-缓冲区大小小于发送的数据报错" class="headerlink" title="recvfrom(buffer)缓冲区大小小于发送的数据报错"></a>recvfrom(buffer)缓冲区大小小于发送的数据报错</h2><p><code>recvfrom(x)</code>，由于客户端发送的数据大于x个字节，所以报错了！<br><img src="/imag/Socket%E7%BC%96%E7%A8%8B/buffre%E8%B6%85%E9%99%90%E6%8A%A5%E9%94%99.png" alt="alt"></p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

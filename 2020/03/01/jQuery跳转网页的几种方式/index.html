@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -140,10 +142,18 @@
         </li>
     </ul>
     <div class="post-content">
-        <h2 id="jQuery跳转网页的几种方式"><a href="#jQuery跳转网页的几种方式" class="headerlink" title="jQuery跳转网页的几种方式"></a>jQuery跳转网页的几种方式</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">location</span>).attr("href", "&#123;% url 'index' %&#125;")</span><br><span class="line"></span><br><span class="line">$(<span class="keyword">location</span>).prop(<span class="string">'href'</span>, <span class="string">'http://www.baidu.com'</span>)</span><br><span class="line"></span><br><span class="line">$(<span class="keyword">window</span>).attr(<span class="string">'location'</span>,<span class="string">'http://www.baidu.com'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">window</span>.<span class="keyword">location</span>.replace("http://www.baidu.com");</span><br><span class="line"></span><br><span class="line"><span class="keyword">window</span>.<span class="keyword">location</span>.href = "http://www.baidu.com";</span><br></pre></td></tr></table></figure>
+        <h2 id="jQuery跳转网页的几种方式"><a href="#jQuery跳转网页的几种方式" class="headerlink" title="jQuery跳转网页的几种方式"></a>jQuery跳转网页的几种方式</h2><pre><code>$(location).attr(&quot;href&quot;, &quot;{% url 'index' %}&quot;)
 
+$(location).prop(&#39;href&#39;, &#39;http://www.baidu.com&#39;)
+
+$(window).attr(&#39;location&#39;,&#39;http://www.baidu.com&#39;);
+
+window.location.replace(&quot;http://www.baidu.com&quot;);
+
+window.location.href = &quot;http://www.baidu.com&quot;;</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

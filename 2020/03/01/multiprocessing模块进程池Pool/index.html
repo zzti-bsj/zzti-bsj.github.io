@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -143,17 +145,62 @@
         <h2 id="批量创建进程"><a href="#批量创建进程" class="headerlink" title="批量创建进程"></a>批量创建进程</h2><p>&emsp;&emsp;批量创建进程使用multiprocessing的进程池Pool  </p>
 <h2 id="Pool进程池-apply-async-异步多任务"><a href="#Pool进程池-apply-async-异步多任务" class="headerlink" title="Pool进程池/apply_async()异步多任务"></a>Pool进程池/apply_async()异步多任务</h2><p>#多任务+异步  </p>
 <p>&emsp;&emsp;<code>Pool</code>创建进程池对象<br>&emsp;&emsp;<code>apply_async()</code>批量添加进程<br>&emsp;&emsp;<code>close()</code>关闭进程池对象(关闭之后不能再添加进程)<br>&emsp;&emsp;<code>join()</code>等待所有进程结束  </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing import Pool</span><br><span class="line">import os, time, random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def long_time_task(name):</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Run task %s (%s)"</span> % (name, os.getpid()))</span><br><span class="line">    start = time.time()</span><br><span class="line">    time.sleep(random.random() * 3)</span><br><span class="line">    end = time.time()</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Task %s run %0.2f seconds"</span> % (name, (end - start)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Parent process %s "</span> % os.getpid())</span><br><span class="line">    # 创建进程池对象，开启进程池</span><br><span class="line">    p = Pool()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(5):</span><br><span class="line">        p.apply_async(long_time_task, args=(i,))</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Waiting for all subprocesses done..."</span>)</span><br><span class="line">    # 关闭进程池对象，不再创建进程</span><br><span class="line">    p.close()</span><br><span class="line">    # 等待所有进程结束</span><br><span class="line">    p.join()</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"All subprocesses done"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>from multiprocessing import Pool
+import os, time, random
 
-<p><img src="/imag/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/multiprocessing%E6%A8%A1%E5%9D%97%E8%BF%9B%E7%A8%8B%E6%B1%A0Pool/1.png" alt="alt"></p>
+
+def long_time_task(name):
+    print(&quot;Run task %s (%s)&quot; % (name, os.getpid()))
+    start = time.time()
+    time.sleep(random.random() * 3)
+    end = time.time()
+    print(&quot;Task %s run %0.2f seconds&quot; % (name, (end - start)))
+
+
+if __name__ == &#39;__main__&#39;:
+    print(&quot;Parent process %s &quot; % os.getpid())
+    # 创建进程池对象，开启进程池
+    p = Pool()
+    for i in range(5):
+        p.apply_async(long_time_task, args=(i,))
+    print(&quot;Waiting for all subprocesses done...&quot;)
+    # 关闭进程池对象，不再创建进程
+    p.close()
+    # 等待所有进程结束
+    p.join()
+    print(&quot;All subprocesses done&quot;)
+</code></pre><p><img src="/imag/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/multiprocessing%E6%A8%A1%E5%9D%97%E8%BF%9B%E7%A8%8B%E6%B1%A0Pool/1.png" alt="alt"></p>
 <p><code>Pool(n)将会开辟一个容量为n的进程池，一次添加n个进程</code>  </p>
 <h2 id="Pool进程池apply-同步多任务"><a href="#Pool进程池apply-同步多任务" class="headerlink" title="Pool进程池apply()同步多任务"></a>Pool进程池apply()同步多任务</h2><p>#多任务+同步  </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing import Pool</span><br><span class="line">import os, time, random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def long_time_task(name):</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Run task %s (%s)"</span> % (name, os.getpid()))</span><br><span class="line">    start = time.time()</span><br><span class="line">    time.sleep(random.random() * 3)</span><br><span class="line">    end = time.time()</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Task %s run %0.2f seconds"</span> % (name, (end - start)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Parent process %s "</span> % os.getpid())</span><br><span class="line">    # 创建进程池对象，开启进程池</span><br><span class="line">    p = Pool()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(5):</span><br><span class="line">        p.apply(long_time_task, args=(i,))</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Waiting for all subprocesses done..."</span>)</span><br><span class="line">    # 关闭进程池对象，不再创建进程</span><br><span class="line">    p.close()</span><br><span class="line">    # 等待所有进程结束</span><br><span class="line">    p.join()</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"All subprocesses done"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>from multiprocessing import Pool
+import os, time, random
 
-<p><img src="/imag/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/multiprocessing%E6%A8%A1%E5%9D%97%E8%BF%9B%E7%A8%8B%E6%B1%A0Pool/2.png" alt="alt"></p>
+
+def long_time_task(name):
+    print(&quot;Run task %s (%s)&quot; % (name, os.getpid()))
+    start = time.time()
+    time.sleep(random.random() * 3)
+    end = time.time()
+    print(&quot;Task %s run %0.2f seconds&quot; % (name, (end - start)))
+
+
+if __name__ == &#39;__main__&#39;:
+    print(&quot;Parent process %s &quot; % os.getpid())
+    # 创建进程池对象，开启进程池
+    p = Pool()
+    for i in range(5):
+        p.apply(long_time_task, args=(i,))
+    print(&quot;Waiting for all subprocesses done...&quot;)
+    # 关闭进程池对象，不再创建进程
+    p.close()
+    # 等待所有进程结束
+    p.join()
+    print(&quot;All subprocesses done&quot;)
+</code></pre><p><img src="/imag/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/multiprocessing%E6%A8%A1%E5%9D%97%E8%BF%9B%E7%A8%8B%E6%B1%A0Pool/2.png" alt="alt"></p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -142,24 +144,36 @@
     <div class="post-content">
         <h2 id="1、-from-urllib-request-import-urlretrieve"><a href="#1、-from-urllib-request-import-urlretrieve" class="headerlink" title="1、 from urllib.request import urlretrieve"></a>1、 from urllib.request import urlretrieve</h2><p><code>urlretrieve(url, filename=None, reporthook=None, data=None)</code><br>1、url：文件下载地址<br>2、filename：文件路径（这个文件路径的意思是包含文件名和后缀名的）<br>5、无返回值<br><strong>简单下载用法</strong> :<br>简单用法：<br>一个函数，两个必填参数  <code># url 和 filename</code>  </p>
 <p>1、下载bsj’blog的主页  </p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request <span class="built_in">import</span> urlretrieve</span><br><span class="line"><span class="comment"># 参数：url 文件路径</span></span><br><span class="line"><span class="attr">url</span> = <span class="string">"https://codeac.top"</span></span><br><span class="line"><span class="attr">work_path</span> = <span class="string">"codeac.html"</span></span><br><span class="line">urlretrieve(url, work_path)</span><br></pre></td></tr></table></figure>
-<p>2、由此我们可以下载图片</p>
+<pre><code>from urllib.request import urlretrieve
+# 参数：url 文件路径
+url = &quot;https://codeac.top&quot;
+work_path = &quot;codeac.html&quot;
+urlretrieve(url, work_path)</code></pre><p>2、由此我们可以下载图片</p>
 <p>下载个图片试试  </p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request <span class="built_in">import</span> urlretrieve</span><br><span class="line"><span class="comment"># 参数：url 文件路径</span></span><br><span class="line"><span class="attr">url</span> = <span class="string">"https://codeac.top/imag/favicon.png"</span></span><br><span class="line"><span class="attr">work_path</span> = <span class="string">"icon.jpg"</span></span><br><span class="line">urlretrieve(url, work_path)</span><br></pre></td></tr></table></figure>
-<p>3、由此类推，我们可以使用<code>urlretrieve()</code>下载各种格式的文件  </p>
+<pre><code>from urllib.request import urlretrieve
+# 参数：url 文件路径
+url = &quot;https://codeac.top/imag/favicon.png&quot;
+work_path = &quot;icon.jpg&quot;
+urlretrieve(url, work_path)
+</code></pre><p>3、由此类推，我们可以使用<code>urlretrieve()</code>下载各种格式的文件  </p>
 <h2 id="2、Response-iter-content-文件流式下载"><a href="#2、Response-iter-content-文件流式下载" class="headerlink" title="2、Response.iter_content 文件流式下载"></a>2、Response.iter_content 文件流式下载</h2><p>边下载边写入文件  </p>
 <ol>
 <li>请求url获得response对象。  </li>
 <li>打开一个文件，如下是jpg文件。  </li>
-<li>使用response.iter_content(chunk_size=***)块，分块迭代写入文件  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">url = <span class="string">"https://codeac.top/imag/favicon.png"</span></span><br><span class="line">response = requests.<span class="builtin-name">get</span>(url, <span class="attribute">stream</span>=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开一个图片文件</span></span><br><span class="line">with open(<span class="string">'1.jpg'</span>, <span class="string">'wb'</span>) as f:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> response.iter_content(<span class="attribute">chunk_size</span>=1024):  # 边下载边存硬盘, chunk_size 可以自由调整为可以更好地适合您的用例的数字</span><br><span class="line">        f.write(i)</span><br></pre></td></tr></table></figure>
-
-
-</li>
+<li>使用response.iter_content(chunk_size=***)块，分块迭代写入文件  <pre><code>import requests
+url = &quot;https://codeac.top/imag/favicon.png&quot;
+response = requests.get(url, stream=True)
+</code></pre></li>
 </ol>
-<h3 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h3><p>1、打开文件会大幅占用内存，影响服务器性能。<br>2、由流式，我想到了yield、和迭代器。  </p>
+<h1 id="打开一个图片文件"><a href="#打开一个图片文件" class="headerlink" title="打开一个图片文件"></a>打开一个图片文件</h1><p>with open(‘1.jpg’, ‘wb’) as f:<br>    for i in response.iter_content(chunk_size=1024):  # 边下载边存硬盘, chunk_size 可以自由调整为可以更好地适合您的用例的数字<br>        f.write(i)</p>
+<pre><code>
 
+### 文件下载
+1、打开文件会大幅占用内存，影响服务器性能。  
+2、由流式，我想到了yield、和迭代器。  </code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -145,29 +147,25 @@
 <p><strong>默认情况下是以只读模式打开文件</strong></p>
 <h3 id="两种操作：读-写文件"><a href="#两种操作：读-写文件" class="headerlink" title="两种操作：读/写文件"></a>两种操作：读/写文件</h3><p>&emsp;&emsp;python对文件的操作有两种，分别是读/写，读默认的模式是只读，写的模式有w、a、r+三种</p>
 <h3 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h3><p>1、实现一行一行读<br>（1）迭代文件对象读取每行</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">with <span class="keyword">open</span>(<span class="string">'text'</span>) <span class="keyword">as</span> file_objec<span class="variable">t:</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">line</span> in file_objec<span class="variable">t:</span></span><br><span class="line">        <span class="keyword">print</span>(<span class="built_in">line</span>.rstrip())</span><br></pre></td></tr></table></figure>
-
-
-<p>（2）使用readlines()函数，返回一个列表，列表每项是文件的一行</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">with <span class="keyword">open</span>(<span class="string">'text'</span>) <span class="keyword">as</span> file_objec<span class="variable">t:</span></span><br><span class="line">    lines = file_object.readlines()</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">line</span> in <span class="built_in">line</span><span class="variable">s:</span></span><br><span class="line">    <span class="keyword">print</span>(<span class="built_in">line</span>.rstrip())</span><br></pre></td></tr></table></figure>
-
-
-<p>2、读取完整文件</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with <span class="keyword">open</span>(<span class="string">'text'</span>) <span class="keyword">as</span> file_objec<span class="variable">t:</span></span><br><span class="line">    <span class="keyword">print</span>(file_object.<span class="keyword">read</span>())</span><br></pre></td></tr></table></figure>
-
-<h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><p>1、w模式写文件   （w：每次写会清空之前的文件内容）<br>（1）写空文件<br>如果要写入的文件不存在，将会创建一个新文件  </p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'programming.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    file_object.<span class="built_in">write</span>(<span class="string">"I love programming."</span>)</span><br></pre></td></tr></table></figure>
-
-
-<p>（2）写入多行  </p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'programming.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    file_object.<span class="built_in">write</span>(<span class="string">"I love programming.\n"</span>)</span><br><span class="line">    file_object.<span class="built_in">write</span>(<span class="string">"I love creating new programming.\n"</span>)</span><br></pre></td></tr></table></figure>
-
-
-<p>2、a模式附加到文件</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'programming.txt'</span>, <span class="string">'a'</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    file_object.<span class="built_in">write</span>(<span class="string">"So amazing!"</span>)</span><br></pre></td></tr></table></figure>
-
+<pre><code>with open(&#39;text&#39;) as file_object:
+    for line in file_object:
+        print(line.rstrip())</code></pre><p>（2）使用readlines()函数，返回一个列表，列表每项是文件的一行</p>
+<pre><code>with open(&#39;text&#39;) as file_object:
+    lines = file_object.readlines()
+for line in lines:
+    print(line.rstrip())</code></pre><p>2、读取完整文件</p>
+<pre><code>with open(&#39;text&#39;) as file_object:
+    print(file_object.read())</code></pre><h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><p>1、w模式写文件   （w：每次写会清空之前的文件内容）<br>（1）写空文件<br>如果要写入的文件不存在，将会创建一个新文件  </p>
+<pre><code>with open(&#39;programming.txt&#39;, &#39;w&#39;) as file_object:
+    file_object.write(&quot;I love programming.&quot;)</code></pre><p>（2）写入多行  </p>
+<pre><code>with open(&#39;programming.txt&#39;, &#39;w&#39;) as file_object:
+    file_object.write(&quot;I love programming.\n&quot;)
+    file_object.write(&quot;I love creating new programming.\n&quot;)</code></pre><p>2、a模式附加到文件</p>
+<pre><code>with open(&#39;programming.txt&#39;, &#39;a&#39;) as file_object:
+    file_object.write(&quot;So amazing!&quot;)</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

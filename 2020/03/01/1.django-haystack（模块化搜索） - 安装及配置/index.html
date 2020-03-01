@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -143,8 +145,20 @@
         <h2 id="django-haystack简介"><a href="#django-haystack简介" class="headerlink" title="django-haystack简介"></a>django-haystack简介</h2><p>&emsp;&emsp;Haystack为Django提供<strong>模块化搜索</strong>，拥有一个统一的API，可以允许使用不同的搜索后端，只需配置即可。（如Solr、Elasticsearch、Whoosh、Xapian）  </p>
 <h2 id="安装Django-haystack"><a href="#安装Django-haystack" class="headerlink" title="安装Django-haystack"></a>安装Django-haystack</h2><p>&emsp;&emsp;<code>pip install django-haystack</code>  </p>
 <h2 id="settings配置"><a href="#settings配置" class="headerlink" title="settings配置"></a>settings配置</h2><ul>
-<li>将<code>haystack</code>添加到<code>settings</code>的<code>INSTALLED_APPS</code>中  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sites'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Added.</span></span><br><span class="line">    <span class="string">'haystack'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Then your usual apps...</span></span><br><span class="line">    <span class="string">'blog'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<li><p>将<code>haystack</code>添加到<code>settings</code>的<code>INSTALLED_APPS</code>中  </p>
+<pre><code class="python">INSTALLED_APPS = [
+  &#39;django.contrib.admin&#39;,
+  &#39;django.contrib.auth&#39;,
+  &#39;django.contrib.contenttypes&#39;,
+  &#39;django.contrib.sessions&#39;,
+  &#39;django.contrib.sites&#39;,
 
+  # Added.
+  &#39;haystack&#39;,
+
+  # Then your usual apps...
+  &#39;blog&#39;,
+]</code></pre>
 </li>
 </ul>
 <hr>
@@ -154,14 +168,24 @@
 <p>&emsp;&emsp;添加<code>HAYSTACK_CONNECTIONS</code>配置<br>&emsp;&emsp;(可以在<code>haystack.backends</code>查看搜索引擎后端代码文件)  </p>
 <p><strong>基于Elasticsearch的搜索引擎配置</strong>  </p>
 <p><strong>Example (ElasticSearch 1.x):</strong></p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HAYSTACK_CONNECTIONS = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',</span><br><span class="line">        'URL': 'http://127.0.0.1:<span class="number">9200</span>/',</span><br><span class="line">        'INDEX_NAME': 'haystack',</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example (ElasticSearch 2.x):</strong></p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HAYSTACK_CONNECTIONS = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',</span><br><span class="line">        'URL': 'http://127.0.0.1:<span class="number">9200</span>/',</span><br><span class="line">        'INDEX_NAME': 'haystack',</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://django-haystack.readthedocs.io/en/master/tutorial.html" target="_blank" rel="noopener">更多其他搜索引擎的配置查看官网</a></p>
+<pre><code>HAYSTACK_CONNECTIONS = {
+    &#39;default&#39;: {
+        &#39;ENGINE&#39;: &#39;haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine&#39;,
+        &#39;URL&#39;: &#39;http://127.0.0.1:9200/&#39;,
+        &#39;INDEX_NAME&#39;: &#39;haystack&#39;,
+    },
+}</code></pre><p><strong>Example (ElasticSearch 2.x):</strong></p>
+<pre><code>HAYSTACK_CONNECTIONS = {
+    &#39;default&#39;: {
+        &#39;ENGINE&#39;: &#39;haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine&#39;,
+        &#39;URL&#39;: &#39;http://127.0.0.1:9200/&#39;,
+        &#39;INDEX_NAME&#39;: &#39;haystack&#39;,
+    },
+}</code></pre><p><a href="https://django-haystack.readthedocs.io/en/master/tutorial.html" target="_blank" rel="noopener">更多其他搜索引擎的配置查看官网</a></p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -147,8 +149,9 @@
 <li>类类型  </li>
 </ol>
 <p><strong>– Note –</strong><br>&emsp;&emsp;（1）所谓的基本类型，就是在使用时，考虑一下数据用多少内存比较经济，由JVM为用户在内存中配置与管理<br>&emsp;&emsp;（2）浮点数在写入的时候默认为是double型的，如果使用float，请使用类型转化</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用float存储小数</span></span><br><span class="line"><span class="built_in">float</span> x = <span class="number">3.14</span>F</span><br><span class="line"><span class="built_in">float</span> x = (<span class="built_in">float</span>) <span class="number">3.14</span></span><br></pre></td></tr></table></figure>
-<h3 id="常用的格式控制符"><a href="#常用的格式控制符" class="headerlink" title="常用的格式控制符"></a>常用的格式控制符</h3><table>
+<pre><code>//用float存储小数
+float x = 3.14F
+float x = (float) 3.14</code></pre><h3 id="常用的格式控制符"><a href="#常用的格式控制符" class="headerlink" title="常用的格式控制符"></a>常用的格式控制符</h3><table>
 <thead>
 <tr>
 <th>符号</th>
@@ -280,6 +283,7 @@
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

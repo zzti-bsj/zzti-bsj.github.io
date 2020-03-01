@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -143,21 +145,58 @@
         <h2 id="生成器的next-和send-方法"><a href="#生成器的next-和send-方法" class="headerlink" title="生成器的next()和send()方法"></a>生成器的<strong>next()</strong>和send()方法</h2><p>next(c) : 开启生成器，会返回一个值，然后再yield处等待接收传来的参数</p>
 <p>启动生成器之后：</p>
 <p>result = c.send(value) -&gt; 生成器先接受一个值，再返回一个值</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def test():</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">        c = yield i</span><br><span class="line">        print(<span class="string">"值："</span>, c)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    c = test()</span><br><span class="line">    <span class="comment"># 1.开启生成器</span></span><br><span class="line">    print(<span class="string">"first value:"</span>, c.__next__())</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2.使用send执行生成器</span></span><br><span class="line">    <span class="built_in">result</span> = c.<span class="built_in">send</span>(<span class="number">31</span>)</span><br><span class="line">    print(<span class="built_in">result</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">result</span> = c.<span class="built_in">send</span>(<span class="number">31</span>)</span><br><span class="line">    print(<span class="built_in">result</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">result</span> = c.<span class="built_in">send</span>(<span class="number">31</span>)</span><br><span class="line">    print(<span class="built_in">result</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/imag/python/%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84__next__()%E5%92%8Csend()%E6%96%B9%E6%B3%95/1.png" alt="alt"></p>
+<pre><code>def test():
+    for i in range(20):
+        c = yield i
+        print(&quot;值：&quot;, c)
+
+
+if __name__ == &#39;__main__&#39;:
+    c = test()
+    # 1.开启生成器
+    print(&quot;first value:&quot;, c.__next__())
+
+    # 2.使用send执行生成器
+    result = c.send(31)
+    print(result)
+
+    result = c.send(31)
+    print(result)
+
+    result = c.send(31)
+    print(result)
+</code></pre><p><img src="/imag/python/%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84__next__()%E5%92%8Csend()%E6%96%B9%E6%B3%95/1.png" alt="alt"></p>
 <hr>
 <h2 id="yield的作用机制"><a href="#yield的作用机制" class="headerlink" title="yield的作用机制"></a>yield的作用机制</h2><p>&emsp;&emsp;yield执行完当前函数后，暂停执行并返回一个值。</p>
-<h3 id="一段易懂的代码"><a href="#一段易懂的代码" class="headerlink" title="一段易懂的代码"></a>一段易懂的代码</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">代码</span><br><span class="line"></span><br><span class="line">def foo():</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"starting..."</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        res = yield 4</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">"res:"</span>,res)</span><br><span class="line">g = foo()</span><br><span class="line"><span class="builtin-name">print</span>(next(g))</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"*"</span><span class="number">*20</span>)</span><br><span class="line"><span class="builtin-name">print</span>(g.send(7))</span><br><span class="line"></span><br><span class="line">---------------</span><br><span class="line">运行结果</span><br><span class="line"></span><br><span class="line">starting<span class="built_in">..</span>.</span><br><span class="line">4</span><br><span class="line">********************</span><br><span class="line">res: 7</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
-<h3 id="为什么要用生成器？"><a href="#为什么要用生成器？" class="headerlink" title="为什么要用生成器？"></a>为什么要用生成器？</h3><p><strong>什么是生成器？</strong><br>含有yield的函数是一个生成器，可以使用next(生成器)函数生成下一个返回值。  </p>
+<h3 id="一段易懂的代码"><a href="#一段易懂的代码" class="headerlink" title="一段易懂的代码"></a>一段易懂的代码</h3><pre><code>代码
+
+def foo():
+    print(&quot;starting...&quot;)
+    while True:
+        res = yield 4
+        print(&quot;res:&quot;,res)
+g = foo()
+print(next(g))
+print(&quot;*&quot;*20)
+print(g.send(7))
+
+---------------
+运行结果
+
+starting...
+4
+********************
+res: 7
+4</code></pre><h3 id="为什么要用生成器？"><a href="#为什么要用生成器？" class="headerlink" title="为什么要用生成器？"></a>为什么要用生成器？</h3><p><strong>什么是生成器？</strong><br>含有yield的函数是一个生成器，可以使用next(生成器)函数生成下一个返回值。  </p>
 <p>1、使用list生成随机数<br><code>lis = [i for i in range(0,100000)]</code><br>！占用很大空间  </p>
 <p>2、使用生成器</p>
 <p>比如上面举的例子，每次返回一个数值。  </p>
-<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">for</span> <span class="variable">i</span> <span class="variable"><span class="keyword">in</span></span> <span class="variable">itear</span>:</span><br><span class="line">    <span class="function"><span class="title">print</span>(<span class="variable">i</span>)</span></span><br></pre></td></tr></table></figure>
-
-<p>每次返回一个，并不是事先做好的随机数  </p>
+<pre><code>for i in itear:
+    print(i)</code></pre><p>每次返回一个，并不是事先做好的随机数  </p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

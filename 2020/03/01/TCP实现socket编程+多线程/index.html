@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -151,13 +153,89 @@
 <h2 id="基于TCP的socket实现过程"><a href="#基于TCP的socket实现过程" class="headerlink" title="基于TCP的socket实现过程"></a>基于TCP的socket实现过程</h2><p><img src="/imag/Socket%E7%BC%96%E7%A8%8B/%E5%9F%BA%E4%BA%8Etcp%E7%9A%84socket%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B.jpg" alt="alt"></p>
 <h2 id="TCP实现服务端-多线程处理客户端socket对象"><a href="#TCP实现服务端-多线程处理客户端socket对象" class="headerlink" title="TCP实现服务端+多线程处理客户端socket对象"></a>TCP实现服务端+多线程处理客户端socket对象</h2><p>&emsp;&emsp;TCP的连接拥有固定连接的特点，占用通信线路。<br>&emsp;&emsp;如果同时想要与多台计算机通信，则需要使用多线程处理每个客户端的socket对象。<br>&emsp;&emsp;<strong>TCP连接+多线程</strong>  </p>
 <p>服务端</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tcp协议的特点是固定连接</span></span><br><span class="line"><span class="string">1. 创建socket实例</span></span><br><span class="line"><span class="string">2. 绑定主机ip</span></span><br><span class="line"><span class="string">3. 然后监听客户端的请求</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">4. 接收客户端socket对象、ip地址</span></span><br><span class="line"><span class="string">5. 多线程 通信（收发消息）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">应该可以自定义与客户端断开连接的条件</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">commu</span><span class="params">(sock, client_address)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> sock:</span><br><span class="line">            <span class="comment"># 接收客户端的消息</span></span><br><span class="line">            msg = sock.recv(<span class="number">1024</span>)</span><br><span class="line">            <span class="keyword">if</span> msg.decode() == <span class="string">'exit'</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            print(<span class="string">"这是客户端传来的消息"</span>, msg.decode())</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 发送消息客户端</span></span><br><span class="line">            sock.send(<span class="string">b'hello'</span> + msg)</span><br><span class="line">    <span class="keyword">except</span> ConnectionResetError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="comment"># 异常退出</span></span><br><span class="line">        print(<span class="string">"异常退出！"</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="comment"># 正常退出</span></span><br><span class="line">        print(client_address[<span class="number">0</span>] + <span class="string">"退出连接！"</span>)</span><br><span class="line">        sock.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 建立连接</span></span><br><span class="line">server = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 绑定主机地址</span></span><br><span class="line">server_address = (<span class="string">'0.0.0.0'</span>, <span class="number">8002</span>)</span><br><span class="line">server.bind(server_address)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 监听请求，设置监听数量为5</span></span><br><span class="line">server.listen(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="comment"># 4. 接收客户端请求</span></span><br><span class="line">    sock, client_address = server.accept()</span><br><span class="line">    <span class="comment"># 5. 为客户端的sock开启一个死循环线程，处理消息</span></span><br><span class="line">    thread1 = threading.Thread(target=commu, args=(sock, client_address))</span><br><span class="line">    thread1.start()</span><br></pre></td></tr></table></figure>
+<pre><code># coding:utf-8
+&quot;&quot;&quot;
+tcp协议的特点是固定连接
+1. 创建socket实例
+2. 绑定主机ip
+3. 然后监听客户端的请求
 
-<p>客户端</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">客户端：</span></span><br><span class="line"><span class="string">1. 创建socket实例</span></span><br><span class="line"><span class="string">2. 与服务器建立连接，连接服务器的ip</span></span><br><span class="line"><span class="string">3. 接收/发送消息</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">自定义退出条件</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">client = socket.socket(<span class="attribute">family</span>=socket.AF_INET, <span class="attribute">type</span>=socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line">server_address = (<span class="string">'47.97.211.4'</span>, 8002)</span><br><span class="line">client.connect(server_address)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一直发送消息</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    message = input(<span class="string">"输入消息："</span>)</span><br><span class="line">    client.send(message.encode())</span><br><span class="line">    <span class="keyword">if</span> message == <span class="string">'exit'</span>:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">client.close()</span><br></pre></td></tr></table></figure>
+4. 接收客户端socket对象、ip地址
+5. 多线程 通信（收发消息）
 
+
+应该可以自定义与客户端断开连接的条件
+&quot;&quot;&quot;
+
+import socket
+import threading
+
+
+def commu(sock, client_address):
+    try:
+        while sock:
+            # 接收客户端的消息
+            msg = sock.recv(1024)
+            if msg.decode() == &#39;exit&#39;:
+                break
+            print(&quot;这是客户端传来的消息&quot;, msg.decode())
+
+            # 发送消息客户端
+            sock.send(b&#39;hello&#39; + msg)
+    except ConnectionResetError as e:
+        # 异常退出
+        print(&quot;异常退出！&quot;)
+    finally:
+        # 正常退出
+        print(client_address[0] + &quot;退出连接！&quot;)
+        sock.close()
+
+
+# 1. 建立连接
+server = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+
+# 2. 绑定主机地址
+server_address = (&#39;0.0.0.0&#39;, 8002)
+server.bind(server_address)
+
+# 3. 监听请求，设置监听数量为5
+server.listen(2)
+
+while True:
+    # 4. 接收客户端请求
+    sock, client_address = server.accept()
+    # 5. 为客户端的sock开启一个死循环线程，处理消息
+    thread1 = threading.Thread(target=commu, args=(sock, client_address))
+    thread1.start()
+</code></pre><p>客户端</p>
+<pre><code># coding:utf-8
+&quot;&quot;&quot;
+客户端：
+1. 创建socket实例
+2. 与服务器建立连接，连接服务器的ip
+3. 接收/发送消息
+
+自定义退出条件
+&quot;&quot;&quot;
+import socket
+
+client = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+
+server_address = (&#39;47.97.211.4&#39;, 8002)
+client.connect(server_address)
+
+# 一直发送消息
+while True:
+    message = input(&quot;输入消息：&quot;)
+    client.send(message.encode())
+    if message == &#39;exit&#39;:
+        break
+
+client.close()
+</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

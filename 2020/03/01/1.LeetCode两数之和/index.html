@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -143,9 +145,24 @@
         <h2 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h2><p>逻辑：实际的逻辑很清晰，使用哈希表可以简单的实现这个算法。  </p>
 <p><strong>！！代码实现的时候需要结合实际的数据结构去构思代码。</strong></p>
 <p>代码实现思路：<br>&emsp;&emsp;创建一个空字典，遍历一遍列表，先判断，如果列表值 <code>target - i</code> 的值在字典的键里面，返回<code>dic[target - i], i</code><br>    否则，把键值对(nums[i], i)加入字典 –&gt; <code>dic[nums[i]] = i</code> </p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(nums, target)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :type target: int</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    d = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(nums)):</span><br><span class="line">        t = target - nums[i]</span><br><span class="line">        <span class="keyword">if</span> t <span class="keyword">in</span> d:</span><br><span class="line">            <span class="keyword">return</span> [d[t], i]</span><br><span class="line">        d[nums[i]] = i</span><br><span class="line">        </span><br><span class="line">x = twoSum([<span class="number">10</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>], <span class="number">10</span>)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>def twoSum(nums, target):
+    &quot;&quot;&quot;
+    :type nums: List[int]
+    :type target: int
+    :rtype: List[int]
+    &quot;&quot;&quot;
+    d = {}
+    for i in range(0, len(nums)):
+        t = target - nums[i]
+        if t in d:
+            return [d[t], i]
+        d[nums[i]] = i
+
+x = twoSum([10, 3, 10, 5, 6, 7, 8], 10)
+print(x)</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

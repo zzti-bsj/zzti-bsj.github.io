@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -144,27 +146,44 @@
 <h3 id="2、下载第三方库scrapy-djangoitem"><a href="#2、下载第三方库scrapy-djangoitem" class="headerlink" title="2、下载第三方库scrapy_djangoitem"></a>2、下载第三方库scrapy_djangoitem</h3><p>使用豆瓣源下载：<br><code>pip install scrapy_djangoitem -i https://pypi.douban.com/simple</code>  </p>
 <h3 id="3、scrapy结合django用法"><a href="#3、scrapy结合django用法" class="headerlink" title="3、scrapy结合django用法"></a>3、scrapy结合django用法</h3><ul>
 <li><p>（1）在Django中创建model -&gt; Movie，定义scrapy要使用的若干字段</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movie</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    cate_name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    movie_title = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    movie_href = models.CharField(max_length=<span class="number">255</span>, default=<span class="string">'movie/default.jpg'</span>)</span><br><span class="line">    img_src = models.CharField(max_length=<span class="number">255</span>, default=<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">class Movie(models.Model):
+  cate_name = models.CharField(max_length=100)
+  movie_title = models.CharField(max_length=100)
+  movie_href = models.CharField(max_length=255, default=&#39;movie/default.jpg&#39;)
+  img_src = models.CharField(max_length=255, default=&#39;&#39;)</code></pre>
 </li>
 <li><p>（2）在scrapy的item中，构建item如下示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> scrapy_djangoitem <span class="keyword">import</span> DjangoItem</span><br><span class="line"><span class="keyword">from</span> user.models <span class="keyword">import</span> Movie</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MovieItem</span><span class="params">(DjangoItem)</span>:</span></span><br><span class="line">    django_model = Movie</span><br></pre></td></tr></table></figure>
+<pre><code class="python"></code></pre>
 </li>
 </ul>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scrapy_djangoitem <span class="keyword">import</span> DjangoItem</span><br><span class="line"><span class="keyword">from</span> <span class="string">""</span>Django的项目名<span class="string">""</span>.models <span class="keyword">import</span> <span class="string">""</span>创建的模型名<span class="string">""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KuwoItem</span><span class="params">(DjangoItem)</span>:</span></span><br><span class="line">    django_model = <span class="string">""</span>创建的模型名<span class="string">""</span></span><br></pre></td></tr></table></figure>
+<p>from scrapy_djangoitem import DjangoItem<br>from user.models import Movie</p>
+<p>class MovieItem(DjangoItem):<br>    django_model = Movie</p>
+<pre><code>---
+```python
+import scrapy
+from scrapy_djangoitem import DjangoItem
+from &quot;&quot;Django的项目名&quot;&quot;.models import &quot;&quot;创建的模型名&quot;&quot;
 
+
+class KuwoItem(DjangoItem):
+    django_model = &quot;&quot;创建的模型名&quot;&quot;</code></pre><ul>
+<li>（3）修改启动爬虫的文件debug.py<pre><code class="python"># coding:utf-8
+import os, django
+</code></pre>
+</li>
+</ul>
+<p>os.environ.setdefault(“DJANGO_SETTINGS_MODULE”, “PythonServer.settings”)  # project_name 项目名称  kw为django项目名称<br>django.setup()</p>
+<p>from scrapy import cmdline</p>
+<p>cmdline.execute(“scrapy crawl xiaodiao”.split(‘ ‘))</p>
+<p>```</p>
 <ul>
-<li><p>（3）修改启动爬虫的文件debug.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> os, django</span><br><span class="line"></span><br><span class="line">os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"PythonServer.settings"</span>)  <span class="comment"># project_name 项目名称  kw为django项目名称</span></span><br><span class="line">django.setup()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</span><br><span class="line"></span><br><span class="line">cmdline.execute(<span class="string">"scrapy crawl xiaodiao"</span>.split(<span class="string">' '</span>))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在爬虫项目中，使用item.save()即可保存item数据项到django指定的数据库中。</p>
-</li>
-<li><p>注册django的用户模型  </p>
-</li>
+<li>在爬虫项目中，使用item.save()即可保存item数据项到django指定的数据库中。</li>
+<li>注册django的用户模型  </li>
 </ul>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

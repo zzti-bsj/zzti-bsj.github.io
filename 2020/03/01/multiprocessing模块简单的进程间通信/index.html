@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -142,10 +144,41 @@
     <div class="post-content">
         <h2 id="multiprocessing模块简单的进程间通信"><a href="#multiprocessing模块简单的进程间通信" class="headerlink" title="multiprocessing模块简单的进程间通信"></a>multiprocessing模块简单的进程间通信</h2><p>&emsp;&emsp;multiprocessing包装了底层的机制，提供了<code>Queue、Pipes</code>等多种方式交换数据  </p>
 <p>&emsp;&emsp;以Queue为例，创建两个子进程，一个往Queue中写数据，一个从Queue读数据</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing import Process, Queue</span><br><span class="line">import os, time, random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 写任务</span></span><br><span class="line">def write(q):</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>]:</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">"Put %s to queue"</span> % value)</span><br><span class="line">        q.put(value)</span><br><span class="line">        time.sleep(random.random())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读任务</span></span><br><span class="line">def read(q):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        value = q.<span class="builtin-name">get</span>()</span><br><span class="line">        <span class="builtin-name">print</span>(<span class="string">"Get %s from queue"</span> % value)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    q = Queue()</span><br><span class="line">    pw = Process(<span class="attribute">target</span>=write, args=(q,))</span><br><span class="line">    pr = Process(<span class="attribute">target</span>=read, args=(q,))</span><br><span class="line"></span><br><span class="line">    pw.start()</span><br><span class="line">    pr.start()</span><br><span class="line"></span><br><span class="line">    pw.join()</span><br><span class="line"></span><br><span class="line">    # pr中是死循环，无法等待其结束，只能强行终止</span><br><span class="line">    pr.terminate()</span><br></pre></td></tr></table></figure>
+<pre><code>from multiprocessing import Process, Queue
+import os, time, random
 
+
+# 写任务
+def write(q):
+    for value in [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]:
+        print(&quot;Put %s to queue&quot; % value)
+        q.put(value)
+        time.sleep(random.random())
+
+
+# 读任务
+def read(q):
+    while True:
+        value = q.get()
+        print(&quot;Get %s from queue&quot; % value)
+
+
+if __name__ == &#39;__main__&#39;:
+    q = Queue()
+    pw = Process(target=write, args=(q,))
+    pr = Process(target=read, args=(q,))
+
+    pw.start()
+    pr.start()
+
+    pw.join()
+
+    # pr中是死循环，无法等待其结束，只能强行终止
+    pr.terminate()
+</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

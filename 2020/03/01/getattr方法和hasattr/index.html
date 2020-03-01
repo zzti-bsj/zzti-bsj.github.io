@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -141,11 +143,38 @@
     </ul>
     <div class="post-content">
         <h2 id="getattr方法"><a href="#getattr方法" class="headerlink" title="getattr方法"></a>getattr方法</h2><p>获取类中的属性或方法  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    a = <span class="number">100</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">b</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>        print(<span class="string">"hello"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.b()</span><br><span class="line">hello</span><br><span class="line"><span class="comment"># 获取类中的方法名，返回一个函数对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(A,<span class="string">'b'</span>)</span><br><span class="line">&lt;function A.b at <span class="number">0x000001C61A8E57B8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(A,<span class="string">'b'</span>)()</span><br><span class="line">hello</span><br><span class="line"><span class="comment"># 获取类中的属性名，返回属性的值</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(A,<span class="string">'b'</span>)()</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+<pre><code class="python">&gt;&gt;&gt; class A():
+...     a = 100
+...     def b():
+...         print(&quot;hello&quot;)
+...
+&gt;&gt;&gt; A.b()
+hello
+# 获取类中的方法名，返回一个函数对象
+&gt;&gt;&gt; getattr(A,&#39;b&#39;)
+&lt;function A.b at 0x000001C61A8E57B8&gt;
+&gt;&gt;&gt; getattr(A,&#39;b&#39;)()
+hello
+# 获取类中的属性名，返回属性的值
+&gt;&gt;&gt; getattr(A,&#39;b&#39;)()
+hello</code></pre>
 <h2 id="hasattr方法"><a href="#hasattr方法" class="headerlink" title="hasattr方法"></a>hasattr方法</h2><p>判断类中是否有某一属性或方法，返回值为布尔型  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    a = <span class="number">100</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">b</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>        print(<span class="string">"hello"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(A,<span class="string">'a'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(A,<span class="string">'b'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(A,<span class="string">'c'</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="python">&gt;&gt;&gt; class A():
+...     a = 100
+...     def b():
+...         print(&quot;hello&quot;)
+...
+&gt;&gt;&gt; hasattr(A,&#39;a&#39;)
+True
+&gt;&gt;&gt; hasattr(A,&#39;b&#39;)
+True
+&gt;&gt;&gt; hasattr(A,&#39;c&#39;)
+False
+&gt;&gt;&gt;</code></pre>
+
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

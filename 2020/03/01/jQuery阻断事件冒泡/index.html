@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -145,11 +147,42 @@
 <li><code>return false</code>  </li>
 <li><code>event.stopPropagation()</code><br>代码示例：</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">body</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    外层div</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        内层div</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">$(function()&#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 为内层div绑定click事件</span></span><br><span class="line"><span class="regexp">    $("#msg").click(function()&#123;</span></span><br><span class="line"><span class="regexp">        alert("我是小div");</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/return false;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/event.stopPropagation()</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp"> /</span><span class="regexp">/ 为外层div元素绑定click事件</span></span><br><span class="line"><span class="regexp">    $("#content").click(function()&#123;</span></span><br><span class="line"><span class="regexp">        alert("我是大div");</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/return false;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/event.stopPropagation()</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 为body元素绑定click事件</span></span><br><span class="line"><span class="regexp">    $("body").click(function()&#123;</span></span><br><span class="line"><span class="regexp">        alert("我是body");</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/return false;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/event.stopPropagation()</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
+<pre><code class="javascript">    &lt;body&gt;
+    body
+    &lt;div&gt;
+        外层div
+        &lt;div&gt;
+            内层div
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/body&gt;
+
+    $(function(){
+        // 为内层div绑定click事件
+        $(&quot;#msg&quot;).click(function(){
+            alert(&quot;我是小div&quot;);
+            //return false;
+            //event.stopPropagation()
+        });
+     // 为外层div元素绑定click事件
+        $(&quot;#content&quot;).click(function(){
+            alert(&quot;我是大div&quot;);
+            //return false;
+            //event.stopPropagation()
+        });
+        // 为body元素绑定click事件
+        $(&quot;body&quot;).click(function(){
+            alert(&quot;我是body&quot;);
+            //return false;
+            //event.stopPropagation()
+        });
+    });
+</code></pre>
 <h3 id="阻断表单自动提交"><a href="#阻断表单自动提交" class="headerlink" title="阻断表单自动提交"></a>阻断表单自动提交</h3><p>&emsp;&emsp;阻止表单自动提交<br>&emsp;&emsp;我们知道，表达的数据提交需要得到验证，而表单提交按钮拥有自动提交的功能，使用表单提交的时候，需要阻断表单的自动提交。<br>&emsp;&emsp;1. 阻断表单提交功能：event.preventDefault()<br>&emsp;&emsp;比如：当提交的用户名为空的时候，阻断表单提交。  </p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

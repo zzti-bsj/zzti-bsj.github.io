@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -142,13 +144,78 @@
     <div class="post-content">
         <h2 id="Python的类属性和实例属性"><a href="#Python的类属性和实例属性" class="headerlink" title="Python的类属性和实例属性"></a>Python的类属性和实例属性</h2><p>&emsp;&emsp;实例属性又称为对象属性。<br>&emsp;&emsp;简而言之，类属性是类的属性，实例属性是实例的属性。类属性通过类名调用，实例属性通过self/实例对象调用。</p>
 <p><strong>测试代码1</strong></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># object 是 Python中的根类、最底层的类，基本上所有的类都要继承于object类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="comment"># 类属性</span></span><br><span class="line">    age = <span class="string">'123'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, u_name)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.u_name = u_name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_student</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print(<span class="keyword">self</span>.u_name, <span class="string">"实例属性的值:"</span> + str(<span class="keyword">self</span>.age))</span><br><span class="line">        print(<span class="string">"类属性的值："</span> + str(People.age))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里使用self.age实际上是绑定了一个实例属性age</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_instance_age</span><span class="params">(<span class="keyword">self</span>, age)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.age = age</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如何正确修改类属性age</span></span><br><span class="line">    @classmethod</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_class_age</span><span class="params">(<span class="keyword">self</span>, age)</span></span><span class="symbol">:</span></span><br><span class="line">        People.age = age</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、类调用<span class="doctag">@classmethod</span>装饰的方法，修改类属性age</span></span><br><span class="line"><span class="comment"># People.age = age</span></span><br><span class="line">People.update_class_age(<span class="number">120</span>)</span><br><span class="line">print(People.age)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"------------创建两个对象 p1 p2--------------"</span>)</span><br><span class="line">p1 = People(<span class="string">'张三'</span>)</span><br><span class="line">p2 = People(<span class="string">'李四'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、通过实例对象绑定实例属性/通过调用类封装的方法绑定实例属性</span></span><br><span class="line"><span class="comment"># 这里的print_student()输出的是self.age，如果有同名实例属性，则调用的是同名的实例属性，否则是类属性</span></span><br><span class="line">print(<span class="string">"1、通过实例对象绑定："</span>)</span><br><span class="line">p1.age = <span class="number">90</span></span><br><span class="line">p1.print_student()</span><br><span class="line">print(<span class="string">"2、通过self绑定："</span>)</span><br><span class="line">p1.update_instance_age(<span class="number">80</span>)</span><br><span class="line">p1.print_student()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、People类修改类属性age。输出p1和p2的age值，p1使用的是实例属性age/p2使用的是类属性age</span></span><br><span class="line">print(<span class="string">'------使用People修改name之后-------'</span>)</span><br><span class="line">People.age = <span class="number">88</span></span><br><span class="line">p1.print_student()</span><br><span class="line">p2.print_student()</span><br></pre></td></tr></table></figure>
+<pre><code># object 是 Python中的根类、最底层的类，基本上所有的类都要继承于object类
+class People(object):
+    # 类属性
+    age = &#39;123&#39;
 
-<p><strong>测试代码2</strong><br>&emsp;&emsp;下面的代码，对于我理解类属性和实例属性的区别又有了进一步的催化作用。记住以下两个结论，我觉得大概就能分清类属性和实例属性的区别了。<br>&emsp;&emsp;<strong>1、初始时如果只有类属性，self调用同名属性的时候，第一次使用时创建一个与类属性同名的实例属性，且初始值是类属性的值。</strong><br>&emsp;&emsp;<strong>2、第二次之后的运算都与类属性无关（因为第一次已经创建了一个实例属性，使用的是当前的实例属性）</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试类属性和实例属性</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment"># 类属性count</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 初始时如果只有类属性，self调用同名属性的时候，第一次使用时创建一个与类属性同名的实例属性，且初始值是类属性的值。</span></span><br><span class="line">        <span class="comment"># self第二次之后的调用都与类属性无关（因为第一次已经创建了一个实例属性，使用的是当前的实例属性）</span></span><br><span class="line">        People.count += <span class="number">5</span></span><br><span class="line">        self.count += <span class="number">8</span></span><br><span class="line">        print(People.count, self.count)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p = People()</span><br><span class="line">p.eat()</span><br><span class="line">p.eat()</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">运行结果：</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>5 13</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>10 21</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+    def __init__(self, u_name):
+        self.u_name = u_name
 
+    def print_student(self):
+        print(self.u_name, &quot;实例属性的值:&quot; + str(self.age))
+        print(&quot;类属性的值：&quot; + str(People.age))
+
+    # 这里使用self.age实际上是绑定了一个实例属性age
+    def update_instance_age(self, age):
+        self.age = age
+
+    # 如何正确修改类属性age
+    @classmethod
+    def update_class_age(self, age):
+        People.age = age
+
+
+# 1、类调用@classmethod装饰的方法，修改类属性age
+# People.age = age
+People.update_class_age(120)
+print(People.age)
+
+print(&quot;------------创建两个对象 p1 p2--------------&quot;)
+p1 = People(&#39;张三&#39;)
+p2 = People(&#39;李四&#39;)
+
+# 2、通过实例对象绑定实例属性/通过调用类封装的方法绑定实例属性
+# 这里的print_student()输出的是self.age，如果有同名实例属性，则调用的是同名的实例属性，否则是类属性
+print(&quot;1、通过实例对象绑定：&quot;)
+p1.age = 90
+p1.print_student()
+print(&quot;2、通过self绑定：&quot;)
+p1.update_instance_age(80)
+p1.print_student()
+
+
+# 3、People类修改类属性age。输出p1和p2的age值，p1使用的是实例属性age/p2使用的是类属性age
+print(&#39;------使用People修改name之后-------&#39;)
+People.age = 88
+p1.print_student()
+p2.print_student()
+</code></pre><p><strong>测试代码2</strong><br>&emsp;&emsp;下面的代码，对于我理解类属性和实例属性的区别又有了进一步的催化作用。记住以下两个结论，我觉得大概就能分清类属性和实例属性的区别了。<br>&emsp;&emsp;<strong>1、初始时如果只有类属性，self调用同名属性的时候，第一次使用时创建一个与类属性同名的实例属性，且初始值是类属性的值。</strong><br>&emsp;&emsp;<strong>2、第二次之后的运算都与类属性无关（因为第一次已经创建了一个实例属性，使用的是当前的实例属性）</strong></p>
+<pre><code># 测试类属性和实例属性
+class People(object):
+    # 类属性count
+    count = 0
+
+    def eat(self):
+        # 初始时如果只有类属性，self调用同名属性的时候，第一次使用时创建一个与类属性同名的实例属性，且初始值是类属性的值。
+        # self第二次之后的调用都与类属性无关（因为第一次已经创建了一个实例属性，使用的是当前的实例属性）
+        People.count += 5
+        self.count += 8
+        print(People.count, self.count)
+
+
+p = People()
+p.eat()
+p.eat()
+
+&quot;&quot;&quot;
+运行结果：
+&gt;&gt;&gt; 5 13
+&gt;&gt;&gt; 10 21
+&quot;&quot;&quot;</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -183,10 +185,132 @@
 </ul>
 </li>
 </ol>
-<h3 id="测试源码"><a href="#测试源码" class="headerlink" title="测试源码"></a>测试源码</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">import time, datetime, calendar</span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string"># 时间戳：从1970年1月1日到现在的所有秒数之和</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"><span class="comment"># time模块常用方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、time() 返回时间戳</span></span><br><span class="line">timestamp = time.time()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、sleep() 延迟函数，参数是秒数，可以为float型</span></span><br><span class="line"><span class="comment"># time.sleep(2)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、process_time()/process_time_ns() 程序处理时间  程序处理时间的纳秒</span></span><br><span class="line">processtime = time.process_time()</span><br><span class="line">processtime_ns = time.process_time_ns()</span><br><span class="line"><span class="builtin-name">print</span>(processtime)</span><br><span class="line"><span class="builtin-name">print</span>(processtime_ns)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、ctime()/asctime() 返回当前时间的字符串形式</span></span><br><span class="line">cur_time_str = time.asctime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time_str)</span><br><span class="line">cur_time_str = time.ctime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、localtime() 返回一个元组表达式形式的列表</span></span><br><span class="line">cur_time = time.localtime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time)</span><br><span class="line"></span><br><span class="line"><span class="comment"># datetime模块</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">datetime模块中的三个类class</span></span><br><span class="line"><span class="string">    1、datetime：年月日-时分秒</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用datetime创建一个实例，需要传入时间（整型:年、月、日、时、分、秒。。。）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的年月日-时分秒。methods: today()/date()/time()/weekday()/other methods</span></span><br><span class="line"><span class="string">    2、date：年月日</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用date创建一个实例，需要传入时间（整型:年、月、日）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的年月日。methods: today()/weekday()/other methods</span></span><br><span class="line"><span class="string">    3、time：时分秒</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用time创建一个实例，需要传入时间（整型:时、分、秒）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的时分秒。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">***！之前一直对时间很模糊，现在基本了解了程序中具体到分秒的时间：date（年月日） - time（时分秒），同时这对应着datetime类的两个方法date()/time()，返回什么值自然一想就知道了，肯定是date()返回年月日，time()返回时分秒</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 返回时分秒</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).time()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回ctime类型的字符串</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).ctime()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回年月日</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).date()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回一个当前具体的时间</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).now()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line">x = datetime.datetime.today().hour</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回星期几</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).weekday()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># strptime的用法</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).strptime(<span class="string">"2019-05-24"</span>, <span class="string">"%Y-%m-%d"</span>)</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># class: date</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'*'</span><span class="number">*20</span>)</span><br><span class="line">today = datetime.time</span><br><span class="line"></span><br><span class="line"><span class="comment"># class: time</span></span><br><span class="line"><span class="builtin-name">print</span>(today)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calender模块</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'*'</span><span class="number">*20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># weekday()方法</span></span><br><span class="line">weekday = calendar.weekday(2019, 7, 26)</span><br><span class="line"><span class="builtin-name">print</span>(weekday)</span><br><span class="line"></span><br><span class="line"><span class="comment"># class:</span></span><br><span class="line"><span class="comment"># 获取calendar对象</span></span><br><span class="line"><span class="comment"># 设置firstweekday=6</span></span><br><span class="line">calendar = calendar.Calendar(<span class="attribute">firstweekday</span>=6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 day</span></span><br><span class="line">all_dates = calendar.itermonthdates(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_dates:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 year-month-day</span></span><br><span class="line">all_ = calendar.itermonthdays(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(day,weekday) 其中weekday是0-6</span></span><br><span class="line">all_ = calendar.itermonthdays2(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(year, month, day)</span></span><br><span class="line">all_ = calendar.itermonthdays3(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(year, month, day, weekday)</span></span><br><span class="line">all_ = calendar.itermonthdays4(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间的格式化问题</span></span><br></pre></td></tr></table></figure>
+<h3 id="测试源码"><a href="#测试源码" class="headerlink" title="测试源码"></a>测试源码</h3><pre><code>import time, datetime, calendar
 
+&quot;&quot;&quot;
+# 时间戳：从1970年1月1日到现在的所有秒数之和
+
+&quot;&quot;&quot;
+# time模块常用方法
+
+# 1、time() 返回时间戳
+timestamp = time.time()
+
+# 2、sleep() 延迟函数，参数是秒数，可以为float型
+# time.sleep(2)
+
+# 3、process_time()/process_time_ns() 程序处理时间  程序处理时间的纳秒
+processtime = time.process_time()
+processtime_ns = time.process_time_ns()
+print(processtime)
+print(processtime_ns)
+
+# 4、ctime()/asctime() 返回当前时间的字符串形式
+cur_time_str = time.asctime()
+print(cur_time_str)
+cur_time_str = time.ctime()
+print(cur_time_str)
+
+# 5、localtime() 返回一个元组表达式形式的列表
+cur_time = time.localtime()
+print(cur_time)
+
+# datetime模块
+&quot;&quot;&quot;
+datetime模块中的三个类class
+    1、datetime：年月日-时分秒
+        （1）既然是类，那么就有fields和methods，调用datetime创建一个实例，需要传入时间（整型:年、月、日、时、分、秒。。。）
+        （2）可以根据创建的实例获取其属性值
+        （3）不传入参数直接调用提供的方法，默认参数是当前的年月日-时分秒。methods: today()/date()/time()/weekday()/other methods
+    2、date：年月日
+        （1）既然是类，那么就有fields和methods，调用date创建一个实例，需要传入时间（整型:年、月、日）
+        （2）可以根据创建的实例获取其属性值
+        （3）不传入参数直接调用提供的方法，默认参数是当前的年月日。methods: today()/weekday()/other methods
+    3、time：时分秒
+        （1）既然是类，那么就有fields和methods，调用time创建一个实例，需要传入时间（整型:时、分、秒）
+        （2）可以根据创建的实例获取其属性值
+        （3）不传入参数直接调用提供的方法，默认参数是当前的时分秒。
+
+***！之前一直对时间很模糊，现在基本了解了程序中具体到分秒的时间：date（年月日） - time（时分秒），同时这对应着datetime类的两个方法date()/time()，返回什么值自然一想就知道了，肯定是date()返回年月日，time()返回时分秒
+&quot;&quot;&quot;
+# 
+# 返回时分秒
+x = datetime.datetime(2019, 7, 26, 13, 24, 55).time()
+print(x)
+
+# 返回ctime类型的字符串
+x = datetime.datetime(2019, 7, 26, 13, 24, 55).ctime()
+print(x)
+
+# 返回年月日
+x = datetime.datetime(2019, 7, 26, 13, 24, 55).date()
+print(x)
+
+# 返回一个当前具体的时间
+x = datetime.datetime(2019, 7, 26, 13, 24, 55).now()
+print(x)
+
+x = datetime.datetime.today().hour
+print(x)
+
+# 返回星期几
+x = datetime.datetime(2019, 7, 26, 13, 24, 55).weekday()
+print(x)
+
+# strptime的用法
+x = datetime.datetime(2019, 7, 26, 13, 24, 55).strptime(&quot;2019-05-24&quot;, &quot;%Y-%m-%d&quot;)
+print(x)
+
+# class: date
+print(&#39;*&#39;*20)
+today = datetime.time
+
+# class: time
+print(today)
+
+# calender模块
+print(&#39;*&#39;*20)
+
+# weekday()方法
+weekday = calendar.weekday(2019, 7, 26)
+print(weekday)
+
+# class:
+# 获取calendar对象
+# 设置firstweekday=6
+calendar = calendar.Calendar(firstweekday=6)
+
+# 返回 day
+all_dates = calendar.itermonthdates(2019, 6)
+for i in all_dates:
+    print(i)
+
+# 返回 year-month-day
+all_ = calendar.itermonthdays(2019, 6)
+for i in all_:
+    print(i)
+
+# 以元组形式返回(day,weekday) 其中weekday是0-6
+all_ = calendar.itermonthdays2(2019, 6)
+for i in all_:
+    print(i)
+
+# 以元组形式返回(year, month, day)
+all_ = calendar.itermonthdays3(2019, 6)
+for i in all_:
+    print(i)
+
+# 以元组形式返回(year, month, day, weekday)
+all_ = calendar.itermonthdays4(2019, 6)
+for i in all_:
+    print(i)
+
+# 时间的格式化问题
+
+</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

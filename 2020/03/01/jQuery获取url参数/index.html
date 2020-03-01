@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -140,10 +142,20 @@
         </li>
     </ul>
     <div class="post-content">
-        <h2 id="jQuery获取url参数"><a href="#jQuery获取url参数" class="headerlink" title="jQuery获取url参数"></a>jQuery获取url参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; jQuery获取url参数</span><br><span class="line">function getUrlParam(name) &#123;</span><br><span class="line">    var reg &#x3D; new RegExp(&quot;(^|&amp;)&quot; + name + &quot;&#x3D;([^&amp;]*)(&amp;|$)&quot;); &#x2F;&#x2F;构造一个含有目标参数的正则表达式对象</span><br><span class="line">    var r &#x3D; window.location.search.substr(1).match(reg);  &#x2F;&#x2F;匹配目标参数</span><br><span class="line">    if (r !&#x3D; null) return unescape(r[2]);</span><br><span class="line">    return null; &#x2F;&#x2F;返回参数值</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;获取参数值</span><br><span class="line">var param &#x3D; getUrlParam(param_name)</span><br></pre></td></tr></table></figure>
+        <h2 id="jQuery获取url参数"><a href="#jQuery获取url参数" class="headerlink" title="jQuery获取url参数"></a>jQuery获取url参数</h2><pre><code class="jQuery">// jQuery获取url参数
+function getUrlParam(name) {
+    var reg = new RegExp(&quot;(^|&amp;)&quot; + name + &quot;=([^&amp;]*)(&amp;|$)&quot;); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) return unescape(r[2]);
+    return null; //返回参数值
+}
+
+//获取参数值
+var param = getUrlParam(param_name)</code></pre>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

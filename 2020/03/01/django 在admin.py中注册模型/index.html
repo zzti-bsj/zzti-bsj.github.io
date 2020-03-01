@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -144,15 +146,29 @@
 <h2 id="django注册模型的两种方式"><a href="#django注册模型的两种方式" class="headerlink" title="django注册模型的两种方式"></a>django注册模型的两种方式</h2><ul>
 <li>通过装饰器注册</li>
 </ul>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> <span class="keyword">admin</span></span><br><span class="line"><span class="keyword">from</span> <span class="keyword">user</span>.models <span class="keyword">import</span> <span class="keyword">User</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Register your models here.</span><br><span class="line">@<span class="keyword">admin</span>.register(<span class="keyword">User</span>)</span><br><span class="line"><span class="keyword">class</span> UserAdmin(<span class="keyword">admin</span>.ModelAdmin):</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<pre><code>from django.contrib import admin
+from user.models import User
 
-<ul>
+
+# Register your models here.
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    pass
+</code></pre><ul>
 <li>先写Admin类，再注册</li>
 </ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib import admin</span><br><span class="line"><span class="keyword">from</span> user.models import User</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line">class UserAdmin(admin.ModelAdmin):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">admin.site.register(User, UserAdmin)</span><br></pre></td></tr></table></figure>
+<pre><code>from django.contrib import admin
+from user.models import User
 
+
+# Register your models here.
+class UserAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(User, UserAdmin)</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

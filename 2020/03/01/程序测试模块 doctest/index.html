@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -145,17 +147,43 @@
 <p><strong>测试构造如同简单的将它的输出结果剪切并粘贴到文档字符串中。</strong></p>
 <p><strong>通过用户提供的例子，它强化了文档，允许 doctest 模块确认代码的结果是否与文档一致</strong></p>
 <h2 id="简单的测试例子"><a href="#简单的测试例子" class="headerlink" title="简单的测试例子"></a>简单的测试例子</h2><ul>
-<li>正确测试案例<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">average</span><span class="params">(values)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="string">"""Computes the arithmetic mean of a list of numbers.</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string"><span class="meta">... </span>    &gt;&gt;&gt; print(average([20, 30, 70]))</span></span><br><span class="line"><span class="string"><span class="meta">... </span>    40.0</span></span><br><span class="line"><span class="string"><span class="meta">... </span>    """</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> sum(values) / len(values)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> doctest</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>doctest.testmod()   <span class="comment"># 自动验证嵌入测试</span></span><br><span class="line">TestResults(failed=<span class="number">0</span>, attempted=<span class="number">1</span>)</span><br></pre></td></tr></table></figure></li>
-<li>错误测试案例<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">average</span><span class="params">(values)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="string">"""Computes the arithmetic mean of a list of numbers.</span></span><br><span class="line"><span class="string"><span class="meta">... </span>    &gt;&gt;&gt; print(average([20, 30, 70]))</span></span><br><span class="line"><span class="string"><span class="meta">... </span>    41.0</span></span><br><span class="line"><span class="string"><span class="meta">... </span>    """</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> sum(values) / len(values)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> doctest</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>doctest.testmod()</span><br><span class="line">**********************************************************************</span><br><span class="line">File <span class="string">"__main__"</span>, line <span class="number">3</span>, <span class="keyword">in</span> __main__.average</span><br><span class="line">Failed example:</span><br><span class="line">    print(average([<span class="number">20</span>, <span class="number">30</span>, <span class="number">70</span>]))</span><br><span class="line">Expected:</span><br><span class="line">    <span class="number">41.0</span></span><br><span class="line">Got:</span><br><span class="line">    <span class="number">40.0</span></span><br><span class="line">**********************************************************************</span><br><span class="line"><span class="number">1</span> items had failures:</span><br><span class="line">   <span class="number">1</span> of   <span class="number">1</span> <span class="keyword">in</span> __main__.average</span><br><span class="line">***Test Failed*** <span class="number">1</span> failures.</span><br><span class="line">TestResults(failed=<span class="number">1</span>, attempted=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
+<li>正确测试案例<pre><code class="python">&gt;&gt;&gt; def average(values):
+...     &quot;&quot;&quot;Computes the arithmetic mean of a list of numbers.
+...
+...     &gt;&gt;&gt; print(average([20, 30, 70]))
+...     40.0
+...     &quot;&quot;&quot;
+...     return sum(values) / len(values)
+...
+&gt;&gt;&gt; import doctest
+&gt;&gt;&gt; doctest.testmod()   # 自动验证嵌入测试
+TestResults(failed=0, attempted=1)</code></pre>
+</li>
+<li>错误测试案例<pre><code class="python">&gt;&gt;&gt; def average(values):
+...     &quot;&quot;&quot;Computes the arithmetic mean of a list of numbers.
+...     &gt;&gt;&gt; print(average([20, 30, 70]))
+...     41.0
+...     &quot;&quot;&quot;
+...     return sum(values) / len(values)
+...
+&gt;&gt;&gt; import doctest
+&gt;&gt;&gt; doctest.testmod()</code></pre>
 </li>
 </ul>
-<p>&emsp;&emsp;根据以上的测试结果说明，测试的结果会返回一个<code>doctest.TestResults</code>对象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(doctest.testmod())</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">doctest</span>.<span class="title">TestResults</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt;</span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;当结果正确的时候<code>TestResults(failed=0, attempted=1)</code>的<code>failed</code>参数为0，如果测试用例的结果错误，会打印异常。<br>&emsp;&emsp;当测试代码中没有测试构造字符串时，测试的返回结果会是<code>TestResults(failed=0,attempted=0)</code>  </p>
+<hr>
+<p>File “<strong>main</strong>“, line 3, in <strong>main</strong>.average<br>Failed example:<br>    print(average([20, 30, 70]))<br>Expected:<br>    41.0<br>Got:<br>    40.0</p>
+<hr>
+<p>1 items had failures:<br>   1 of   1 in <strong>main</strong>.average<br><strong><em>Test Failed</em></strong> 1 failures.<br>TestResults(failed=1, attempted=1)</p>
+<pre><code>
+&amp;emsp;&amp;emsp;根据以上的测试结果说明，测试的结果会返回一个`doctest.TestResults`对象
+```python
+&gt;&gt;&gt; type(doctest.testmod())
+&lt;class &#39;doctest.TestResults&#39;&gt;
+&gt;&gt;&gt;</code></pre><p>&emsp;&emsp;当结果正确的时候<code>TestResults(failed=0, attempted=1)</code>的<code>failed</code>参数为0，如果测试用例的结果错误，会打印异常。<br>&emsp;&emsp;当测试代码中没有测试构造字符串时，测试的返回结果会是<code>TestResults(failed=0,attempted=0)</code>  </p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

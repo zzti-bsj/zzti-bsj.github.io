@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -182,70 +184,70 @@ ua = UserAgent()
 class DataTool(object):
     def __init__(self):
         # 创建一个客户端对象
-        self.client = pymongo.MongoClient(&apos;Localhost&apos;)
+        self.client = pymongo.MongoClient(&#39;Localhost&#39;)
         # 根据这个客户端对象，连接数据库
-        self.db = self.client[&apos;douban&apos;]
+        self.db = self.client[&#39;douban&#39;]
 
     def new_tuple_data(self,origin_tuple_data):
         new_dict = {}
         if(len(origin_tuple_data) == 12):
-            new_dict[&apos;电影排名&apos;] = origin_tuple_data[0]
-            new_dict[&apos;电影名称&apos;] = origin_tuple_data[1]
-            new_dict[&apos;导演&apos;] = origin_tuple_data[2]
+            new_dict[&#39;电影排名&#39;] = origin_tuple_data[0]
+            new_dict[&#39;电影名称&#39;] = origin_tuple_data[1]
+            new_dict[&#39;导演&#39;] = origin_tuple_data[2]
 
             # pass_&lt;a href=.*?&gt;
-            p1 = re.compile(r&apos;&lt;a href=.*?&gt;&apos;,re.S)
+            p1 = re.compile(r&#39;&lt;a href=.*?&gt;&#39;,re.S)
             # pass_&lt;/a&gt;
-            p2 = re.compile(r&apos;&lt;/a&gt;&apos;,re.S)
+            p2 = re.compile(r&#39;&lt;/a&gt;&#39;,re.S)
             # pass_&lt;/span&gt;
-            p3 = re.compile(r&apos;&lt;/span&gt;&apos;,re.S)
+            p3 = re.compile(r&#39;&lt;/span&gt;&#39;,re.S)
             # pass_&lt;span property=.*?&gt;
-            p4 = re.compile(r&apos;&lt;span property=.*?&gt;&apos;,re.S)
+            p4 = re.compile(r&#39;&lt;span property=.*?&gt;&#39;,re.S)
             # pass_\n
-            p5 = re.compile(r&apos;\n&apos;,re.S)
+            p5 = re.compile(r&#39;\n&#39;,re.S)
             # pass_space
-            p6 = re.compile(r&apos; &apos;,re.S)
+            p6 = re.compile(r&#39; &#39;,re.S)
             # pass_\u3000
-            p7 = re.compile(r&apos;\u3000&apos;,re.S)
+            p7 = re.compile(r&#39;\u3000&#39;,re.S)
             # pass_&lt;br /&gt;.*?
-            p8 = re.compile(r&apos;&lt;br/&gt;&apos;,re.S)
+            p8 = re.compile(r&#39;&lt;br/&gt;&#39;,re.S)
 
-            writer = re.sub(p1,&apos;&apos;,origin_tuple_data[3])
-            writer = re.sub(p2,&apos;&apos;,writer)
-            new_dict[&apos;编剧&apos;] = writer
+            writer = re.sub(p1,&#39;&#39;,origin_tuple_data[3])
+            writer = re.sub(p2,&#39;&#39;,writer)
+            new_dict[&#39;编剧&#39;] = writer
 
-            actor = re.sub(p1,&apos;&apos;,origin_tuple_data[4])
-            actor = re.sub(p2,&apos;&apos;,actor)
-            new_dict[&apos;主演&apos;] = actor
+            actor = re.sub(p1,&#39;&#39;,origin_tuple_data[4])
+            actor = re.sub(p2,&#39;&#39;,actor)
+            new_dict[&#39;主演&#39;] = actor
 
-            gut = re.sub(p3,&apos;&apos;,origin_tuple_data[5])
-            gut = re.sub(p4,&apos;&apos;,gut)
-            new_dict[&apos;类型&apos;] = gut
+            gut = re.sub(p3,&#39;&#39;,origin_tuple_data[5])
+            gut = re.sub(p4,&#39;&#39;,gut)
+            new_dict[&#39;类型&#39;] = gut
 
-            new_dict[&apos;制片国家/地区&apos;] = origin_tuple_data[6]
-            new_dict[&apos;语言&apos;] = origin_tuple_data[7]
+            new_dict[&#39;制片国家/地区&#39;] = origin_tuple_data[6]
+            new_dict[&#39;语言&#39;] = origin_tuple_data[7]
 
-            date = re.sub(p3,&apos;&apos;,origin_tuple_data[8])
-            date = re.sub(p4,&apos;&apos;,date)
-            new_dict[&apos;上映日期&apos;] = date
+            date = re.sub(p3,&#39;&#39;,origin_tuple_data[8])
+            date = re.sub(p4,&#39;&#39;,date)
+            new_dict[&#39;上映日期&#39;] = date
 
-            time = re.sub(p3,&apos;&apos;,origin_tuple_data[9])
-            time = re.sub(p4,&apos;&apos;,time)
-            new_dict[&apos;片长&apos;] = time
+            time = re.sub(p3,&#39;&#39;,origin_tuple_data[9])
+            time = re.sub(p4,&#39;&#39;,time)
+            new_dict[&#39;片长&#39;] = time
 
-            new_dict[&apos;豆瓣评分&apos;] = origin_tuple_data[10]
+            new_dict[&#39;豆瓣评分&#39;] = origin_tuple_data[10]
 
-            synopsis = re.sub(p5,&apos;&apos;,origin_tuple_data[11])
-            synopsis = re.sub(p6,&apos;&apos;,synopsis)
-            synopsis = re.sub(p7,&apos;&apos;,synopsis)
-            synopsis = re.sub(p8,&apos;&apos;,synopsis)
-            new_dict[&apos;剧情简介&apos;] = synopsis
-            self.db[&apos;d_b&apos;].insert_one(new_dict)
+            synopsis = re.sub(p5,&#39;&#39;,origin_tuple_data[11])
+            synopsis = re.sub(p6,&#39;&#39;,synopsis)
+            synopsis = re.sub(p7,&#39;&#39;,synopsis)
+            synopsis = re.sub(p8,&#39;&#39;,synopsis)
+            new_dict[&#39;剧情简介&#39;] = synopsis
+            self.db[&#39;d_b&#39;].insert_one(new_dict)
             return new_dict
         else:
-            new_dict[&apos;电影排名：&apos;] = origin_tuple_data[0]
-            new_dict[&apos;电影名称&apos;] = origin_tuple_data[1]
-            new_dict[&apos;导演&apos;] = origin_tuple_data[2]
+            new_dict[&#39;电影排名：&#39;] = origin_tuple_data[0]
+            new_dict[&#39;电影名称&#39;] = origin_tuple_data[1]
+            new_dict[&#39;导演&#39;] = origin_tuple_data[2]
             return new_dict
 
 class Excel(object):
@@ -253,13 +255,13 @@ class Excel(object):
     # 读取数据
     def __init__(self):
         # 创建工作簿
-        self.work_book = xlwt.Workbook(&apos;utf-8&apos;)
+        self.work_book = xlwt.Workbook(&#39;utf-8&#39;)
 
         # 创建一个excel表
-        self.excel_Worksheet = self.work_book.add_sheet(&apos;豆瓣top250电影简讯&apos;, cell_overwrite_ok=True)
+        self.excel_Worksheet = self.work_book.add_sheet(&#39;豆瓣top250电影简讯&#39;, cell_overwrite_ok=True)
 
         # 创建第一行 标题
-        self.rowTitle = [&apos;电影排名&apos;,&apos;电影名称&apos;,&apos;导演&apos;,&apos;编剧&apos;,&apos;主演&apos;,&apos;类型&apos;,&apos;制片国家/地区&apos;,&apos;语言&apos;,&apos;上映日期&apos;,&apos;片长&apos;,&apos;豆瓣评分&apos;,&apos;剧情简介&apos;]
+        self.rowTitle = [&#39;电影排名&#39;,&#39;电影名称&#39;,&#39;导演&#39;,&#39;编剧&#39;,&#39;主演&#39;,&#39;类型&#39;,&#39;制片国家/地区&#39;,&#39;语言&#39;,&#39;上映日期&#39;,&#39;片长&#39;,&#39;豆瓣评分&#39;,&#39;剧情简介&#39;]
 
         # 把第一行写入表格
         for i in range(0,len(self.rowTitle)):
@@ -283,15 +285,15 @@ class Excel(object):
 
     def save_excel_Data(self):
         # 这个保存是在建立一个工作簿那个对象进行保存的
-        self.work_book.save(&apos;douban.xls&apos;)
+        self.work_book.save(&#39;douban.xls&#39;)
 
 
 class DouBan(object):
     def __init__(self):
         self.headers = {
-            &apos;User-Agent&apos; : &apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0&apos;,
+            &#39;User-Agent&#39; : &#39;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0&#39;,
 
-            &apos;Cookie&apos;:&apos;ll=&quot;118237&quot;; bid=miJfnEe9C8E; __yadk_uid=C8tCYDQmeHxAfZlS5hvnGCCLtrU72prh; douban-fav-remind=1; ps=y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1547354707%2C%22https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Fqrconnect%3Fappid%3Dwxd9c1c6bbd5d59980%26redirect_uri%3Dhttps%253A%252F%252Fwww.douban.com%252Faccounts%252Fconnect%252Fwechat%252Fcallback%26response_type%3Dcode%26scope%3Dsnsapi_login%26state%3DmiJfnEe9C8E%252523douban-web%252523https%25253A%252F%252Fmovie.douban.com%252Ftop250%25253Fstart%25253D125%252526filter%25253D%22%5D; _pk_id.100001.4cf6=4179da9d4af6318e.1543568427.5.1547358498.1547349967.; _vwo_uuid_v2=D4FCFEDCB33DF07B2DE0DC525D42F7488|9024e242bbd9c0f98192b002e4091fc3; as=&quot;https://sec.douban.com/b?r=https%3A%2F%2Fmovie.douban.com%2Fsubject%2F26430107%2F&quot;; dbcl2=&quot;189997368:Qj2bbphj+X0&quot;; ck=iccT; push_noty_num=0; push_doumail_num=0&apos;
+            &#39;Cookie&#39;:&#39;ll=&quot;118237&quot;; bid=miJfnEe9C8E; __yadk_uid=C8tCYDQmeHxAfZlS5hvnGCCLtrU72prh; douban-fav-remind=1; ps=y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1547354707%2C%22https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Fqrconnect%3Fappid%3Dwxd9c1c6bbd5d59980%26redirect_uri%3Dhttps%253A%252F%252Fwww.douban.com%252Faccounts%252Fconnect%252Fwechat%252Fcallback%26response_type%3Dcode%26scope%3Dsnsapi_login%26state%3DmiJfnEe9C8E%252523douban-web%252523https%25253A%252F%252Fmovie.douban.com%252Ftop250%25253Fstart%25253D125%252526filter%25253D%22%5D; _pk_id.100001.4cf6=4179da9d4af6318e.1543568427.5.1547358498.1547349967.; _vwo_uuid_v2=D4FCFEDCB33DF07B2DE0DC525D42F7488|9024e242bbd9c0f98192b002e4091fc3; as=&quot;https://sec.douban.com/b?r=https%3A%2F%2Fmovie.douban.com%2Fsubject%2F26430107%2F&quot;; dbcl2=&quot;189997368:Qj2bbphj+X0&quot;; ck=iccT; push_noty_num=0; push_doumail_num=0&#39;
 
         }
 
@@ -300,7 +302,7 @@ class DouBan(object):
         #     &quot;http&quot;: &quot;http://202.121.96.33:8086&quot;,
         # }
 
-        self.base_page_url = &apos;https://movie.douban.com/top250?start={}&amp;filter=&apos;
+        self.base_page_url = &#39;https://movie.douban.com/top250?start={}&amp;filter=&#39;
 
     # 获取电影排名首页网页html源码
     def get_page_html(self,num):
@@ -314,16 +316,16 @@ class DouBan(object):
                 page_html = response.text
                 return page_html
             else:
-                print(&apos;请求错误：url = {}, status_code = {}&apos;.format(page_url,response.status_code))
+                print(&#39;请求错误：url = {}, status_code = {}&#39;.format(page_url,response.status_code))
                 return None
         except Exception as e:
-            print(&apos;请求异常：url = {}, error = {}&apos;.format(page_url,e))
+            print(&#39;请求异常：url = {}, error = {}&#39;.format(page_url,e))
             return None
 
     # 获取详首页电影的 top_no movie_url,返回一个列表
     def get_page_data(self,page_html):
         # 书写正则表达式
-        pattern = re.compile(r&apos;&lt;li&gt;.*?&lt;em class=&quot;&quot;&gt;(.*?)&lt;/em&gt;.*?&lt;a href=&quot;(.*?)&quot;&gt;&apos;,re.S)
+        pattern = re.compile(r&#39;&lt;li&gt;.*?&lt;em class=&quot;&quot;&gt;(.*?)&lt;/em&gt;.*?&lt;a href=&quot;(.*?)&quot;&gt;&#39;,re.S)
 
         movie_info_list = re.findall(pattern,page_html)
 
@@ -339,15 +341,15 @@ class DouBan(object):
                 movie_page_html = response.text
                 return  movie_page_html
             else:
-                print(&apos;请求错误：url = {}, status_code = {}&apos;.format(movie_url,response.status_code))
+                print(&#39;请求错误：url = {}, status_code = {}&#39;.format(movie_url,response.status_code))
                 return None
         except Exception as e:
-            print(&apos;请求异常：url = {}, error = {}&apos;.format(movie_url,e))
+            print(&#39;请求异常：url = {}, error = {}&#39;.format(movie_url,e))
 
     # 获取电影的详细信息
     def get_movie_details(self,movie_html):
         #
-        pattern = re.compile(r&apos;&lt;div id=&quot;content&quot;&gt;.*?&lt;div class=&quot;top250&quot;&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;h1&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;div id=&quot;info&quot;&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;.*?&gt;(.*?)&lt;/a&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;(.*?)&lt;/span&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;(.*?)&lt;/span&gt;&lt;/span&gt;&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;制片国家.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;语言:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;上映日期:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;片长:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;strong class=&quot;ll rating_num.*?&gt;(.*?)&lt;/strong&gt;.*?&lt;span property=&quot;v:summary&quot;.*?&gt;(.*?)&lt;/span&gt;&apos;,re.S)
+        pattern = re.compile(r&#39;&lt;div id=&quot;content&quot;&gt;.*?&lt;div class=&quot;top250&quot;&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;h1&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;div id=&quot;info&quot;&gt;.*?&lt;span class=\&#39;attrs\&#39;&gt;.*?&gt;(.*?)&lt;/a&gt;.*?&lt;span class=\&#39;attrs\&#39;&gt;(.*?)&lt;/span&gt;.*?&lt;span class=\&#39;attrs\&#39;&gt;(.*?)&lt;/span&gt;&lt;/span&gt;&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;制片国家.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;语言:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;上映日期:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;片长:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;strong class=&quot;ll rating_num.*?&gt;(.*?)&lt;/strong&gt;.*?&lt;span property=&quot;v:summary&quot;.*?&gt;(.*?)&lt;/span&gt;&#39;,re.S)
 
         movie_data = re.findall(pattern,movie_html)
 
@@ -392,6 +394,7 @@ for i in range(0,100):
 xcl.save_excel_Data()</code></pre>
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>

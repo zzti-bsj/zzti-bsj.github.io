@@ -96,7 +96,7 @@
         </a>
     </h1>
     <h2 class="desc">
-        blog
+        open the new world
     </h2>
 
     <div class="links">
@@ -124,7 +124,9 @@
     </div>
 </header>
         <main class="main">
-            <article class="post">
+            <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<article class="post">
     
     
     
@@ -147,23 +149,188 @@
 <p>&emsp;&emsp;再来说一个点：如果继承了含有抽象方法的类，需要在子类中把继承的抽象方法给实现（也就是重写），否则这个子类依旧是个抽象类。为什么呢？因为它继承了父类的所有属性和方法，也就是说，它继承了抽象方法，刚才我们说，含有抽象方法的类就是抽象类，所以没有实现父类抽象方法的子类就还是抽象类。</p>
 <p>&emsp;&emsp;3、抽象方法：以 <strong>@abstractmethod</strong>装饰且<strong>不实现</strong>具体功能的方法</p>
 <p><strong>1、代码示例详解接口类</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta, abstractmethod</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口类</span></span><br><span class="line"><span class="comment"># 接口类AnimalRun</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalRun</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 抽象方法</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口类</span></span><br><span class="line"><span class="comment"># 接口类AnimalSwim</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalSwim</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 抽象方法</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swim</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个接口类</span></span><br><span class="line"><span class="comment"># 接口类AnimalEat</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalEat</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 抽象方法</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们再创建一个有关人类说话这个动作的接口类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PeopleLanguage</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Language</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个“飞”这个动作的接口类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalFly</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fly</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个植物“光合作用”这个功能的接口类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PlantPht</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pht</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<pre><code># coding:utf-8
+from abc import ABCMeta, abstractmethod
 
 
-<p>&emsp;&emsp;现在我手里有六个接口类，不要管是什么接口类，反正我现在有六个接口类。<br>&emsp;&emsp;好了，我要开始装逼了。<br>&emsp;&emsp;我手里有这些接口类，我现在想要造一只老虎，没错，我要造个老虎，我要看看造老虎能用到哪些接口类。<br>&emsp;&emsp;现在来扒拉扒拉我的接口类里面有什么可以拿来让我造老虎的，众所周知，对于老虎来说，老虎没有语言，也不会光合作用，老虎会run/swim/eat，所以AnimalEat()/AnimalSwim()/AnimalRun()这些可以拿来让我造老虎。<br>开始造老虎，创建一个Tiger类，继承这三个接口类。<br>&emsp;&emsp;既然继承了某个接口类，那么我就必须要实现（重写）这个接口类提供的功能。不然，我为什么要继承这个接口呢？</p>
+# 创建一个接口类
+# 接口类AnimalRun
+class AnimalRun(metaclass=ABCMeta):
+
+    # 抽象方法
+    @abstractmethod
+    def run(self):
+        pass
+
+
+# 创建一个接口类
+# 接口类AnimalSwim
+class AnimalSwim(metaclass=ABCMeta):
+
+    # 抽象方法
+    @abstractmethod
+    def swim(self):
+        pass
+
+
+# 创建一个接口类
+# 接口类AnimalEat
+class AnimalEat(metaclass=ABCMeta):
+
+    # 抽象方法
+    @abstractmethod
+    def eat(self):
+        pass
+
+
+# 我们再创建一个有关人类说话这个动作的接口类
+class PeopleLanguage(metaclass=ABCMeta):
+
+    @abstractmethod
+    def Language(self):
+        pass
+
+
+# 创建一个“飞”这个动作的接口类
+class AnimalFly(metaclass=ABCMeta):
+
+    @abstractmethod
+    def fly(self):
+        pass
+
+
+# 创建一个植物“光合作用”这个功能的接口类
+class PlantPht(metaclass=ABCMeta):
+
+    @abstractmethod
+    def pht(self):
+        pass</code></pre><p>&emsp;&emsp;现在我手里有六个接口类，不要管是什么接口类，反正我现在有六个接口类。<br>&emsp;&emsp;好了，我要开始装逼了。<br>&emsp;&emsp;我手里有这些接口类，我现在想要造一只老虎，没错，我要造个老虎，我要看看造老虎能用到哪些接口类。<br>&emsp;&emsp;现在来扒拉扒拉我的接口类里面有什么可以拿来让我造老虎的，众所周知，对于老虎来说，老虎没有语言，也不会光合作用，老虎会run/swim/eat，所以AnimalEat()/AnimalSwim()/AnimalRun()这些可以拿来让我造老虎。<br>开始造老虎，创建一个Tiger类，继承这三个接口类。<br>&emsp;&emsp;既然继承了某个接口类，那么我就必须要实现（重写）这个接口类提供的功能。不然，我为什么要继承这个接口呢？</p>
 <p><strong>代码如下</strong>  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 老虎类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tiger</span><span class="params">(AnimalRun, AnimalSwim, AnimalEat)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"tiger run"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swim</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"tiger swim"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"tiger eat"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">造完老虎类之后，来实例化一个老虎对象。</span></span><br><span class="line"><span class="string">如下，我的老虎有了run/swim/eat这些功能。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">tiger = Tiger()</span><br><span class="line"></span><br><span class="line">tiger.run()</span><br><span class="line">tiger.swim()</span><br><span class="line">tiger.eat()</span><br></pre></td></tr></table></figure>
+<pre><code># 老虎类
+class Tiger(AnimalRun, AnimalSwim, AnimalEat):
+    def run(self):
+        print(&quot;tiger run&quot;)
 
-<p>&emsp;&emsp;有的同学要问了，在继承的接口类中，能不能其中一个接口类不去实现？你看，如果你不去实现这个接口类，那你为什么要继承它呢？mmp哦。<br>&emsp;&emsp;记住一点：<strong>如果某些接口类没用，则不继承！如果继承某个接口类，就要实现某个接口类里面提供的所有方法。</strong><br>就比如我们上面写的People/PlantPht这些类，老虎继承它没用，所以就不去继承。  </p>
+    def swim(self):
+        print(&quot;tiger swim&quot;)
+
+    def eat(self):
+        print(&quot;tiger eat&quot;)
+
+
+&quot;&quot;&quot;
+造完老虎类之后，来实例化一个老虎对象。
+如下，我的老虎有了run/swim/eat这些功能。
+
+&quot;&quot;&quot;
+tiger = Tiger()
+
+tiger.run()
+tiger.swim()
+tiger.eat()</code></pre><p>&emsp;&emsp;有的同学要问了，在继承的接口类中，能不能其中一个接口类不去实现？你看，如果你不去实现这个接口类，那你为什么要继承它呢？mmp哦。<br>&emsp;&emsp;记住一点：<strong>如果某些接口类没用，则不继承！如果继承某个接口类，就要实现某个接口类里面提供的所有方法。</strong><br>就比如我们上面写的People/PlantPht这些类，老虎继承它没用，所以就不去继承。  </p>
 <p>&emsp;&emsp;我觉得上面对接口类的整理已经很清晰了。  </p>
 <hr>
 <p>&emsp;&emsp;下面来看看抽象类，刚才说了，<strong>“只要含有”抽象方法的类就是抽象类！</strong><br>&emsp;&emsp;下面举几个例子。  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 抽象类举例</span></span><br><span class="line"><span class="comment"># 1、含有属性的抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbsClassAttr</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里不强调什么属性，含有什么属性都行,为了方便，我们在这里使用对象属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.attr = <span class="string">'含有属性的抽象类'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽象类无法实例化</span></span><br><span class="line"><span class="comment"># a = AbsClassAttr()</span></span><br><span class="line"><span class="comment"># a.method()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">当我去尝试实例化一个抽象类时，系统报错告诉我不能实例化一个含有抽象方法的类。</span></span><br><span class="line"><span class="string">接下来我去创建一个类，去继承并且实例化这个抽象类中的抽象方法，且输出它的属性值。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个类继承抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span><span class="params">(AbsClassAttr)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"输出继承之后的属性："</span> + self.attr)</span><br><span class="line">        print(<span class="string">"重写抽象类的方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化这个类</span></span><br><span class="line"><span class="comment"># 完全ojbk</span></span><br><span class="line">c = ChildClass()</span><br><span class="line">c.method()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、含有普通方法的抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbsClassMethod</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">normal_method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"这是一个普通方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽象类无法实例化</span></span><br><span class="line"><span class="comment"># a = AbsClassMethod()</span></span><br><span class="line"><span class="comment"># a.method()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个类继承抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span><span class="params">(AbsClassMethod)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"重写抽象类的方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化这个类</span></span><br><span class="line"><span class="comment"># 完全ojbk</span></span><br><span class="line">c = ChildClass()</span><br><span class="line">c.method()</span><br><span class="line"><span class="comment"># 调用继承之后的普通方法</span></span><br><span class="line">c.normal_method()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、含有属性和普通方法的抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbsClassAtrrMethod</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.attr = <span class="string">"这是抽象类的属性"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">normal_method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"这是一个普通方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽象类无法实例化</span></span><br><span class="line"><span class="comment"># a = AbsClassAtrrMethod()</span></span><br><span class="line"><span class="comment"># a.method()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个类继承抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span><span class="params">(AbsClassAtrrMethod)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"继承父类之后的属性："</span> + self.attr)</span><br><span class="line">        print(<span class="string">"重写抽象类的方法"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化这个类</span></span><br><span class="line"><span class="comment"># 完全ojbk</span></span><br><span class="line">c = ChildClass()</span><br><span class="line">c.method()</span><br><span class="line"><span class="comment"># 调用继承之后的普通方法</span></span><br><span class="line">c.normal_method()</span><br></pre></td></tr></table></figure>
+<pre><code># 抽象类举例
+# 1、含有属性的抽象类
+class AbsClassAttr(metaclass=ABCMeta):
 
-<p>&emsp;&emsp;以上三条测试发现，与我们在开始的时候提到的抽闲类的概念完全符合。<br>&emsp;&emsp;什么是接口类？什么是抽象类？看完上面这些，对这两个概念有近一步理解吗？<br>&emsp;&emsp;接口类和抽象类总结说这么多吧。  </p>
+    # 这里不强调什么属性，含有什么属性都行,为了方便，我们在这里使用对象属性
+    def __init__(self):
+        self.attr = &#39;含有属性的抽象类&#39;
+
+    @abstractmethod
+    def method(self):
+        pass
+
+
+# 抽象类无法实例化
+# a = AbsClassAttr()
+# a.method()
+&quot;&quot;&quot;
+当我去尝试实例化一个抽象类时，系统报错告诉我不能实例化一个含有抽象方法的类。
+接下来我去创建一个类，去继承并且实例化这个抽象类中的抽象方法，且输出它的属性值。
+&quot;&quot;&quot;
+
+
+# 创建一个类继承抽象类
+class ChildClass(AbsClassAttr):
+    def method(self):
+        print(&quot;输出继承之后的属性：&quot; + self.attr)
+        print(&quot;重写抽象类的方法&quot;)
+
+
+# 实例化这个类
+# 完全ojbk
+c = ChildClass()
+c.method()
+
+
+# 2、含有普通方法的抽象类
+class AbsClassMethod(metaclass=ABCMeta):
+
+    @abstractmethod
+    def method(self):
+        pass
+
+    def normal_method(self):
+        print(&quot;这是一个普通方法&quot;)
+
+
+# 抽象类无法实例化
+# a = AbsClassMethod()
+# a.method()
+
+# 创建一个类继承抽象类
+class ChildClass(AbsClassMethod):
+    def method(self):
+        print(&quot;重写抽象类的方法&quot;)
+
+
+# 实例化这个类
+# 完全ojbk
+c = ChildClass()
+c.method()
+# 调用继承之后的普通方法
+c.normal_method()
+
+
+# 3、含有属性和普通方法的抽象类
+class AbsClassAtrrMethod(metaclass=ABCMeta):
+
+    def __init__(self):
+        self.attr = &quot;这是抽象类的属性&quot;
+
+    @abstractmethod
+    def method(self):
+        pass
+
+    def normal_method(self):
+        print(&quot;这是一个普通方法&quot;)
+
+
+# 抽象类无法实例化
+# a = AbsClassAtrrMethod()
+# a.method()
+
+# 创建一个类继承抽象类
+class ChildClass(AbsClassAtrrMethod):
+    def method(self):
+        print(&quot;继承父类之后的属性：&quot; + self.attr)
+        print(&quot;重写抽象类的方法&quot;)
+
+
+# 实例化这个类
+# 完全ojbk
+c = ChildClass()
+c.method()
+# 调用继承之后的普通方法
+c.normal_method()
+</code></pre><p>&emsp;&emsp;以上三条测试发现，与我们在开始的时候提到的抽闲类的概念完全符合。<br>&emsp;&emsp;什么是接口类？什么是抽象类？看完上面这些，对这两个概念有近一步理解吗？<br>&emsp;&emsp;接口类和抽象类总结说这么多吧。  </p>
 
     </div>
 </article>
+hljs.initHighlightingOnLoad();
         </main>
         <aside class="aside">
             <div class="close"></div>
