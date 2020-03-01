@@ -1,1469 +1,385 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>Bsj&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="open the new world">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bsj&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/page/12/index.html">
-<meta property="og:site_name" content="Bsj&#39;s Blog">
-<meta property="og:description" content="open the new world">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Bsj">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="hexo, autumn" />
+    <title>
+        Bsj&#39;s Blog
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico" />
+     
 <link rel="stylesheet" href="/css/style.css">
 
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Bsj&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">blog</a>
-        </h2>
-      
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/" class="logo">
+                Bsj&#39;s Blog
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/" class="logo">
+            Bsj&#39;s Blog
+        </a>
+    </h1>
+    <h2 class="desc">
+        blog
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://github.com/FrontendSophie" target="_blank" rel="noopener">
+                    Github
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/frontendsophie/" target="_blank" rel="noopener">
+                    LinkedIn
+                </a>
+            </li>
+            
+        </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Java的基础语法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/26/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="article-date">
-  <time datetime="2019-04-26T07:08:02.000Z" itemprop="datePublished">2019-04-26</time>
-</a>
+        <main class="main">
+            
+<section class="posts">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/04/26/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+                            Java的基础语法
+                        </a>
+                    </h1>
+
+                    <ul class="post-date">
+                        <li>
+                            April 26, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/04/26/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/26/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">Java的基础语法</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/04/19/%E4%BD%BF%E7%94%A8Django%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/">
+                            新建一个Django项目
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="java的基础语法"><a href="#java的基础语法" class="headerlink" title="java的基础语法"></a>java的基础语法</h2><p>&emsp;&emsp;自我认为<code>C/C++</code>是我接触编程语言时的母语，经过对<code>C</code>语法长时间的使用，在学习<code>Php、Java、python</code>等编程语言的时候，我个人会进行一些相对于<code>C</code>语言的比较，<code>Java</code>的基础语法和<code>C/C++</code>类似，对我来说应该是能够更快的学习<code>Java</code>。  </p>
-<h2 id="Jave的基础语法"><a href="#Jave的基础语法" class="headerlink" title="Jave的基础语法"></a>Jave的基础语法</h2><h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>Java的<strong>类型</strong>包括两种  </p>
-<ol>
-<li>基本类型<br>基本类型又包括5类：<br>（1）字节型：byte（1个字节）<br>（2）整型：short（2个字节）、int（4个字节）、long（8个字节）<br>（3）浮点型：float（4个字节）、double（8个字节）<br>（4）字符型：char（2个字节）<br>（5）布尔型：boolean（Java中没有给定boolean的字节）  </li>
-<li>类类型  </li>
-</ol>
-<p><strong>– Note –</strong><br>&emsp;&emsp;（1）所谓的基本类型，就是在使用时，考虑一下数据用多少内存比较经济，由JVM为用户在内存中配置与管理<br>&emsp;&emsp;（2）浮点数在写入的时候默认为是double型的，如果使用float，请使用类型转化</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用float存储小数</span></span><br><span class="line"><span class="built_in">float</span> x = <span class="number">3.14</span>F</span><br><span class="line"><span class="built_in">float</span> x = (<span class="built_in">float</span>) <span class="number">3.14</span></span><br></pre></td></tr></table></figure>
-<h3 id="常用的格式控制符"><a href="#常用的格式控制符" class="headerlink" title="常用的格式控制符"></a>常用的格式控制符</h3><table>
-<thead>
-<tr>
-<th>符号</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>%%</td>
-<td>格式化输出一个%</td>
-</tr>
-<tr>
-<td>%d</td>
-<td>格式化输出整数类型的数，除此之外还有byte、Byte、Short、Integer、Long、BigInteger</td>
-</tr>
-<tr>
-<td>%f</td>
-<td><strong>十进制浮点数</strong>格式输出，除此之外还有Float、Double、BigDecimal</td>
-</tr>
-<tr>
-<td>%e、%E</td>
-<td><strong>科学计数法浮点数</strong>格式输出，除此之外还有Float、Double、BigDecimal，%e代表e小写，%E代表E大写</td>
-</tr>
-<tr>
-<td>%o</td>
-<td>八进制整数类型格式输出，除此之外还有byte、Byte、Short、Integer、Long、BigInteger</td>
-</tr>
-<tr>
-<td>%x、%X</td>
-<td>十六进制整数格式化输出，除此之外还有byte、Byte、Short、Integer、Long、BigInteger</td>
-</tr>
-<tr>
-<td>%s、%S</td>
-<td>字符串格式化符号</td>
-</tr>
-<tr>
-<td>%c、%C</td>
-<td>字符格式输出<strong>提供的数必须是byte、short、char、Byte、Short、Charactor或者是Integer</strong>，%c表示字母小写，%C表示字母大写</td>
-</tr>
-<tr>
-<td>%b、%B</td>
-<td>输出boolean值，%b代表小写true/false，%B代表大写TRUE/FALSE</td>
-</tr>
-<tr>
-<td>%h、%H</td>
-<td>使用Integer.toHexString(arg.hashCode())来得到输出结果，如果arg是null，则输出null，也常用于十六进制格式输出</td>
-</tr>
-<tr>
-<td>%n</td>
-<td><strong>输出平台特定的换行符号</strong>，Windows下是”\r\n”，Linux下是’\n’</td>
-</tr>
-</tbody></table>
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ol>
-<li>命名规范<br>（1）不可为关键字、保留字<br>（2）变量名不可数字开头<br>（3）不可使用特殊符号  </li>
-<li>命名习惯<br>&emsp;&emsp;Java的命名习惯，通常以小写字母开头，并且在每个单词的开头大写，这种命名方式称为<strong>驼峰命名法</strong><br>&emsp;&emsp;如：<code>int ageOfStudent;</code>  </li>
-</ol>
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ol>
-<li>几种常见进制数的表示方法<br>（1）二进制数（0b开头）：<code>int num = 0b10010011;</code><br>（2）八进制数（0开头）：<code>int num = 014;</code><br>（3）十进制数：<code>int num = 12</code><br>（4）十六进制数（0x开头）：<code>0xC</code>  </li>
-<li>常见的转义字符</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>转义字符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>\\</td>
-<td>反斜杠\</td>
-</tr>
-<tr>
-<td>\‘</td>
-<td>单引号’</td>
-</tr>
-<tr>
-<td>\“</td>
-<td>双引号”</td>
-</tr>
-<tr>
-<td>\uxxxx</td>
-<td>以十六进制指定Unicode字符输出，x表示数字</td>
-</tr>
-<tr>
-<td>\xxx</td>
-<td>以八进制指定Unicode字符输出，x表示数字</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>倒退一个字符</td>
-</tr>
-<tr>
-<td>\f</td>
-<td>换页</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>换行</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>光标移至行首</td>
-</tr>
-<tr>
-<td>3. Java中的常量表示法</td>
-<td></td>
-</tr>
-<tr>
-<td>&emsp;&emsp;从Java SE7之后，撰写整数或者浮点数能够使用下划线更清楚的表示某些数字，如：</td>
-<td></td>
-</tr>
-<tr>
-<td>&emsp;&emsp;<code>int number = 1234_5678;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>&emsp;&emsp;<code>int mask = 0b1010_1010_1010;</code></td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ol>
-<li>算数运算符<br><code>+ - * / %</code></li>
-<li>比较、条件运算符<br><code>&gt; &lt; &gt;= &lt;= == !=</code>  </li>
-</ol>
-<p><strong>– Note –</strong><br>&emsp;&emsp;三目运算符：<code>?:</code> –&gt; <code>例：a&gt;b?a:b;</code><br>3. 逻辑运算符<br><code>(与)&amp;&amp; (或)|| (非)！</code><br>4. 位运算符<br><code>(移位运算符)&gt;&gt; &lt;&lt; (逻辑与)&amp; (逻辑或)| (异或)^ (非)~</code><br>5. 递增递减运算<br><code>++ --</code><br>6. 指定运算符<br><code>+= -= /= %= ^= &amp;= 等等</code></p>
-<h3 id="类型转换的经度问题"><a href="#类型转换的经度问题" class="headerlink" title="类型转换的经度问题"></a>类型转换的经度问题</h3><p>&emsp;&emsp;前面在基本类型介绍的时候已经举例说明float的转换方法了，在这里简单说几点要点。<br>&emsp;&emsp;1、运算时<br>&emsp;&emsp;（1）如果表达式中包括不同类型数值，则运算时以长度最长的类型为主，其他数值自动提升类型。<br>&emsp;&emsp;（2）Java在运算整数时，如果全部的操作数都不是大于int的，一律在int的空间中运算。  </p>
-<p><strong>– Note –</strong><br>&emsp;&emsp;注意精度遗失的发生。</p>
-<h3 id="流程控制（与C同）"><a href="#流程控制（与C同）" class="headerlink" title="流程控制（与C同）"></a>流程控制（与C同）</h3><p><code>if else</code><br><code>for</code><br><code>switch</code><br><code>while</code><br><code>do while</code></p>
-<p><strong>– Note –</strong><br>&emsp;&emsp;这些都与C相同，在此不再赘述  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/26/Java%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ck78s1tm8000p1g9y99ege725" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Django新建一个项目" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/19/%E4%BD%BF%E7%94%A8Django%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/" class="article-date">
-  <time datetime="2019-04-19T07:49:01.000Z" itemprop="datePublished">2019-04-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            April 19, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/04/19/%E4%BD%BF%E7%94%A8Django%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/19/%E4%BD%BF%E7%94%A8Django%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/">新建一个Django项目</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/04/16/git%E4%BD%BF%E7%94%A8%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/">
+                            git使用简单教程
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="使用Django管理工具新建Django项目"><a href="#使用Django管理工具新建Django项目" class="headerlink" title="使用Django管理工具新建Django项目"></a>使用Django管理工具新建Django项目</h2><h3 id="django-admin"><a href="#django-admin" class="headerlink" title="django-admin"></a>django-admin</h3><p>Django的管理工具</p>
-<p><code>django-admin</code> 用来查看django的命令</p>
-<h3 id="创建Djang项目"><a href="#创建Djang项目" class="headerlink" title="创建Djang项目"></a>创建Djang项目</h3><p><code>django-admin startproject HelloWorld</code>创建一个HelloWorld的项目</p>
-<p>创建完成之后你能够清楚的看到此项目的结构。</p>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>启动服务器，查看项目的创建结果</p>
-<p><code>python3 manage.py runserver 0.0.0.0:8000</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/19/%E4%BD%BF%E7%94%A8Django%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/" data-id="ck78s1tpp005p1g9yda7k0esi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/" rel="tag">Django</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-git使用简单教程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/16/git%E4%BD%BF%E7%94%A8%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" class="article-date">
-  <time datetime="2019-04-16T01:16:19.000Z" itemprop="datePublished">2019-04-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            April 16, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/04/16/git%E4%BD%BF%E7%94%A8%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/16/git%E4%BD%BF%E7%94%A8%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/">git使用简单教程</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/04/10/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%BF%83%E5%BE%97/">
+                            博客心得
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="git使用简单教程"><a href="#git使用简单教程" class="headerlink" title="git使用简单教程"></a>git使用简单教程</h2><p>参考网址：<br><a href="http://www.runoob.com/git/git-install-setup.html" target="_blank" rel="noopener">Git安装配置</a><br><a href="http://www.runoob.com/git/git-basic-operations.html" target="_blank" rel="noopener">Git基本操作</a><br>在我理解的基础上，总结点git平时使用功能的简单概述  </p>
-<h3 id="Git配置（已经配置过git的不用看这块内容）"><a href="#Git配置（已经配置过git的不用看这块内容）" class="headerlink" title="Git配置（已经配置过git的不用看这块内容）"></a>Git配置（已经配置过git的不用看这块内容）</h3><p>下载Git后配置</p>
-<p><strong>——配置——</strong></p>
-<p>如：用户信息配置个人的用户名称和电子邮件地址：<br><code>$ git config --global user.name &quot;runoob&quot;</code><br><code>$ git config --global user.email test@runoob.com</code>  </p>
-<p><strong>——查询配置——</strong></p>
-<p>查询配置信息：<br><code>git config --list</code>  </p>
-<p>查询单个信息如： user.name  </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>user.name  </span><br><span class="line">$ zzti-bsj</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="git的基本操作"><a href="#git的基本操作" class="headerlink" title="git的基本操作"></a>git的基本操作</h3><p>&emsp;&emsp;在云端项目开发时，考虑到小组或者组织之间模块的整合等问题，为了解决推送、拉取、同步等等问题，使用git对项目的开发进行管理，以便于小组成员之间的工作协调一致，项目的顺利进行。<br>&emsp;&emsp;下面我总结了一些用法。</p>
-<h3 id="情况一：小组间开发项目"><a href="#情况一：小组间开发项目" class="headerlink" title="情况一：小组间开发项目"></a>情况一：小组间开发项目</h3><ul>
-<li>本地初始化项目仓库：<ul>
-<li><code>git init</code></li>
-<li><code>git remote add [仓库名称，自定义的] [远程仓库url]</code></li>
-</ul>
-</li>
-<li>推送（push）：<ul>
-<li><code>git add .</code>//添加整个工作区到缓冲区</li>
-<li>(<code>git status -s</code>//查看本地文件的状态，如果想看看你刚才对项目里文件的操作是什么样子，可以使用这个命令在这个时候查看一下)</li>
-<li><code>git commit -m &quot;描述信息（可为空）&quot;</code>//提交缓冲区到仓库中去</li>
-<li><code>git pull</code>//与远程仓库合并 <code>git pull --rebase [自定义的仓库名] master</code>//第一次和项目合并时使用这条命令，以后使用<code>git pull</code></li>
-<li><code>git push</code> //推送到远程仓库，如果这个不行，第一次推送时使用如下命令<code>git push -u [自定义的仓库名] master</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="情况二：下载一些github上的第三方库"><a href="#情况二：下载一些github上的第三方库" class="headerlink" title="情况二：下载一些github上的第三方库"></a>情况二：下载一些github上的第三方库</h3><p><code>git clone [远程仓库url]</code>//拷贝项目</p>
-<h2 id="git简单操作附录"><a href="#git简单操作附录" class="headerlink" title="git简单操作附录"></a>git简单操作附录</h2><h4 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h4><p>初始化Git本地仓库<br><code>git init</code></p>
-<h4 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h4><p>添加远程仓库<br><code>git remote add [自定义仓库名] [远程仓库url]</code></p>
-<h4 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h4><p>添加文件到缓存<br><code>git add &lt;file&gt; //添加某个文件</code><br><code>git add . //添加整个工作区文件</code>  </p>
-<h4 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h4><p>提交缓冲区文件到仓库中<br><code>git commit -m &quot;描述信息&quot;</code></p>
-<h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><p>推送到远程仓库<br><code>git push -u [自定义的仓库名] master</code></p>
-<h4 id="git-fetch-git-merge"><a href="#git-fetch-git-merge" class="headerlink" title="git fetch/git merge"></a>git fetch/git merge</h4><p>从远程仓库fetch且merge<br>两步操作：  </p>
-<p><code>git fetch</code><br><code>git merge</code></p>
-<p><strong>一步操作：</strong></p>
-<p><code>git pull</code><br><code>git pull --rebase [自定义仓库名] master</code>  </p>
-<h4 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h4><p>查看本地文件的状态<br><code>git status -s //查看自上次提交之后修改的文件状态，-s 参数意思是简洁地显示当前状态信息</code></p>
-<h4 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h4><p>来查看执行 git status 的结果的详细信息  </p>
-<ul>
-<li>尚未缓存的改动：git diff</li>
-<li>查看已缓存的改动： git diff –cached</li>
-<li>查看已缓存的与未缓存的所有改动：git diff HEAD</li>
-<li>显示摘要而非整个 diff：git diff –stat</li>
-</ul>
-<p><strong>在工作区添加一个文件，自己动手改动文件，测试这几种状态</strong></p>
-<h4 id="git-reset-HEAD"><a href="#git-reset-HEAD" class="headerlink" title="git reset HEAD"></a>git reset HEAD</h4><p>取消已缓存的内容<br>如：在工作区中新添加一个hello.c文件，然后<code>git add hello.c</code>，如果想从缓冲区中取消此文件，则执行<code>git reset HEAD hello.c</code>即取消缓冲区中的<code>hello.c</code>文件</p>
-<h4 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h4><p>删除工作区中 <strong>已跟踪（必须）</strong> 的文件  </p>
-<p><code>git rm &lt;file&gt; //删除工作区中的文件</code><br><code>git rm -f &lt;file&gt; //删除已经加入到缓冲区的文件</code>  </p>
-<p>从跟踪清单中删除：<code>git rm --cached &lt;file&gt;</code></p>
-<h4 id="git-mv"><a href="#git-mv" class="headerlink" title="git mv"></a>git mv</h4><p>//修改文件名（还可以用来移动文件）<br><code>git mv hello.c world.c //把文件hello.c改成world.c</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/16/git%E4%BD%BF%E7%94%A8%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" data-id="ck78s1to600331g9y5phc0m8d" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-写博客心得" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/10/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%BF%83%E5%BE%97/" class="article-date">
-  <time datetime="2019-04-10T10:39:03.000Z" itemprop="datePublished">2019-04-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            April 10, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/04/10/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%BF%83%E5%BE%97/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%BF%83%E5%BE%97/">博客心得</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/01/17/Python_%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF/">
+                            Python_爬取豆瓣高分电影信息并存入excel
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="总是觉得乱"><a href="#总是觉得乱" class="headerlink" title="总是觉得乱"></a>总是觉得乱</h3><p>感觉自己有强迫症，不是整齐划一的东西就会觉得太乱。<br>写博客也是，谁能知道下一篇博客会写成什么样子，会不会和现在的风格不一样，有没有自己独特的风格，在未来发现自己的风格之后会不会觉得以前的太乱。。。<br>想来想去，劝说自己，管它呢。每篇博客是最优的就行，风格就是随心。好像不给自己一个理由还做不好事了呢？<br>大致规划一下这些要写的东西都是哪方面的，然后归档，进而一点一点的填充内容。<br>以后继续坚持写博客，在这个上面写的内容是关于技术、生活，在csdn上面写算法和数据结构。  </p>
-<p>2019.7.15<br>片面的表面现象不能形成知识联系，可以形成树形结构的知识链，帮助自己更好的记忆知识。  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/10/%E5%86%99%E5%8D%9A%E5%AE%A2%E5%BF%83%E5%BE%97/" data-id="ck78s1tpt00611g9y1oylc79o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python_爬取豆瓣高分电影信息" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/17/Python_%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF/" class="article-date">
-  <time datetime="2019-01-17T07:01:32.000Z" itemprop="datePublished">2019-01-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            January 17, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/01/17/Python_%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/17/Python_%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF/">Python_爬取豆瓣高分电影信息并存入excel</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E5%A4%B4%E6%9D%A1%E8%A1%97%E6%8B%8D%E5%9B%BE%E7%89%87/">
+                            Python_爬取头条街拍图片
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Python爬取豆瓣高分电影信息并存入excel"><a href="#Python爬取豆瓣高分电影信息并存入excel" class="headerlink" title="Python爬取豆瓣高分电影信息并存入excel"></a>Python爬取豆瓣高分电影信息并存入excel</h3><p>目标网址：（爬取豆瓣的高分电影信息）<a href="https://movie.douban.com/top250?start=0&amp;filter=" target="_blank" rel="noopener">https://movie.douban.com/top250?start=0&amp;filter=</a><br>发现只有start在变动，这就好办了</p>
-<p>首页的简略信息  只爬取每一个的top 和 详情页的链接<br>详情页的信息，爬取<br>1 影片名称<br>2 导演<br>3 编剧<br>4 主演<br>5 类型<br>6 官方网站<br>7 制片国家/地区<br>8 语言<br>9 上映时间<br>10 片长<br>并且保存到更适用于爬虫的mongodb数据库中</p>
-<p>爬着爬着发现有个json文件存储着电影的简介信息<br>爬着爬着发现有更好的优化方法，先写完这一个吧，后续再优化</p>
-<p><strong>巩固以下知识：</strong></p>
-<ol>
-<li>re.sub()函数<ol>
-<li>params:<ol>
-<li>正则表达式定义的匹配模式</li>
-<li>替换后字符</li>
-<li>目标字符串</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>user_agent模块的用法（它竟然不报错了，我也是很惊讶）<ol>
-<li>之前使用有时候会报错？（问题待解决）如果不能用这个，就使用浏览器自带的User-Agent</li>
-<li>这里我使用的浏览器User-Agent</li>
-</ol>
-</li>
-<li>字典的插入：直接给键赋值，就插如了一条字典元素</li>
-<li>对 元组内的元素不能被重复赋值 <strong>（tuple属于不可变数据）</strong></li>
-</ol>
-<p><code>&#39;tuple&#39; object does not support item assignment</code> </p>
-<p><strong>遇到的问题:</strong>    </p>
-<ul>
-<li><strong>这个程序，我碰到了403问题，怎么处理403问题？</strong><br>我加上所有的请求头，然后还使用了一个代理ip，然后一个一个的去验证到底是因为没有什么而出现的问题，我先去掉代理ip，也能够访问，说明还不至于使用代理ip，然后去掉请求头中的referer、host，程序也能够访问，我又再次去掉Cookie，发现不能进行访问，说明需要加上Cookie，403的问题解决了，但是还有验证码的问题怎么办？</li>
-<li><strong>怎么处理验证码问题？</strong><code>待续</code></li>
-<li>我的程序总是卡在165这个电影上面，不是请求的问题，是程序的问题，但是我对程序也进行了测试和处理，还是要卡在165，是不是解决了验证码的问题就不会卡在这里了？？？还是因为程序的问题？<code>待续</code></li>
-<li><strong>怎么把数据存入到excel中？？</strong><br>用到了两个库 xlwt （写） xlrd （读）<br>这里用一下写，把数据写入excel中，然后创建一个函数，从excel中读取数据</li>
-<li><strong>有没有将dict转化为list的方法？</strong><br>循环dict.values()，并且把每一个值append()到list中，这样就实现了循环</li>
-</ul>
-<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><p><strong>注意：Cookie需要改成自己的，并且登录豆瓣然后爬取</strong></p>
-<pre><code>import re,requests,pymongo
-import xlwt,xlrd
-from fake_useragent import UserAgent
-
-
-ua = UserAgent()
-
-class DataTool(object):
-    def __init__(self):
-        # 创建一个客户端对象
-        self.client = pymongo.MongoClient(&apos;Localhost&apos;)
-        # 根据这个客户端对象，连接数据库
-        self.db = self.client[&apos;douban&apos;]
-
-    def new_tuple_data(self,origin_tuple_data):
-        new_dict = {}
-        if(len(origin_tuple_data) == 12):
-            new_dict[&apos;电影排名&apos;] = origin_tuple_data[0]
-            new_dict[&apos;电影名称&apos;] = origin_tuple_data[1]
-            new_dict[&apos;导演&apos;] = origin_tuple_data[2]
-
-            # pass_&lt;a href=.*?&gt;
-            p1 = re.compile(r&apos;&lt;a href=.*?&gt;&apos;,re.S)
-            # pass_&lt;/a&gt;
-            p2 = re.compile(r&apos;&lt;/a&gt;&apos;,re.S)
-            # pass_&lt;/span&gt;
-            p3 = re.compile(r&apos;&lt;/span&gt;&apos;,re.S)
-            # pass_&lt;span property=.*?&gt;
-            p4 = re.compile(r&apos;&lt;span property=.*?&gt;&apos;,re.S)
-            # pass_\n
-            p5 = re.compile(r&apos;\n&apos;,re.S)
-            # pass_space
-            p6 = re.compile(r&apos; &apos;,re.S)
-            # pass_\u3000
-            p7 = re.compile(r&apos;\u3000&apos;,re.S)
-            # pass_&lt;br /&gt;.*?
-            p8 = re.compile(r&apos;&lt;br/&gt;&apos;,re.S)
-
-            writer = re.sub(p1,&apos;&apos;,origin_tuple_data[3])
-            writer = re.sub(p2,&apos;&apos;,writer)
-            new_dict[&apos;编剧&apos;] = writer
-
-            actor = re.sub(p1,&apos;&apos;,origin_tuple_data[4])
-            actor = re.sub(p2,&apos;&apos;,actor)
-            new_dict[&apos;主演&apos;] = actor
-
-            gut = re.sub(p3,&apos;&apos;,origin_tuple_data[5])
-            gut = re.sub(p4,&apos;&apos;,gut)
-            new_dict[&apos;类型&apos;] = gut
-
-            new_dict[&apos;制片国家/地区&apos;] = origin_tuple_data[6]
-            new_dict[&apos;语言&apos;] = origin_tuple_data[7]
-
-            date = re.sub(p3,&apos;&apos;,origin_tuple_data[8])
-            date = re.sub(p4,&apos;&apos;,date)
-            new_dict[&apos;上映日期&apos;] = date
-
-            time = re.sub(p3,&apos;&apos;,origin_tuple_data[9])
-            time = re.sub(p4,&apos;&apos;,time)
-            new_dict[&apos;片长&apos;] = time
-
-            new_dict[&apos;豆瓣评分&apos;] = origin_tuple_data[10]
-
-            synopsis = re.sub(p5,&apos;&apos;,origin_tuple_data[11])
-            synopsis = re.sub(p6,&apos;&apos;,synopsis)
-            synopsis = re.sub(p7,&apos;&apos;,synopsis)
-            synopsis = re.sub(p8,&apos;&apos;,synopsis)
-            new_dict[&apos;剧情简介&apos;] = synopsis
-            self.db[&apos;d_b&apos;].insert_one(new_dict)
-            return new_dict
-        else:
-            new_dict[&apos;电影排名：&apos;] = origin_tuple_data[0]
-            new_dict[&apos;电影名称&apos;] = origin_tuple_data[1]
-            new_dict[&apos;导演&apos;] = origin_tuple_data[2]
-            return new_dict
-
-class Excel(object):
-
-    # 读取数据
-    def __init__(self):
-        # 创建工作簿
-        self.work_book = xlwt.Workbook(&apos;utf-8&apos;)
-
-        # 创建一个excel表
-        self.excel_Worksheet = self.work_book.add_sheet(&apos;豆瓣top250电影简讯&apos;, cell_overwrite_ok=True)
-
-        # 创建第一行 标题
-        self.rowTitle = [&apos;电影排名&apos;,&apos;电影名称&apos;,&apos;导演&apos;,&apos;编剧&apos;,&apos;主演&apos;,&apos;类型&apos;,&apos;制片国家/地区&apos;,&apos;语言&apos;,&apos;上映日期&apos;,&apos;片长&apos;,&apos;豆瓣评分&apos;,&apos;剧情简介&apos;]
-
-        # 把第一行写入表格
-        for i in range(0,len(self.rowTitle)):
-            self.excel_Worksheet.write(0,i,self.rowTitle[i])
-        self.save_excel_Data()
-
-    # 写入数据
-    def write_data(self,row,movie_data_dict):
-
-        # ----------处理电影信息------------
-        # 由字典转化成列表
-        movie_data_list = []
-        for value in movie_data_dict.values():
-            movie_data_list.append(value)
-
-        # ----------------------------------
-
-        # 把电影数据写入表格
-        for i in range(0,len(self.rowTitle)):
-            self.excel_Worksheet.write(row,i,movie_data_list[i])
-
-    def save_excel_Data(self):
-        # 这个保存是在建立一个工作簿那个对象进行保存的
-        self.work_book.save(&apos;douban.xls&apos;)
-
-
-class DouBan(object):
-    def __init__(self):
-        self.headers = {
-            &apos;User-Agent&apos; : &apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0&apos;,
-
-            &apos;Cookie&apos;:&apos;ll=&quot;118237&quot;; bid=miJfnEe9C8E; __yadk_uid=C8tCYDQmeHxAfZlS5hvnGCCLtrU72prh; douban-fav-remind=1; ps=y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1547354707%2C%22https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Fqrconnect%3Fappid%3Dwxd9c1c6bbd5d59980%26redirect_uri%3Dhttps%253A%252F%252Fwww.douban.com%252Faccounts%252Fconnect%252Fwechat%252Fcallback%26response_type%3Dcode%26scope%3Dsnsapi_login%26state%3DmiJfnEe9C8E%252523douban-web%252523https%25253A%252F%252Fmovie.douban.com%252Ftop250%25253Fstart%25253D125%252526filter%25253D%22%5D; _pk_id.100001.4cf6=4179da9d4af6318e.1543568427.5.1547358498.1547349967.; _vwo_uuid_v2=D4FCFEDCB33DF07B2DE0DC525D42F7488|9024e242bbd9c0f98192b002e4091fc3; as=&quot;https://sec.douban.com/b?r=https%3A%2F%2Fmovie.douban.com%2Fsubject%2F26430107%2F&quot;; dbcl2=&quot;189997368:Qj2bbphj+X0&quot;; ck=iccT; push_noty_num=0; push_doumail_num=0&apos;
-
-        }
-
-        # 设置代理ip
-        # self.proxy_list = {
-        #     &quot;http&quot;: &quot;http://202.121.96.33:8086&quot;,
-        # }
-
-        self.base_page_url = &apos;https://movie.douban.com/top250?start={}&amp;filter=&apos;
-
-    # 获取电影排名首页网页html源码
-    def get_page_html(self,num):
-
-        # 使用代理ip
-        # proxy = self.proxy_list
-        page_url = self.base_page_url.format(num)
-        try:
-            response = requests.get(page_url,headers=self.headers)
-            if response.status_code == 200:
-                page_html = response.text
-                return page_html
-            else:
-                print(&apos;请求错误：url = {}, status_code = {}&apos;.format(page_url,response.status_code))
-                return None
-        except Exception as e:
-            print(&apos;请求异常：url = {}, error = {}&apos;.format(page_url,e))
-            return None
-
-    # 获取详首页电影的 top_no movie_url,返回一个列表
-    def get_page_data(self,page_html):
-        # 书写正则表达式
-        pattern = re.compile(r&apos;&lt;li&gt;.*?&lt;em class=&quot;&quot;&gt;(.*?)&lt;/em&gt;.*?&lt;a href=&quot;(.*?)&quot;&gt;&apos;,re.S)
-
-        movie_info_list = re.findall(pattern,page_html)
-
-        # test
-        # print(movie_info_list)
-        return movie_info_list
-
-    # 获取电影信息源码
-    def get_movie_html(self,movie_url):
-        try:
-            response = requests.get(movie_url,headers=self.headers)
-            if response.status_code == 200:
-                movie_page_html = response.text
-                return  movie_page_html
-            else:
-                print(&apos;请求错误：url = {}, status_code = {}&apos;.format(movie_url,response.status_code))
-                return None
-        except Exception as e:
-            print(&apos;请求异常：url = {}, error = {}&apos;.format(movie_url,e))
-
-    # 获取电影的详细信息
-    def get_movie_details(self,movie_html):
-        #
-        pattern = re.compile(r&apos;&lt;div id=&quot;content&quot;&gt;.*?&lt;div class=&quot;top250&quot;&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;h1&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;div id=&quot;info&quot;&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;.*?&gt;(.*?)&lt;/a&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;(.*?)&lt;/span&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;(.*?)&lt;/span&gt;&lt;/span&gt;&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;制片国家.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;语言:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;上映日期:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;片长:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;strong class=&quot;ll rating_num.*?&gt;(.*?)&lt;/strong&gt;.*?&lt;span property=&quot;v:summary&quot;.*?&gt;(.*?)&lt;/span&gt;&apos;,re.S)
-
-        movie_data = re.findall(pattern,movie_html)
-
-        # 测试输出
-        # print(movie_data)
-        if movie_data is None:
-            return None
-        return movie_data
-        # 保存到数据库中
-
-db_obj = DouBan()
-Tool = DataTool()
-
-# 嗯哼？user_agent竟然不报错了！！
-
-# 测试上次的bug 我不知道上次为什么源码会出错，可能是正则表达式没有正确导致出错，这次测试一下，事实证明这样传回源码没有错
-# 第一页的start是0，第二页的start是25，最后一页的start是225，所以从0-226，对25取余等于0的我都要
-# 获取第一页相关电影的链接 return 一个list list[1]是链接地址
-
-
-xcl =Excel()
-# row = 1 是为了保存到Excel中 做的处理
-row = 1
-for i in range(0,100):
-    if i%25 == 0 :
-        page_html = db_obj.get_page_html(i)
-        # print(page_html)
-        movie_urls_list = db_obj.get_page_data(page_html)
-        for movie_url_tuple in movie_urls_list:
-            movie_html = db_obj.get_movie_html(movie_url_tuple[1])
-            movie_data_list = db_obj.get_movie_details(movie_html)
-            # print(movie_data_list)
-            for move_tuple in movie_data_list:
-                new_data = Tool.new_tuple_data(move_tuple)
-                xcl.write_data(row,new_data)
-                # 每得到一条，保存一次。
-                # xcl.save_excel_Data()
-                row += 1
-                print(new_data)
-
-# 运行完程序再保存
-xcl.save_excel_Data()</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/17/Python_%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF/" data-id="ck78s1tna001z1g9yarhb53zr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python_爬取头条街拍图片" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E5%A4%B4%E6%9D%A1%E8%A1%97%E6%8B%8D%E5%9B%BE%E7%89%87/" class="article-date">
-  <time datetime="2019-01-10T14:44:40.000Z" itemprop="datePublished">2019-01-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            January 10, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E5%A4%B4%E6%9D%A1%E8%A1%97%E6%8B%8D%E5%9B%BE%E7%89%87/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E5%A4%B4%E6%9D%A1%E8%A1%97%E6%8B%8D%E5%9B%BE%E7%89%87/">Python_爬取头条街拍图片</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E6%90%9C%E7%8B%97%E5%A3%81%E7%BA%B8/">
+                            python_爬取搜狗壁纸
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Python-Json-爬头条街拍图片"><a href="#Python-Json-爬头条街拍图片" class="headerlink" title="Python_Json_爬头条街拍图片"></a>Python_Json_爬头条街拍图片</h4><p>分析头条街拍，首先，在某一个url的详情页中，监听的时候，没有找到动态刷新下一张图片的json文件。这个时候，去查看网页源代码中寻找相关的控制动态刷新的字符串。</p>
-<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><pre><code>#coding:utf-8
-# 多线程下载街拍图片，并将图片相关信息保存在mongodb
-
-# important!! 很有可能在检查源代码中 有JSON文件
-
-# 检查的时候，我一直在审查元素中查找JSON，但因为这个数据比较少，
-# 审查元素监听没找道相关的json文件，这个时候，去查看源代码中中寻找了。
-
-# 其实在详情页审查元素已经找到了图片的具体地址，也可以利用正则表达式
-# 直接去匹配相关的数据，然后做接下来的工作。
-
-# \(
-# \.  等等。。。
-# 表示对正则表达式中的str进行转义，转化为一个普通的str。
-
-import requests, re, json, pymongo
-from multiprocessing import Pool
-from urllib.parse import urlencode
-from hashlib import md5
-
-class JiePaiSpider(object):
-    # 进程池无法序列化pymongo对象，因为pymongo数据库中含有线程锁。
-    # TypeError: can&apos;t pickle _thread.lock objects
-    # 建立pymongo的链接
-    client = pymongo.MongoClient(&apos;localhost&apos;)
-    db = client[&apos;jiepai&apos;]
-
-    def __init__(self):
-        self.headers = {
-            &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.12 Safari/537.36&apos;
-        }
-    # https://goss.veer.com/creative/vcg/veer/1600/veer-309035499.jpg
-    def get_list_json(self, offset):
-        &quot;&quot;&quot;
-        请求列表页的json接口，获取列表页中的图片信息。
-        :param offset: 请求接口时的偏移量参数。(0, 20, 40....)
-        :return:
-        &quot;&quot;&quot;
-        # https://www.toutiao.com/search_content/?offset=0&amp;format=json&amp;keyword=%E8%A1%97%E6%8B%8D&amp;autoload=true&amp;count=20&amp;cur_tab=1&amp;from=search_tab&amp;pd=synthesis
-        # 准备接口参数
-        params = {
-            &apos;offset&apos;: offset,
-            &apos;format&apos;: &apos;json&apos;,
-            &apos;keyword&apos;: &apos;街拍&apos;,
-            &apos;autoload&apos;: &apos;true&apos;,
-            &apos;count&apos;: &apos;20&apos;,
-            &apos;cur_tab&apos;: &apos;1&apos;,
-            &apos;from&apos;: &apos;search_tab&apos;,
-            &apos;pd&apos;: &apos;synthesis&apos;
-        }
-        api_url = &apos;https://www.toutiao.com/search_content/?&apos; + urlencode(params)
-        try:
-            response = requests.get(api_url, headers=self.headers)
-            if response.status_code == 200:
-                # 响应状态码是200，说明GET请求成功
-                return response.text
-            else:
-                print(&apos;请求异常：url={}, status_code={}&apos;.format(api_url, response.status_code))
-                return None
-        except Exception as e:
-            print(&apos;请求异常：url={}, error={}&apos;.format(api_url, e))
-            return None
-
-
-    def parse_list_json(self, json_str):
-        &quot;&quot;&quot;
-        解析列表页json数据
-        :param json_str:
-        :return:
-        &quot;&quot;&quot;
-        json_dict = json.loads(json_str)
-        if &apos;data&apos; in json_dict.keys():
-            # 判断字典json_dict的所有键中是否包含&apos;data&apos;，如果有，可以解析，如果没有，可能没有数据或者发生异常了。
-            data_list = json_dict.get(&apos;data&apos;, None)
-            if data_list and len(data_list) &gt; 0:
-                # 说明还有数据，可以解析
-                urls = []
-                for item in data_list:
-                    if &apos;single_mode&apos; not in item and &apos;cell_type&apos; not in item:
-                        article_url = item[&apos;article_url&apos;]
-                        urls.append(article_url)
-                return urls
-
-    def get_detail_page(self, detail_url):
-        try:
-            response = requests.get(detail_url, headers=self.headers)
-            if response.status_code == 200:
-                # 响应状态码是200，说明GET请求成功
-                return response.text
-            else:
-                print(&apos;请求异常：url={}, status_code={}&apos;.format(detail_url, response.status_code))
-                return None
-        except Exception as e:
-            print(&apos;请求异常：url={}, error={}&apos;.format(detail_url, e))
-            return None
-
-    def parse_detail_page(self, detail_html):
-        # \(：表示对正则表达式中的(进行转义，转化为一个普通的字符。
-        js_json_str = re.findall(re.compile(r&apos;gallery: JSON.parse\((.*?)\),&apos;, re.S), detail_html)[0].replace(&apos;\\&apos;, &apos;&apos;).strip(&apos;&quot;&apos;)
-        # 数据保存到Mongo中
-        data_dict = json.loads(js_json_str)
-        self.save_dict_to_db(data_dict)
-
-        # 解析Json，取出图片的url地址，下载图片到本地。
-        for item_dict in data_dict[&apos;sub_images&apos;]:
-            img_url = item_dict[&apos;url&apos;]
-            # 根据图片url地址，下载图片
-            self.download_image(img_url)
-
-    def download_image(self, img_url):
-        response = requests.get(img_url, headers=self.headers)
-        if response.status_code == 200:
-            # response.text: 获取的是文本资源；(json字符串、网页源代码)
-            # 但是图片属于二进制资源，图片数据的传输是以二进制流的形式传输的，不再是字符串了。
-            content = response.content
-            # md5()函数的参数需要是一个bytes字节码，不能是str类型的字符串。
-            # hexdigest(): 获取md5加密后的结果。
-            img_name = md5(img_url.encode(&apos;utf-8&apos;)).hexdigest()
-
-            # &apos;w&apos;: 写入普通文本；&apos;wb&apos;: 专门用于写入二进制数据(图片、音频、视频)
-            f = open(&apos;images/{}.jpg&apos;.format(img_name), &apos;wb&apos;)
-            f.write(content)
-            f.close()
-        else:
-            print(&apos;图片请求失败：{}&apos;.format(img_url))
-
-    def save_dict_to_db(self, dic):
-        self.db[&apos;img&apos;].insert_one(dic)
-
-    def start_spider(self, offset):
-        print(&apos;正在请求偏移量为{}的图片&apos;.format(offset))
-        json_str = self.get_list_json(offset)
-        if json_str:
-            urls = self.parse_list_json(json_str)
-            for detail_url in urls:
-                detail_html = self.get_detail_page(detail_url)
-                if detail_html:
-                    self.parse_detail_page(detail_html)
-
-if __name__ == &apos;__main__&apos;:
-    jp = JiePaiSpider()
-    pool = Pool(3)
-    pool.map(jp.start_spider, [x for x in range(0, 101) if x % 20 == 0])
-    # jp.start_spider(0)
-    pool.close()
-    pool.join()</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/Python_%E7%88%AC%E5%8F%96%E5%A4%B4%E6%9D%A1%E8%A1%97%E6%8B%8D%E5%9B%BE%E7%89%87/" data-id="ck78s1tmp00191g9yf4c80lm2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python_爬取搜狗壁纸" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E6%90%9C%E7%8B%97%E5%A3%81%E7%BA%B8/" class="article-date">
-  <time datetime="2019-01-10T14:41:16.000Z" itemprop="datePublished">2019-01-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            January 10, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E6%90%9C%E7%8B%97%E5%A3%81%E7%BA%B8/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/10/Python_%E7%88%AC%E5%8F%96%E6%90%9C%E7%8B%97%E5%A3%81%E7%BA%B8/">python_爬取搜狗壁纸</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96csdn%E6%96%87%E7%AB%A0/">
+                            python_爬取csdn文章
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先根据这个链接，是搜狗图片上的壁纸图片，不过不是高清的</p>
-<p>目标网址 <a href="https://pic.sogou.com/pics?query=%B1%DA%D6%BD&amp;w=05009900&amp;p=&amp;_asf=pic.sogou.com&amp;_ast=1547120476&amp;sc=index&amp;sut=3835&amp;sst0=1547120476133" target="_blank" rel="noopener">https://pic.sogou.com/pics?query=%B1%DA%D6%BD&amp;w=05009900&amp;p=&amp;_asf=pic.sogou.com&amp;_ast=1547120476&amp;sc=index&amp;sut=3835&amp;sst0=1547120476133</a></p>
-<p>果不其然，搜狗的图片也是由下拉而得到的其他图片</p>
-<p><code>https://pic.sogou.com/pics?query=%B1%DA%D6%BD&amp;mode=1&amp;dm=4&amp;cwidth=1920&amp;cheight=1080&amp;start=0&amp;reqType=ajax&amp;reqFrom=result&amp;tn=0</code></p>
-<p><code>https://pic.sogou.com/pics?query=%B1%DA%D6%BD&amp;mode=1&amp;dm=4&amp;cwidth=1920&amp;cheight=1080&amp;start=48&amp;reqType=ajax&amp;reqFrom=result&amp;tn=0</code></p>
-<p><code>https://pic.sogou.com/pics?query=%B1%DA%D6%BD&amp;mode=1&amp;dm=4&amp;cwidth=1920&amp;cheight=1080&amp;start=96&amp;reqType=ajax&amp;reqFrom=result&amp;tn=0</code></p>
-<p>这个josn的 共性规律很简单 发现规律了，哈哈哈 每次加48加载四十八个图片</p>
-<p>现在已经找到json的url了，比如我要请求48*x倍数的图片数，则我需要请求x个json接口</p>
-<pre><code>#coding:utf-8
-import json,re,requests
-from urllib.request import Request,urlopen
-from hashlib import md5
-
-class SouGouImg(object):
-     def __init__(self):
-          self.headers = {
-               &apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&apos;
-          }
-
-     # 获取图片的url  后面改着改着把这个函数改成了下载图片的函数
-     def get_imags_url(self,num):
-          &quot;&quot;&quot;
-
-          :param num: 据输入的son_url标号获取相应数量的壁纸图片
-          :return: all_img_list
-          &quot;&quot;&quot;
-          # 新建一个list
-          all_img_url = []
-          for i in range(0,num):
-               json_base_str = &apos;https://pic.sogou.com/pics?query=%B1%DA%D6%BD&amp;mode=1&amp;dm=4&amp;cwidth=1920&amp;cheight=1080&amp;start=&apos;+str(num)+&apos;&amp;reqType=ajax&amp;reqFrom=result&amp;tn=0&apos;
-               img_html = requests.get(json_base_str,headers=self.headers).text
-
-               img_dict = json.loads(img_html)
-
-               # 接下来，我需要这个字典中items
-               for item_dict in img_dict[&apos;items&apos;]:
-
-                    #每一个item又是一个字典
-                    # print(item_dict[&apos;ori_pic_url&apos;])
-                    self.download_images(item_dict[&apos;ori_pic_url&apos;])
-
-                    # all_img_url.append(item_dict[&apos;ori_pic_url&apos;])
-          # return all_img_url
-
-     # 根据图片网址下载图片资源
-     def download_images(self,img_url):
-          try:
-               response = requests.get(img_url,headers=self.headers)
-               if response.status_code == 200:
-                    img_content = response.content
-                    img_name = md5(img_url.encode(&apos;utf-8&apos;)).hexdigest()
-                    file = open(&apos;imag/{}.jpg&apos;.format(img_name),&apos;wb&apos;)
-                    file.write(img_content)
-                    file.close()
-               else:
-                    print(&apos;请求失败：url = {}, status_code = {}&apos;.format(img_url,response.status_code))
-          except Exception as e:
-                print(&apos;请求异常：url = {}, error = {}&apos;.format(img_url,e))
-
-
-if __name__ == &apos;__main__&apos;:
-     obj = SouGouImg()
-
-     num = int(input(&apos;请输入要获取的图片页数(每页48张)：&apos;))
-     # 下载图片  这个函数改着改着成了下载图片的函数
-     obj.get_imags_url(num)</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/Python_%E7%88%AC%E5%8F%96%E6%90%9C%E7%8B%97%E5%A3%81%E7%BA%B8/" data-id="ck78s1tmn00171g9yghfrdr15" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python_爬取csdn文章" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96csdn%E6%96%87%E7%AB%A0/" class="article-date">
-  <time datetime="2019-01-10T14:41:16.000Z" itemprop="datePublished">2019-01-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            January 10, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/01/10/Python_%E7%88%AC%E5%8F%96csdn%E6%96%87%E7%AB%A0/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/10/Python_%E7%88%AC%E5%8F%96csdn%E6%96%87%E7%AB%A0/">python_爬取csdn文章</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/01/08/Python_re.S%E6%A8%A1%E5%BC%8F/">
+                            Python_re.S模式
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="使用mongodb数据库"><a href="#使用mongodb数据库" class="headerlink" title="使用mongodb数据库"></a>使用mongodb数据库</h3><p>数据库分为关系型和非关系型，关系型需要建立表与表之间的关系来进行数据的存储和查询，表与表之间的关系比较紧密。<br>而非关系型数据库中，表与表之间不存在关联的，每一个都是独立存储数据的。</p>
-<p><code>Insert a single document. The document to insert. Must be a mutable mapping</code></p>
-<p>这段代码插入的表必须是一个可变映射<br><code>db[table_name].insert_one(dict)</code><br>插入数据的时候，那些映射中的键对应着被建为表名，相对应的值存储到对应的属性下</p>
-<p>mongodb属于非关系型数据库，可以在表中直接存储字典，所以在保存数据的时候比较方便</p>
-<h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><p>获取csdn最新文章的数据<br>目标网站：<a href="https://www.csdn.net/nav/newarticles" target="_blank" rel="noopener">https://www.csdn.net/nav/newarticles</a><br>点击网站，下拉，只有一个页码，下拉的时候会显示更多的文章说明这个是由json控制动态刷新的</p>
-<p>目标： 获取所有文章的名称article_name 和 作者author 和详情博客的地址 article_url</p>
-<p>获取更新文章刷出的json接口文件，分析规律，找到json的通用规则 pattern<br>经过下拉网页监听 分析网页 json，发现每个json文件中有一个articles 包含十篇文章，寻找所有的json共同规则，然后发现json的链接中有个shown_offset是变化的，然后我先去找这个shown_offset</p>
-<p><strong>shown_offset怎么获取？？</strong></p>
-<p><code>https://www.csdn.net/api/articles?type=more&amp;category=newarticles&amp;shown_offset=1547084377000000</code></p>
-<p><code>https://www.csdn.net/api/articles?type=more&amp;category=newarticles&amp;shown_offset=1547084333000000</code></p>
-<p>经过查找、分析，发现每个json接口中有个数据 为shown_offset，代表的是下一个要请求的json的shown_offset</p>
-<p>因为打开页面的时候，会先请求一个json刷新十条文章，所以猜测第一个的shown_offset在源代码中，经过查找吗，找到了。</p>
-<p>到此，接下来就开始敲码了。</p>
-<p>然后就要写正则表达式了，进而获取第一个json的shown_offset</p>
-<pre><code>#coding:utf-8
-# 创建一个csdn的类
-# 正则表达式是用来获取第一个json的shown_offset的
-
-from urllib.request import urlopen,Request
-import re,json,requests,pymongo
-
-all_json_url = []
-class csdn(object):
-     &quot;&quot;&quot;
-     初始化函数：
-     &quot;&quot;&quot;
-     def __init__(self):
-          self.headers = {
-               &apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&apos;
-          }
-          self.all_json_url = []
-          self.deep = 0
-
-          # 创建一个客户端
-          self.client = pymongo.MongoClient(&apos;Localhost&apos;)
-
-          # 数据库名称csdn
-          self.db = self.client[&apos;csdn&apos;]
-
-          #-----------数据库操作------------
-          #存入到mongodb中
-          client = pymongo.MongoClient(&apos;localhost&apos;)
-          self.db = client[&apos;csdn&apos;]
-
-          # Insert a single document. The document to insert. Must be a mutable mapping  可变映射
-          # db[&apos;blog&apos;].insert_one() 必须插入一个字典dict
-
-          #---------------------------------
-
-     # 返回第一个json的shown-offset
-     def get_first_offset(self):
-          tar_url = &apos;https://www.csdn.net/nav/newarticles&apos;
-
-          # 获取数据的第一种方法
-          # 创建一个请求对象
-          # response = Request(tar_url,headers=self.headers)
-          #           # # 根据请求对象打开一个页面
-          #           # page = urlopen(response)
-          #           # # 读取页面的源码
-          #           # page_html = page.read().decode()
-          #           #
-          #           # pattern = re.compile(r&apos;&lt;ul class=&quot;feedlist_mod newarticles&quot;.*?shown-offset=&quot;(.*?)&quot;&apos;,re.S)
-          #           #
-          #           # result = re.findall(pattern,page_html)[0]
-          #           # print(result)
-
-          # 获取数据第二种方法
-
-          # 请求url并且读取网页源码
-          response_html = requests.get(tar_url,headers=self.headers).text
-
-          #        正则表达式
-          pattern = re.compile(r&apos;&lt;ul class=&quot;feedlist_mod newarticles&quot;.*?shown-offset=&quot;(.*?)&quot;&apos;, re.S)
-
-          # 获取所需的数据
-          result = re.findall(pattern,response_html)[0]
-          # result 的 type 是 str 型的
-          #print(type(result))
-          first_json_url = &apos;https://www.csdn.net/api/articles?type=more&amp;category=newarticles&amp;shown_offset=&apos; + str(result)
-          self.all_json_url = [first_json_url]
-          self.deep = 1
-
-          return result
-
-
-     # 获取所有的json
-     # 递归函数
-     # 根据一个shown_offset值向all_json_url中加入一个url
-     # 返回一个字典 由于这个函数执行的时间较长，限制其执行的深度 为 100
-     def get_all_json_url(self,shown_offset):
-
-          # # 第一个json的shown_offset
-          # first_shown_offset = self.get_first_offset()
-          # 第一个json的url
-          # 根据shown_offset获取一个链接
-          # 如果下一个offset不为空，根据offset找到next_json_url，并且根据这个next_json_url找到另一个offset，调用函数递归，如果为空返回
-          if(self.deep == 10):
-               return
-          if(shown_offset is None):
-               return
-          if(shown_offset):
-               next_json_url = &apos;https://www.csdn.net/api/articles?type=more&amp;category=newarticles&amp;shown_offset=&apos;+str(shown_offset)
-
-               self.all_json_url.append(next_json_url)
-               self.deep += 1
-               # self.db[&apos;url&apos;].insert_one({&apos;key&apos;:next_json_url})
-
-               # 获取网页源码
-               next_page_html = requests.get(next_json_url,headers=self.headers).text
-
-               # 将网页源码转化为字典
-               json_url_dict = json.loads(next_page_html)
-
-               # 获取字典中的offset
-               next_shown_offset = json_url_dict[&apos;shown_offset&apos;]
-
-               # print(next_shown_offset)
-               # print(self.all_json_url)
-               self.get_all_json_url(next_shown_offset)
-          return
-
-     # 获取文章
-     # article
-     # author
-     # 博客url
-     def get_article_info(self):
-
-          # 获取all_json_url 到self.all_json_url
-          obj.get_all_json_url(obj.get_first_offset())
-
-          # 使用all_json_url
-          for json_url in self.all_json_url:
-               # 获取json中的字符串数据
-               page_html = requests.get(json_url,headers=self.headers).text
-
-               # 把json_url中的数据转化为字典
-               page_html = json.loads(page_html)
-
-               # 取当前article这个键对应的值：list
-               articles_data = page_html[&apos;articles&apos;]
-               for article in articles_data:
-                    # 发现 list 中的每个元素是字典，字典是某一个文章的详细信息，根据这个字典，获取文章的信息
-                    article_title = article[&apos;title&apos;]
-                    article_url = article[&apos;url&apos;]
-                    article_username = article[&apos;user_name&apos;]
-                    print(&apos;某个博客的信息：username:{}; article_title:{}; article_url:{};&apos;.format(article_username,article_title,article_url))
-                    self.db[&apos;Blog&apos;].insert_one({&apos;user_name&apos;:article_username,&apos;article_title&apos;:article_title,&apos;article_url&apos;:article_url})
-
-                    # 待会儿把这些文章的简略信息，存储到数据库中
-                    # 实现存入数据库操作
-
-
-
-
-
-
-# 创建一个csdn对象
-obj = csdn()
-
-# 其实还可以优化，不需要get_first_shown_offset函数，在初始化对象的时候，就可以获取第一个offset
-
-# 获取all_json_url 到self.all_json_url
-# obj.get_all_json_url(obj.get_first_offset())
-
-# 输出获取的all_json_url
-# print(obj.all_json_url)
-
-obj.get_article_info()</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/Python_%E7%88%AC%E5%8F%96csdn%E6%96%87%E7%AB%A0/" data-id="ck78s1tn8001v1g9y1yh5c8ug" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python_re.S模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/08/Python_re.S%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2019-01-08T15:18:36.000Z" itemprop="datePublished">2019-01-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            January 8, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/01/08/Python_re.S%E6%A8%A1%E5%BC%8F/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/08/Python_re.S%E6%A8%A1%E5%BC%8F/">Python_re.S模式</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2019/01/08/python_%E7%88%AC%E5%8F%96%E8%A1%A8%E6%83%85%E5%8C%85/">
+                            python_爬取表情包
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Python正则表达式中的re-S的作用"><a href="#Python正则表达式中的re-S的作用" class="headerlink" title="Python正则表达式中的re.S的作用"></a>Python正则表达式中的re.S的作用</h3><h4 id="re-S模式"><a href="#re-S模式" class="headerlink" title="re.S模式"></a>re.S模式</h4><p>re.S是一种匹配模式</p>
-<p><code>在re.S模式下，可以匹配包括换行的所有字符</code></p>
-<p><code>不在re.S模式下，只能匹配得到除换行之外的字符</code></p>
-<p><strong>举例：</strong></p>
-<pre><code>import re
-string = &apos;&apos;&apos;hello
-    赵子龙！
-    world
-    &apos;&apos;&apos;
-result_1 = re.findall(&apos;hello(.*?)world&apos;,string)
-result_2 = re.findall(&apos;hello(.*?)world&apos;,string,re.S)
-print(result_1,re.S)
-print(result_2,re.S)
-
-
-# 运行结果
-
-[]
-[&apos;\n    Otnw\n    &apos;]
-
-
-# 上述匹配的代码，还可以这样写
-
-# 设置匹配规则 pattern  
-# params: 正则表达式，re.S模式
-pattern = re.compile(r&apos;hello(.*?)world&apos;,re.S)
-
-# 执行findall函数 
-# params: 匹配规则pattern 字符串string
-result = re.findall(pattern,string)
-print(result)</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/08/Python_re.S%E6%A8%A1%E5%BC%8F/" data-id="ck78s1tmj00101g9y5qjxb7fh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-python_爬取表情包" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/08/python_%E7%88%AC%E5%8F%96%E8%A1%A8%E6%83%85%E5%8C%85/" class="article-date">
-  <time datetime="2019-01-08T15:18:36.000Z" itemprop="datePublished">2019-01-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            January 8, 2019
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2019/01/08/python_%E7%88%AC%E5%8F%96%E8%A1%A8%E6%83%85%E5%8C%85/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/08/python_%E7%88%AC%E5%8F%96%E8%A1%A8%E6%83%85%E5%8C%85/">python_爬取表情包</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="python抓取表情包"><a href="#python抓取表情包" class="headerlink" title="python抓取表情包"></a>python抓取表情包</h3><p>这是一篇可耐的博客，看完能够抓取到了知乎上的表情包，想想是不是有点小激动？</p>
-<p>如果读者努力并且兴趣满满的话，看完笔者的这篇文儿，举一反三是不成问题的。</p>
-<p>废话少说，我们开始吧。</p>
-<h4 id="1-获取网页源代码"><a href="#1-获取网页源代码" class="headerlink" title="1. 获取网页源代码"></a>1. 获取网页源代码</h4><p>不用想，首先请求打开一个网页url</p>
-<p><code>url_page = urllib.request.urlopen(url)</code></p>
-<p>然后利用函数根据url_page对象获取网页源代码，毋庸置疑，网页源码到手了才能够进行操作。</p>
-<p><code>html_code = url_page.read().decode()</code></p>
-<h4 id="2-匹配图片的url"><a href="#2-匹配图片的url" class="headerlink" title="2. 匹配图片的url"></a>2. 匹配图片的url</h4><p>设置正则表达式规则匹配图片url的地址,对获取到的网页源码按规则进行匹配，查找到所需的图片的url</p>
-<p><code>imgre = re.compile(r&#39;&lt;figure&gt;.*?src=&quot;(.+?\.jpg)&quot;&#39;,re.S)</code></p>
-<p><code>imglist = re.findall(imgre,html) #返回一个匹配到的图片url列表</code></p>
-<h4 id="3-根据url将图片下载到本地"><a href="#3-根据url将图片下载到本地" class="headerlink" title="3. 根据url将图片下载到本地"></a>3. 根据url将图片下载到本地</h4><p>获取url资源</p>
-<p><code>urllib.request.urlretrieve() #params: url, &#39;保存路径&#39;</code></p>
-<p>使用这个函数，将资源依次下载到本地，需要首先在保存路径下新建一个保存的文件夹。<br>到这里，不出意外，运行之后，文件夹里已经有可爱的小表情了。</p>
-<p><strong>附上源码如下：</strong></p>
-<h4 id="Python爬取表情源码"><a href="#Python爬取表情源码" class="headerlink" title="Python爬取表情源码"></a>Python爬取表情源码</h4><pre><code>#coding=utf-8
-
-#urllib模块提供了读取Web页面数据的接口
-import urllib.request
-
-#re模块主要包含了正则表达式
-import re
-
-#定义一个get_html_code()函数
-def get_html_code(url):
-    #urllib.request.urlopen()请求打开一个URL地址
-    url_page = urllib.request.urlopen(url)  
-
-    #read()方法用于读取URL上的数据
-    html_code = url_page.read().decode() 
-
-    return html_code
-
-def get_img(html):
-    #re.compile() 可以把正则表达式编译成一个正则表达式对象.
-    imgre = re.compile(r&apos;&lt;figure&gt;.*?src=&quot;(.+?\.jpg)&quot;&apos;,re.S)
-
-    #使用re.findall()按指定规则匹配
-    imglist = re.findall(imgre,html)      
-
-    #把筛选的图片地址通过for循环遍历并保存到本地
-    #urllib.request.urlretrieve()方法,直接将远程数据下载到本地，图片通过x依次递增命名
-
-    x = 0
-    for imgurl in imglist:
-     urllib.request.urlretrieve(imgurl,&apos;D:\biaoqing\%s.jpg&apos; % x)
-     x += 1
-
-
-html = get_html_code(&quot;https://www.zhihu.com/question/46508954&quot;)
-get_img(html)</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/08/python_%E7%88%AC%E5%8F%96%E8%A1%A8%E6%83%85%E5%8C%85/" data-id="ck78s1toy004c1g9ycuydh4vy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/11/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/13/">Next &amp;raquo;</a>
-  </nav>
-
 </section>
-        
-          <aside id="sidebar">
-  
+
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
     
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+            </section>
+        </aside>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/03/02/hexo%20%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">hexo简单搭建博客</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Bsj<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
+
 </html>

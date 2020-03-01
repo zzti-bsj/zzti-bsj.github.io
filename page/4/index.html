@@ -1,774 +1,393 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>Bsj&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="open the new world">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bsj&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/page/4/index.html">
-<meta property="og:site_name" content="Bsj&#39;s Blog">
-<meta property="og:description" content="open the new world">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Bsj">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="hexo, autumn" />
+    <title>
+        Bsj&#39;s Blog
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico" />
+     
 <link rel="stylesheet" href="/css/style.css">
 
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Bsj&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">blog</a>
-        </h2>
-      
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/" class="logo">
+                Bsj&#39;s Blog
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/" class="logo">
+            Bsj&#39;s Blog
+        </a>
+    </h1>
+    <h2 class="desc">
+        blog
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://github.com/FrontendSophie" target="_blank" rel="noopener">
+                    Github
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/frontendsophie/" target="_blank" rel="noopener">
+                    LinkedIn
+                </a>
+            </li>
+            
+        </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-mysql分区分表" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/mysql%E5%88%86%E5%8C%BA%E5%88%86%E8%A1%A8/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.721Z" itemprop="datePublished">2020-03-01</time>
-</a>
+        <main class="main">
+            
+<section class="posts">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/mysql%E5%88%86%E5%8C%BA%E5%88%86%E8%A1%A8/">
+                            mysql分区分表
+                        </a>
+                    </h1>
+
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/mysql%E5%88%86%E5%8C%BA%E5%88%86%E8%A1%A8/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/mysql%E5%88%86%E5%8C%BA%E5%88%86%E8%A1%A8/">mysql分区分表</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/">
+                            数据库架构
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="为什么分区分表？"><a href="#为什么分区分表？" class="headerlink" title="为什么分区分表？"></a>为什么分区分表？</h1><p>分表：提高表的查询性能（查询速度）<br>分区：提高数据库的并发性能<br>既分表又分区：提高表的查询速度以及提高数据库的并发性能  </p>
-<h2 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h2><p>&emsp;&emsp;<strong>选择恰当的分表策略，按照一定的规则分解成多张具有独立存储空间的实体表</strong>  </p>
-<p>特点：</p>
-<ol>
-<li>解决了单表数据量大带来的查询效率下降的问题（提高了表的访问速度）</li>
-<li>无法给数据库并发处理能力带来质的提升  </li>
-</ol>
-<p>子表可以在同一磁盘，也可以在不同机器上。  </p>
-<h2 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h2><p>&emsp;&emsp;<strong>对数据库进行拆分，将数据分段划分在多个位置存放，从而提高数据库写入能力</strong>  </p>
-<p>特点：  </p>
-<ol>
-<li>提高数据库的并发性能</li>
-</ol>
-<h2 id="既分库又分表"><a href="#既分库又分表" class="headerlink" title="既分库又分表"></a>既分库又分表</h2><p>&emsp;&emsp;分成不同的数据库，在不同的数据库中又有多个相同的表结构，用来存储结构相同的数据。<br>解决的问题：  </p>
-<ol>
-<li>数据库面临的高并发压力</li>
-<li>海量数据的存储问题</li>
-</ol>
-<h3 id="分库分表策略"><a href="#分库分表策略" class="headerlink" title="分库分表策略"></a>分库分表策略</h3><ol>
-<li>中间变量 = user_id % (分库数量 * 每个库的表数量)</li>
-<li>库 = 取整数 (中间变量 / 每个库的表数量)</li>
-<li>表 = 中间变量 % 每个库的表数量</li>
-</ol>
-<h3 id="分库分区测试代码（sqlite）"><a href="#分库分区测试代码（sqlite）" class="headerlink" title="分库分区测试代码（sqlite）"></a>分库分区测试代码（sqlite）</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">import sqlite3</span><br><span class="line">import pymysql</span><br><span class="line">from DB_tool import DBTool,DB_type</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">存储stu信息：name，id</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1、使用sqlite，创建256个数据库。</span></span><br><span class="line"><span class="string">每个数据集创建20个表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2、插入一条stu信息</span></span><br><span class="line"><span class="string">id = 3000</span></span><br><span class="line"><span class="string">name = '张三'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">3、查询这条信息在哪个数据库哪个表中</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 分库分表策略</span></span><br><span class="line"><span class="string"># temp = temp % (table_num * db_num)</span></span><br><span class="line"><span class="string"># db_id = temp / table_num</span></span><br><span class="line"><span class="string"># table_id = temp % table_num</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">id = <span class="number">3000</span></span><br><span class="line">name = <span class="string">'张三'</span></span><br><span class="line">temp = id % (<span class="number">256</span> * <span class="number">20</span>)</span><br><span class="line">db_id = temp <span class="regexp">//</span> <span class="number">20</span></span><br><span class="line">tab_id = temp % <span class="number">20</span></span><br><span class="line">print(db_id, tab_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def con_sqlite(db_name):</span><br><span class="line">    db = sqlite3.connect(db_name)</span><br><span class="line">    return db</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建多个数据库及表</span></span><br><span class="line">def multi_sqlite():</span><br><span class="line">    <span class="comment"># 创建256个库</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>):</span><br><span class="line">        <span class="comment"># 连接256个数据库</span></span><br><span class="line">        db = con_sqlite(f<span class="string">"db_&#123;i&#125;"</span>)</span><br><span class="line">        cursor = db.cursor()</span><br><span class="line">        <span class="comment"># 每个数据库创建256个表</span></span><br><span class="line">        print(f<span class="string">'创建第&#123;i&#125;数据库'</span>)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">            sql = f<span class="string">"""CREATE TABLE table_&#123;j&#125;(name VARCHAR (25), age INTEGER PRIMARY KEY AUTOINCREMENT);"""</span></span><br><span class="line">            cursor.execute(sql)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照分库分表策略插入数据到特定的数据库中</span></span><br><span class="line">def insert(db_id, tab_id, id, name):</span><br><span class="line">    db = con_sqlite(f<span class="string">'db_&#123;db_id&#125;'</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    sql = f<span class="string">"""</span></span><br><span class="line"><span class="string">        INSERT INTO table_&#123;tab_id&#125; VALUES (?,?);</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    cursor.execute(sql, (name, id))</span><br><span class="line">    db.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询数据在哪个数据库中</span></span><br><span class="line">def select(db_id, tab_id):</span><br><span class="line">    db = con_sqlite(f<span class="string">'db_&#123;db_id&#125;'</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    sql = f<span class="string">"""</span></span><br><span class="line"><span class="string">        SELECT * FROM table_&#123;tab_id&#125;;</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    cursor.execute(sql)</span><br><span class="line">    result = cursor.fetchall()</span><br><span class="line">    print(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 初始化分区分表</span></span><br><span class="line"><span class="comment"># multi_sqlite()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入数据</span></span><br><span class="line"><span class="comment"># insert(db_id, tab_id, id, name)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询数据</span></span><br><span class="line"><span class="comment"># select(db_id, tab_id)</span></span><br></pre></td></tr></table></figure>
-
-<p>DB_tool代码</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">import sqlite3</span><br><span class="line"><span class="comment"># db=DataBase=数据库</span></span><br><span class="line">import pymysql</span><br><span class="line">from enum import Enum</span><br><span class="line"></span><br><span class="line">MYSQL_COF = &#123;</span><br><span class="line">    <span class="comment"># host主机名 user数据库的用户名 password数据库登录密码 database 要连接的数据库</span></span><br><span class="line">    <span class="string">'host'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">    <span class="string">'port'</span>: <span class="number">3306</span>,</span><br><span class="line">    <span class="string">'user'</span>: <span class="string">'root'</span>,</span><br><span class="line">    <span class="string">'password'</span>: <span class="string">'root'</span>,</span><br><span class="line">    <span class="string">'database'</span>: <span class="string">'db'</span>,</span><br><span class="line">    <span class="string">'charset'</span>: <span class="string">'utf8'</span></span><br><span class="line">&#125;</span><br><span class="line">SQLITE_COF = &#123;</span><br><span class="line">    <span class="string">'database'</span>: <span class="string">'db.sqlite'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DB_type</span>(<span class="title">Enum</span>):</span></span><br><span class="line">    MYSQL = <span class="string">'mysql'</span></span><br><span class="line">    SQLITE = <span class="string">'sqlite'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DBTool</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">db_type:</span> DB_type = DB_type.MYSQL)</span></span><span class="symbol">:</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 提示用户输入正确的数据库类型</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(db_type, DB_type)<span class="symbol">:</span></span><br><span class="line">            raise TypeError(<span class="string">"参数类型不对,请使用'DB_type.MYSQL'的形式"</span>)</span><br><span class="line">        <span class="keyword">if</span> db_type.value == <span class="string">'mysql'</span><span class="symbol">:</span></span><br><span class="line">            con = pymysql.connect(**MYSQL_COF)</span><br><span class="line">        elif db_type.value == <span class="string">'sqlite'</span><span class="symbol">:</span></span><br><span class="line">            con = sqlite3.connect(**SQLITE_COF)</span><br><span class="line">        <span class="keyword">self</span>.__con = con</span><br><span class="line">        <span class="keyword">self</span>.__cursor = <span class="keyword">self</span>.__con.cursor()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_all</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        print(<span class="string">"关闭游标和连接对象"</span>)</span><br><span class="line">        <span class="keyword">self</span>.__cursor.close()</span><br><span class="line">        <span class="keyword">self</span>.__con.close()</span><br><span class="line">        <span class="keyword">self</span>.__cursor = None</span><br><span class="line">        <span class="keyword">self</span>.__con = None</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="symbol">try:</span></span><br><span class="line">            <span class="keyword">self</span>.close_all()</span><br><span class="line">        except Exception as <span class="symbol">e:</span></span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_table</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        print(<span class="string">"创建表成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">drop_table</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">table_name:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="comment"># 删除表要慎重</span></span><br><span class="line">        <span class="comment"># 1）表是否存在  2）表中的数据怎么办</span></span><br><span class="line">        sql = f<span class="string">"drop table IF EXISTS &#123;table_name&#125;"</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line">        print(<span class="string">"删除表成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># lazyload=懒加载=用到的时候再创建</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">params:</span> list = None)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">for</span> param <span class="keyword">in</span> <span class="symbol">params:</span></span><br><span class="line">            <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">            <span class="keyword">self</span>.__con.commit()</span><br><span class="line">            print(<span class="string">"插入成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">None:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">self</span>.__con.commit()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetchone</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">tuple:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.__cursor.fetchone()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetchall</span><span class="params">(<span class="keyword">self</span>, <span class="symbol">sql:</span> str, <span class="symbol">param:</span> tuple = None)</span></span> -&gt; <span class="symbol">list:</span></span><br><span class="line">        <span class="keyword">self</span>.__cursor.execute(sql, param)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.__cursor.fetchall()</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/mysql%E5%88%86%E5%8C%BA%E5%88%86%E8%A1%A8/" data-id="ck78s1tou00421g9ya8jx9t4h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据库架构" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.697Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                        <div class="post-cover">
+                            <img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/1.png">
+                        </div>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/">数据库架构</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/">
+                            利用merge存储引擎来实现分表
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简单的主从复制"><a href="#简单的主从复制" class="headerlink" title="简单的主从复制"></a>简单的主从复制</h2><p>解决了数据库的读写分离，很好的提升了读的性能<br>其图如下<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/1.png" alt="alt"><br>主从复制过程如下<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/2.png" alt="alt">  </p>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>写入无法扩展</li>
-<li>写入无法缓存</li>
-<li>复制延时</li>
-<li>锁表率上升</li>
-<li>表变大，缓存率下降</li>
-</ol>
-<h2 id="Mysql垂直分区"><a href="#Mysql垂直分区" class="headerlink" title="Mysql垂直分区"></a>Mysql垂直分区</h2><p>&emsp;&emsp;如果把业务切割得足够独立，那把不同业务的数据放到不同的数据库服务器将是一个不错的方案，而且万一其中一个业务崩溃了也不会影响其他业务的正常进行，并且也起到了负载分流的作用，大大提升了数据库的吞吐能力。经过垂直分区后的数据库架构图如下：<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/3.png" alt="alt">  </p>
-<h2 id="Mysql水平分片"><a href="#Mysql水平分片" class="headerlink" title="Mysql水平分片"></a>Mysql水平分片</h2><p>&emsp;&emsp;这是一个非常好的思路，将用户按一定规则（按id哈希）分组，并把该组用户的数据存储到一个数据库分片中，即一个sharding，这样随着用户数量的增加，只要简单地配置一台服务器即可，原理图如下：<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/4.png" alt="alt">  </p>
-<p>&emsp;&emsp;如何来确定某个用户所在的shard呢，可以建一张用户和shard对应的数据表，每次请求先从这张表找用户的shard id，再从对应shard中查询相关数据，如下图所示：<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/5.png" alt="alt">  </p>
-<h3 id="分区分库的三种方式"><a href="#分区分库的三种方式" class="headerlink" title="分区分库的三种方式"></a>分区分库的三种方式</h3><ol>
-<li>单库单表<br>一个数据库中只有一个表，负责增删改查的所有业务  </li>
-<li>单库多表<br>一个数据库中有多张表的存在，减少了mysql锁表的可能性  </li>
-<li>多库多表<br>即是分库分表策略，有多个数据库，每个数据库中有多张表结构。每张表的数据结构是相同的。<h3 id="分库分表的维度问题"><a href="#分库分表的维度问题" class="headerlink" title="分库分表的维度问题"></a>分库分表的维度问题</h3></li>
-</ol>
-<p><strong>业务举例：</strong><br>用户购买商品，数据库中存储的既有用户的个人信息，还有某商品被购买的信息。  </p>
-<p>这个时候可以选择使用<strong>用户的id</strong>或者<strong>商品的id</strong>作为分库分表的策略。根据具体需求选择恰当的分库分表策略  </p>
-<h3 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h3><p>联合查询基本不可能，有关联的表可能不存在同一个数据库中</p>
-<h3 id="避免跨库事务"><a href="#避免跨库事务" class="headerlink" title="避免跨库事务"></a>避免跨库事务</h3><p>避免在一个事务中修改db0中的表的时候同时修改db1中的表，一个是操作起来更复杂，效率也会有一定影响。</p>
-<h3 id="尽量把同一组数据放到同一DB服务器上"><a href="#尽量把同一组数据放到同一DB服务器上" class="headerlink" title="尽量把同一组数据放到同一DB服务器上"></a>尽量把同一组数据放到同一DB服务器上</h3><p>例如将卖家a的商品和交易信息都放到db0中，当db1挂了的时候，卖家a相关的东西可以正常使用。也就是说避免数据库中的数据依赖另一数据库中的数据。</p>
-<h3 id="一主多备"><a href="#一主多备" class="headerlink" title="一主多备"></a>一主多备</h3><p>在实际的应用中，绝大部分情况都是读远大于写。Mysql提供了读写分离的机制，所有的写操作都必须对应到Master，读操作可以在 Master和Slave机器上进行，Slave与Master的结构完全一样，一个Master可以有多个Slave,甚至Slave下还可以挂 Slave,通过此方式可以有效的提高DB集群的 QPS.</p>
-<p><strong>所有的写操作都是先在Master上操作，然后同步更新到Slave上，所以从Master同步到Slave机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave机器数量的增加也会使这个问题更加严重。</strong></p>
-<p>此外，可以看出Master是集群的瓶颈，当写操作过多，会严重影响到Master的稳定性，如果Master挂掉，整个集群都将不能正常工作。</p>
-<h3 id="那么分库分表多少合适呢"><a href="#那么分库分表多少合适呢" class="headerlink" title="那么分库分表多少合适呢?"></a>那么分库分表多少合适呢?</h3><p><strong>表中的记录最好保持在500万条以下</strong>  </p>
-<p>经测试在单表1000万条记录以下,写入读取性能是比较好的. 这样再留点buffer,那么单表<strong>全是数据字型的保持在800万条记录以下</strong>, <strong>有字符型的单表保持在500万以下</strong>  </p>
-<p>如果按 100库100表来规划,如用户业务: 500万<em>100</em>100 = 50000000万 = 5000亿记录。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84/" data-id="ck78s1tq0006j1g9ydx8r3pgw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-利用merge存储引擎来实现分表" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.674Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                        <div class="post-cover">
+                            <img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/1.jpg">
+                        </div>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/">利用merge存储引擎来实现分表</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/">
+                            第一章 数据库介绍
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="利用merge存储引擎来实现分表"><a href="#利用merge存储引擎来实现分表" class="headerlink" title="利用merge存储引擎来实现分表"></a>利用merge存储引擎来实现分表</h2><ol>
-<li>创建两个相同的表结构<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/1.jpg" alt="alt"><br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/2.png" alt="alt"></li>
-<li>创建一个alluser表关联两个表<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/3.png" alt="alt"></li>
-<li>分别向表1和表2插入一条数据<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/4.png" alt="alt"></li>
-<li>查询alluser表中数据，发现，有两条记录，说明分表成功<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/5.png" alt="alt"></li>
-<li>向alluser表中插入数据，并查询alluer和表2<br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/6.png" alt="alt"><br><img src="/imag/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/7.png" alt="alt"></li>
-</ol>
-<p>发现分表可以进行分表操作</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/%E5%88%A9%E7%94%A8merge%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%86%E8%A1%A8/" data-id="ck78s1tpu00641g9y9sbh6lga" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-第一章 数据库介绍" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.661Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/">第一章 数据库介绍</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/let%E5%92%8Cvar%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                            let和var的区别
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是mysql？"><a href="#什么是mysql？" class="headerlink" title="什么是mysql？"></a>什么是mysql？</h2><p>mysql是一种开源的数据库管理系统</p>
-<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>数据库是一种长期存储在计算机内的、有共享的、有组织的数据的集合</p>
-<p><strong>数据库的特点</strong></p>
-<ol>
-<li>实现数据共享，减少数据冗余</li>
-<li>有特定的数据结构</li>
-<li>具有较高的数据独立性</li>
-<li>具有统一的数据控制功能</li>
-</ol>
-<h2 id="表"><a href="#表" class="headerlink" title="表"></a>表</h2><p>在数据库中，表是一系列二维数组的集合。  </p>
-<ol>
-<li>记录：表的每一行称为一条记录</li>
-<li>字段：表的每一列称为一个字段</li>
-<li>数据类型：<br>数据类型决定了数据在计算机中的存储格式，常用的数据类型有精确小数类型，二进制类型，时间/日期类型，整型，浮点型，字符型</li>
-<li>主键（PRIMARY KEY）：主键是某条记录唯一性的标志，不可重复。可由单列或者多列功能组成主键</li>
-</ol>
-<h2 id="数据库技术的构成"><a href="#数据库技术的构成" class="headerlink" title="数据库技术的构成"></a>数据库技术的构成</h2><h3 id="数据库系统"><a href="#数据库系统" class="headerlink" title="数据库系统"></a>数据库系统</h3><p><strong>数据库系统的组成部分</strong>  </p>
-<ol>
-<li>数据库<br>用于<strong>存储数据</strong></li>
-<li>数据库管理系统<br>用于<strong>管理数据库</strong></li>
-<li>数据库应用程序<br>为了<strong>提高数据库系统的处理能力</strong>所使用的管理数据库的<strong>软件</strong>补充</li>
-</ol>
-<h3 id="SQL语言"><a href="#SQL语言" class="headerlink" title="SQL语言"></a>SQL语言</h3><p>SQL（Structed Query ：Language）结构化查询语言，<strong>对数据库进行查询</strong>和<strong>修改</strong>的语言。<br><strong>四个部分：</strong><br>1.数据库定义语言（DDL）：DROP、CREATE、ALTER等<br>2.数据库操作语言（DML）：INSERT、DELETE、UPDATE<br>3.数据库查询语言（MQL）：SELECT<br>4.数据库控制语言（DCL）：GRANT、REVOKE、COMMIT、ROLLBACK</p>
-<h3 id="数据库访问技术"><a href="#数据库访问技术" class="headerlink" title="数据库访问技术"></a>数据库访问技术</h3><p>1.ODBC（open database connectivity）开放数据库互联：以统一的方式处理所有的数据库<br>2.JDBC（java database connectivity）java数据库连接：用于java应用程序连接数据库的标准方法<br>3.ADO.NET：微软在.net框架下开发的用于与数据源交互的面向对象类库<br>4.PDO（Php Data Object）PHP应用程序连接数据库的标准方法</p>
-<h3 id="mysql的优势"><a href="#mysql的优势" class="headerlink" title="mysql的优势"></a>mysql的优势</h3><p>1.速度快<br>2.可移植性很强<br>3.为多种语言提供API（丰富的接口）<br>4. 支持sql语言<br>5. 安全性和连接性：连接时密码加密、主机验证；mysql是网络化的，提高了数据共享的效率；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/" data-id="ck78s1tqd00751g9y3iluhaki" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-let和var定义变量的区别" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/let%E5%92%8Cvar%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.603Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/let%E5%92%8Cvar%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/let%E5%92%8Cvar%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">let和var的区别</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/MySQL%E6%9E%B6%E6%9E%84-Master-Slave%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F/">
+                            MySQL架构-Master-Slave复制模式
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-全局声明let和var变量的区别"><a href="#1-全局声明let和var变量的区别" class="headerlink" title="1. 全局声明let和var变量的区别"></a>1. 全局声明let和var变量的区别</h2><p>全局声明的时候，let定义的变量不能作为window的属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局作用域时，let定义的变量不能作为全局对象windows的属性</span></span><br><span class="line">    <span class="comment">// 全局声明写在最上面</span></span><br><span class="line">    <span class="keyword">var</span> var_v = <span class="string">"hello"</span>;</span><br><span class="line">    <span class="keyword">let</span> let_v = <span class="string">"hello"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用严格模式运行代码</span></span><br><span class="line"><span class="meta">    "use strict"</span>;</span><br><span class="line">    test_2();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// let 的定义域是块定义域，而var的定义域是函数定义域，比较大。</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test_2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">window</span>.var_v);  <span class="comment">//hello</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">window</span>.let_v); <span class="comment">// undefined</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-let变量（块作用域）、var变量（函数作用域）"><a href="#2-let变量（块作用域）、var变量（函数作用域）" class="headerlink" title="2. let变量（块作用域）、var变量（函数作用域）"></a>2. let变量（块作用域）、var变量（函数作用域）</h2><p>var的作用域是函数作用域，let的作用域是块作用域。 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用严格模式运行代码</span></span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line">test_1();</span><br><span class="line"></span><br><span class="line"><span class="comment">// let 的定义域是块定义域，而var的定义域是函数定义域，比较大。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test_1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> var_v = <span class="string">"hello"</span>;</span><br><span class="line">        <span class="keyword">let</span> let_v = <span class="string">"hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(var_v);</span><br><span class="line">    <span class="built_in">console</span>.log(let_v);</span><br><span class="line">    <span class="comment">// 结果：都是undefined类型的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码运行结果，在{}块内let定义的变量在块外输出报错。  </p>
-<h2 id="3-在同一作用域，let不允许重复声明同名变量"><a href="#3-在同一作用域，let不允许重复声明同名变量" class="headerlink" title="3. 在同一作用域，let不允许重复声明同名变量"></a>3. 在同一作用域，let不允许重复声明同名变量</h2><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">let</span><span class="number">_</span>v  = <span class="string">'foo'</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">let</span><span class="number">_</span>v  = <span class="string">'bar'</span>; <span class="comment">//SyntaxError: Identifier 'me' has already been declared</span></span><br><span class="line"></span><br><span class="line">var var<span class="number">_</span>v = <span class="string">'foo'</span>;</span><br><span class="line">var var<span class="number">_</span>v = <span class="string">'bar'</span>; <span class="comment">//这里var_v被替代了，是可以重复声明的</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="let的应用场景"><a href="#let的应用场景" class="headerlink" title="let的应用场景"></a>let的应用场景</h3><p>一般在块作用域中使用let，避免使用var造成的<strong>变量污染</strong>  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/let%E5%92%8Cvar%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ck78s1toq003s1g9y9ro75chz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MySQL架构-Master-Slave复制模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/MySQL%E6%9E%B6%E6%9E%84-Master-Slave%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.579Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/MySQL%E6%9E%B6%E6%9E%84-Master-Slave%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/MySQL%E6%9E%B6%E6%9E%84-Master-Slave%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F/">MySQL架构-Master-Slave复制模式</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/ajax%E6%A6%82%E8%BF%B0/">
+                            ajax概述
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="master-slave复制架构的作用"><a href="#master-slave复制架构的作用" class="headerlink" title="master-slave复制架构的作用"></a>master-slave复制架构的作用</h2><p>&emsp;&emsp;主从复制解决了数据库的读写分离，并很好的提升了读的性能</p>
-<h3 id="主从数据库要求"><a href="#主从数据库要求" class="headerlink" title="主从数据库要求"></a>主从数据库要求</h3><p>&emsp;&emsp;<strong>主从复制架构</strong>需要主机数据库和从机数据库拥有共同的相同的数据库及表结构<br>比如现在我们拥有一个数据库m_s_test：  </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个表user</span></span><br><span class="line">CREATE TABLE<span class="built_in"> user </span>(</span><br><span class="line">    name VARCHAR(25),</span><br><span class="line">    age INT(11)</span><br><span class="line">);</span><br><span class="line"><span class="comment"># 插入一条数据</span></span><br><span class="line">insert into<span class="built_in"> user </span>value(<span class="string">'小明'</span>, 18);</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="master-slave复制配置"><a href="#master-slave复制配置" class="headerlink" title="master-slave复制配置"></a>master-slave复制配置</h2><h3 id="主机数据库配置"><a href="#主机数据库配置" class="headerlink" title="主机数据库配置"></a>主机数据库配置</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">log-bin</span>=mysql.bin</span><br><span class="line"><span class="comment"># 使binlog在每N次binlog写入后与硬盘同步</span></span><br><span class="line"><span class="attr">sync-binlog</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1天时间自动清理二进制日志</span></span><br><span class="line"><span class="attr">expire_logs_days</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要同步的数据库</span></span><br><span class="line"><span class="attr">binlog-do-db</span>=demo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不需要同步的数据库</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span> = mysql                </span><br><span class="line"><span class="attr">binlog-ignore-db</span> = test                      </span><br><span class="line"><span class="attr">binlog-ignore-db</span> = information_schema</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = bak</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = sys</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = omserver</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = sakila</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_base_<span class="number">1_0</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_base_2</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_emx_<span class="number">1_0</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_emx_2</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_maint_<span class="number">1_0</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_maint_2 </span><br><span class="line"></span><br><span class="line"><span class="comment"># Server Id.</span></span><br><span class="line"><span class="attr">server-id</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="主机数据库操作"><a href="#主机数据库操作" class="headerlink" title="主机数据库操作"></a>主机数据库操作</h3><p>这里的授权用户名我们用 lingyi<br>密码用 root  </p>
-<ol>
-<li>连接主机数据库</li>
-<li>执行 <code>grant replication slave on *.* to &#39;授权的用户名&#39;@&#39;ip地址&#39; identified by &#39;授权的密码&#39; ;</code></li>
-<li>刷新权限：flush privileges;</li>
-<li>执行<code>use mysql</code>，<code>select Host,User from user</code>查看授权的用户。</li>
-<li>重启服务器</li>
-<li>执行<code>show master status\G</code>查看主服务器状态信息，<strong>注意记录position值，从库与master建立连接的时候需要使用</strong></li>
-</ol>
-<h3 id="从机数据库配置"><a href="#从机数据库配置" class="headerlink" title="从机数据库配置"></a>从机数据库配置</h3><ol>
-<li>将主库的demo数据库克隆一份到从库，并给用户重新授权 <code>grant all privileges on *.* to &#39;lingyi&#39;@&#39;%&#39; identified by &#39;root&#39; with grant option;</code></li>
-<li>slave与master建立连接，进行数据同步<code>change master to master_host=&#39;主机ip地址&#39;,master_user=&#39;lingyi&#39;,master_password=&#39;root&#39;, master_log_file=&#39;mysql.000001&#39;,master_log_pos=position的值;</code></li>
-<li>查看从机数据库的状态</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Slave_IO_Running:</span> <span class="literal">Yes</span></span><br><span class="line"><span class="attr">Slave_SQL_Running:</span></span><br><span class="line"><span class="literal">Yes</span><span class="string">以上两项都为Yes说明配置成功。</span></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>重启从数据库</li>
-</ol>
-<h3 id="主机插入数据，从机查询数据"><a href="#主机插入数据，从机查询数据" class="headerlink" title="主机插入数据，从机查询数据"></a>主机插入数据，从机查询数据</h3><p>同时开启主机和从机的数据库，测试主机插入数据，从机查询数据。<br>successful!  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/MySQL%E6%9E%B6%E6%9E%84-Master-Slave%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F/" data-id="ck78s1tmb000s1g9y32kmboki" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ajax概述" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/ajax%E6%A6%82%E8%BF%B0/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.539Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/ajax%E6%A6%82%E8%BF%B0/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/ajax%E6%A6%82%E8%BF%B0/">ajax概述</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/jQuery%E6%A6%82%E8%BF%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+                            jQuery概述（一）
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><h3 id="1-ajax是什么？"><a href="#1-ajax是什么？" class="headerlink" title="1. ajax是什么？"></a>1. ajax是什么？</h3><p>&emsp;&emsp;1、ajax是一种用于创建快速动态页面的艺术<br>&emsp;&emsp;2、ajax在不重新加载页面的前提下，与服务器交换数据更新当前页面。</p>
-<h3 id="2-ajax创建对象的两种方式"><a href="#2-ajax创建对象的两种方式" class="headerlink" title="2. ajax创建对象的两种方式"></a>2. ajax创建对象的两种方式</h3><h4 id="1、创建XMLHttpRequest对象"><a href="#1、创建XMLHttpRequest对象" class="headerlink" title="1、创建XMLHttpRequest对象"></a>1、创建XMLHttpRequest对象</h4><p><code>var xhrhttp = new XMLHttpRequest();</code></p>
-<h4 id="2、创建ActiveX对象"><a href="#2、创建ActiveX对象" class="headerlink" title="2、创建ActiveX对象"></a>2、创建ActiveX对象</h4><p><code>var xhrhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP);</code></p>
-<p>代码段示例：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var xhrhttp;</span><br><span class="line">if (windows.XMLHttpRequest)&#123;</span><br><span class="line">    xmlhttp = new XMLHttpRequest();</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-ajax发送请求"><a href="#3-ajax发送请求" class="headerlink" title="3. ajax发送请求"></a>3. ajax发送请求</h3><h4 id="open-和send-方法"><a href="#open-和send-方法" class="headerlink" title="open()和send()方法"></a>open()和send()方法</h4><p>&emsp;&emsp;ajax发送请求的两个函数分别是open()和send()<br>&emsp;&emsp;两种发送请求的方式：get、post，其中send()可以用来传递post的参数。<br>参数：  </p>
-<ol>
-<li>open()参数<br>param1：method，请求方法get/post<br>param2：url，请求的网址<br>param3：async，是否异步执行，默认为true    </li>
-<li>send()参数<br>param1：strings仅用于post请求    </li>
-</ol>
-<p>代码段示例：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--xmlhttp XMLHttpRequest对象--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--发送get请求--&gt;</span></span><br><span class="line">xmlhttp.open("GET", url, true)</span><br><span class="line">xmlhttp.send()</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--发送post请求--&gt;</span></span><br><span class="line">xmlhttp.open("POST",url,true);</span><br><span class="line">xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");</span><br><span class="line">xmlhttp.send("fname=Bill&amp;lname=Gates");</span><br></pre></td></tr></table></figure>
-<h3 id="4-onreadystatechange"><a href="#4-onreadystatechange" class="headerlink" title="4. onreadystatechange"></a>4. onreadystatechange</h3><ol>
-<li>三个属性  <ul>
-<li>onreadystatechange：当readystate改变时调用这个函数  </li>
-<li>readystate：存有xmlhttprequest的状态<br>0：请求初始化<br>1：服务器连接已建立<br>2：服务器已接收请求<br>3：服务器已响应请求<br>4：请求已完成，且响应已就绪  </li>
-<li>status：响应状态<br>200：成功<br>404：页面未找到</li>
-</ul>
-</li>
-<li>Callback函数：把函数作为参数传入的函数称为callback函数。<h3 id="ajax能做的事"><a href="#ajax能做的事" class="headerlink" title="ajax能做的事"></a>ajax能做的事</h3></li>
-<li>动态判断用户的输入，返回相应的数据  </li>
-<li>与数据库实时交互，返回用户查询的信息</li>
-<li>读取xml文件  </li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/ajax%E6%A6%82%E8%BF%B0/" data-id="ck78s1tni00271g9yhfrsbbjg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jQuery概述（一）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/jQuery%E6%A6%82%E8%BF%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.465Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/jQuery%E6%A6%82%E8%BF%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/jQuery%E6%A6%82%E8%BF%B0%EF%BC%88%E4%B8%80%EF%BC%89/">jQuery概述（一）</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/jQuery%E9%98%BB%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/">
+                            jQuery阻断事件冒泡
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是jQuery"><a href="#什么是jQuery" class="headerlink" title="什么是jQuery?"></a>什么是jQuery?</h2><p>&emsp;&emsp;jQuery是js的一个高效的库  </p>
-<h2 id="js的特性"><a href="#js的特性" class="headerlink" title="js的特性"></a>js的特性</h2><ol>
-<li>特性：write less, do more  </li>
-<li>作用：  <ul>
-<li>选取、操作HTML、操作HTML的事件</li>
-<li>操作css</li>
-<li>制作js特效</li>
-<li>ajax功能</li>
-<li>utilities<h2 id="jQuery的引用"><a href="#jQuery的引用" class="headerlink" title="jQuery的引用"></a>jQuery的引用</h2><h3 id="1-官网下载jQuery"><a href="#1-官网下载jQuery" class="headerlink" title="1.官网下载jQuery"></a>1.官网下载jQuery</h3>1、官网下载（.min.js（精简，用于发布时使用）/.js（用于开发时使用，方便debug））：<a href="http://www.jQuery.com" target="_blank" rel="noopener">www.jQuery.com</a><br>2、导入代码(src中填写自己的jQuery文件路径)：<br><code>&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-3.4.1.js&quot;&gt;&lt;/script&gt;</code>  </li>
-</ul>
-</li>
-</ol>
-<h3 id="2-从谷歌或者微软的CDN导入jQuery"><a href="#2-从谷歌或者微软的CDN导入jQuery" class="headerlink" title="2.从谷歌或者微软的CDN导入jQuery"></a>2.从谷歌或者微软的CDN导入jQuery</h3><p>这种方式会更快一点，因为许多用户已经加载过谷歌或者微软的jQuery，从本地缓存中获取，会更快。<br>1、从微软导入：<br><code>&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js&quot;&gt;
-&lt;/script&gt;</code><br>2、从谷歌导入：<br><code>&lt;script src=&quot;http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js&quot;&gt;
-&lt;/script&gt;</code>  </p>
-<h2 id="jQuery的语法"><a href="#jQuery的语法" class="headerlink" title="jQuery的语法"></a>jQuery的语法</h2><h3 id="jQuery语法"><a href="#jQuery语法" class="headerlink" title="jQuery语法"></a>jQuery语法</h3><p>$(document).ready(func..)  </p>
-<ol>
-<li>$：代表jQuery</li>
-<li>()：选择器</li>
-<li>action()：动作</li>
-</ol>
-<h3 id="jQuery命名冲突"><a href="#jQuery命名冲突" class="headerlink" title="jQuery命名冲突"></a>jQuery命名冲突</h3><p>有时候在jquery的函数中也可能使用到$，造成命名冲突。需要给jQuery重命名解决<br>代码示例：  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//jQuery命名冲突时重命名jQuery库</span><br><span class="line">    var jq = jQuery.noConflict();</span><br><span class="line">    jq(document).ready(function () &#123;</span><br><span class="line">        jq("button").click(function () &#123;</span><br><span class="line">            jq("p").text("jQuery 仍在运行！");</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="文档就绪函数"><a href="#文档就绪函数" class="headerlink" title="文档就绪函数"></a>文档就绪函数</h3><p>&emsp;&emsp;$(document).ready(func..)<br>&emsp;&emsp;所有的jQuery代码放在文档就绪函数中，这样做是为了防止文档未加载完成之前运行jQuery代码。<br>比如：  </p>
-<ol>
-<li>试图隐藏一个不存在的元素  </li>
-<li>获取未加载完成的图像的大小  <h3 id="jQuery规范"><a href="#jQuery规范" class="headerlink" title="jQuery规范"></a>jQuery规范</h3></li>
-<li>把所有 jQuery 代码置于事件处理函数中  </li>
-<li>把所有事件处理函数置于文档就绪事件处理器中  </li>
-<li>把 jQuery 代码置于单独的 .js 文件中  </li>
-<li>如果存在名称冲突，则重命名 jQuery 库  </li>
-</ol>
-<h2 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h2><ol>
-<li>元素选择器<br><code>$(&quot;p&quot;) 选取所有的p标签</code>  </li>
-<li>属性选择器<br><code>选取所有属性带有$(&quot;[href]&quot;)的标签</code>  </li>
-<li>css选择器<br><code>$(&quot;p&quot;).css(&quot;background-color&quot;,&quot;red&quot;);</code>  </li>
-</ol>
-<p>更多更选择器样式参考<a href="http://www.w3school.com.cn的jQuery教程" target="_blank" rel="noopener">www.w3school.com.cn的jQuery教程</a></p>
-<h2 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h2><ol>
-<li>事件处理程序，是HTML页面中发生某些事件的时，所调用的方法  </li>
-<li>jQuery事件处理程序是jQuery的核心函数  </li>
-</ol>
-<p>事件代码示例：</p>
-<ol>
-<li>隐藏当前点击的p标签<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--隐藏当前点击的p标签--&gt;</span></span><br><span class="line">$(document).ready(function ()&#123;</span><br><span class="line">    $("p").click(function ()&#123;</span><br><span class="line">        $(this).hide()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-<li>鼠标悬停和移开事件  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function ()&#123;</span><br><span class="line">    $("p").mouseover(function ()&#123;</span><br><span class="line">        $(this).css("color", "red")</span><br><span class="line">    &#125;)</span><br><span class="line">    $("p").mouseout(function ()&#123;</span><br><span class="line">        $(this).css("color", "")</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>更多事件参考<a href="http://www.w3school.com.cn的jQuery教程" target="_blank" rel="noopener">www.w3school.com.cn的jQuery教程</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/jQuery%E6%A6%82%E8%BF%B0%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ck78s1tok003b1g9y3w009co4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jQuery阻断事件冒泡" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/jQuery%E9%98%BB%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.338Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/jQuery%E9%98%BB%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/jQuery%E9%98%BB%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/">jQuery阻断事件冒泡</a>
-    </h1>
-  
+        <article class="post">
+            
+                    <h1 class="post-title">
+                        <a href="/2020/03/01/django%E7%9A%84@login_required%E8%A3%85%E9%A5%B0%E5%99%A8/">
+                            django的@login_required装饰器
+                        </a>
+                    </h1>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><p>&emsp;&emsp;子元素的点击事件，触发父元素和祖先元素的点击事件，这样的行为称为事件冒泡  </p>
-<h3 id="阻断事件冒泡的两种方式"><a href="#阻断事件冒泡的两种方式" class="headerlink" title="阻断事件冒泡的两种方式"></a>阻断事件冒泡的两种方式</h3><ol>
-<li><code>return false</code>  </li>
-<li><code>event.stopPropagation()</code><br>代码示例：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">body</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    外层div</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        内层div</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">$(function()&#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 为内层div绑定click事件</span></span><br><span class="line"><span class="regexp">    $("#msg").click(function()&#123;</span></span><br><span class="line"><span class="regexp">        alert("我是小div");</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/return false;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/event.stopPropagation()</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp"> /</span><span class="regexp">/ 为外层div元素绑定click事件</span></span><br><span class="line"><span class="regexp">    $("#content").click(function()&#123;</span></span><br><span class="line"><span class="regexp">        alert("我是大div");</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/return false;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/event.stopPropagation()</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 为body元素绑定click事件</span></span><br><span class="line"><span class="regexp">    $("body").click(function()&#123;</span></span><br><span class="line"><span class="regexp">        alert("我是body");</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/return false;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/event.stopPropagation()</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
-<h3 id="阻断表单自动提交"><a href="#阻断表单自动提交" class="headerlink" title="阻断表单自动提交"></a>阻断表单自动提交</h3><p>&emsp;&emsp;阻止表单自动提交<br>&emsp;&emsp;我们知道，表达的数据提交需要得到验证，而表单提交按钮拥有自动提交的功能，使用表单提交的时候，需要阻断表单的自动提交。<br>&emsp;&emsp;1. 阻断表单提交功能：event.preventDefault()<br>&emsp;&emsp;比如：当提交的用户名为空的时候，阻断表单提交。  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/jQuery%E9%98%BB%E6%96%AD%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" data-id="ck78s1too003n1g9y1enh7gjb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-django的@login_required装饰器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/django%E7%9A%84@login_required%E8%A3%85%E9%A5%B0%E5%99%A8/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.323Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                    <ul class="post-date">
+                        <li>
+                            March 1, 2020
+                        </li>
+                        <li>
+                            Bsj
+                        </li>
+                    </ul>
+                    
+                    <div class="post-content ">
+                        
+                            <a href="/2020/03/01/django%E7%9A%84@login_required%E8%A3%85%E9%A5%B0%E5%99%A8/" class="more-link">Continue reading</a>
+                    </div>
+        </article>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/django%E7%9A%84@login_required%E8%A3%85%E9%A5%B0%E5%99%A8/">django的@login_required装饰器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="django的-login-required装饰器"><a href="#django的-login-required装饰器" class="headerlink" title="django的@login_required装饰器"></a>django的@login_required装饰器</h2><p>在settings中配置LOGIN_URL，使用@login_requirede装饰的方法在未登录的情况下跳转到该链接。<br><code>LOGIN_URL = &#39;/login/&#39;</code>  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/django%E7%9A%84@login_required%E8%A3%85%E9%A5%B0%E5%99%A8/" data-id="ck78s1tnu002o1g9y1s6b1unx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/" rel="tag">Django</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
-  </nav>
-
 </section>
-        
-          <aside id="sidebar">
-  
+
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
     
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+            </section>
+        </aside>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/03/02/hexo%20%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">hexo简单搭建博客</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Bsj<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
+
 </html>

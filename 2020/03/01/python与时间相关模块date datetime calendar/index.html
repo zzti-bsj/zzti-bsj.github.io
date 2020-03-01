@@ -1,98 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>python与时间相关模块date/datetime/calendar | Bsj&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三个模块time&#x2F;datetime&#x2F;calendar常用的功能对应我们编程，经常使用的功能：  获取当前的年月日-时分秒、年月日、时分秒。 获取时间戳 延时 程序处理时间 今天是周几？ 获取年、月、日、时、分、秒  经常使用的三个模块time、datetime、calendar  time模块 time() #获取时间戳 sleep() # 设置延时 参数单位为秒   datetime（年月日-时">
-<meta property="og:type" content="article">
-<meta property="og:title" content="python与时间相关模块date&#x2F;datetime&#x2F;calendar">
-<meta property="og:url" content="http://yoursite.com/2020/03/01/python%E4%B8%8E%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97date%20datetime%20calendar/index.html">
-<meta property="og:site_name" content="Bsj&#39;s Blog">
-<meta property="og:description" content="三个模块time&#x2F;datetime&#x2F;calendar常用的功能对应我们编程，经常使用的功能：  获取当前的年月日-时分秒、年月日、时分秒。 获取时间戳 延时 程序处理时间 今天是周几？ 获取年、月、日、时、分、秒  经常使用的三个模块time、datetime、calendar  time模块 time() #获取时间戳 sleep() # 设置延时 参数单位为秒   datetime（年月日-时">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-01T08:32:43.842Z">
-<meta property="article:modified_time" content="2019-08-27T02:50:53.150Z">
-<meta property="article:author" content="Bsj">
-<meta property="article:tag" content="Python模块">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Bsj&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="hexo, autumn" />
+    <title>
+        Bsj&#39;s Blog
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico" />
+     
 <link rel="stylesheet" href="/css/style.css">
 
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Bsj&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">blog</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-python与时间相关模块date datetime calendar" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/01/python%E4%B8%8E%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97date%20datetime%20calendar/" class="article-date">
-  <time datetime="2020-03-01T08:32:43.842Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      python与时间相关模块date/datetime/calendar
-    </h1>
-  
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/" class="logo">
+                Bsj&#39;s Blog
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
 
-      </header>
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/" class="logo">
+            Bsj&#39;s Blog
+        </a>
+    </h1>
+    <h2 class="desc">
+        blog
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a href="https://github.com/FrontendSophie" target="_blank" rel="noopener">
+                    Github
+                </a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/frontendsophie/" target="_blank" rel="noopener">
+                    LinkedIn
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
     
-    <div class="article-entry" itemprop="articleBody">
-      
+    
+    
+    <h2 class="post-title">
+        python与时间相关模块date/datetime/calendar
+    </h2>
+    <ul class="post-date">
+        <li>
+            2020-03-01
+        </li>
+        <li>
+            Bsj
+        </li>
+    </ul>
+    <div class="post-content">
         <h2 id="三个模块time-datetime-calendar"><a href="#三个模块time-datetime-calendar" class="headerlink" title="三个模块time/datetime/calendar"></a>三个模块time/datetime/calendar</h2><h3 id="常用的功能"><a href="#常用的功能" class="headerlink" title="常用的功能"></a>常用的功能</h3><p>对应我们编程，经常使用的功能：</p>
 <ol>
 <li>获取当前的年月日-时分秒、年月日、时分秒。</li>
@@ -138,146 +179,35 @@
 </ol>
 <h3 id="测试源码"><a href="#测试源码" class="headerlink" title="测试源码"></a>测试源码</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">import time, datetime, calendar</span><br><span class="line"></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string"># 时间戳：从1970年1月1日到现在的所有秒数之和</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"><span class="comment"># time模块常用方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、time() 返回时间戳</span></span><br><span class="line">timestamp = time.time()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、sleep() 延迟函数，参数是秒数，可以为float型</span></span><br><span class="line"><span class="comment"># time.sleep(2)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、process_time()/process_time_ns() 程序处理时间  程序处理时间的纳秒</span></span><br><span class="line">processtime = time.process_time()</span><br><span class="line">processtime_ns = time.process_time_ns()</span><br><span class="line"><span class="builtin-name">print</span>(processtime)</span><br><span class="line"><span class="builtin-name">print</span>(processtime_ns)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、ctime()/asctime() 返回当前时间的字符串形式</span></span><br><span class="line">cur_time_str = time.asctime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time_str)</span><br><span class="line">cur_time_str = time.ctime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、localtime() 返回一个元组表达式形式的列表</span></span><br><span class="line">cur_time = time.localtime()</span><br><span class="line"><span class="builtin-name">print</span>(cur_time)</span><br><span class="line"></span><br><span class="line"><span class="comment"># datetime模块</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">datetime模块中的三个类class</span></span><br><span class="line"><span class="string">    1、datetime：年月日-时分秒</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用datetime创建一个实例，需要传入时间（整型:年、月、日、时、分、秒。。。）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的年月日-时分秒。methods: today()/date()/time()/weekday()/other methods</span></span><br><span class="line"><span class="string">    2、date：年月日</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用date创建一个实例，需要传入时间（整型:年、月、日）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的年月日。methods: today()/weekday()/other methods</span></span><br><span class="line"><span class="string">    3、time：时分秒</span></span><br><span class="line"><span class="string">        （1）既然是类，那么就有fields和methods，调用time创建一个实例，需要传入时间（整型:时、分、秒）</span></span><br><span class="line"><span class="string">        （2）可以根据创建的实例获取其属性值</span></span><br><span class="line"><span class="string">        （3）不传入参数直接调用提供的方法，默认参数是当前的时分秒。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">***！之前一直对时间很模糊，现在基本了解了程序中具体到分秒的时间：date（年月日） - time（时分秒），同时这对应着datetime类的两个方法date()/time()，返回什么值自然一想就知道了，肯定是date()返回年月日，time()返回时分秒</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 返回时分秒</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).time()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回ctime类型的字符串</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).ctime()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回年月日</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).date()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回一个当前具体的时间</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).now()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line">x = datetime.datetime.today().hour</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回星期几</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).weekday()</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># strptime的用法</span></span><br><span class="line">x = datetime.datetime(2019, 7, 26, 13, 24, 55).strptime(<span class="string">"2019-05-24"</span>, <span class="string">"%Y-%m-%d"</span>)</span><br><span class="line"><span class="builtin-name">print</span>(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># class: date</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'*'</span><span class="number">*20</span>)</span><br><span class="line">today = datetime.time</span><br><span class="line"></span><br><span class="line"><span class="comment"># class: time</span></span><br><span class="line"><span class="builtin-name">print</span>(today)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calender模块</span></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">'*'</span><span class="number">*20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># weekday()方法</span></span><br><span class="line">weekday = calendar.weekday(2019, 7, 26)</span><br><span class="line"><span class="builtin-name">print</span>(weekday)</span><br><span class="line"></span><br><span class="line"><span class="comment"># class:</span></span><br><span class="line"><span class="comment"># 获取calendar对象</span></span><br><span class="line"><span class="comment"># 设置firstweekday=6</span></span><br><span class="line">calendar = calendar.Calendar(<span class="attribute">firstweekday</span>=6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 day</span></span><br><span class="line">all_dates = calendar.itermonthdates(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_dates:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 year-month-day</span></span><br><span class="line">all_ = calendar.itermonthdays(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(day,weekday) 其中weekday是0-6</span></span><br><span class="line">all_ = calendar.itermonthdays2(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(year, month, day)</span></span><br><span class="line">all_ = calendar.itermonthdays3(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以元组形式返回(year, month, day, weekday)</span></span><br><span class="line">all_ = calendar.itermonthdays4(2019, 6)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> all_:</span><br><span class="line">    <span class="builtin-name">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间的格式化问题</span></span><br></pre></td></tr></table></figure>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/01/python%E4%B8%8E%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97date%20datetime%20calendar/" data-id="ck78s1tp0004h1g9y1r211acw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/03/01/bloomfilter4py3%E6%A8%A1%E5%9D%97%EF%BC%9Apython%E5%AE%9E%E7%8E%B0%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          bloomfilter4py3模块：python实现布隆过滤
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/03/01/itertools%E6%A8%A1%E5%9D%97/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">itertools模块</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
 
-</section>
-        
-          <aside id="sidebar">
-  
     
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/" rel="tag">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Encryption/" rel="tag">Encryption</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Php/" rel="tag">Php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" rel="tag">Python多任务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E6%A8%A1%E5%9D%97/" rel="tag">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapyd/" rel="tag">Scrapyd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Socket%E7%BC%96%E7%A8%8B/" rel="tag">Socket编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework/" rel="tag">django rest_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-haystack/" rel="tag">django-haystack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gunicorn/" rel="tag">gunicorn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" rel="tag">python内置模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">数据库学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="tag">数据结构和算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" rel="tag">目标、总结和计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+            </section>
+        </aside>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Django/" style="font-size: 18.89px;">Django</a> <a href="/tags/Encryption/" style="font-size: 10px;">Encryption</a> <a href="/tags/Git/" style="font-size: 11.11px;">Git</a> <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">Java基础</a> <a href="/tags/LeetCode/" style="font-size: 11.11px;">LeetCode</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Php/" style="font-size: 12.22px;">Php</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Python%E5%A4%9A%E4%BB%BB%E5%8A%A1/" style="font-size: 17.78px;">Python多任务</a> <a href="/tags/Python%E6%A8%A1%E5%9D%97/" style="font-size: 14.44px;">Python模块</a> <a href="/tags/Python%E7%88%AC%E8%99%AB/" style="font-size: 15.56px;">Python爬虫</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/Scrapyd/" style="font-size: 13.33px;">Scrapyd</a> <a href="/tags/Socket%E7%BC%96%E7%A8%8B/" style="font-size: 13.33px;">Socket编程</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/django-rest-framework/" style="font-size: 10px;">django rest_framework</a> <a href="/tags/django-haystack/" style="font-size: 11.11px;">django-haystack</a> <a href="/tags/gunicorn/" style="font-size: 10px;">gunicorn</a> <a href="/tags/jQuery/" style="font-size: 16.67px;">jQuery</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">python内置模块</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.22px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.44px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 11.11px;">数据库学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构和算法</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 11.11px;">机器学习</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E3%80%81%E6%80%BB%E7%BB%93%E5%92%8C%E8%AE%A1%E5%88%92/" style="font-size: 10px;">目标、总结和计划</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">网络编程</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 14.44px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/03/02/hexo%20%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">hexo简单搭建博客</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/Python%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0isinstance/">Python内置函数isinstance</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/Sqlite%E4%B9%8B%E5%9C%A8python%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/">Sqlite之在python中的应用</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/python%E4%B8%AD%E7%9A%84%E5%BC%95%E5%8F%B7/">python中的引号</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/01/1.LeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">LeetCode两数之和</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Bsj<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
+
 </html>
