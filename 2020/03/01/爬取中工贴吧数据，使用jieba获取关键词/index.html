@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        爬取中工贴吧数据，使用jieba获取关键词｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2020/03/01/爬取中工贴吧数据，使用jieba获取关键词/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>爬取中工贴吧数据，使用jieba获取关键词</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-03-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Scrapy"
+                           title="Scrapy">Scrapy</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            爬取中工贴吧数据，使用jieba获取关键词
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="爬取贴吧数据，使用jieba获取关键词"><a href="#爬取贴吧数据，使用jieba获取关键词" class="headerlink" title="爬取贴吧数据，使用jieba获取关键词"></a>爬取贴吧数据，使用jieba获取关键词</h2><p>&emsp;&emsp;学的东西总要用的上嘛，用上了就要用的有趣啊！Scrapy技术+Python第三方依赖包jieba，啧啧，爬个学校的贴吧练练手吧，看看大家都在讨论的啥。<br>爬去的结果显示，除了专业和学校，最重要的也许就是学姐了吧<br><img src="/imag/2019-7-24-1.jpg" alt="alt ww" title="xuejie"> </p>
+<h3 id="scrapy简单练手"><a href="#scrapy简单练手" class="headerlink" title="scrapy简单练手"></a>scrapy简单练手</h3><p>&emsp;&emsp;我也是一边学、一边试、一边总结。经常试试能够解决很多自己的疑惑。<br>&emsp;&emsp;我今天特地使用scrapy的基础教程创建一个最最最基础的scrapy的爬虫项目，然后手动创建了一个spider.py文件。<br>手动创建spider.py文件的步骤：  </p>
+<ol>
+<li>创建一个爬虫类，继承scrapy.Spider</li>
+<li>添加属性name</li>
+<li>请求url的两种方式：<ul>
+<li>1）写在strat_urls列表中</li>
+<li>2）重写start_requests(self, response)</li>
+</ul>
+</li>
+<li>使用默认函数parse运行爬虫</li>
+</ol>
+<p>&emsp;&emsp;然后我开始写程序啊，练习使用css选择器获取网页的内容，然后我就试啊试：  </p>
+<p>css选择器三种查找的形式：</p>
+<ol>
+<li>.class # 类选择</li>
+<li>#id  # id选择</li>
+<li>[target=”？？”]  # 属性选择</li>
+<li>::text  # ::  取内容</li>
+<li>::attr(attribute)  # 取属性的内容</li>
+</ol>
+<p>css选择器实际使用时的问题：</p>
+<ol>
+<li>怎么选择相对路径下的标签？<ul>
+<li>css空格就是代表了绝对路径和相对路径</li>
+</ul>
+</li>
+<li>一个标签之间的多个类之间怎么连接？<ul>
+<li>使用 .</li>
+</ul>
+</li>
+</ol>
+<h3 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h3><p>&emsp;&emsp;写入文件很简单了，就好像是问怎么把大象关进冰箱门，不要想太复杂。  </p>
+<ol>
+<li>打开文件</li>
+<li>写入文件</li>
+<li>关闭文件<br>对文件操作的重点在于：  </li>
+<li>以什么格式打开文件？<ul>
+<li>open()函数，两个参数，文件路径（后缀名）&amp;打开方式</li>
+<li>常见的有w/r/a/a+/wb</li>
+</ul>
+</li>
+<li>怎么操作文件？<ul>
+<li>使用打开文件之后返回的对象，使用read()/write()，例如csv文件写入的时候是传入一个以逗号分隔的字符串。</li>
+<li>读文件有数种方式，读取一行/读取一行放入列表/读取全部</li>
+</ul>
+</li>
+<li>关闭文件close()</li>
+</ol>
+<p>&emsp;&emsp;写入文件之后，面对10000行文字，我觉得不爽，接下来使用jieba模块提取这个文件的关键字。<br>&emsp;&emsp;另写一个py文件，操作刚刚的csv文件。  </p>
+<h3 id="结巴分词的浅记"><a href="#结巴分词的浅记" class="headerlink" title="结巴分词的浅记"></a>结巴分词的浅记</h3><p>代码不长，贴下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># 作者：bsj</span></span><br><span class="line"><span class="comment"># 邮箱：2779090360@qq.com</span></span><br><span class="line"><span class="comment"># 时间：2019/7/24</span></span><br><span class="line">import jieba</span><br><span class="line"><span class="built_in">from</span> collections import Counter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def output_top_n():</span><br><span class="line">    list = []</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'zut_tieba.csv'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">line</span> <span class="keyword">in</span> f:</span><br><span class="line">            <span class="comment"># 对每一行使用jieba处理</span></span><br><span class="line">            cut = jieba.cut(<span class="built_in">line</span>)</span><br><span class="line">            <span class="comment"># 和空列表合并</span></span><br><span class="line">            list += cut</span><br><span class="line">    couter = Counter(list).most_common(<span class="number">10000</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">"key_word.txt"</span>, <span class="string">'a+'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> cou <span class="keyword">in</span> couter:</span><br><span class="line">            f.<span class="built_in">write</span>(str(cou))</span><br><span class="line">            f.<span class="built_in">write</span>(<span class="string">"\n"</span>)</span><br><span class="line">            print(cou)</span><br><span class="line">        f.<span class="built_in">close</span>()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">output_top_n()</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;使用jieba模块调用cut函数，传入字符串参数，返回一个关键字组成的生成器，这里我使用了列表合并，把关键字写入同了一个列表中。</p>
+<h4 id="精准匹配"><a href="#精准匹配" class="headerlink" title="精准匹配"></a>精准匹配</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">str</span> = <span class="string">"我是一个爱学习的Coder，学习也爱我，我没有女朋友"</span></span><br><span class="line">gen = jieba.cut(<span class="built_in">str</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">","</span>.<span class="built_in">join</span>(gen))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,，,学习,也,爱,我,，,我,没有,女朋友</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="全模式"><a href="#全模式" class="headerlink" title="全模式"></a>全模式</h4><p>全模式解析的好像更全了。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="built_in">str</span> = <span class="string">"我是一个爱学习的Coder，学习也爱我，我没有女朋友"</span></span><br><span class="line">gen = jieba.cut(<span class="built_in">str</span>, cut_all=True)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">","</span>.<span class="built_in">join</span>(gen))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,,学习,也,爱,我,,,我,没有,女朋友,朋友</span><br></pre></td></tr></table></figure>
+
+<h4 id="搜索引擎模式"><a href="#搜索引擎模式" class="headerlink" title="搜索引擎模式"></a>搜索引擎模式</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="built_in">str</span> = <span class="string">"我是一个爱学习的Coder，学习也爱我，我没有女朋友"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">','</span>.<span class="built_in">join</span>(jieba.cut_for_search(<span class="built_in">str</span>)))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;我,是,一个,爱,学习,的,Coder,，,学习,也,爱,我,，,我,没有,朋友,女朋友</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="练习了Scrapy-jieba模块"><a href="#练习了Scrapy-jieba模块" class="headerlink" title="练习了Scrapy+jieba模块"></a>练习了Scrapy+jieba模块</h3><p>也发现的有问题，使用css选择器获取不到网页的数据，这可能涉及的更深的技术，接下来我会持续跟进更深的技术，欢迎关注我的博客  </p>
+<p>附上代码（包含scrapy/jieba模块，在scrapy项目下可以运行此代码）：  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># 作者：bsj</span></span><br><span class="line"><span class="comment"># 邮箱：2779090360@qq.com</span></span><br><span class="line"><span class="comment"># 时间：2019/7/24</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">css选择器的使用方法：</span></span><br><span class="line"><span class="string">1、含有多个类的标签，类之间使用.连接</span></span><br><span class="line"><span class="string">2、空格就代表了相对路径和绝对路径</span></span><br><span class="line"><span class="string">3、选择某个属性为***的标签： response.css('a[href="***"]')</span></span><br><span class="line"><span class="string">4、使用单引号</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">传参：</span></span><br><span class="line"><span class="string">1、scrapy.Request()使用meta传递参数。</span></span><br><span class="line"><span class="string">2、在背传入的函数中，使用meta[key]获取接受的参数。</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZutTb</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"spider_zut_tb"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># start_urls = [</span></span><br><span class="line">    <span class="comment">#     "http://tieba.baidu.com/f?kw=%D6%D0%D4%AD%B9%A4%D1%A7%D4%BA&amp;fr=ala0&amp;tpl=5"</span></span><br><span class="line">    <span class="comment"># ]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义一个写入数据的函数</span></span><br><span class="line">    <span class="comment"># 存入到csv表中</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save_to_csv</span><span class="params">(self, pre_data)</span>:</span></span><br><span class="line">        <span class="keyword">with</span> open(<span class="string">'zut_tieba.csv'</span>,<span class="string">'a+'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(pre_data + <span class="string">"\n"</span>)</span><br><span class="line">            f.close()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里面，每次使用scrapy.Request()请求一个网页</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        urls = [</span><br><span class="line">            <span class="string">"http://tieba.baidu.com/f?kw=%D6%D0%D4%AD%B9%A4%D1%A7%D4%BA&amp;fr=ala0&amp;tpl=5"</span></span><br><span class="line">        ]</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url=url,</span><br><span class="line">                callback=self.parse,</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="comment"># 使用css解析网页</span></span><br><span class="line">        <span class="comment"># 使用response解析</span></span><br><span class="line">        <span class="comment"># 1、一个标签多个类之间使用.连接</span></span><br><span class="line">        <span class="comment"># 2、使用空格即有相对路径的作用</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取某个贴</span></span><br><span class="line">        all_tiebas = response.css(<span class="string">"li.j_thread_list.clearfix"</span>)</span><br><span class="line">        <span class="keyword">for</span> tieba <span class="keyword">in</span> all_tiebas:</span><br><span class="line">            <span class="comment"># 或取某个贴吧的回复数</span></span><br><span class="line">            num_res = tieba.css(<span class="string">"span.threadlist_rep_num.center_text::text"</span>).extract_first()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 获取贴吧主题</span></span><br><span class="line">            tieba_title = tieba.css(<span class="string">'a[rel="noreferrer"]::text'</span>).extract_first().strip()</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 获取贴吧的href</span></span><br><span class="line">            <span class="comment"># 3、选择某个属性为**的标签</span></span><br><span class="line">            tieba_href = <span class="string">"http://tieba.baidu.com"</span> + tieba.css(<span class="string">'a[rel="noreferrer"]::attr(href)'</span>).extract_first()</span><br><span class="line">            <span class="comment"># print(tieba_href)</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 把数据传入到另一个页面？</span></span><br><span class="line">            <span class="keyword">if</span> int(num_res) &gt;= <span class="number">5</span>:</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                        url=tieba_href,</span><br><span class="line">                        callback=self.get_pre_page_info,</span><br><span class="line">                        meta=&#123;</span><br><span class="line">                            <span class="string">'tieba_title'</span>: tieba_title,</span><br><span class="line">                        &#125;</span><br><span class="line">                    )</span><br><span class="line">                <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                    print(<span class="string">"异常"</span>)</span><br><span class="line">                    print(e)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 下一页</span></span><br><span class="line">        next_page = response.css(<span class="string">'a.next.pagination-item::attr(href)'</span>).extract_first()</span><br><span class="line">        <span class="keyword">if</span> next_page <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            next_page = response.urljoin(next_page)</span><br><span class="line">            print(next_page)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url=next_page,</span><br><span class="line">                callback=self.parse,</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取每一页的信息</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_pre_page_info</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="comment"># 贴吧 吧主</span></span><br><span class="line">        all_content_com = response.css(<span class="string">'div.d_post_content_main'</span>)</span><br><span class="line">        <span class="keyword">for</span> content_com <span class="keyword">in</span> all_content_com:</span><br><span class="line">            <span class="comment"># 获取content和com</span></span><br><span class="line">            content = content_com.css(<span class="string">'div.d_post_content.j_d_post_content.clearfix::text'</span>).extract_first().strip()</span><br><span class="line">            <span class="comment"># 我获取不到这个数据</span></span><br><span class="line">            <span class="comment"># com = content_com.css('div').extract()</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 已经获取到字符串</span></span><br><span class="line">            self.save_to_csv(content)</span><br><span class="line">            print(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用代码段运行scrapy爬虫</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</span><br><span class="line">    cmdline.execute(<span class="string">'scrapy crawl spider_zut_tb'</span>.split(<span class="string">" "</span>))</span><br></pre></td></tr></table></figure>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/01/Scrapy命令行模式/" data-toggle="tooltip" data-placement="top"
+                           title="Scrapy命令行模式">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/01/scrapy三种提取网页数据的方法/" data-toggle="tooltip" data-placement="top"
+                           title="scrapy三种提取网页数据的方法">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#爬取贴吧数据，使用jieba获取关键词"><span class="toc-text">爬取贴吧数据，使用jieba获取关键词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scrapy简单练手"><span class="toc-text">scrapy简单练手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写入文件"><span class="toc-text">写入文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结巴分词的浅记"><span class="toc-text">结巴分词的浅记</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#精准匹配"><span class="toc-text">精准匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全模式"><span class="toc-text">全模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#搜索引擎模式"><span class="toc-text">搜索引擎模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习了Scrapy-jieba模块"><span class="toc-text">练习了Scrapy+jieba模块</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Scrapy"
+                           title="Scrapy">Scrapy</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        jQuery概述（一）｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2020/03/01/jQuery概述（一）/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>jQuery概述（一）</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-03-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#jQuery"
+                           title="jQuery">jQuery</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            jQuery概述（一）
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="什么是jQuery"><a href="#什么是jQuery" class="headerlink" title="什么是jQuery?"></a>什么是jQuery?</h2><p>&emsp;&emsp;jQuery是js的一个高效的库  </p>
+<h2 id="js的特性"><a href="#js的特性" class="headerlink" title="js的特性"></a>js的特性</h2><ol>
+<li>特性：write less, do more  </li>
+<li>作用：  <ul>
+<li>选取、操作HTML、操作HTML的事件</li>
+<li>操作css</li>
+<li>制作js特效</li>
+<li>ajax功能</li>
+<li>utilities<h2 id="jQuery的引用"><a href="#jQuery的引用" class="headerlink" title="jQuery的引用"></a>jQuery的引用</h2><h3 id="1-官网下载jQuery"><a href="#1-官网下载jQuery" class="headerlink" title="1.官网下载jQuery"></a>1.官网下载jQuery</h3>1、官网下载（.min.js（精简，用于发布时使用）/.js（用于开发时使用，方便debug））：<a href="http://www.jQuery.com" target="_blank" rel="noopener">www.jQuery.com</a><br>2、导入代码(src中填写自己的jQuery文件路径)：<br><code>&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-3.4.1.js&quot;&gt;&lt;/script&gt;</code>  </li>
+</ul>
+</li>
+</ol>
+<h3 id="2-从谷歌或者微软的CDN导入jQuery"><a href="#2-从谷歌或者微软的CDN导入jQuery" class="headerlink" title="2.从谷歌或者微软的CDN导入jQuery"></a>2.从谷歌或者微软的CDN导入jQuery</h3><p>这种方式会更快一点，因为许多用户已经加载过谷歌或者微软的jQuery，从本地缓存中获取，会更快。<br>1、从微软导入：<br><code>&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js&quot;&gt;
+&lt;/script&gt;</code><br>2、从谷歌导入：<br><code>&lt;script src=&quot;http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js&quot;&gt;
+&lt;/script&gt;</code>  </p>
+<h2 id="jQuery的语法"><a href="#jQuery的语法" class="headerlink" title="jQuery的语法"></a>jQuery的语法</h2><h3 id="jQuery语法"><a href="#jQuery语法" class="headerlink" title="jQuery语法"></a>jQuery语法</h3><p>$(document).ready(func..)  </p>
+<ol>
+<li>$：代表jQuery</li>
+<li>()：选择器</li>
+<li>action()：动作</li>
+</ol>
+<h3 id="jQuery命名冲突"><a href="#jQuery命名冲突" class="headerlink" title="jQuery命名冲突"></a>jQuery命名冲突</h3><p>有时候在jquery的函数中也可能使用到$，造成命名冲突。需要给jQuery重命名解决<br>代码示例：  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//jQuery命名冲突时重命名jQuery库</span><br><span class="line">    var jq = jQuery.noConflict();</span><br><span class="line">    jq(document).ready(function () &#123;</span><br><span class="line">        jq("button").click(function () &#123;</span><br><span class="line">            jq("p").text("jQuery 仍在运行！");</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="文档就绪函数"><a href="#文档就绪函数" class="headerlink" title="文档就绪函数"></a>文档就绪函数</h3><p>&emsp;&emsp;$(document).ready(func..)<br>&emsp;&emsp;所有的jQuery代码放在文档就绪函数中，这样做是为了防止文档未加载完成之前运行jQuery代码。<br>比如：  </p>
+<ol>
+<li>试图隐藏一个不存在的元素  </li>
+<li>获取未加载完成的图像的大小  <h3 id="jQuery规范"><a href="#jQuery规范" class="headerlink" title="jQuery规范"></a>jQuery规范</h3></li>
+<li>把所有 jQuery 代码置于事件处理函数中  </li>
+<li>把所有事件处理函数置于文档就绪事件处理器中  </li>
+<li>把 jQuery 代码置于单独的 .js 文件中  </li>
+<li>如果存在名称冲突，则重命名 jQuery 库  </li>
+</ol>
+<h2 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h2><ol>
+<li>元素选择器<br><code>$(&quot;p&quot;) 选取所有的p标签</code>  </li>
+<li>属性选择器<br><code>选取所有属性带有$(&quot;[href]&quot;)的标签</code>  </li>
+<li>css选择器<br><code>$(&quot;p&quot;).css(&quot;background-color&quot;,&quot;red&quot;);</code>  </li>
+</ol>
+<p>更多更选择器样式参考<a href="http://www.w3school.com.cn的jQuery教程" target="_blank" rel="noopener">www.w3school.com.cn的jQuery教程</a></p>
+<h2 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h2><ol>
+<li>事件处理程序，是HTML页面中发生某些事件的时，所调用的方法  </li>
+<li>jQuery事件处理程序是jQuery的核心函数  </li>
+</ol>
+<p>事件代码示例：</p>
+<ol>
+<li>隐藏当前点击的p标签<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--隐藏当前点击的p标签--&gt;</span></span><br><span class="line">$(document).ready(function ()&#123;</span><br><span class="line">    $("p").click(function ()&#123;</span><br><span class="line">        $(this).hide()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>鼠标悬停和移开事件  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function ()&#123;</span><br><span class="line">    $("p").mouseover(function ()&#123;</span><br><span class="line">        $(this).css("color", "red")</span><br><span class="line">    &#125;)</span><br><span class="line">    $("p").mouseout(function ()&#123;</span><br><span class="line">        $(this).css("color", "")</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>更多事件参考<a href="http://www.w3school.com.cn的jQuery教程" target="_blank" rel="noopener">www.w3school.com.cn的jQuery教程</a></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/01/ajax概述/" data-toggle="tooltip" data-placement="top"
+                           title="ajax概述">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/01/jQuery阻断事件冒泡/" data-toggle="tooltip" data-placement="top"
+                           title="jQuery阻断事件冒泡">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是jQuery"><span class="toc-text">什么是jQuery?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js的特性"><span class="toc-text">js的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery的引用"><span class="toc-text">jQuery的引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-官网下载jQuery"><span class="toc-text">1.官网下载jQuery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-从谷歌或者微软的CDN导入jQuery"><span class="toc-text">2.从谷歌或者微软的CDN导入jQuery</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery的语法"><span class="toc-text">jQuery的语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery语法"><span class="toc-text">jQuery语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery命名冲突"><span class="toc-text">jQuery命名冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文档就绪函数"><span class="toc-text">文档就绪函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery规范"><span class="toc-text">jQuery规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery选择器"><span class="toc-text">jQuery选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery事件"><span class="toc-text">jQuery事件</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#jQuery"
+                           title="jQuery">jQuery</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

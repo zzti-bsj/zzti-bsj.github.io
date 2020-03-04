@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        用阿里云服务器搭建网站｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2018/11/02/用阿里云服务器搭建网站/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>用阿里云服务器搭建网站</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2018-11-02
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Php"
+                           title="Php">Php</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            用阿里云服务器搭建网站
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h3 id="一-准备一个服务器"><a href="#一-准备一个服务器" class="headerlink" title="一 准备一个服务器"></a>一 准备一个服务器</h3><p>如果想要让自己的网站上线让别人访问的话，首先是需要一个平台，即服务器，全天24小时能能够被访问。</p>
+<p>我的第一个服务器用的是<a href="https://www.aliyun.com/product/ecs?spm=5176.8789780.selected.1.69e357a8QAQ9EZ" target="_blank" rel="noopener">阿里云</a>的ECS。</p>
+<p>购买服务器的时候，会给一个远程连接的密码，购买之后，一定要记住该密码，在远程连接的时候输入进行连接。购买之后，登录阿里云，在服务器管理控制台里可以查看自己当前所用的服务器的相关信息，服务器的IP地址、状态、配置等信息。</p>
+<p><img src="/imag/php/php2.png" alt="alt php2" title="php2"></p>
+<h3 id="二-域名与服务器绑定"><a href="#二-域名与服务器绑定" class="headerlink" title="二 域名与服务器绑定"></a>二 域名与服务器绑定</h3><p>选一个自己喜欢的域名，去网上购买域名，我用的也是<a href="https://wanwang.aliyun.com/?spm=5176.8789780.selected.4.48d157a8XsXrz9" target="_blank" rel="noopener">阿里云的域名</a>产品。</p>
+<p>登录阿里云，在管理控制台里可以看到域名的相关信息，如果需要和服务器进行绑定，需要解析到服务器的公有IP，如图所示：</p>
+<p><img src="/imag/php/php1.png" alt="alt php1" title="php1"></p>
+<p><strong>有了域名，有了服务器，网站上线的准备工作已经做好了，然后就是实际性的操作了。</strong></p>
+<h3 id="三-开发环境配置和框架配置"><a href="#三-开发环境配置和框架配置" class="headerlink" title="三 开发环境配置和框架配置"></a>三 开发环境配置和框架配置</h3><ul>
+<li>PhpStudy</li>
+<li>php开发工具——JetBrain PhpStorm（开发工具下载使用即可）</li>
+<li>yii2框架（建议在php基础之上学习该框架）</li>
+</ul>
+<p><strong>（只讲解如何推送上线和本地域名解析。）</strong></p>
+<h3 id="四-PhpStudy搭建网站相关配置（推送网站上线操作）"><a href="#四-PhpStudy搭建网站相关配置（推送网站上线操作）" class="headerlink" title="四 PhpStudy搭建网站相关配置（推送网站上线操作）"></a>四 PhpStudy搭建网站相关配置（推送网站上线操作）</h3><p>在服务器上下载了一个PhpStudy集成环境，不需要手动搭建Php<br>的环境。（也可以选择买一个配置了环境的服务器）</p>
+<p><strong>接下来是PhpStudy有关使用的教程</strong></p>
+<p>1.点击phpstudy的<strong>其他选项菜单</strong>,找到<strong>端口常规设置</strong>如图：</p>
+<p><img src="/imag/php/php3.png" alt="alt php3" title="php3"></p>
+<p>2.打开<strong>端口常规设置</strong>，找到<strong>网站目录</strong></p>
+<p>我的网站目录： C:\phpStudy\PHPTutorial\WWW\1</p>
+<p>根目录是 C:\phpStudy\PHPTutorial\WWW 其中 1 是我的<strong>网站文件的根目录</strong>，打开后访问的是其主页index.php！</p>
+<p><img src="/imag/php/php4.png" alt="alt php4" title="php4"></p>
+<p>这样的话，在域名和服务器绑定之后，经过域名备案之后（阿里云的网站需要备案）再访问域名，就可以访问到 1 这个网站的内容了。</p>
+<p>（备案过程就不叙述了，登录阿里云官网 找到备案系统一步一步来就行了）</p>
+<h3 id="五-PhpStudy搭建网站相关配置（本地域名解析操作）"><a href="#五-PhpStudy搭建网站相关配置（本地域名解析操作）" class="headerlink" title="五 PhpStudy搭建网站相关配置（本地域名解析操作）"></a>五 PhpStudy搭建网站相关配置（本地域名解析操作）</h3><p>1.打开<strong>站点域名管理</strong>，配置本地域名解析示例如图：</p>
+<p><strong>网站目录：当前开发网站的根目录</strong></p>
+<p><strong>网站域名：自己设定的本地域名，启动Phpstudy之后可以访问</strong></p>
+<p><img src="/imag/php/php5.png" alt="alt php5" title="php5"></p>
+<p>2.打开host配置如图：<br>在host文本下面添加 127.0.0.1 <a href="http://www.secar.com" target="_blank" rel="noopener">www.secar.com</a></p>
+<p>结合第一步的操作，启动Phpstudy之后可以通过本地的<a href="http://www.secar.com在本机访问当前开发的网站目录。" target="_blank" rel="noopener">www.secar.com在本机访问当前开发的网站目录。</a></p>
+<p><img src="/imag/php/php6.png" alt="alt php6" title="php6"></p>
+<p><strong>好了，内容基本上就这些了，主要就是网站本地域名配置和推送网站上线的操作！</strong></p>
+<hr>
+<p>另外，这个是我开发Web的测试网站 <a href="http://www.coderbai.top" target="_blank" rel="noopener">网站链接</a> 欢迎大佬们指点。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/11/05/Php_十进制转十六进制/" data-toggle="tooltip" data-placement="top"
+                           title="Php_十进制转十六进制">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/11/01/Hexo博客常见错误总结/" data-toggle="tooltip" data-placement="top"
+                           title="Hexo博客常见错误总结">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-准备一个服务器"><span class="toc-text">一 准备一个服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-域名与服务器绑定"><span class="toc-text">二 域名与服务器绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-开发环境配置和框架配置"><span class="toc-text">三 开发环境配置和框架配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-PhpStudy搭建网站相关配置（推送网站上线操作）"><span class="toc-text">四 PhpStudy搭建网站相关配置（推送网站上线操作）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-PhpStudy搭建网站相关配置（本地域名解析操作）"><span class="toc-text">五 PhpStudy搭建网站相关配置（本地域名解析操作）</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Php"
+                           title="Php">Php</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

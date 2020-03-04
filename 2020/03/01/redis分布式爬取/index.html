@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        redis分布式爬取｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2020/03/01/redis分布式爬取/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>redis分布式爬取</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-03-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Scrapy"
+                           title="Scrapy">Scrapy</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            redis分布式爬取
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="redis分布式爬取"><a href="#redis分布式爬取" class="headerlink" title="redis分布式爬取"></a>redis分布式爬取</h2><p>&emsp;&emsp;redis分布式爬取，是基于redis数据库的多台主机分配任务爬取网页数据的方式。<br>&emsp;&emsp;假如有多台主机，其中一台作为master，其余的作为slave，master机分配任务，多台slave机使用<strong>同一套scarpy项目源码</strong>根据任务爬取网页数据。  </p>
+<ul>
+<li>settings中部署Redis服务</li>
+<li>定义Items</li>
+<li>继承RedisSpider编写Spider，定义redis_key</li>
+<li>在settings中加入scrapy_redis的要求配置项</li>
+<li>编写生成起始爬取URL的脚本文件<code>gen_urls.py</code></li>
+</ul>
+<h2 id="redis分布式爬取步骤"><a href="#redis分布式爬取步骤" class="headerlink" title="redis分布式爬取步骤"></a>redis分布式爬取步骤</h2><h3 id="1-安装scrapy-redis"><a href="#1-安装scrapy-redis" class="headerlink" title="1. 安装scrapy-redis"></a>1. 安装scrapy-redis</h3><p>&emsp;&emsp;scrapy-redis是一个基于Redis的Scrapy组件。利用Redis对用于爬取的请求（request）进行存储和调度。并对爬虫产生的项目（items）存储以供或许处理使用。<strong>scrapy-redis重写了scrapy中比较关键的代码，将Scarpy变成了一个可以运行在多台主机上同时运行的分布式爬虫。</strong><br><code>pip install scrapy-redis</code><br><code>pip install redis</code></p>
+<h3 id="2-配置scrapy的settings-py"><a href="#2-配置scrapy的settings-py" class="headerlink" title="2. 配置scrapy的settings.py"></a>2. 配置scrapy的settings.py</h3><p>#Redis设置<br><code>REDIS_URL = &#39;redis://username:***@xxx.xxx.xxx.xxx:6379/0&#39;</code><br>或者  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">REDIS_HOST</span> = <span class="string">"***.***.***.***"</span>    <span class="comment"># ip地址</span></span><br><span class="line"><span class="attr">REDIS_PORT</span> = <span class="number">6379</span>       <span class="comment"># 端口号</span></span><br><span class="line"><span class="attr">REDIS_PASSWORD</span> = <span class="string">"***"</span>  <span class="comment"># 默认redis没有密码</span></span><br><span class="line"><span class="attr">REDIS_DB</span> = <span class="number">0</span>            <span class="comment"># 数据库索引号，一般使用0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-配置scrapy-redis"><a href="#3-配置scrapy-redis" class="headerlink" title="3. 配置scrapy-redis"></a>3. 配置scrapy-redis</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用scrapy-redis中的去重组件</span></span><br><span class="line">DUPEFILTER_CLASS = <span class="string">'scrapy_redis.dupefilter.RFPDupeFilter'</span></span><br><span class="line"><span class="comment"># 使用scrapy-redis中的调度器</span></span><br><span class="line">SCHEDULER = <span class="string">'scrapy_redis.scheduler.Scheduler'</span></span><br><span class="line"><span class="comment"># 允许暂停后能够保存进度</span></span><br><span class="line">SCHEDULER_PERSIST = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定排序爬取地址使用的队列</span></span><br><span class="line">SCHEDULER_QUEUE_CLASS = <span class="string">'scrapy_redis.queue.SpiderPriorityQueue'</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-配置ITEM-PIPELINES"><a href="#4-配置ITEM-PIPELINES" class="headerlink" title="4. 配置ITEM_PIPELINES"></a>4. 配置ITEM_PIPELINES</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">'ITEM_PIPELINES':</span> <span class="string">&#123;</span></span><br><span class="line">            <span class="comment"># 使用了scrapy-redis定义的管道处理爬虫数据</span></span><br><span class="line">            <span class="attr">'scrapy_redis.pipelines.RedisPipeline':</span> <span class="number">400</span><span class="string">,</span></span><br><span class="line">        <span class="string">&#125;,</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-改写爬虫文件"><a href="#5-改写爬虫文件" class="headerlink" title="5. 改写爬虫文件"></a>5. 改写爬虫文件</h3><ol>
+<li>继承自<code>scrapy_redis.spiders.RedisSpider</code>类</li>
+<li>配置<code>redis_key</code>属性<ul>
+<li>这个属性的值是redis数据库中的一个<code>列表字段名</code>，把需要爬取的urls放到这个列表中。（<code>gen_urls.py</code>负责把urls放到redis的redis_key中。）</li>
+</ul>
+</li>
+</ol>
+<p><code>gen_urls.py</code></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> redis import Redis</span><br><span class="line"></span><br><span class="line">redis = Redis(</span><br><span class="line">    <span class="attribute">host</span>=<span class="string">'***.***.***.***'</span>,</span><br><span class="line">    <span class="attribute">port</span>=6379,</span><br><span class="line">)</span><br><span class="line">base_url = <span class="string">'链接'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    # redis的spider:start_url中放入需要爬取的urls</span><br><span class="line">    redis.lpush(<span class="string">'spider:start_urls'</span>, base_url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在爬虫文件中的redis_key = 'spider:start_urls'</span></span><br><span class="line"><span class="comment"># 这里只是放入了一个url，如果有多个url，使用循环或者依次加入到redis_key列表中。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="部署工作"><a href="#部署工作" class="headerlink" title="部署工作"></a>部署工作</h2><ol>
+<li>开启目标主机的redis服务器<code>redis-server.exe redis.windows.conf</code></li>
+<li>把爬虫文件拷贝到不同的主机上</li>
+<li>多台slave主机同时run爬虫文件</li>
+<li>master主机执行生成起始url的脚本文件</li>
+</ol>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/01/学海无涯苦作舟，我的舟太平洋放不下/" data-toggle="tooltip" data-placement="top"
+                           title="学海无涯苦作舟，我的舟太平洋放不下">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/01/python 虚拟环境 windows/" data-toggle="tooltip" data-placement="top"
+                           title="python 虚拟环境 windows">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis分布式爬取"><span class="toc-text">redis分布式爬取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis分布式爬取步骤"><span class="toc-text">redis分布式爬取步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装scrapy-redis"><span class="toc-text">1. 安装scrapy-redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-配置scrapy的settings-py"><span class="toc-text">2. 配置scrapy的settings.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-配置scrapy-redis"><span class="toc-text">3. 配置scrapy-redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-配置ITEM-PIPELINES"><span class="toc-text">4. 配置ITEM_PIPELINES</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-改写爬虫文件"><span class="toc-text">5. 改写爬虫文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署工作"><span class="toc-text">部署工作</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Scrapy"
+                           title="Scrapy">Scrapy</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

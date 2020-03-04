@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        MySQL架构-Master-Slave复制模式｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2020/03/01/MySQL架构-Master-Slave复制模式/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>MySQL架构-Master-Slave复制模式</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-03-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#数据库"
+                           title="数据库">数据库</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            MySQL架构-Master-Slave复制模式
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="master-slave复制架构的作用"><a href="#master-slave复制架构的作用" class="headerlink" title="master-slave复制架构的作用"></a>master-slave复制架构的作用</h2><p>&emsp;&emsp;主从复制解决了数据库的读写分离，并很好的提升了读的性能</p>
+<h3 id="主从数据库要求"><a href="#主从数据库要求" class="headerlink" title="主从数据库要求"></a>主从数据库要求</h3><p>&emsp;&emsp;<strong>主从复制架构</strong>需要主机数据库和从机数据库拥有共同的相同的数据库及表结构<br>比如现在我们拥有一个数据库m_s_test：  </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个表user</span></span><br><span class="line">CREATE TABLE<span class="built_in"> user </span>(</span><br><span class="line">    name VARCHAR(25),</span><br><span class="line">    age INT(11)</span><br><span class="line">);</span><br><span class="line"><span class="comment"># 插入一条数据</span></span><br><span class="line">insert into<span class="built_in"> user </span>value(<span class="string">'小明'</span>, 18);</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="master-slave复制配置"><a href="#master-slave复制配置" class="headerlink" title="master-slave复制配置"></a>master-slave复制配置</h2><h3 id="主机数据库配置"><a href="#主机数据库配置" class="headerlink" title="主机数据库配置"></a>主机数据库配置</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">log-bin</span>=mysql.bin</span><br><span class="line"><span class="comment"># 使binlog在每N次binlog写入后与硬盘同步</span></span><br><span class="line"><span class="attr">sync-binlog</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1天时间自动清理二进制日志</span></span><br><span class="line"><span class="attr">expire_logs_days</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要同步的数据库</span></span><br><span class="line"><span class="attr">binlog-do-db</span>=demo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不需要同步的数据库</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span> = mysql                </span><br><span class="line"><span class="attr">binlog-ignore-db</span> = test                      </span><br><span class="line"><span class="attr">binlog-ignore-db</span> = information_schema</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = bak</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = sys</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = omserver</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = sakila</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_base_<span class="number">1_0</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_base_2</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_emx_<span class="number">1_0</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_emx_2</span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_maint_<span class="number">1_0</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span> = smp_maint_2 </span><br><span class="line"></span><br><span class="line"><span class="comment"># Server Id.</span></span><br><span class="line"><span class="attr">server-id</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="主机数据库操作"><a href="#主机数据库操作" class="headerlink" title="主机数据库操作"></a>主机数据库操作</h3><p>这里的授权用户名我们用 lingyi<br>密码用 root  </p>
+<ol>
+<li>连接主机数据库</li>
+<li>执行 <code>grant replication slave on *.* to &#39;授权的用户名&#39;@&#39;ip地址&#39; identified by &#39;授权的密码&#39; ;</code></li>
+<li>刷新权限：flush privileges;</li>
+<li>执行<code>use mysql</code>，<code>select Host,User from user</code>查看授权的用户。</li>
+<li>重启服务器</li>
+<li>执行<code>show master status\G</code>查看主服务器状态信息，<strong>注意记录position值，从库与master建立连接的时候需要使用</strong></li>
+</ol>
+<h3 id="从机数据库配置"><a href="#从机数据库配置" class="headerlink" title="从机数据库配置"></a>从机数据库配置</h3><ol>
+<li>将主库的demo数据库克隆一份到从库，并给用户重新授权 <code>grant all privileges on *.* to &#39;lingyi&#39;@&#39;%&#39; identified by &#39;root&#39; with grant option;</code></li>
+<li>slave与master建立连接，进行数据同步<code>change master to master_host=&#39;主机ip地址&#39;,master_user=&#39;lingyi&#39;,master_password=&#39;root&#39;, master_log_file=&#39;mysql.000001&#39;,master_log_pos=position的值;</code></li>
+<li>查看从机数据库的状态</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Slave_IO_Running:</span> <span class="literal">Yes</span></span><br><span class="line"><span class="attr">Slave_SQL_Running:</span></span><br><span class="line"><span class="literal">Yes</span><span class="string">以上两项都为Yes说明配置成功。</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>重启从数据库</li>
+</ol>
+<h3 id="主机插入数据，从机查询数据"><a href="#主机插入数据，从机查询数据" class="headerlink" title="主机插入数据，从机查询数据"></a>主机插入数据，从机查询数据</h3><p>同时开启主机和从机的数据库，测试主机插入数据，从机查询数据。<br>successful!  </p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/01/let和var定义变量的区别/" data-toggle="tooltip" data-placement="top"
+                           title="let和var的区别">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/01/ajax概述/" data-toggle="tooltip" data-placement="top"
+                           title="ajax概述">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#master-slave复制架构的作用"><span class="toc-text">master-slave复制架构的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主从数据库要求"><span class="toc-text">主从数据库要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#master-slave复制配置"><span class="toc-text">master-slave复制配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主机数据库配置"><span class="toc-text">主机数据库配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主机数据库操作"><span class="toc-text">主机数据库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从机数据库配置"><span class="toc-text">从机数据库配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主机插入数据，从机查询数据"><span class="toc-text">主机插入数据，从机查询数据</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#数据库"
+                           title="数据库">数据库</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

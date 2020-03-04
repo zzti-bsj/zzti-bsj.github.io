@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Python_爬取豆瓣高分电影信息并存入excel｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2019/01/17/Python_爬取豆瓣高分电影信息/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Python_爬取豆瓣高分电影信息并存入excel</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2019-01-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Python爬虫"
+                           title="Python爬虫">Python爬虫</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Python_爬取豆瓣高分电影信息并存入excel
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h3 id="Python爬取豆瓣高分电影信息并存入excel"><a href="#Python爬取豆瓣高分电影信息并存入excel" class="headerlink" title="Python爬取豆瓣高分电影信息并存入excel"></a>Python爬取豆瓣高分电影信息并存入excel</h3><p>目标网址：（爬取豆瓣的高分电影信息）<a href="https://movie.douban.com/top250?start=0&amp;filter=" target="_blank" rel="noopener">https://movie.douban.com/top250?start=0&amp;filter=</a><br>发现只有start在变动，这就好办了</p>
+<p>首页的简略信息  只爬取每一个的top 和 详情页的链接<br>详情页的信息，爬取<br>1 影片名称<br>2 导演<br>3 编剧<br>4 主演<br>5 类型<br>6 官方网站<br>7 制片国家/地区<br>8 语言<br>9 上映时间<br>10 片长<br>并且保存到更适用于爬虫的mongodb数据库中</p>
+<p>爬着爬着发现有个json文件存储着电影的简介信息<br>爬着爬着发现有更好的优化方法，先写完这一个吧，后续再优化</p>
+<p><strong>巩固以下知识：</strong></p>
+<ol>
+<li>re.sub()函数<ol>
+<li>params:<ol>
+<li>正则表达式定义的匹配模式</li>
+<li>替换后字符</li>
+<li>目标字符串</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>user_agent模块的用法（它竟然不报错了，我也是很惊讶）<ol>
+<li>之前使用有时候会报错？（问题待解决）如果不能用这个，就使用浏览器自带的User-Agent</li>
+<li>这里我使用的浏览器User-Agent</li>
+</ol>
+</li>
+<li>字典的插入：直接给键赋值，就插如了一条字典元素</li>
+<li>对 元组内的元素不能被重复赋值 <strong>（tuple属于不可变数据）</strong></li>
+</ol>
+<p><code>&#39;tuple&#39; object does not support item assignment</code> </p>
+<p><strong>遇到的问题:</strong>    </p>
+<ul>
+<li><strong>这个程序，我碰到了403问题，怎么处理403问题？</strong><br>我加上所有的请求头，然后还使用了一个代理ip，然后一个一个的去验证到底是因为没有什么而出现的问题，我先去掉代理ip，也能够访问，说明还不至于使用代理ip，然后去掉请求头中的referer、host，程序也能够访问，我又再次去掉Cookie，发现不能进行访问，说明需要加上Cookie，403的问题解决了，但是还有验证码的问题怎么办？</li>
+<li><strong>怎么处理验证码问题？</strong><code>待续</code></li>
+<li>我的程序总是卡在165这个电影上面，不是请求的问题，是程序的问题，但是我对程序也进行了测试和处理，还是要卡在165，是不是解决了验证码的问题就不会卡在这里了？？？还是因为程序的问题？<code>待续</code></li>
+<li><strong>怎么把数据存入到excel中？？</strong><br>用到了两个库 xlwt （写） xlrd （读）<br>这里用一下写，把数据写入excel中，然后创建一个函数，从excel中读取数据</li>
+<li><strong>有没有将dict转化为list的方法？</strong><br>循环dict.values()，并且把每一个值append()到list中，这样就实现了循环</li>
+</ul>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><p><strong>注意：Cookie需要改成自己的，并且登录豆瓣然后爬取</strong></p>
+<pre><code>import re,requests,pymongo
+import xlwt,xlrd
+from fake_useragent import UserAgent
+
+
+ua = UserAgent()
+
+class DataTool(object):
+    def __init__(self):
+        # 创建一个客户端对象
+        self.client = pymongo.MongoClient(&apos;Localhost&apos;)
+        # 根据这个客户端对象，连接数据库
+        self.db = self.client[&apos;douban&apos;]
+
+    def new_tuple_data(self,origin_tuple_data):
+        new_dict = {}
+        if(len(origin_tuple_data) == 12):
+            new_dict[&apos;电影排名&apos;] = origin_tuple_data[0]
+            new_dict[&apos;电影名称&apos;] = origin_tuple_data[1]
+            new_dict[&apos;导演&apos;] = origin_tuple_data[2]
+
+            # pass_&lt;a href=.*?&gt;
+            p1 = re.compile(r&apos;&lt;a href=.*?&gt;&apos;,re.S)
+            # pass_&lt;/a&gt;
+            p2 = re.compile(r&apos;&lt;/a&gt;&apos;,re.S)
+            # pass_&lt;/span&gt;
+            p3 = re.compile(r&apos;&lt;/span&gt;&apos;,re.S)
+            # pass_&lt;span property=.*?&gt;
+            p4 = re.compile(r&apos;&lt;span property=.*?&gt;&apos;,re.S)
+            # pass_\n
+            p5 = re.compile(r&apos;\n&apos;,re.S)
+            # pass_space
+            p6 = re.compile(r&apos; &apos;,re.S)
+            # pass_\u3000
+            p7 = re.compile(r&apos;\u3000&apos;,re.S)
+            # pass_&lt;br /&gt;.*?
+            p8 = re.compile(r&apos;&lt;br/&gt;&apos;,re.S)
+
+            writer = re.sub(p1,&apos;&apos;,origin_tuple_data[3])
+            writer = re.sub(p2,&apos;&apos;,writer)
+            new_dict[&apos;编剧&apos;] = writer
+
+            actor = re.sub(p1,&apos;&apos;,origin_tuple_data[4])
+            actor = re.sub(p2,&apos;&apos;,actor)
+            new_dict[&apos;主演&apos;] = actor
+
+            gut = re.sub(p3,&apos;&apos;,origin_tuple_data[5])
+            gut = re.sub(p4,&apos;&apos;,gut)
+            new_dict[&apos;类型&apos;] = gut
+
+            new_dict[&apos;制片国家/地区&apos;] = origin_tuple_data[6]
+            new_dict[&apos;语言&apos;] = origin_tuple_data[7]
+
+            date = re.sub(p3,&apos;&apos;,origin_tuple_data[8])
+            date = re.sub(p4,&apos;&apos;,date)
+            new_dict[&apos;上映日期&apos;] = date
+
+            time = re.sub(p3,&apos;&apos;,origin_tuple_data[9])
+            time = re.sub(p4,&apos;&apos;,time)
+            new_dict[&apos;片长&apos;] = time
+
+            new_dict[&apos;豆瓣评分&apos;] = origin_tuple_data[10]
+
+            synopsis = re.sub(p5,&apos;&apos;,origin_tuple_data[11])
+            synopsis = re.sub(p6,&apos;&apos;,synopsis)
+            synopsis = re.sub(p7,&apos;&apos;,synopsis)
+            synopsis = re.sub(p8,&apos;&apos;,synopsis)
+            new_dict[&apos;剧情简介&apos;] = synopsis
+            self.db[&apos;d_b&apos;].insert_one(new_dict)
+            return new_dict
+        else:
+            new_dict[&apos;电影排名：&apos;] = origin_tuple_data[0]
+            new_dict[&apos;电影名称&apos;] = origin_tuple_data[1]
+            new_dict[&apos;导演&apos;] = origin_tuple_data[2]
+            return new_dict
+
+class Excel(object):
+
+    # 读取数据
+    def __init__(self):
+        # 创建工作簿
+        self.work_book = xlwt.Workbook(&apos;utf-8&apos;)
+
+        # 创建一个excel表
+        self.excel_Worksheet = self.work_book.add_sheet(&apos;豆瓣top250电影简讯&apos;, cell_overwrite_ok=True)
+
+        # 创建第一行 标题
+        self.rowTitle = [&apos;电影排名&apos;,&apos;电影名称&apos;,&apos;导演&apos;,&apos;编剧&apos;,&apos;主演&apos;,&apos;类型&apos;,&apos;制片国家/地区&apos;,&apos;语言&apos;,&apos;上映日期&apos;,&apos;片长&apos;,&apos;豆瓣评分&apos;,&apos;剧情简介&apos;]
+
+        # 把第一行写入表格
+        for i in range(0,len(self.rowTitle)):
+            self.excel_Worksheet.write(0,i,self.rowTitle[i])
+        self.save_excel_Data()
+
+    # 写入数据
+    def write_data(self,row,movie_data_dict):
+
+        # ----------处理电影信息------------
+        # 由字典转化成列表
+        movie_data_list = []
+        for value in movie_data_dict.values():
+            movie_data_list.append(value)
+
+        # ----------------------------------
+
+        # 把电影数据写入表格
+        for i in range(0,len(self.rowTitle)):
+            self.excel_Worksheet.write(row,i,movie_data_list[i])
+
+    def save_excel_Data(self):
+        # 这个保存是在建立一个工作簿那个对象进行保存的
+        self.work_book.save(&apos;douban.xls&apos;)
+
+
+class DouBan(object):
+    def __init__(self):
+        self.headers = {
+            &apos;User-Agent&apos; : &apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0&apos;,
+
+            &apos;Cookie&apos;:&apos;ll=&quot;118237&quot;; bid=miJfnEe9C8E; __yadk_uid=C8tCYDQmeHxAfZlS5hvnGCCLtrU72prh; douban-fav-remind=1; ps=y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1547354707%2C%22https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Fqrconnect%3Fappid%3Dwxd9c1c6bbd5d59980%26redirect_uri%3Dhttps%253A%252F%252Fwww.douban.com%252Faccounts%252Fconnect%252Fwechat%252Fcallback%26response_type%3Dcode%26scope%3Dsnsapi_login%26state%3DmiJfnEe9C8E%252523douban-web%252523https%25253A%252F%252Fmovie.douban.com%252Ftop250%25253Fstart%25253D125%252526filter%25253D%22%5D; _pk_id.100001.4cf6=4179da9d4af6318e.1543568427.5.1547358498.1547349967.; _vwo_uuid_v2=D4FCFEDCB33DF07B2DE0DC525D42F7488|9024e242bbd9c0f98192b002e4091fc3; as=&quot;https://sec.douban.com/b?r=https%3A%2F%2Fmovie.douban.com%2Fsubject%2F26430107%2F&quot;; dbcl2=&quot;189997368:Qj2bbphj+X0&quot;; ck=iccT; push_noty_num=0; push_doumail_num=0&apos;
+
+        }
+
+        # 设置代理ip
+        # self.proxy_list = {
+        #     &quot;http&quot;: &quot;http://202.121.96.33:8086&quot;,
+        # }
+
+        self.base_page_url = &apos;https://movie.douban.com/top250?start={}&amp;filter=&apos;
+
+    # 获取电影排名首页网页html源码
+    def get_page_html(self,num):
+
+        # 使用代理ip
+        # proxy = self.proxy_list
+        page_url = self.base_page_url.format(num)
+        try:
+            response = requests.get(page_url,headers=self.headers)
+            if response.status_code == 200:
+                page_html = response.text
+                return page_html
+            else:
+                print(&apos;请求错误：url = {}, status_code = {}&apos;.format(page_url,response.status_code))
+                return None
+        except Exception as e:
+            print(&apos;请求异常：url = {}, error = {}&apos;.format(page_url,e))
+            return None
+
+    # 获取详首页电影的 top_no movie_url,返回一个列表
+    def get_page_data(self,page_html):
+        # 书写正则表达式
+        pattern = re.compile(r&apos;&lt;li&gt;.*?&lt;em class=&quot;&quot;&gt;(.*?)&lt;/em&gt;.*?&lt;a href=&quot;(.*?)&quot;&gt;&apos;,re.S)
+
+        movie_info_list = re.findall(pattern,page_html)
+
+        # test
+        # print(movie_info_list)
+        return movie_info_list
+
+    # 获取电影信息源码
+    def get_movie_html(self,movie_url):
+        try:
+            response = requests.get(movie_url,headers=self.headers)
+            if response.status_code == 200:
+                movie_page_html = response.text
+                return  movie_page_html
+            else:
+                print(&apos;请求错误：url = {}, status_code = {}&apos;.format(movie_url,response.status_code))
+                return None
+        except Exception as e:
+            print(&apos;请求异常：url = {}, error = {}&apos;.format(movie_url,e))
+
+    # 获取电影的详细信息
+    def get_movie_details(self,movie_html):
+        #
+        pattern = re.compile(r&apos;&lt;div id=&quot;content&quot;&gt;.*?&lt;div class=&quot;top250&quot;&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;h1&gt;.*?&gt;(.*?)&lt;/span&gt;.*?&lt;div id=&quot;info&quot;&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;.*?&gt;(.*?)&lt;/a&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;(.*?)&lt;/span&gt;.*?&lt;span class=\&apos;attrs\&apos;&gt;(.*?)&lt;/span&gt;&lt;/span&gt;&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;制片国家.*?&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;语言:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;上映日期:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;span class=&quot;pl&quot;&gt;片长:&lt;/span&gt;(.*?)&lt;br/&gt;.*?&lt;strong class=&quot;ll rating_num.*?&gt;(.*?)&lt;/strong&gt;.*?&lt;span property=&quot;v:summary&quot;.*?&gt;(.*?)&lt;/span&gt;&apos;,re.S)
+
+        movie_data = re.findall(pattern,movie_html)
+
+        # 测试输出
+        # print(movie_data)
+        if movie_data is None:
+            return None
+        return movie_data
+        # 保存到数据库中
+
+db_obj = DouBan()
+Tool = DataTool()
+
+# 嗯哼？user_agent竟然不报错了！！
+
+# 测试上次的bug 我不知道上次为什么源码会出错，可能是正则表达式没有正确导致出错，这次测试一下，事实证明这样传回源码没有错
+# 第一页的start是0，第二页的start是25，最后一页的start是225，所以从0-226，对25取余等于0的我都要
+# 获取第一页相关电影的链接 return 一个list list[1]是链接地址
+
+
+xcl =Excel()
+# row = 1 是为了保存到Excel中 做的处理
+row = 1
+for i in range(0,100):
+    if i%25 == 0 :
+        page_html = db_obj.get_page_html(i)
+        # print(page_html)
+        movie_urls_list = db_obj.get_page_data(page_html)
+        for movie_url_tuple in movie_urls_list:
+            movie_html = db_obj.get_movie_html(movie_url_tuple[1])
+            movie_data_list = db_obj.get_movie_details(movie_html)
+            # print(movie_data_list)
+            for move_tuple in movie_data_list:
+                new_data = Tool.new_tuple_data(move_tuple)
+                xcl.write_data(row,new_data)
+                # 每得到一条，保存一次。
+                # xcl.save_excel_Data()
+                row += 1
+                print(new_data)
+
+# 运行完程序再保存
+xcl.save_excel_Data()</code></pre>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/04/10/写博客心得/" data-toggle="tooltip" data-placement="top"
+                           title="博客心得">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/01/10/Python_爬取头条街拍图片/" data-toggle="tooltip" data-placement="top"
+                           title="Python_爬取头条街拍图片">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python爬取豆瓣高分电影信息并存入excel"><span class="toc-text">Python爬取豆瓣高分电影信息并存入excel</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#源码"><span class="toc-text">源码</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Python爬虫"
+                           title="Python爬虫">Python爬虫</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

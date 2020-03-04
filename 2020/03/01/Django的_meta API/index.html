@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Model _meta API｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2020/03/01/Django的_meta API/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Model _meta API</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-03-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Django"
+                           title="Django">Django</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Model _meta API
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="Django的-meta-API"><a href="#Django的-meta-API" class="headerlink" title="Django的_meta API"></a>Django的_meta API</h2><p>通过django的_meta API获取Model的属性，_meta API 提供了两种方法获取Django的Model字段</p>
+<ul>
+<li>检索模型的某个字段 <code>Model._meta.get_field(field_name)</code> </li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="keyword">from</span> django.contrib.auth.models import User</span><br><span class="line"></span><br><span class="line"><span class="comment"># A field on the model</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'username'</span>)</span><br><span class="line">&lt;django.db.models.fields.CharField: username&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># A field from another model that has a relation with the current model</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'logentry'</span>)</span><br><span class="line">&lt;ManyToOneRel: admin.logentry&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># A non existent field</span></span><br><span class="line">&gt;&gt;&gt; User._meta.get_field(<span class="string">'does_not_exist'</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    <span class="built_in">..</span>.</span><br><span class="line">FieldDoesNotExist:<span class="built_in"> User </span>has <span class="literal">no</span> field named <span class="string">'does_not_exist'</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>检索模型的所有字段 <code>Model._meta.get_fields(include_parents = True，include_hidden = False)</code> </li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="selector-tag">from</span> <span class="selector-tag">django</span><span class="selector-class">.contrib</span><span class="selector-class">.auth</span><span class="selector-class">.models</span> <span class="selector-tag">import</span> <span class="selector-tag">User</span></span><br><span class="line">&gt;&gt;&gt; <span class="selector-tag">User</span><span class="selector-class">._meta</span><span class="selector-class">.get_fields</span>()</span><br><span class="line">(&lt;<span class="attribute">ManyToOneRel</span>: admin.logentry&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">AutoField</span>: id&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: password&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: last_login&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_superuser&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: username&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: first_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: last_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">EmailField</span>: email&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_staff&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_active&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: date_joined&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: groups&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: user_permissions&gt;)</span><br><span class="line"></span><br><span class="line"># <span class="selector-tag">Also</span> <span class="selector-tag">include</span> <span class="selector-tag">hidden</span> <span class="selector-tag">fields</span>.</span><br><span class="line">&gt;&gt;&gt; <span class="selector-tag">User</span><span class="selector-class">._meta</span><span class="selector-class">.get_fields</span>(include_hidden=True)</span><br><span class="line">(&lt;<span class="attribute">ManyToOneRel</span>: auth.user_groups&gt;,</span><br><span class="line"> &lt;<span class="attribute">ManyToOneRel</span>: auth.user_user_permissions&gt;,</span><br><span class="line"> &lt;<span class="attribute">ManyToOneRel</span>: admin.logentry&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">AutoField</span>: id&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: password&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: last_login&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_superuser&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: username&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: first_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">CharField</span>: last_name&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">EmailField</span>: email&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_staff&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">BooleanField</span>: is_active&gt;,</span><br><span class="line"> &lt;django.db.models.fields.<span class="attribute">DateTimeField</span>: date_joined&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: groups&gt;,</span><br><span class="line"> &lt;django.db.models.fields.related.<span class="attribute">ManyToManyField</span>: user_permissions&gt;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><ul>
+<li>这里有一个使用此功能封装的实例，用于将django的orm对象转成json字符串 <a href="https://gitee.com/zzti-bsj/tools/tree/master/6%E3%80%81orm2json" target="_blank" rel="noopener">orm2json</a></li>
+</ul>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/01/django获取不同请求的参数/" data-toggle="tooltip" data-placement="top"
+                           title="django获取不同请求的参数">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/01/相思/" data-toggle="tooltip" data-placement="top"
+                           title="相思">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Django的-meta-API"><span class="toc-text">Django的_meta API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Django"
+                           title="Django">Django</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

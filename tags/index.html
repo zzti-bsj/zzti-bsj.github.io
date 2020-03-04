@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        TAGS｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/tags/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+<style>
+    .intro-header .site-heading {
+        margin: 50px;
+    }
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+    
+</style>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading text-center">
+                    <h1>TAGS</h1>
+                    <span class="subheading">可以根据归档检索所有文件</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- 标签云 -->
+            <div id='tag_cloud' class="tags">
+                
+                <a href="#LeetCode" title="LeetCode" rel="2">LeetCode</a>
+                
+                <a href="#django-haystack" title="django-haystack" rel="2">django-haystack</a>
+                
+                <a href="#Scrapyd" title="Scrapyd" rel="4">Scrapyd</a>
+                
+                <a href="#jQuery" title="jQuery" rel="7">jQuery</a>
+                
+                <a href="#C#" title="C#" rel="1">C#</a>
+                
+                <a href="#网络编程" title="网络编程" rel="7">网络编程</a>
+                
+                <a href="#Django" title="Django" rel="14">Django</a>
+                
+                <a href="#Hexo" title="Hexo" rel="4">Hexo</a>
+                
+                <a href="#Java基础" title="Java基础" rel="1">Java基础</a>
+                
+                <a href="#数据库" title="数据库" rel="5">数据库</a>
+                
+                <a href="#Nginx" title="Nginx" rel="1">Nginx</a>
+                
+                <a href="#Php" title="Php" rel="3">Php</a>
+                
+                <a href="#Python" title="Python" rel="20">Python</a>
+                
+                <a href="#Python爬虫" title="Python爬虫" rel="6">Python爬虫</a>
+                
+                <a href="#Python多任务" title="Python多任务" rel="8">Python多任务</a>
+                
+                <a href="#Scrapy" title="Scrapy" rel="7">Scrapy</a>
+                
+                <a href="#Socket编程" title="Socket编程" rel="4">Socket编程</a>
+                
+                <a href="#ajax" title="ajax" rel="1">ajax</a>
+                
+                <a href="#linux" title="linux" rel="1">linux</a>
+                
+                <a href="#Python模块" title="Python模块" rel="5">Python模块</a>
+                
+                <a href="#Git" title="Git" rel="2">Git</a>
+                
+                <a href="#gunicorn" title="gunicorn" rel="1">gunicorn</a>
+                
+                <a href="#js" title="js" rel="1">js</a>
+                
+                <a href="#操作系统" title="操作系统" rel="3">操作系统</a>
+                
+                <a href="#随笔" title="随笔" rel="5">随笔</a>
+                
+                <a href="#数据库学习笔记" title="数据库学习笔记" rel="2">数据库学习笔记</a>
+                
+                <a href="#数据结构和算法" title="数据结构和算法" rel="1">数据结构和算法</a>
+                
+                <a href="#目标、总结和计划" title="目标、总结和计划" rel="1">目标、总结和计划</a>
+                
+                <a href="#Android" title="Android" rel="1">Android</a>
+                
+                <a href="#旅行" title="旅行" rel="1">旅行</a>
+                
+                <a href="#机器学习" title="机器学习" rel="2">机器学习</a>
+                
+                <a href="#python内置模块" title="python内置模块" rel="1">python内置模块</a>
+                
+                <a href="#Encryption" title="Encryption" rel="1">Encryption</a>
+                
+                <a href="#django rest_framework" title="django rest_framework" rel="1">django rest_framework</a>
+                
+                <a href="#H5" title="H5" rel="1">H5</a>
+                
+            </div>
+
+            <!-- 标签列表 -->
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="LeetCode">
+                    <span class="tag-text">LeetCode</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/1.LeetCode两数之和/">
+                        <h2 class="post-title">
+                            LeetCode两数之和
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/2.等价多米诺骨牌对的数量/">
+                        <h2 class="post-title">
+                            等价多米诺骨牌对的数量
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="django-haystack">
+                    <span class="tag-text">django-haystack</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/1.django-haystack（模块化搜索） - 安装及配置/">
+                        <h2 class="post-title">
+                            1.django-haystack（模块化搜索） - 安装及配置
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/2.django-haystack的基础用法/">
+                        <h2 class="post-title">
+                            2.django-haystack的基础用法
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Scrapyd">
+                    <span class="tag-text">Scrapyd</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/1.scrapyd文档/">
+                        <h2 class="post-title">
+                            1.scrapyd文档
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/2.curl管理Scrapyd服务器/">
+                        <h2 class="post-title">
+                            2.curl管理Scrapyd服务器
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/3.scrapy-client部署爬虫项目到Scrapyd/">
+                        <h2 class="post-title">
+                            3.scrapy-client部署爬虫项目到Scrapyd
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/解决方案：scrapyd服务器报错processing failed/">
+                        <h2 class="post-title">
+                            解决方案：scrapyd服务器报错processing failed
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="jQuery">
+                    <span class="tag-text">jQuery</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Ajax发送了两次请求？ （一）两次get请求/">
+                        <h2 class="post-title">
+                            Ajax发送了两次请求？ （一）两次get请求
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/jQuery each()遍历/">
+                        <h2 class="post-title">
+                            jQuery each()遍历
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/jQuery概述（一）/">
+                        <h2 class="post-title">
+                            jQuery概述（一）
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/jQuery获取url参数/">
+                        <h2 class="post-title">
+                            jQuery获取url参数
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/jQuery跳转网页的几种方式/">
+                        <h2 class="post-title">
+                            jQuery跳转网页的几种方式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/jQuery阻断事件冒泡/">
+                        <h2 class="post-title">
+                            jQuery阻断事件冒泡
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/依赖于jQuery的图像懒加载/">
+                        <h2 class="post-title">
+                            依赖于jQuery的图像懒加载
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="C#">
+                    <span class="tag-text">C#</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2018/01/30/C-判断字符串中的汉字个数-厉害的正则表达式/">
+                        <h2 class="post-title">
+                            C#:判断字符串中的汉字个数--厉害的正则表达式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="网络编程">
+                    <span class="tag-text">网络编程</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/CSRF跨站请求伪造攻击/">
+                        <h2 class="post-title">
+                            CSRF跨站请求伪造攻击
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Http协议/">
+                        <h2 class="post-title">
+                            Http协议
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/TCP IP 协议/">
+                        <h2 class="post-title">
+                            TCP/IP协议
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/UDP和TCP协议/">
+                        <h2 class="post-title">
+                            UDP和TCP协议
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/浏览器如何判断请求是post还是get/">
+                        <h2 class="post-title">
+                            浏览器如何判断请求是post还是get
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/跨域请求（一）：什么是跨域请求/">
+                        <h2 class="post-title">
+                            跨域请求（一）：什么是跨域请求
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/邮件相关的四个协议/">
+                        <h2 class="post-title">
+                            邮件相关的四个协议
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Django">
+                    <span class="tag-text">Django</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Django数据模型中如何声明自定义主键/">
+                        <h2 class="post-title">
+                            Django数据模型中如何声明自定义主键
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Django的_meta API/">
+                        <h2 class="post-title">
+                            Model _meta API
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django 在admin.py中注册模型/">
+                        <h2 class="post-title">
+                            django 在admin.py中注册模型
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django 数据模型中 null=True 和 blank=True的区别/">
+                        <h2 class="post-title">
+                            django 数据模型中 null=True 和 blank=True的区别
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django 设置用户上传文件的绝对路径/">
+                        <h2 class="post-title">
+                            django 设置用户上传文件的绝对路径
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django之用户模型/">
+                        <h2 class="post-title">
+                            django之用户模型
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django允许跨域请求/">
+                        <h2 class="post-title">
+                            django设置允许跨域请求
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django本地部署、局域网访问/">
+                        <h2 class="post-title">
+                            django本地部署、局域网访问
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django的@login_required装饰器/">
+                        <h2 class="post-title">
+                            django的@login_required装饰器
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django获取不同请求的参数/">
+                        <h2 class="post-title">
+                            django获取不同请求的参数
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/django配置数据库（一）配置mysql/">
+                        <h2 class="post-title">
+                            django配置数据库（一）配置mysql
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/scrapy使用django的ORM/">
+                        <h2 class="post-title">
+                            scrapy使用django的ORM
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/ubuntu16.04部署django项目/">
+                        <h2 class="post-title">
+                            ubuntu16.04部署django项目
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/04/19/使用Django新建一个项目/">
+                        <h2 class="post-title">
+                            新建一个Django项目
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Hexo">
+                    <span class="tag-text">Hexo</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/01/01/Hexo博客常用设置/">
+                        <h2 class="post-title">
+                            Hexo博客常用设置
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/11/01/Hexo博客常见错误总结/">
+                        <h2 class="post-title">
+                            Hexo博客常见错误总结
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Template render error expected variable end/">
+                        <h2 class="post-title">
+                            Template render error expected variable end
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/02/hexo 简单搭建博客/">
+                        <h2 class="post-title">
+                            hexo简单搭建博客
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Java基础">
+                    <span class="tag-text">Java基础</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2019/04/26/Java的基础语法/">
+                        <h2 class="post-title">
+                            Java的基础语法
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="数据库">
+                    <span class="tag-text">数据库</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/MySQL架构-Master-Slave复制模式/">
+                        <h2 class="post-title">
+                            MySQL架构-Master-Slave复制模式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/05/18/MongoDB数据库/">
+                        <h2 class="post-title">
+                            MongoDB数据库
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/mysql分区分表/">
+                        <h2 class="post-title">
+                            mysql分区分表
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/利用merge存储引擎来实现分表/">
+                        <h2 class="post-title">
+                            利用merge存储引擎来实现分表
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/数据库架构/">
+                        <h2 class="post-title">
+                            数据库架构
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Nginx">
+                    <span class="tag-text">Nginx</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Nginx配置及使用详解/">
+                        <h2 class="post-title">
+                            Nginx配置及使用详解
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Php">
+                    <span class="tag-text">Php</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2018/11/05/Php_十进制转十六进制/">
+                        <h2 class="post-title">
+                            Php_十进制转十六进制
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/11/05/Php_发送邮件mail()函数/">
+                        <h2 class="post-title">
+                            Php_发送邮件mail()函数
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2018/11/02/用阿里云服务器搭建网站/">
+                        <h2 class="post-title">
+                            用阿里云服务器搭建网站
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Python">
+                    <span class="tag-text">Python</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2019/01/08/Python_re.S模式/">
+                        <h2 class="post-title">
+                            Python_re.S模式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Python内置函数isinstance/">
+                        <h2 class="post-title">
+                            Python内置函数isinstance
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Python抽象类和接口类总结/">
+                        <h2 class="post-title">
+                            Python抽象类和接口类总结
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/07/31/Python的类属性和实例属性/">
+                        <h2 class="post-title">
+                            Python的类属性和实例属性
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Python类中单下划线和双下划线的区别/">
+                        <h2 class="post-title">
+                            Python类中单下划线和双下划线的区别
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Python面向对象总体概述思维导图/">
+                        <h2 class="post-title">
+                            Python面向对象总体概述思维导图
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Sqlite之在python中的应用/">
+                        <h2 class="post-title">
+                            Sqlite之在python中的应用
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/getattr方法和hasattr/">
+                        <h2 class="post-title">
+                            getattr方法和hasattr
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python 虚拟环境 windows/">
+                        <h2 class="post-title">
+                            python 虚拟环境 windows
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python下载文件方式/">
+                        <h2 class="post-title">
+                            python下载文件方式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python中的引号/">
+                        <h2 class="post-title">
+                            python中的引号
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python列表和字符串的相互转换/">
+                        <h2 class="post-title">
+                            列表和字符串的相互转换
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python扩展库的使用方法/">
+                        <h2 class="post-title">
+                            python扩展库的使用方法
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python操作文件/">
+                        <h2 class="post-title">
+                            Python操作文件
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python的安装和环境设置/">
+                        <h2 class="post-title">
+                            python的安装和环境设置
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/使用datetime模块获取两个时间点之间的秒数 实现秒杀功能/">
+                        <h2 class="post-title">
+                            使用datetime类/获取两个时间点之间的秒数/实现秒杀功能
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/使用lambda的内建函数map()_reduce()_filter()/">
+                        <h2 class="post-title">
+                            使用lambda的内建函数map()_reduce()_filter()
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/把json数据转成python对象/">
+                        <h2 class="post-title">
+                            把json数据转成python对象
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/时间戳转格式化成时间/">
+                        <h2 class="post-title">
+                            时间戳格式化成时间
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/生成器的__next__()和send()方法/">
+                        <h2 class="post-title">
+                            生成器的__next()__和send()方法
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Python爬虫">
+                    <span class="tag-text">Python爬虫</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2019/01/10/Python_爬取头条街拍图片/">
+                        <h2 class="post-title">
+                            Python_爬取头条街拍图片
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/01/10/Python_爬取csdn文章/">
+                        <h2 class="post-title">
+                            python_爬取csdn文章
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/01/10/Python_爬取搜狗壁纸/">
+                        <h2 class="post-title">
+                            python_爬取搜狗壁纸
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/01/17/Python_爬取豆瓣高分电影信息/">
+                        <h2 class="post-title">
+                            Python_爬取豆瓣高分电影信息并存入excel
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/01/07/Python_爬虫实例（爬取糗事百科数据）/">
+                        <h2 class="post-title">
+                            Python_爬虫实例(爬取糗事百科数据)
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/01/08/python_爬取表情包/">
+                        <h2 class="post-title">
+                            python_爬取表情包
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Python多任务">
+                    <span class="tag-text">Python多任务</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Python无法实现多线程并发/">
+                        <h2 class="post-title">
+                            Python无法实现多线程并发
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/multiprocessing模块Process创建子进程/">
+                        <h2 class="post-title">
+                            multiprocessing模块Process创建子进程
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/multiprocessing模块简单的进程间通信/">
+                        <h2 class="post-title">
+                            multiprocessing模块简单的进程间通信
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/multiprocessing模块进程池Pool/">
+                        <h2 class="post-title">
+                            multiprocessing模块进程池Pool
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python 协程/">
+                        <h2 class="post-title">
+                            python 协程
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/threading模块Thread创建线程/">
+                        <h2 class="post-title">
+                            threading模块Thread创建线程
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/vthread实现线程池/">
+                        <h2 class="post-title">
+                            vthread实现线程池
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/自定义线程，继承threading.Thread/">
+                        <h2 class="post-title">
+                            自定义线程，继承threading.Thread
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Scrapy">
+                    <span class="tag-text">Scrapy</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/Scrapy命令行模式/">
+                        <h2 class="post-title">
+                            Scrapy命令行模式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/redis分布式爬取/">
+                        <h2 class="post-title">
+                            redis分布式爬取
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/scrapy三种提取网页数据的方法/">
+                        <h2 class="post-title">
+                            scrapy三种提取网页数据的方法
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/scrapy实战：爬取斗图网之scrapy基础用法/">
+                        <h2 class="post-title">
+                            scrapy实战：爬取斗图网之操作scrapy基本流程
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/scrapy执行爬取动作的两种方式/">
+                        <h2 class="post-title">
+                            Scrapy执行爬取动作的两种方式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/scrapy运行机制和项目架构/">
+                        <h2 class="post-title">
+                            scrapy运行机制和项目架构
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/爬取中工贴吧数据，使用jieba获取关键词/">
+                        <h2 class="post-title">
+                            爬取中工贴吧数据，使用jieba获取关键词
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Socket编程">
+                    <span class="tag-text">Socket编程</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/TCP实现socket编程+多线程/">
+                        <h2 class="post-title">
+                            TCP实现socket编程+多线程
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/UDP实现socket编程/">
+                        <h2 class="post-title">
+                            UDP实现socket编程
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/浅析：TCP粘包/">
+                        <h2 class="post-title">
+                            浅析：TCP粘包
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/粘包问题的解决方案/">
+                        <h2 class="post-title">
+                            粘包问题的解决方案
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="ajax">
+                    <span class="tag-text">ajax</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/ajax概述/">
+                        <h2 class="post-title">
+                            ajax概述
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="linux">
+                    <span class="tag-text">linux</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/apt-get命令/">
+                        <h2 class="post-title">
+                            apt-get命令
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Python模块">
+                    <span class="tag-text">Python模块</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/bloomfilter4py3模块：python实现布隆过滤/">
+                        <h2 class="post-title">
+                            bloomfilter4py3模块：python实现布隆过滤
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/itertools模块/">
+                        <h2 class="post-title">
+                            itertools模块
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/os模块/">
+                        <h2 class="post-title">
+                            os模块
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/python与时间相关模块date datetime calendar/">
+                        <h2 class="post-title">
+                            python与时间相关模块date/datetime/calendar
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/绘制图表：pyecharts模块/">
+                        <h2 class="post-title">
+                            绘制图表：pyecharts模块
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Git">
+                    <span class="tag-text">Git</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/git个人简单使用总结（一）/">
+                        <h2 class="post-title">
+                            git个人简单使用总结
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2019/04/16/git使用简单教程/">
+                        <h2 class="post-title">
+                            git使用简单教程
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="gunicorn">
+                    <span class="tag-text">gunicorn</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/gunicorn配置及使用详解/">
+                        <h2 class="post-title">
+                            gunicorn配置及使用详解
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="js">
+                    <span class="tag-text">js</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/let和var定义变量的区别/">
+                        <h2 class="post-title">
+                            let和var的区别
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="操作系统">
+                    <span class="tag-text">操作系统</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/url路径：前缀有无斜杠的区别/">
+                        <h2 class="post-title">
+                            url路径：前缀有无斜杠的区别
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/以多任务的角度理解进程和线程/">
+                        <h2 class="post-title">
+                            以多任务的角度理解进程和线程
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/浅析：并行 并发 同步 异步/">
+                        <h2 class="post-title">
+                            浅析：并行 并发 同步 异步
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="随笔">
+                    <span class="tag-text">随笔</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2019/04/28/《陌陌 唐岩》，我的创业想法沉稳下来了/">
+                        <h2 class="post-title">
+                            《陌陌 唐岩》，我的创业想法沉稳下来了
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/学海无涯苦作舟，我的舟太平洋放不下/">
+                        <h2 class="post-title">
+                            学海无涯苦作舟，我的舟太平洋放不下
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/相思/">
+                        <h2 class="post-title">
+                            相思
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/资源检索：在IT世界中遨游，资源网站导航/">
+                        <h2 class="post-title">
+                            资源检索：在IT世界中遨游，资源网站导航
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/进步、改变自己：从改变工作模式开始/">
+                        <h2 class="post-title">
+                            进步、改变自己：从改变工作模式开始
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="数据库学习笔记">
+                    <span class="tag-text">数据库学习笔记</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2018/11/13/关系数据库Mysql/">
+                        <h2 class="post-title">
+                            关系数据库Mysql
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/第一章 数据库介绍/">
+                        <h2 class="post-title">
+                            第一章 数据库介绍
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="数据结构和算法">
+                    <span class="tag-text">数据结构和算法</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/冒泡排序/">
+                        <h2 class="post-title">
+                            冒泡排序
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="目标、总结和计划">
+                    <span class="tag-text">目标、总结和计划</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2019/04/10/写博客心得/">
+                        <h2 class="post-title">
+                            博客心得
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Android">
+                    <span class="tag-text">Android</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/安卓的三大工具：JDK、SDK和NDK/">
+                        <h2 class="post-title">
+                            安卓的三大工具：JDK、SDK和NDK
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="旅行">
+                    <span class="tag-text">旅行</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2018/10/31/巩义一游/">
+                        <h2 class="post-title">
+                            巩义一游
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="机器学习">
+                    <span class="tag-text">机器学习</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/机器学习笔记（一）菜鸟自述个人对机器学习的理解/">
+                        <h2 class="post-title">
+                            机器学习笔记（一）菜鸟自述个人对机器学习的理解
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/机器学习（二）剖析一个新问题/">
+                        <h2 class="post-title">
+                            机器学习（二）剖析一个新问题
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="python内置模块">
+                    <span class="tag-text">python内置模块</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/程序测试模块 doctest/">
+                        <h2 class="post-title">
+                            程序测试模块 doctest
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Encryption">
+                    <span class="tag-text">Encryption</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/简单了解常见的加密方式/">
+                        <h2 class="post-title">
+                            简单了解常见的加密方式
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="django rest_framework">
+                    <span class="tag-text">django rest_framework</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/解决方案：`basename` argument not specified, and could '/">
+                        <h2 class="post-title">
+                            解决方案：`basename` argument not specified, and could '
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="H5">
+                    <span class="tag-text">H5</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2020/03/01/阻止form自动提交事件/">
+                        <h2 class="post-title">
+                            阻止form自动提交事件
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        os模块｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2020/03/01/os模块/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>os模块</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-03-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Python模块"
+                           title="Python模块">Python模块</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            os模块
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="os模块"><a href="#os模块" class="headerlink" title="os模块"></a>os模块</h2><h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><p>os: Operating System<br>&emsp;&emsp;想一想我们能想到的os能为我们做的事，并且是常做的事情。</p>
+<ol>
+<li>创建文件夹</li>
+<li>创建多重嵌套文件夹</li>
+<li>修改文件名称</li>
+<li>删除文件(只能删除空文件夹)</li>
+<li>删除文件夹(只能删除空文件夹)</li>
+<li>获取文件路径</li>
+<li>获取文件名以及后缀名</li>
+<li>获取文件的后缀名和文件路径  </li>
+<li>获取文件信息<br>os模块的这些东西大多都与文件夹/文件有关系。一想到文件及文件夹问题，我们需要来看看os模块和os的path模块了<h3 id="os模块的一些常用用法"><a href="#os模块的一些常用用法" class="headerlink" title="os模块的一些常用用法"></a>os模块的一些常用用法</h3></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment"># 0、模块函数cpu_count() 输出cpu的数量</span></span><br><span class="line">print(os.cpu_count())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、模块函数makedirs() 创建文件夹</span></span><br><span class="line"><span class="comment"># makedirs和mkdir()在makedirs()的函数说明里说的明明白白的，makedirs可以创建多级目录，如果目录存在的话，并且可以设置参数exists_ok=True，不会报错。</span></span><br><span class="line">os.mkdir(<span class="string">"image"</span>)</span><br><span class="line">os.makedirs(<span class="string">"image/a/b/c"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、模块函数getcwd() 获得当前工作目录的绝对路径</span></span><br><span class="line">print(os.getcwd())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、模块函数listdir() 打印当前路径下的文件/文件夹的名称，不会再深入下一层目录</span></span><br><span class="line"><span class="comment"># 无参，返回当前路径下的文件/文件夹名称</span></span><br><span class="line"><span class="comment"># 有参，返回参数路径下的文件/文件夹名称</span></span><br><span class="line">print(os.listdir(<span class="string">"D:/python_project/python_student_zhiyou"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、模块函数walk() 返回指定的根目录(包括参数根目录)的文件夹中所有文件夹对应的root, dirs, files</span></span><br><span class="line">gen_path = os.walk(<span class="string">"D:\python_project\python_student_zhiyou"</span>)</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> gen_path:</span><br><span class="line">    print(root, <span class="string">"***"</span>, dirs, <span class="string">"***"</span>, files)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、模块函数remove() 删除指定文件，如果想删除某个路径下的所有文件，可以配合walk使用，删除某个文件夹下的所有文件</span></span><br><span class="line">os.remove(<span class="string">r"D:/python_project/python_student_zhiyou/imges/favicon.png"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6、path.splitext() 以元组形式获取文件名/后缀名(filename, 后缀名)</span></span><br><span class="line">gen_path = os.walk(<span class="string">"D:\python_project\python_student_zhiyou"</span>)</span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> gen_path:</span><br><span class="line">    print(root, <span class="string">"***"</span>, dirs, <span class="string">"***"</span>, files)</span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">        <span class="comment"># 由此可见，splitext返回的是一个文件名和其后缀名</span></span><br><span class="line">        print(os.path.splitext(file))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7、模块函数replace() 给文件重命名</span></span><br><span class="line">os.replace(<span class="string">r"D:\python_project\python_student_zhiyou\imges\test\favicon.png"</span>, <span class="string">r"D:\python_project\python_student_zhiyou\imges\test\t.png"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 8、模块函数rmdir()/removedirs() 删除文件夹</span></span><br><span class="line"><span class="comment"># os.rmdir() # 删除一个空文件夹</span></span><br><span class="line">os.rmdir(<span class="string">'a'</span>)</span><br><span class="line">print(os.getcwd())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 9、os.removedirs() # 删除多重嵌套的文件夹（空文件夹）</span></span><br><span class="line">os.removedirs(<span class="string">r'b\c\e'</span>)</span><br><span class="line">print(os.getcwd())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 10、查看某文件的信息</span></span><br><span class="line">file_stas = os.stat(<span class="string">'1.txt'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="os之path模块常用用法"><a href="#os之path模块常用用法" class="headerlink" title="os之path模块常用用法"></a>os之path模块常用用法</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">1</span>、判断是否是绝对路径</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">os</span>.<span class="built_in">path</span>.isabs(<span class="string">'1.txt'</span>))</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span>、返回文件的路径、文件的扩展名</span><br><span class="line"><span class="built_in">path</span>, ext_name = <span class="built_in">os</span>.<span class="built_in">path</span>.splitext(<span class="string">'1.txt'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">path</span>, ext_name)</span><br><span class="line"></span><br><span class="line"># <span class="number">3</span>、返回上一级的路径</span><br><span class="line"><span class="built_in">path</span> = <span class="built_in">os</span>.<span class="built_in">path</span>.dirname(<span class="string">'/iamge/2.jpg'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">path</span>)</span><br><span class="line"></span><br><span class="line"># <span class="number">4</span>、返回路径的最后的文件夹或者文件名称</span><br><span class="line"><span class="built_in">path</span> = <span class="built_in">os</span>.<span class="built_in">path</span>.basename(<span class="string">'/iamge/2.jpg'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">path</span>)</span><br><span class="line"></span><br><span class="line"># <span class="number">5</span>、获取文件的信息</span><br><span class="line"># <span class="built_in">os</span>.<span class="built_in">path</span>.getatime()/<span class="built_in">os</span>.<span class="built_in">path</span>.getctime()/<span class="built_in">os</span>.<span class="built_in">path</span>.getmtime()/<span class="built_in">os</span>.<span class="built_in">path</span>.getsize()等这些方法</span><br></pre></td></tr></table></figure>
+
+<h4 id="实际练习"><a href="#实际练习" class="headerlink" title="实际练习"></a>实际练习</h4><ul>
+<li>删除多重嵌套</li>
+</ul>
+<p>删除文件夹下的多级文件夹及文件  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">path_root = <span class="string">r'D:\python_project\python_student_zhiyou\2019-7-29\t'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dir_path</span><span class="params">(path_root)</span>:</span></span><br><span class="line">    genpath = os.walk(path_root)</span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> genpath:</span><br><span class="line">        print(path)</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        先判断是不是文件夹</span></span><br><span class="line"><span class="string">        1、如果是文件夹，传入一个路径，调用自己</span></span><br><span class="line"><span class="string">        1、如果是文件，删除文件及path_root。</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> path[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">for</span> dir <span class="keyword">in</span> path[<span class="number">1</span>]:</span><br><span class="line">                tem_path = os.path.join(path[<span class="number">0</span>], dir)</span><br><span class="line">                dir_path(tem_path)</span><br><span class="line">        <span class="keyword">for</span> filename <span class="keyword">in</span> path[<span class="number">2</span>]:</span><br><span class="line">            tem_path = os.path.join(path[<span class="number">0</span>], filename)</span><br><span class="line">            os.remove(tem_path)</span><br><span class="line">            <span class="comment"># 删除这个文件夹中的文件之后删除这个文件夹</span></span><br><span class="line">            os.removedirs(path_root)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用这个函数</span></span><br><span class="line">dir_path(path_root)</span><br></pre></td></tr></table></figure>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/01/itertools模块/" data-toggle="tooltip" data-placement="top"
+                           title="itertools模块">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/01/mysql分区分表/" data-toggle="tooltip" data-placement="top"
+                           title="mysql分区分表">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#os模块"><span class="toc-text">os模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法"><span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#os模块的一些常用用法"><span class="toc-text">os模块的一些常用用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#os之path模块常用用法"><span class="toc-text">os之path模块常用用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实际练习"><span class="toc-text">实际练习</span></a></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Python模块"
+                           title="Python模块">Python模块</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        绘制图表：pyecharts模块｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2020/03/01/绘制图表：pyecharts模块/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>绘制图表：pyecharts模块</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-03-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Python模块"
+                           title="Python模块">Python模块</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            绘制图表：pyecharts模块
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="pyechars模块"><a href="#pyechars模块" class="headerlink" title="pyechars模块"></a>pyechars模块</h2><p><code>pip install pyecharts==0.5.11</code><br>#pyecharts=echarts+python<br>&emsp;&emsp;pycharts模块用来生成ecahrts的图表库。<br>&emsp;&emsp;优点  </p>
+<ol>
+<li>动态美观</li>
+<li>具有交互性，方便数据的对比分析</li>
+<li>生成动态的echarts网页，也可以在flask/django中集成使用  <h2 id="pyecharts制图实例"><a href="#pyecharts制图实例" class="headerlink" title="pyecharts制图实例"></a>pyecharts制图实例</h2>pyecharts模块包含的图表：  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Bar（柱状图/条形图） </span><br><span class="line">　　Bar3D（<span class="number">3</span>D 柱状图） </span><br><span class="line">　　Boxplot（箱形图） </span><br><span class="line">　　EffectScatter（带有涟漪特效动画的散点图） </span><br><span class="line">　　Funnel（漏斗图） </span><br><span class="line">　　Gauge（仪表盘） </span><br><span class="line">　　Geo（地理坐标系） </span><br><span class="line">　　Graph（关系图） </span><br><span class="line">　　HeatMap（热力图） </span><br><span class="line">　　Kline（K线图） </span><br><span class="line">　　Line（折线/面积图） </span><br><span class="line">　　Line3D（<span class="number">3</span>D 折线图） </span><br><span class="line">　　Liquid（水球图） </span><br><span class="line">　　Map（地图） </span><br><span class="line">　　Parallel（平行坐标系） </span><br><span class="line">　　Pie（饼图） </span><br><span class="line">　　Polar（极坐标系） </span><br><span class="line">　　Radar（雷达图） </span><br><span class="line">　　Sankey（桑基图） </span><br><span class="line">　　Scatter（散点图） </span><br><span class="line">　　Scatter3D（<span class="number">3</span>D 散点图） </span><br><span class="line">　　ThemeRiver（主题河流图） </span><br><span class="line">　　WordCloud（词云图）</span><br><span class="line"></span><br><span class="line">　　用户自定义</span><br><span class="line"></span><br><span class="line">　　Grid 类：并行显示多张图 </span><br><span class="line">　　Overlap 类：结合不同类型图表叠加画在同张图上 </span><br><span class="line">　　Page 类：同一网页按顺序展示多图 </span><br><span class="line">　　Timeline 类：提供时间线轮播多张图</span><br></pre></td></tr></table></figure>
+
+<p>以下是几种常用的图表实例代码<br>&emsp;&emsp;柱状图/柱状3D图/折线图/折线3D图/饼图/地图/散点图/3D散点图/雷达图/k线图  </p>
+<p>主要列举了以下几种常用的图的实例示例</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">from</span> pyecharts <span class="meta">import</span> <span class="keyword">Bar, </span><span class="keyword">Bar3D, </span>Pie, Line, Line3D, <span class="meta">Map</span>, Scatter, Scatter3D, Radar, Kline, WordCloud</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 柱状图---------------------------</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">add(name, x_axis, y_axis)</span></span><br><span class="line"><span class="string">x_axis 横坐标轴数据</span></span><br><span class="line"><span class="string">y_axis 纵坐标轴数据</span></span><br><span class="line"><span class="string">x_axis/y_axis的数据个数需要一致</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">bar = Bar(<span class="string">'柱状图'</span>, <span class="string">'测试'</span>)</span><br><span class="line">x_axis = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>]</span><br><span class="line">bar.add(<span class="string">'b'</span>, x_axis, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>])</span><br><span class="line">bar.add(<span class="string">'a'</span>, x_axis, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">bar.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%9F%B1%E7%8A%B6%E5%9B%BE.png" alt="alt"></p>
+<h3 id="柱状3D图"><a href="#柱状3D图" class="headerlink" title="柱状3D图"></a>柱状3D图</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Bar3D图---------------------------</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">add(name, x_axis, y_axis, data)</span></span><br><span class="line"><span class="string">其中：data是x，y的数据集，每一行代表一条数据(x,y,data)，每一列代表一个维度</span></span><br><span class="line"><span class="string">设置网格透明度（默认值为1）：grid_opacity=1</span></span><br><span class="line"><span class="string">设置网格颜色/样式（没测出来什么意思）：grid_shading=1</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line">bar_3d = Bar3D()</span><br><span class="line">x_axis = ['one', 'two', 'three']</span><br><span class="line">y_asis = ['python', 'java', 'php', 'c++']</span><br><span class="line">data = [</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">5</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">7</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">15</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>], [<span class="number">1</span>, <span class="number">3</span>, <span class="number">20</span>], [<span class="number">2</span>, <span class="number">0</span>, <span class="number">11</span>], [<span class="number">2</span>, <span class="number">1</span>, <span class="number">9</span>], [<span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>], ]</span><br><span class="line">bar_3d.add('a', x_axis, y_asis, data, grid3d_opacity=<span class="number">0.5</span>, grid3d_shading='realistic')</span><br><span class="line">bar_3d.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%9F%B1%E7%8A%B6%E5%9B%BE3D.png" alt="alt"></p>
+<h3 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 折线图----------------------------</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">add(name, x_axis, y_axis)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">设置是否是阶梯型 bool ：is_step</span></span><br><span class="line"><span class="string">设置是否平滑 bool：is_smooth</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">line = Line(<span class="string">'折线图'</span>, <span class="string">'子标题'</span>)</span><br><span class="line">x_axis = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>]</span><br><span class="line">y_axis = [100, 50, 75, 82]</span><br><span class="line">line.<span class="builtin-name">add</span>(<span class="string">'图表名称'</span>, x_axis, y_axis, <span class="attribute">is_smooth</span>=<span class="literal">True</span>, <span class="attribute">is_step</span>=<span class="literal">False</span>, <span class="attribute">is_fill</span>=<span class="literal">False</span>)</span><br><span class="line">line.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%8A%98%E7%BA%BF%E5%9B%BE.png" alt="alt"></p>
+<h3 id="折线图3D"><a href="#折线图3D" class="headerlink" title="折线图3D"></a>折线图3D</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 折线图<span class="number">3</span>D---------------------------</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">add(name, data)</span></span><br><span class="line"><span class="string">name: 图表名称</span></span><br><span class="line"><span class="string">data: 每一行是一行数据，每一列是一个维度</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">line_3d = Line3D('Line3D折线图', '这是子标题')</span><br><span class="line">data = [</span><br><span class="line">    [<span class="number">1.5</span>, <span class="number">0</span>, <span class="number">7.3</span>], [<span class="number">2</span>, <span class="number">0</span>, <span class="number">7.8</span>], [<span class="number">2.5</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">3</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">3.85</span>, <span class="number">0</span>, <span class="number">7.85</span>], [<span class="number">4.4</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">4.6</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">5.15</span>, <span class="number">0</span>, <span class="number">7.85</span>], [<span class="number">6</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">6.5</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">7</span>, <span class="number">0</span>, <span class="number">7.8</span>], [<span class="number">7.5</span>, <span class="number">0</span>, <span class="number">7.3</span>], [<span class="number">4.5</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">4.5</span>, <span class="number">0.6</span>, <span class="number">8</span>], [<span class="number">4.5</span>, <span class="number">1</span>, <span class="number">8.5</span>], [<span class="number">4.5</span>, <span class="number">1.5</span>, <span class="number">8.8</span>]</span><br><span class="line">]</span><br><span class="line">line_3d.add('图表名称', data, grid3d_opacity=<span class="number">0.5</span>, is_smooth=True)</span><br><span class="line">line_3d.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%8A%98%E7%BA%BF%E5%9B%BE3D.png" alt="alt"></p>
+<h3 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 饼状图-----------------------------</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">add(name, attr, value)</span></span><br><span class="line"><span class="string">每一个attr对应一个比例值（整数）</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">pie = Pie()</span><br><span class="line">attr = [<span class="string">'python'</span>, <span class="string">'java'</span>, <span class="string">'php'</span>]</span><br><span class="line">value = [<span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>]</span><br><span class="line">pie.add(<span class="string">'饼状图'</span>, attr, value, rosetype=<span class="string">'area'</span>, radius=[<span class="number">10</span>, <span class="number">75</span>], center=[<span class="number">50</span>, <span class="number">60</span>])</span><br><span class="line">pie.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E9%A5%BC%E7%8A%B6%E5%9B%BE.png" alt="alt"></p>
+<h3 id="地图map"><a href="#地图map" class="headerlink" title="地图map"></a>地图map</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 地图 map-------------------------</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">参数：</span></span><br><span class="line"><span class="string">name: 地图名称</span></span><br><span class="line"><span class="string">attr: 标记城市</span></span><br><span class="line"><span class="string">value：标记值</span></span><br><span class="line"><span class="string">maptype（显示地图区域）：国家/省份/城市</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">map = Map()</span><br><span class="line">attr = [<span class="string">'项城市'</span>, <span class="string">'沈丘县'</span>, <span class="string">'鹿邑县'</span>, <span class="string">'太康县'</span>]</span><br><span class="line">values = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">map.add(<span class="string">'china'</span>, attr, values, maptype=<span class="string">'周口'</span>, is_label_show=<span class="literal">True</span>)</span><br><span class="line">map.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E5%9C%B0%E5%9B%BE.png" alt="alt"></p>
+<h3 id="Scatter-直角坐标系散点图"><a href="#Scatter-直角坐标系散点图" class="headerlink" title="Scatter 直角坐标系散点图"></a>Scatter 直角坐标系散点图</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Scatter 直角坐标系散点图-----------------</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">参数：</span></span><br><span class="line"><span class="string">name: 图表名称</span></span><br><span class="line"><span class="string">x_axis: x轴参数</span></span><br><span class="line"><span class="string">y_axis: y轴参数</span></span><br><span class="line"><span class="string">x_axis/y_axis的list值都必须为数值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">scatter = Scatter()</span><br><span class="line">x_axis = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">y_axis = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">extra_data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">scatter.add('scatter', x_axis, y_axis, extra_data=extra_data)</span><br><span class="line">scatter.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%95%A3%E7%82%B9%E5%9B%BE.png" alt="alt"></p>
+<h3 id="3D-Scatter-直角坐标系散点图"><a href="#3D-Scatter-直角坐标系散点图" class="headerlink" title="3D Scatter 直角坐标系散点图"></a>3D Scatter 直角坐标系散点图</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Scatter3D 散点图<span class="number">3</span>D------------------</span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">参数：</span></span><br><span class="line"><span class="string">name: 图表名称</span></span><br><span class="line"><span class="string">data: 每一行是一行数据，每一列是一个维度</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">scatter_3d = Scatter3D()</span><br><span class="line">data = [</span><br><span class="line">    [<span class="number">1.5</span>, <span class="number">0</span>, <span class="number">7.3</span>], [<span class="number">2</span>, <span class="number">0</span>, <span class="number">7.8</span>], [<span class="number">2.5</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">3</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">3.85</span>, <span class="number">0</span>, <span class="number">7.85</span>], [<span class="number">4.4</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">4.6</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">5.15</span>, <span class="number">0</span>, <span class="number">7.85</span>], [<span class="number">6</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">6.5</span>, <span class="number">0</span>, <span class="number">8</span>], [<span class="number">7</span>, <span class="number">0</span>, <span class="number">7.8</span>], [<span class="number">7.5</span>, <span class="number">0</span>, <span class="number">7.3</span>], [<span class="number">4.5</span>, <span class="number">0</span>, <span class="number">7.5</span>], [<span class="number">4.5</span>, <span class="number">0.6</span>, <span class="number">8</span>]</span><br><span class="line">]</span><br><span class="line">scatter_3d.add('Scatter3D', data=data)</span><br><span class="line">scatter_3d.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E6%95%A3%E7%82%B9%E5%9B%BE3D.png" alt="alt"></p>
+<h3 id="k线图"><a href="#k线图" class="headerlink" title="k线图"></a>k线图</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Kline k线图--------------------</span><br><span class="line">kline = Kline()</span><br><span class="line">x_axis = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>]</span><br><span class="line">y_axis = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>],</span><br><span class="line">    [<span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">15</span>],</span><br><span class="line">]</span><br><span class="line">kline.add(<span class="string">'k线图'</span>, x_axis, y_axis)</span><br><span class="line">kline.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/k%E7%BA%BF%E5%9B%BE.png" alt="alt"></p>
+<h3 id="词云图"><a href="#词云图" class="headerlink" title="词云图"></a>词云图</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># WordCloud 词云图--------------------</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">shape:设置词云图的展示格式</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">word_cloud = WordCloud()</span><br><span class="line">attr = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>]</span><br><span class="line">value = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">word_cloud.add(<span class="string">'WordCloud'</span>, attr, value, shape=<span class="string">'star'</span>)</span><br><span class="line">word_cloud.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E8%AF%8D%E4%BA%91%E5%9B%BE.png" alt="alt"></p>
+<h3 id="组合图"><a href="#组合图" class="headerlink" title="组合图"></a>组合图</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">overlap组合图<span class="comment">-----------------------</span></span><br><span class="line"><span class="keyword">import</span> pyecharts <span class="keyword">as</span> pye</span><br><span class="line">attr = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>]</span><br><span class="line">v1 = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>]</span><br><span class="line">v2 = [<span class="number">38</span>, <span class="number">28</span>, <span class="number">58</span>, <span class="number">48</span>, <span class="number">78</span>, <span class="number">68</span>]</span><br><span class="line">bar = pye.Bar("Line - Bar 示例")</span><br><span class="line">bar.<span class="keyword">add</span>("bar", attr, v1)</span><br><span class="line"><span class="type">line</span> = pye.Line()</span><br><span class="line"><span class="type">line</span>.<span class="keyword">add</span>("line", attr, v2)</span><br><span class="line">overlap = pye.Overlap()</span><br><span class="line">overlap.<span class="keyword">add</span>(bar)</span><br><span class="line">overlap.<span class="keyword">add</span>(<span class="type">line</span>)</span><br><span class="line">overlap.render()</span><br></pre></td></tr></table></figure>
+<p><img src="/imag/py%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/pyecharts/%E7%BB%84%E5%90%88%E5%9B%BE.png" alt="alt"></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/01/解决方案：`basename` argument not specified, and could '/" data-toggle="tooltip" data-placement="top"
+                           title="解决方案：`basename` argument not specified, and could '">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/01/进步、改变自己：从改变工作模式开始/" data-toggle="tooltip" data-placement="top"
+                           title="进步、改变自己：从改变工作模式开始">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pyechars模块"><span class="toc-text">pyechars模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyecharts制图实例"><span class="toc-text">pyecharts制图实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#柱状图"><span class="toc-text">柱状图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#柱状3D图"><span class="toc-text">柱状3D图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#折线图"><span class="toc-text">折线图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#折线图3D"><span class="toc-text">折线图3D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#饼状图"><span class="toc-text">饼状图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#地图map"><span class="toc-text">地图map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scatter-直角坐标系散点图"><span class="toc-text">Scatter 直角坐标系散点图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D-Scatter-直角坐标系散点图"><span class="toc-text">3D Scatter 直角坐标系散点图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#k线图"><span class="toc-text">k线图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#词云图"><span class="toc-text">词云图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合图"><span class="toc-text">组合图</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Python模块"
+                           title="Python模块">Python模块</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>
