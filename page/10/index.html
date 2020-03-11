@@ -297,6 +297,85 @@
 
 <div class="post-preview "
      style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/03/01/UDP和TCP协议/">
+        <h2 class="post-title">
+            UDP和TCP协议
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                TCP协议&emsp;&emsp;我博客里的博文 “TCP/IP协议” 已经讲过了TCP的作用、原理以及特点。&emsp;&emsp;TCP是用于应用程序之间通信的协议，通过三次握手建立连接，建立全双工通信，占用计算机之间的通信线路。  
+特点是：
+
+固定连接
+建立全双工通信、占用计算机间的通信..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/03/01/以多任务的角度理解进程和线程/">
+        <h2 class="post-title">
+            以多任务的角度理解进程和线程
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                概述&emsp;&emsp;网上翻了这么多，都是对官方进程和线程的理解，但是很多人大不是为了想要知道官方对线程和进程的理解，而是一个更能具体的通透的理解。&emsp;&emsp;本篇文章以实例，以多任务为切入点，简单的理解下进程/多进程和线程/多线程，争取跳出进程和线程的坑。  
+多任务&ems..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/03/01/url路径：前缀有无斜杠的区别/">
+        <h2 class="post-title">
+            url路径：前缀有无斜杠的区别
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                路径前加/与不加/的区别
+加 /，代表绝对路径
+不加 /，代表的是相对路径
+
+举例说明
+123456路径：http://127.0.0.1:8000/auth/index.html对于这个路径 static/avator/花粥.jpg1、加/，表绝对路径http://127.0.0.1:8000..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
     <a href="/2020/03/01/multiprocessing模块Process创建子进程/">
         <h2 class="post-title">
             multiprocessing模块Process创建子进程
@@ -408,80 +487,6 @@ Pool进程池/apply_async()异步多任务#多任务+异步
             <p>
                 threading模块Thread创建线程&emsp;&emsp;通过Thread创建两个线程，则两者之间的数据是共享的，所以可能导致数据混乱，如图示：
 123456789101112131415161718192021222324252627import time, threading# 假定..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/01/生成器的__next__()和send()方法/">
-        <h2 class="post-title">
-            生成器的__next()__和send()方法
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                生成器的next()和send()方法next(c) : 开启生成器，会返回一个值，然后再yield处等待接收传来的参数
-启动生成器之后：
-result = c.send(value) -&gt; 生成器先接受一个值，再返回一个值
-1234567891011121314151617181920d..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/01/python 协程/">
-        <h2 class="post-title">
-            python 协程
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                协程(单进程的异步编程模型、单线程)&emsp;&emsp;协程：Coroutine&emsp;&emsp;子程序调用：递归时经常会调用自己，中断而去执行更深层的函数，结束最底层的函数执行之后层层返回往下接着执行！&emsp;&emsp;协程：协程不同于子程序调用，协程没有经过函数调用。比如在执..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/01/vthread实现线程池/">
-        <h2 class="post-title">
-            vthread实现线程池
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                线程池&emsp;&emsp;无疑是为了批量开辟线程的。&emsp;&emsp;实现多线程任务使用python的第三方库vthread  
-vthread实现多线程vthread实现多线程
-
             </p>
         </div>
     </a>
@@ -684,6 +689,9 @@ vthread实现多线程vthread实现多线程
                     
                     
                     
+                    
+                    <a href="/tags/#Android" title="Android"
+                       rel="4">Android</a>
                     
                     
                     
