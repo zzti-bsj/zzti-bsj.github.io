@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        itme没有color属性，搞死我了...｜Bsj&#39;s blog
+        图形图像基础｜Bsj&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="https://codeac.top/2020/03/11/itme没有color属性，搞死我了.../">
+    <link rel="canonical" href="https://codeac.top/2020/03/11/图形图像基础/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -169,7 +169,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>itme没有color属性，搞死我了...</h1>
+                    <h1>图形图像基础</h1>
                     
                     <span class="meta">
                          作者 Otnw
@@ -189,7 +189,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            itme没有color属性，搞死我了...
+            图形图像基础
         </span>
     </div>
 </header>
@@ -200,31 +200,48 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>&emsp;&emsp;今天在写Button按下和抬起的不同样式的时候，使用状态列表图像写了一段如下代码。  </p>
+                <h1 id="drawble资源"><a href="#drawble资源" class="headerlink" title="drawble资源"></a>drawble资源</h1><p>&emsp;&emsp;drawable的意义是“可绘制的”，在Android中，图片、色块、画板、背景等都是<code>drawable资源</code>。  </p>
+<h2 id="状态列表图形"><a href="#状态列表图形" class="headerlink" title="状态列表图形"></a>状态列表图形</h2><p>&emsp;&emsp;简单来说，当一个按钮被按压时，显示凹陷的图形；抬起时显示凸起的图形。<br>&emsp;&emsp;注意不要在item里面使用没有的属性，不然会使程序无法运行。  </p>
+<p><strong>示例：状态列表图形drawable文件</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/button_pressed"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/button_normal"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>写了<code>item</code>没有的<code>color</code>属性，（因为这段代码之前写过，没考虑过是否符合所有的控件）</li>
-<li>属性里的颜色使用了十六进制</li>
+<li>state_pressed：是否按下（常用控件button）</li>
+<li>state_checked：是否勾选（单选框RadioButton、复选框CheckBox）</li>
+<li>state_focused：是否获得焦点（文本编辑器）</li>
+<li>state_seleccted：是否选中（各控件）</li>
 </ul>
-<p>&emsp;&emsp;之前就是这样写的，难道是之前是哪里出错了吗  </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--color，这里是Button，没有color属性--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">"#000000"</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;正确示例如下。添加样式的时候，需要使用<code>drawable</code>属性，添加可以绘制的属性（颜色、图片等）。  </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--xml布局文件Button代码--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/bt_icon"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"@drawable/zz_se"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"按钮"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="形状图形"><a href="#形状图形" class="headerlink" title="形状图形"></a>形状图形</h2><p>&emsp;&emsp;给出一个示例：  </p>
+<ul>
+<li><p>TextView控件</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:<span class="attribute">layout_width</span>=<span class="string">"200dp"</span></span><br><span class="line">    android:<span class="attribute">layout_height</span>=<span class="string">"200dp"</span></span><br><span class="line">    android:<span class="attribute">text</span>=<span class="string">"Hello world"</span></span><br><span class="line">    android:<span class="attribute">layout_gravity</span>=<span class="string">"center"</span></span><br><span class="line">    android:<span class="attribute">gravity</span>=<span class="string">"center"</span></span><br><span class="line">    android:<span class="attribute">background</span>=<span class="string">"@drawable/test"</span>&gt;&lt;/TextView&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>shape图形文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">shape</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"#ffdd66"</span>&gt;</span><span class="tag">&lt;/<span class="name">solid</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stroke</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:width</span>=<span class="string">"1dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:color</span>=<span class="string">"#ffaaaaaa"</span>&gt;</span><span class="tag">&lt;/<span class="name">stroke</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">corners</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:bottomLeftRadius</span>=<span class="string">"10dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:bottomRightRadius</span>=<span class="string">"10dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:topLeftRadius</span>=<span class="string">"10dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:topRightRadius</span>=<span class="string">"10dp"</span>&gt;</span><span class="tag">&lt;/<span class="name">corners</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="九宫格图形"><a href="#九宫格图形" class="headerlink" title="九宫格图形"></a>九宫格图形</h2><p>&emsp;&emsp;除了以上的两种类型，还有一种<strong>九宫格图形</strong>。通常情况下，当我们使一个按钮的宽度拉长，按钮的两侧会被拉伸并且模糊，这个时候，使用九宫格图形设置按钮的样式，避免了两侧拉长。  </p>
+</li>
+</ul>
+<h2 id="在代码中引用drawable文件"><a href="#在代码中引用drawable文件" class="headerlink" title="在代码中引用drawable文件"></a>在代码中引用drawable文件</h2><p>&emsp;&emsp;在代码中设置图片的方式：<br>（1）直接调用如下方法，参数为<code>drawable</code>文件对象（R.drawable.xxx）：</p>
+<ul>
+<li>setImageResource 设置图片</li>
+<li>setBackgroundResource 设置背景</li>
+</ul>
+<p>（2）先获取drawable对象，然后使用如下方法引用drawable文件： </p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Drawable drawable = get<span class="constructor">Resources()</span>.get<span class="constructor">Drawable(R.<span class="params">drawable</span>.<span class="params">apple</span>)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>setBackgroundDrawable</li>
+<li>setImageDrawable</li>
+<li>setCompoundDrawables</li>
+</ul>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2020/03/11/图形图像基础/" data-toggle="tooltip" data-placement="top"
-                           title="图形图像基础">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2020/03/11/实现图形和文字结合的按钮/" data-toggle="tooltip" data-placement="top"
-                           title="实现图形和文字结合的按钮">Next Post &rarr;</a>
+                        <a href="/2020/03/11/itme没有color属性，搞死我了.../" data-toggle="tooltip" data-placement="top"
+                           title="itme没有color属性，搞死我了...">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -262,7 +279,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#drawble资源"><span class="toc-text">drawble资源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#状态列表图形"><span class="toc-text">状态列表图形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#形状图形"><span class="toc-text">形状图形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九宫格图形"><span class="toc-text">九宫格图形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在代码中引用drawable文件"><span class="toc-text">在代码中引用drawable文件</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
