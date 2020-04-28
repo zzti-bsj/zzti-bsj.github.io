@@ -297,6 +297,38 @@
 
 <div class="post-preview "
      style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/03/01/数据库架构/">
+        <h2 class="post-title">
+            数据库架构
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                简单的主从复制解决了数据库的读写分离，很好的提升了读的性能其图如下主从复制过程如下  
+缺点：
+
+写入无法扩展
+写入无法缓存
+复制延时
+锁表率上升
+表变大，缓存率下降
+
+Mysql垂直分区&emsp;&emsp;如果把业务切割得足够独立，那把不同业务的数据放到不同的数据库服务器将是一个不错的方案..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
     <a href="/2020/03/01/利用merge存储引擎来实现分表/">
         <h2 class="post-title">
             利用merge存储引擎来实现分表
@@ -492,30 +524,6 @@ event.stopPropagation()代码示例：
 
 
 
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/01/django的@login_required装饰器/">
-        <h2 class="post-title">
-            django的@login_required装饰器
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                django的@login_required装饰器在settings中配置LOGIN_URL，使用@login_requirede装饰的方法在未登录的情况下跳转到该链接。LOGIN_URL = &#39;/login/&#39;  
-
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
 
 <!-- 翻页 pager -->
 
@@ -648,7 +656,7 @@ event.stopPropagation()代码示例：
                     
                     
                     <a href="/tags/#Python" title="Python"
-                       rel="21">Python</a>
+                       rel="22">Python</a>
                     
                     
                     

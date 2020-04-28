@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Bsj&#39;s blog
+        高阶函数｜Bsj&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="https://codeac.top/tags/gunicorn/">
+    <link rel="canonical" href="https://codeac.top/2020/04/28/高阶函数/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -49,7 +49,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="true
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -148,286 +148,168 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="/imag/favicon.png"/>
-                        <h5><a href="/about/">Otnw</a></h5>
-                        <p>生活、技术、游戏</p>
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>高阶函数</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-04-28
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Python"
+                           title="Python">Python</a>
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            高阶函数
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h1><p>把函数当做参数传递的函数，称为高阶函数。  </p>
+<h1 id="python的一些常用高阶函数"><a href="#python的一些常用高阶函数" class="headerlink" title="python的一些常用高阶函数"></a>python的一些常用高阶函数</h1><h2 id="map"><a href="#map" class="headerlink" title="map()"></a><code>map()</code></h2><p>映射，传入两个参数，一个是函数，一个是可迭代序列。把序列按照函数的规则，返回一个新的序列 </p>
+<h2 id="reduce-f-1-2-3-4-5-6"><a href="#reduce-f-1-2-3-4-5-6" class="headerlink" title="reduce(f,[1,2,3,4,5,6]])"></a><code>reduce(f,[1,2,3,4,5,6]])</code></h2><p>“减小”（根据百度意译，挺符合这个高阶函数的特征）。传入两个参数，一个是函数，一个是可迭代序列。<br>对于序列，有如下所示的性质<br><code>f(f(f(f(f(1,2),3),4),5),6)</code>  </p>
+<p>例如：可以使用reduce实现<code>str2int</code>or<code>char2num</code></p>
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter()"></a><code>filter()</code></h2><p>过滤。传入两个参数，一个是函数，一个是可迭代序列。根据函数指定的方式进行过滤，生成新的序列。</p>
+<h2 id="sorted"><a href="#sorted" class="headerlink" title="sorted()"></a><code>sorted()</code></h2><p>排序。sorted()传入一个序列，会把指定序列按照升序方式排序。<code>key</code>参数指定排序的方式，比如<code>key=abs</code>把序列按照绝对值的方式排序。<code>reverse=True</code>会让序列按照降序方式排序。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/04/27/序列化和反序列化/" data-toggle="tooltip" data-placement="top"
+                           title="序列化和反序列化">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
 
 
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
 
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/01/gunicorn配置及使用详解/">
-        <h2 class="post-title">
-            gunicorn配置及使用详解
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-01
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                等待更新中
+                            if (typeof LivereTower === 'function') { return; }
 
-            </p>
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#高阶函数"><span class="toc-text">高阶函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#python的一些常用高阶函数"><span class="toc-text">python的一些常用高阶函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-text">map()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reduce-f-1-2-3-4-5-6"><span class="toc-text">reduce(f,[1,2,3,4,5,6]])</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#filter"><span class="toc-text">filter()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sorted"><span class="toc-text">sorted()</span></a></li></ol></li></ol>
+                </div>
+            </div>
         </div>
-    </a>
 
-</div>
+        <div class="row">
+            <!-- Sidebar Container -->
 
-<hr>
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="/imag/favicon.png"/>
-                    
-                    <h5><a href="/about/">Otnw</a></h5>
-                    
-                    <p>生活、技术、游戏</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
                         
+                        <a class="tag" href="/tags/#Python"
+                           title="Python">Python</a>
                         
-                        
+                    </div>
+                </section>
+                
 
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
                         
-                        <li>
-                            <a target="_blank" href="http://weibo.com/u/5973705133">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
                         
-
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
                         
-
+                        <li><a href="http://xkzx.xyz" target="_blank" rel="noopener">星空之下</a></li>
                         
-                        <li>
-                            <a target="_blank" href="https://github.com/zzti-bsj">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
+                        <li><a href="http://jimietianxingzhe.com/" target="_blank" rel="noopener">小博博</a></li>
                         
                     </ul>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    <a href="/tags/#LeetCode" title="LeetCode"
-                       rel="2">LeetCode</a>
-                    
-                    
-                    
-                    <a href="/tags/#django-haystack" title="django-haystack"
-                       rel="2">django-haystack</a>
-                    
-                    
-                    
-                    <a href="/tags/#Scrapyd" title="Scrapyd"
-                       rel="4">Scrapyd</a>
-                    
-                    
-                    
-                    <a href="/tags/#jQuery" title="jQuery"
-                       rel="7">jQuery</a>
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#网络编程" title="网络编程"
-                       rel="7">网络编程</a>
-                    
-                    
-                    
-                    <a href="/tags/#Django" title="Django"
-                       rel="14">Django</a>
-                    
-                    
-                    
-                    <a href="/tags/#Hexo" title="Hexo"
-                       rel="4">Hexo</a>
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#数据库" title="数据库"
-                       rel="5">数据库</a>
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#Php" title="Php"
-                       rel="3">Php</a>
-                    
-                    
-                    
-                    <a href="/tags/#Python" title="Python"
-                       rel="22">Python</a>
-                    
-                    
-                    
-                    <a href="/tags/#Python爬虫" title="Python爬虫"
-                       rel="6">Python爬虫</a>
-                    
-                    
-                    
-                    <a href="/tags/#Python多任务" title="Python多任务"
-                       rel="8">Python多任务</a>
-                    
-                    
-                    
-                    <a href="/tags/#Scrapy" title="Scrapy"
-                       rel="7">Scrapy</a>
-                    
-                    
-                    
-                    <a href="/tags/#Socket编程" title="Socket编程"
-                       rel="4">Socket编程</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#Python模块" title="Python模块"
-                       rel="5">Python模块</a>
-                    
-                    
-                    
-                    <a href="/tags/#Git" title="Git"
-                       rel="2">Git</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#操作系统" title="操作系统"
-                       rel="3">操作系统</a>
-                    
-                    
-                    
-                    <a href="/tags/#随笔" title="随笔"
-                       rel="5">随笔</a>
-                    
-                    
-                    
-                    <a href="/tags/#数据库学习笔记" title="数据库学习笔记"
-                       rel="2">数据库学习笔记</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#Android" title="Android"
-                       rel="7">Android</a>
-                    
-                    
-                    
-                    
-                    
-                    <a href="/tags/#机器学习" title="机器学习"
-                       rel="2">机器学习</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-            <hr>
-            <h5 style="text-align: center;">Friends</h5>
-            <ul class="list-inline" style="text-align: center;">
                 
-                <li><a href="https://leo.dropsec.xyz/" target="_blank">Leooel</a></li>
-                
-                <li><a href="https://blog.csdn.net/qq_39378657" target="_blank">Acmer-bsj</a></li>
-                
-                <li><a href="http://xkzx.xyz" target="_blank">星空之下</a></li>
-                
-                <li><a href="http://jimietianxingzhe.com/" target="_blank">小博博</a></li>
-                
-            </ul>
-            
-
+            </div>
         </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
