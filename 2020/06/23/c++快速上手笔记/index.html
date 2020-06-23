@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cool Blog">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="imag/ico.ico">
+    <link rel="alternate" type="application/atom+xml" title="BaiShaoJie" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        c++ 快速上手笔记｜Bsj&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://codeac.top/2020/06/23/c++快速上手笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('imag/favicon.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    BaiShaoJie
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/ideas/">ideas</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/imag/header/p.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/imag/header/p.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>c++ 快速上手笔记</h1>
+                    
+                    <span class="meta">
+                         作者 Otnw
+                        <span>
+                          日期 2020-06-23
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#c++"
+                           title="c++">c++</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            c++ 快速上手笔记
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="c-是什么样的语言？"><a href="#c-是什么样的语言？" class="headerlink" title="c++是什么样的语言？"></a>c++是什么样的语言？</h2><p>&emsp;&emsp;<strong>静态、编译型语言。</strong><br>&emsp;&emsp;<strong>支持面向过程、面向对象、泛型编程。</strong>  </p>
+<p>&emsp;&emsp;所谓“静态”的概念：（1）静态的编程语言在编译时进行类型检查；（2）c++ 变量的声明，事先需要指定数据类型；（3）c++ 具有static关键字，即可以修饰变量也可以修饰类的成员。   </p>
+<h2 id="static的作用？（面试经常问）"><a href="#static的作用？（面试经常问）" class="headerlink" title="static的作用？（面试经常问）"></a>static的作用？（面试经常问）</h2><ol>
+<li>static修饰局部变量，在函数调用之间保持局部变量的值。  </li>
+<li>static修饰类成员，导致只有一个该成员的副本被所有对象共享访问。</li>
+<li>static修饰的全局变量具有内部链接性，所在文件之外的文件不可访问。  </li>
+<li>static修饰类的成员称为静态成员(包括数据及方法)，静态成员函数没有this指针，只能访问静态成员，以及类外部其他函数；类的普通函数具有this指针，可以访问类中任意成员。  </li>
+</ol>
+<h2 id="c-面向对象三大特点"><a href="#c-面向对象三大特点" class="headerlink" title="c++ 面向对象三大特点"></a>c++ 面向对象三大特点</h2><p>&emsp;&emsp;c++ 是面向对象的一门语言，涵盖c语言。所以c++ 既支持面向过程也支持面向对象。<br>&emsp;&emsp;面向对象具有三个特点：封装、继承、多态。<br>&emsp;&emsp;（1）封装：封装的主要目的是为了数据抽象。如在一个类中，同时声明了数据成员和成员方法，使用<code>private</code>使得数据成员对用户不可见，通过成员方法作为接口访问数据成员并做一系列的操作。<br>&emsp;&emsp;（2）继承：c++ 支持多继承，派生类继承基类时需要加上权限修饰符，表明该继承是<code>public/private/protected</code>，默认是<code>private</code>私有继承。多继承时不同的基类使用<code>,</code>隔开。<br>&emsp;&emsp;（3）多态：同一种方法，不同对象调用执行，呈现不同的结果。派生类通过继承基类，实现基类中的<code>virtual</code>虚函数，使用不同派生类对象调用同一函数，结果呈现不同。  </p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="comment">//纯虚函数</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>;</span><br><span class="line">    B()&#123;</span><br><span class="line">        a = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">B::hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"hello B"</span>&lt;&lt;<span class="string">' '</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    B b;</span><br><span class="line">    b.hello();</span><br><span class="line">    <span class="comment">//B以public方式继承A，其继承的成员的权限保持不变。</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;b.a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（1）<code>virtual关键字</code>：virtual关键字可以修饰虚函数、纯虚函数；在一个类中，virtual修饰纯虚函数时，该类及未实现其所有虚函数的派生类不可被实例化；当virtual修饰虚函数时，该类及其派生类可以实例化。<br>（2）继承权限修饰符：<code>private/public/protected</code>，派生类继承基类时，需要指定继承权限，不同的继承权限可能会修改被继承之后的成员的权限；<br>（3）派生类可以访问基类的所有非私有成员。<br>（4）类中<code>private</code>修饰的成员只有本类以及其友元可以访问；<br>（5）派生类不能继承基类的构造/析构/拷贝构造函数；不能继承基类的重载运算符；不能继承基类的友元函数。</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>&emsp;&emsp;当多个派生类继承于一个基类时，同时实现该基类中相同的（纯）虚函数，不同类的不同实现方式，即是多态。  </p>
+<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><p>&emsp;&emsp;类的友元包括：友元方法、友元类。<br>&emsp;&emsp;友元使用<code>friend</code>关键字修饰。<br>&emsp;&emsp;（1）友元函数在类的内部声明，可以通过对象、类的static成员访问类的所有成员；<br>&emsp;&emsp;（2）友元类在类的内部声明，被声明的友元类可以访问其任意成员。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//友元函数，通过传入A的对象，访问hello</span></span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">f_hello</span><span class="params">(A &amp;a)</span></span>;</span><br><span class="line">    <span class="comment">//声明友元类：</span></span><br><span class="line">    <span class="comment">//friend class B;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A::hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"hello B"</span>&lt;&lt;<span class="string">' '</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//友元函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f_hello</span><span class="params">(A &amp;a)</span></span>&#123;</span><br><span class="line">    <span class="comment">//友元函数可以直接使用对象访问私有成员hello()</span></span><br><span class="line">    a.hello();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    f_hello(a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p>&emsp;&emsp;内联函数使用<code>inline</code>关键字修饰。内联函数相比于普通函数，内联函数的代码在编译时被替换到调用的地方；普通函数是在运行时被调用执行。内联函数一般是代码块比较简短的函数，类中的函数都是内联函数；内联函数的主要目的是以空间换时间，能够在一定程度上提高代码的运行效率。</p>
+<h3 id="构造函数-析构函数-拷贝构造函数"><a href="#构造函数-析构函数-拷贝构造函数" class="headerlink" title="构造函数/析构函数/拷贝构造函数"></a>构造函数/析构函数/拷贝构造函数</h3><p>&emsp;&emsp;（1）构造函数和析构函数：构造函数分为有参和无参两种，其函数名与类名相同，无返回值类型，其作用是用来初始化对象；析构函数的函数名也与类名相同，不过需要在其前加上 <strong>~</strong>，其作用是释放资源。<br>&emsp;&emsp;（2）拷贝构造函数：顾名思义，拷贝、构造。其形式也是<code>classname (const classname &amp;obj){}</code>；当以一个存在的对象创建一个新的对象的时候，使用拷贝构造函数；当一个类中存在动态分配内存空间时，需要使用拷贝构造函数，如果没有拷贝构造函数，编译器会自动定义一个。  </p>
+<h3 id="public、private、protected"><a href="#public、private、protected" class="headerlink" title="public、private、protected"></a>public、private、protected</h3><p>&emsp;&emsp;（1）权限修饰符，在类中限定类成员的访问权限。<br>&emsp;&emsp;（2）派生类继承基类时，指定以何种权限继承。<br>&emsp;&emsp;（3）派生类以不同的权限继承基类，可能会改变其继承的成员的权限。（派生类不能够访问基类的私有成员）  </p>
+<hr>
+<h3 id="const关键字"><a href="#const关键字" class="headerlink" title="const关键字"></a>const关键字</h3><p>&emsp;&emsp;const关键字修饰的对象（此对象不指类的实例化）不能够被修改。<br>&emsp;&emsp;const修饰函数时，该函数不可以改变其外部声明的变量，也不能调用任何非const函数。  </p>
+<h3 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h3><p>&emsp;&emsp;该关键字用于给变量其别名。如<code>typedef int haha;</code>  </p>
+<h3 id="extern"><a href="#extern" class="headerlink" title="extern"></a>extern</h3><p>&emsp;&emsp;变量/函数声明，使用extern声明的变量或者函数，才可以在任何地方使用。（在一个文件中引入另一个文件）  </p>
+<h3 id="定义常量的两种方式"><a href="#定义常量的两种方式" class="headerlink" title="定义常量的两种方式"></a>定义常量的两种方式</h3><p>&emsp;&emsp;使用<code>const</code>关键字和<code>#define</code>宏定义。</p>
+<h3 id="域运算符"><a href="#域运算符" class="headerlink" title="域运算符"></a>域运算符</h3><p><code>::</code>，域运算符在命名空间或者类在外部定义函数时使用。</p>
+<h3 id="使用初始化列表初始化字段"><a href="#使用初始化列表初始化字段" class="headerlink" title="使用初始化列表初始化字段"></a>使用初始化列表初始化字段</h3><p>&emsp;&emsp;假如一个类C,具有X,Y,Z等字段需要初始化，可以如下形式进行字段的初始化:  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C::C(<span class="keyword">double</span> a,<span class="keyword">double</span> b,<span class="keyword">double</span> c):X(a),Y(b),Z(c)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="c-重载"><a href="#c-重载" class="headerlink" title="c++重载"></a>c++重载</h3><p>&emsp;&emsp;c++的重载包括两部分：函数重载、运算符重载；由参数个数和类型的不同，在调用时选择最佳的调用方式。</p>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>&emsp;&emsp;至少含有一个虚函数的类是抽象类。含有虚函数的类可以被实例化，含有纯虚函数的抽象类不能被实例化。  </p>
+<h3 id="c-文件读写"><a href="#c-文件读写" class="headerlink" title="c++文件读写"></a>c++文件读写</h3><p>&emsp;&emsp;从文件读取信息（文件输入流ifstream），把信息读入文件（文件输出流ofstream）；<br>&emsp;&emsp;与文件相关的三种类型：ifstrean,fstream,ofstream<br>&emsp;&emsp;open()，close()  </p>
+<h3 id="c-异常处理"><a href="#c-异常处理" class="headerlink" title="c++异常处理"></a>c++异常处理</h3><p>&emsp;&emsp;try…catch用来捕获异常并且处理，throw抛出异常。<br>&emsp;&emsp;若使一个catch能够捕获所有的异常，则在catch(…)中使用<code>...</code>省略号。</p>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>&emsp;&emsp;模板是泛型编程的基础，以一种独立于任何特定类型的方式编写代码。<br>&emsp;&emsp;模板包括：函数模板、类模板。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写函数的模板</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> type&gt;</span><br><span class="line"><span class="comment">//typename是一个c++关键字</span></span><br><span class="line">ret-type func-name(parameter <span class="built_in">list</span>)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// 函数的主体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写类的模板</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>&gt;</span></span><br><span class="line"><span class="class">//<span class="title">type</span>是类型的占位符名称，比如取为 <span class="title">T</span></span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">class</span>-<span class="title">name</span> &#123;</span></span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h3><p>&emsp;&emsp;在程序编译之前，在程序中出现的所有宏定义将被替换为代码；如同内联函数被替换成代码块进行编译一样。  </p>
+<p><strong>条件编译</strong>  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> Hello</span></span><br><span class="line">    <span class="comment">//如果使用**宏定义**了Hello常量，则do something（必须是宏定义）</span></span><br><span class="line">    <span class="keyword">do</span> something</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line">    <span class="comment">//利用#if 0，可以忽略一些代码段的编译。</span></span><br><span class="line">    <span class="keyword">not</span> <span class="keyword">do</span> something</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="c-更高级内容"><a href="#c-更高级内容" class="headerlink" title="c++更高级内容"></a>c++更高级内容</h3><p>&emsp;&emsp;<strong>信号处理</strong>、<strong>多线程</strong>、<strong>Web编程</strong>。   </p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/06/03/闭包/" data-toggle="tooltip" data-placement="top"
+                           title="闭包和高阶函数">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTk5OC8xMjUzNA==">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#c-是什么样的语言？"><span class="toc-text">c++是什么样的语言？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static的作用？（面试经常问）"><span class="toc-text">static的作用？（面试经常问）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c-面向对象三大特点"><span class="toc-text">c++ 面向对象三大特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态"><span class="toc-text">多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#友元"><span class="toc-text">友元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内联函数"><span class="toc-text">内联函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数-析构函数-拷贝构造函数"><span class="toc-text">构造函数&#x2F;析构函数&#x2F;拷贝构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public、private、protected"><span class="toc-text">public、private、protected</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#const关键字"><span class="toc-text">const关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#typedef"><span class="toc-text">typedef</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extern"><span class="toc-text">extern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义常量的两种方式"><span class="toc-text">定义常量的两种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域运算符"><span class="toc-text">域运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用初始化列表初始化字段"><span class="toc-text">使用初始化列表初始化字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-重载"><span class="toc-text">c++重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-文件读写"><span class="toc-text">c++文件读写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-异常处理"><span class="toc-text">c++异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板"><span class="toc-text">模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预处理器"><span class="toc-text">预处理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-更高级内容"><span class="toc-text">c++更高级内容</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#c++"
+                           title="c++">c++</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leo.dropsec.xyz/" target="_blank" rel="noopener">Leooel</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_39378657" target="_blank" rel="noopener">Acmer-bsj</a></li>
+                        
+                        <li><a href="http://xkzx.xyz" target="_blank" rel="noopener">星空之下</a></li>
+                        
+                        <li><a href="http://jimietianxingzhe.com/" target="_blank" rel="noopener">小博博</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/5973705133">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zzti-bsj">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; BaiShaoJie 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://codeac.top/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '26af552cc0743478193fc1917a4b2ac4';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/imag/favicon.png">
+</body>
+
+</html>
