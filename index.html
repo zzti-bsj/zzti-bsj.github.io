@@ -297,6 +297,172 @@
 
 <div class="post-preview "
      style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/06/27/6.守护态运行容器实例/">
+        <h2 class="post-title">
+            6.守护态运行容器实例
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-27
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                守护态运行实例守护态，顾名思义，运行在后台。  
+
+-d 参数，使创建的容器在后台运行
+
+使用ubuntu:18.04镜像创建一个容器不断输出hellowold，以守护态运行。  
+
+docker run -d ubuntu:18.04 /bin/sh -c “while true; do ec..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/06/27/5.容器操作/">
+        <h2 class="post-title">
+            5.操作容器
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-27
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                容器&emsp;&emsp;镜像的实例，独立运行的一个或一组应用，以及他们运行时的环境。虚拟机则可以理解为模拟运行的操作系统和运行在其上的程序。  
+一、查看容器状态查看正在运行的容器  
+
+docker container ls
+
+查看所有的容器  
+
+docker container ls ..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/06/27/4.获取镜像(ubuntu 18.04)，创建容器实例/">
+        <h2 class="post-title">
+            4. 获取镜像(ubuntu 18.04)，创建容器实例
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-27
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                基于ubuntu:18.04创建、启动、删除镜像获取镜像&emsp;&emsp;默认从Docker Hub网站获取library用户下的ubuntu仓库的18.04版本镜像。  
+
+docker [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]docker pul..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/06/27/3. 镜像操作（镜像列表）/">
+        <h2 class="post-title">
+            3. 镜像操作（镜像列表）
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-27
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                win10安装Docker&emsp;&emsp;Docker官网，下载Docker Desktop并安装。  
+一、获取镜像&emsp;&emsp;默认从Docker Hub网站获取library用户下的ubuntu仓库的18.04版本镜像。  
+
+docker [选项] [Docker Re..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/06/27/2. Docker的基本概念/">
+        <h2 class="post-title">
+            2. Docker的基本概念
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-27
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                Docker的三个基本概念
+镜像（Image）
+容器（container）
+仓库（repository）
+
+镜像&emsp;&emsp;镜像相当于root文件系统；其文件存储方式是分层存储。  
+容器&emsp;&emsp;镜像和容器的关系如类和实例的关系，容器是镜像动态运行时的实体，可以被创建..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
+    <a href="/2020/06/27/1. 什么是Docker/">
+        <h2 class="post-title">
+            1. 什么是Docker
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-27
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                Docker简介&emsp;&emsp;Docker是dotCloud公司基于Linux内核，使用Go语言创建的一个虚拟化技术，对进程封装隔离。由于隔离的进程独立于其他进程以及宿主，所以隔离的进程称为容器。
+
+Docker是一个虚拟化技术，容器是隔离化进程。
+
+Docker和传统虚拟机的区别&e..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('imag/header/p.jpg')">
     <a href="/2020/06/23/c++快速上手笔记/">
         <h2 class="post-title">
             c++ 快速上手笔记
@@ -337,153 +503,6 @@
 函数中定义函数
 函数返回函数
 内层函数可以使用外层函数的局部变量以及参数，外层函数的局部变量以及参数存储在返回的函数中..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/04/28/高阶函数/">
-        <h2 class="post-title">
-            高阶函数
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-04-28
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                高阶函数把函数当做参数传递的函数，称为高阶函数。
-python内嵌高阶函数在python3中。  
-map(f,Iterable)两个参数，第一个是函数，第二个是可迭代序列，根据传入的函数，把可迭代序列按照map的规则生成一个新的Iterator
-reduce(f,Iterable)两个参数，第..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/04/27/序列化和反序列化/">
-        <h2 class="post-title">
-            序列化和反序列化
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-04-27
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                序列化把变量从内存中变为可存储或者可传输的过程，称之为序列化。
-经过序列化的数据，可以存储在磁盘上或者经过网络传输到其他机器上。
-反序列化把变量从序列化对象读取到内存中，称为反序列化。
-在python中的序列化与反序列化pickledumps序列化先通过dumps()把字典数据转化成二进制形式，..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/25/1.指针/">
-        <h2 class="post-title">
-            1.指针
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-25
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                前言&emsp;&emsp;谈指针色变，从开始接触指针，甚至刚接触C语言，就已经被人灌输 “指针很难，用指针很容易出错” 的思想，我真的很痛恨这些恐惧的灌输者，某种程度上会让人失去动力。   
-变量&emsp;&emsp;在计算机中，变量有两个属性，值和地址。变量是由程序员定义的，每一个变量对应..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/16/StateListDrawable & shape 实现仿IOS按钮/">
-        <h2 class="post-title">
-            StateListDrawable & shape 实现仿IOS按钮
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-16
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                仿IOS按钮的实现&emsp;&emsp;Switch开关控件的原始样式太不美观，但是现在市面上的安卓应用已经很美观了。这里要使用StateListDrawable &amp; shape实现一个比较美观的按钮。Switch控件xml  
-1234567891011&lt;!-- thumb  ..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/16/状态列表图形类StateListDrawable & 形状图形/">
-        <h2 class="post-title">
-            状态列表图形类StateListDrawable & 形状图形
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-16
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                状态列表图形&emsp;&emsp;状态列表图形（StateListDrawable），顾名思义，对于拥有不同状态的控件，控件的状态不同时控件显示的图形不同。比如：按钮控件，当按压的时候显示的是凹陷的状态，抬起的时候显示的是凸显的状态；Switch开关，为了让用户能够知道处于开或者关的状态，开/..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('imag/header/p.jpg')">
-    <a href="/2020/03/11/图形图像基础/">
-        <h2 class="post-title">
-            图形图像基础
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2020-03-11
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                drawble资源&emsp;&emsp;drawable的意义是“可绘制的”，在Android中，图片、色块、画板、背景等都是drawable资源。  
-状态列表图形&emsp;&emsp;简单来说，当一个按钮被按压时，显示凹陷的图形；抬起时显示凸起的图形。&emsp;&emsp;注意不要在i..
             </p>
         </div>
     </a>
@@ -705,6 +724,11 @@ reduce(f,Iterable)两个参数，第..
                     
                     <a href="/tags/#c++" title="c++"
                        rel="2">c++</a>
+                    
+                    
+                    
+                    <a href="/tags/#Docker" title="Docker"
+                       rel="6">Docker</a>
                     
                     
                 </div>
