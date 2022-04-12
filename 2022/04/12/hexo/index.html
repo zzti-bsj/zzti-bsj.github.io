@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Bsj&#39; Blog</title>
+  <title>使用Hexo开发一个博客网站 | Bsj&#39; Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="使用Hexo开发一个博客网站1. Hexo 简介Hexo是一个简单、高效的博客框架。使用MarkDown解析文章，利用主题生成静态网页。 1.1 环境安装这一步主要是在安装Hexo之前，安装其所依赖的Node.js和Git环境，在依次安装好所需的环境以及Hexo之后，就可以开始Hexo的开发了。 关于依赖环境的安装以及Start Hexo，请参考如下文档： Start Hexo 2. Hexo建站">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bsj&#39; Blog">
+<meta property="og:title" content="使用Hexo开发一个博客网站">
 <meta property="og:url" content="https://codeac.top/2022/04/12/hexo/index.html">
 <meta property="og:site_name" content="Bsj&#39; Blog">
 <meta property="og:description" content="使用Hexo开发一个博客网站1. Hexo 简介Hexo是一个简单、高效的博客框架。使用MarkDown解析文章，利用主题生成静态网页。 1.1 环境安装这一步主要是在安装Hexo之前，安装其所依赖的Node.js和Git环境，在依次安装好所需的环境以及Hexo之后，就可以开始Hexo的开发了。 关于依赖环境的安装以及Start Hexo，请参考如下文档： Start Hexo 2. Hexo建站">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-12T08:42:05.162Z">
-<meta property="article:modified_time" content="2022-04-12T11:17:32.838Z">
+<meta property="article:published_time" content="2022-04-12T10:03:25.000Z">
+<meta property="article:modified_time" content="2022-04-12T14:43:18.267Z">
 <meta property="article:author" content="shaojie">
 <meta name="twitter:card" content="summary">
   
@@ -76,12 +76,22 @@
         <section id="main"><article id="post-hexo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/04/12/hexo/" class="article-date">
-  <time class="dt-published" datetime="2022-04-12T08:42:05.162Z" itemprop="datePublished">2022-04-12</time>
+  <time class="dt-published" datetime="2022-04-12T10:03:25.000Z" itemprop="datePublished">2022-04-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用Hexo开发一个博客网站
+    </h1>
+  
+
+      </header>
     
     <div class="e-content article-entry" itemprop="articleBody">
       
@@ -97,14 +107,21 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">C:\bsj\HexoBlog\myBlog&gt;hexo</span><br><span class="line">INFO  Validating config</span><br><span class="line">Usage: hexo &lt;<span class="built_in">command</span>&gt;</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  clean     Remove generated files and cache.</span><br><span class="line">  config    Get or <span class="built_in">set</span> configurations.</span><br><span class="line">  deploy    Deploy your website.</span><br><span class="line">  generate  Generate static files.</span><br><span class="line">  <span class="built_in">help</span>      Get <span class="built_in">help</span> on a <span class="built_in">command</span>.</span><br><span class="line">  init      Create a new Hexo folder.</span><br><span class="line">  list      List the information of the site</span><br><span class="line">  migrate   Migrate your site from other system to Hexo.</span><br><span class="line">  new       Create a new post.</span><br><span class="line">  publish   Moves a draft post from _drafts to _posts folder.</span><br><span class="line">  render    Render files with renderer plugins.</span><br><span class="line">  server    Start the server.</span><br><span class="line">  version   Display version information.</span><br><span class="line"></span><br><span class="line">Global Options:</span><br><span class="line">  --config  Specify config file instead of using _config.yml</span><br><span class="line">  --cwd     Specify the CWD</span><br><span class="line">  --debug   Display all verbose messages <span class="keyword">in</span> the terminal</span><br><span class="line">  --draft   Display draft posts</span><br><span class="line">  --safe    Disable all plugins and scripts</span><br><span class="line">  --silent  Hide output on console</span><br><span class="line"></span><br><span class="line">For more <span class="built_in">help</span>, you can use <span class="string">&#x27;hexo help [command]&#x27;</span> <span class="keyword">for</span> the detailed information</span><br><span class="line">or you can check the docs: http://hexo.io/docs/</span><br></pre></td></tr></table></figure>
 
 <p>在这个目录下，可以执行相关的命令来实现相应的操作，比如创建新文章、生成静态文件、部署网站等。</p>
-<h2 id="3-部署到Github"><a href="#3-部署到Github" class="headerlink" title="3. 部署到Github"></a>3. 部署到Github</h2><h3 id="3-1-Github配置"><a href="#3-1-Github配置" class="headerlink" title="3.1 Github配置"></a>3.1 Github配置</h3><ol>
-<li>新建一个<code>repository</code>，</li>
+<h2 id="3-部署到Github"><a href="#3-部署到Github" class="headerlink" title="3. 部署到Github"></a>3. 部署到Github</h2><h3 id="3-1-创建Github仓库"><a href="#3-1-创建Github仓库" class="headerlink" title="3.1 创建Github仓库"></a>3.1 创建Github仓库</h3><p>新建一个Github <code>repository</code>，命名为<code>&lt;username&gt;.github.io</code>，这里的username是个人Github的账户昵称。  </p>
+<h3 id="3-2-关联Hexo和Git仓库"><a href="#3-2-关联Hexo和Git仓库" class="headerlink" title="3.2 关联Hexo和Git仓库"></a>3.2 关联Hexo和Git仓库</h3><p>配置<code>_config.yml</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/&lt;username&gt;/&lt;username&gt;.github.io.git</span><br><span class="line">  branch: master <span class="comment"># your origin default branch</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-配置域名"><a href="#3-3-配置域名" class="headerlink" title="3.3 配置域名"></a>3.3 配置域名</h3><ol>
+<li>在<code>source/</code>下新建<code>CNAME</code>命名的文件，写入域名(比如我的是：codeac.top)</li>
+<li>在Github的<code>&lt;username&gt;.github.io</code>仓库找到 -&gt; Setting -&gt; Pages settings now has its own dedicated tab! Check it out here! -&gt; Custom domain， 同样在这里写上域名，注意<code>Source</code>分支不要选择错误了</li>
 </ol>
+<h2 id="4-生成静态文件-amp-部署"><a href="#4-生成静态文件-amp-部署" class="headerlink" title="4. 生成静态文件 &amp; 部署"></a>4. 生成静态文件 &amp; 部署</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># hexo clean</span></span><br><span class="line"></span><br><span class="line">hexo g -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># hexo generate</span></span><br><span class="line"><span class="comment"># hexo deploy</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://codeac.top/2022/04/12/hexo/" data-id="cl1w8pvqm0004ugun0x9p3h8y" data-title="" class="article-share-link">分享</a>
+      <a data-url="https://codeac.top/2022/04/12/hexo/" data-id="cl1w8pvqm0004ugun0x9p3h8y" data-title="使用Hexo开发一个博客网站" class="article-share-link">分享</a>
       
       
       
@@ -114,15 +131,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/04/12/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
   
+    <a href="/2022/04/12/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
 </nav>
 
@@ -159,19 +172,11 @@
       <ul>
         
           <li>
-            <a href="/2022/04/12/hello/">hello</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/12/test-md/">test.md</a>
+            <a href="/2022/04/12/hexo/">使用Hexo开发一个博客网站</a>
           </li>
         
           <li>
             <a href="/2022/04/12/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/12/hexo/">(no title)</a>
           </li>
         
       </ul>
